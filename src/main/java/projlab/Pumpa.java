@@ -16,11 +16,24 @@ public class Pumpa extends AktivElem {
 	private Ciszterna termeltpumpak;
 
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
+		this.bemenet = (Cso) bemenet;		// TODO: itt muszály kasztolni, vagya függvény attributumot meg kell változtatni
 	}
 
 	public void Megjavit() {
 	}
 
 	public void Frissit() {
+		int MAXVIZ = 1;
+
+		int befolyoviz = bemenet.getVizmennyiseg();
+		vizmennyiseg += befolyoviz;
+		bemenet.VizetCsokkent(befolyoviz);
+
+		int kifolyoviz = kimenet.getVizmennyiseg();	// QUESTION: Akkor a maxviz jo 1 nek most?
+		kifolyoviz = MAXVIZ - kifolyoviz;
+		kimenet.VizetNovel(kifolyoviz);
+		vizmennyiseg -= kifolyoviz;
+
+
 	}
 }
