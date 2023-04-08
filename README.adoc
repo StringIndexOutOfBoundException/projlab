@@ -1,1 +1,15 @@
-= ?
+== *1.1 Napló*
+
+[cols= "1,1,1,1"]
+|===
+| Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
+
+| 2023.04.8
+| 1 óra
+|Kerekes +
+Ignáth +
+Tasi +
+Borbély +
+| Értekezlet:  Döntések: Feladatok szétosztása, konzultáció átbeszélése
+
+|===

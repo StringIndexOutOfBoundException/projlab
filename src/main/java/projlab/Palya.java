@@ -12,4 +12,5 @@ package projlab;//
 public class Palya {
 	private Mezo elemek;
 	private Jatekos jatekosok;
+
 }
