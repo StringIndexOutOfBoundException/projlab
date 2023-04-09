@@ -9,6 +9,9 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ciszterna extends AktivElem {
 	private Pumpa termeltpumpak;
 
@@ -22,5 +25,6 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void Frissit() {
+
 	}
 }

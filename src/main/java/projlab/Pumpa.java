@@ -9,14 +9,18 @@ package projlab;//
 //
 //
 
+import java.nio.BufferOverflowException;
+import java.nio.BufferUnderflowException;
+
 public class Pumpa extends AktivElem {
 	private int vizmennyiseg;
 	private Cso bemenet;
 	private Cso kimenet;
 	private Ciszterna termeltpumpak;
 
-	public void Atallit(Mezo kimenet, Mezo bemenet) {
-		this.bemenet = (Cso) bemenet;		// TODO: itt muszály kasztolni, vagya függvény attributumot meg kell változtatni
+	public void Atallit(Cso kimenet, Cso bemenet) {
+		this.bemenet = bemenet;
+		this.kimenet = kimenet;
 	}
 
 	public void Megjavit() {
@@ -27,11 +31,20 @@ public class Pumpa extends AktivElem {
 
 		int befolyoviz = bemenet.getVizmennyiseg();
 		vizmennyiseg += befolyoviz;
-		bemenet.VizetCsokkent(befolyoviz);
-
-		int kifolyoviz = kimenet.getVizmennyiseg();	// QUESTION: Akkor a maxviz jo 1 nek most?
+		try {
+			bemenet.VizetCsokkent(befolyoviz);
+		}
+		catch (BufferUnderflowException e){
+			System.out.println("Nincs  eleg viz a csoben " + e);
+		}
+		int kifolyoviz = kimenet.getVizmennyiseg();	// MAXVIZ
 		kifolyoviz = MAXVIZ - kifolyoviz;
-		kimenet.VizetNovel(kifolyoviz);
+		try {
+			kimenet.VizetNovel(kifolyoviz);
+		}
+		catch (BufferOverflowException e){
+			System.out.println("Nem tudsz ennyi vezet a csobe pumpalni: " + kifolyoviz + " " + e );
+		}
 		vizmennyiseg -= kifolyoviz;
 
 

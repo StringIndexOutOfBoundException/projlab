@@ -9,7 +9,16 @@ package projlab;//
 //
 //
 
+import java.util.List;
+
 public class Forras extends AktivElem {
 	public void Frissit() {
+		List<Cso> szomszedok = super.GetLeszedhetoSzomszedok();
+		int szomszedszam = szomszedok.size();
+		if(szomszedszam > 1){
+			throw new IllegalArgumentException();
+		} else if (szomszedszam == 1) {
+			szomszedok.get(0).VizetNovel(1); 	//MAXVIZ
+		}
 	}
 }

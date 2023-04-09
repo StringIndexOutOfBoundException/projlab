@@ -9,13 +9,14 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mezo {
 	private Boolean mukodik;
 	private int maxJatekosok;
 	private Jatekos jatekosok;
-	private Mezo szomszedok;
+	private ArrayList<Mezo> szomszedok;
 
 	public List<Mezo> GetSzomszedok() {
 		return null;
@@ -50,7 +51,7 @@ public abstract class Mezo {
 		return null;
 	}
 
-	public List<Mezo> GetLeszedhetoSzomszedok() {
+	public List<Cso> GetLeszedhetoSzomszedok() {
 		return null;
 	}
 
