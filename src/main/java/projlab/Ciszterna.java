@@ -9,7 +9,7 @@ package projlab;//
 //
 //
 
-import java.util.ArrayList;
+import java.nio.BufferUnderflowException;
 import java.util.List;
 
 public class Ciszterna extends AktivElem {
@@ -25,6 +25,12 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void Frissit() {
-
+		List<Cso> szomszedok = GetLeszedhetoSzomszedok();
+		for (var cso:szomszedok) {
+			try {
+				cso.VizetCsokkent(1); //MAXVIZ
+			}
+			catch (BufferUnderflowException e){System.out.println("Csoben nincs eleg viz: " + 1 + " " + e);}
+		}
 	}
 }
