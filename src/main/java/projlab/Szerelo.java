@@ -11,6 +11,8 @@ package projlab;//
 
 public class Szerelo extends Jatekos {
 	public void Javit() {
+		Mezo helyzet = super.getHelyzet();
+		helyzet.Megjavit();
 	}
 
 	public void PumpatFelvesz() {

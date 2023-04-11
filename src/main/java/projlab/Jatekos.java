@@ -19,5 +19,10 @@ public abstract class Jatekos {
 	}
 
 	public void Allit(Mezo kimenet, Mezo bemenet) {
+
+	}
+
+	public Mezo getHelyzet(){
+		return helyzet;
 	}
 }

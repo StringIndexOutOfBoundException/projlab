@@ -53,4 +53,8 @@ public abstract class Mezo {
 	public List<Mezo> GetLeszedhetoSzomszedok() {
 		return null;
 	}
+
+	public void setMukodik(boolean allapot){
+		mukodik = allapot;
+	}
 }

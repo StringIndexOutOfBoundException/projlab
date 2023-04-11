@@ -11,5 +11,7 @@ package projlab;//
 
 public class Szabotor extends Jatekos {
 	public void Lyukaszt() {
+		Mezo helyzet = super.getHelyzet();
+		helyzet.Kilyukaszt();
 	}
 }
