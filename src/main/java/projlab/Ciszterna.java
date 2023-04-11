@@ -25,12 +25,12 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void Frissit() {
-		List<Cso> szomszedok = GetLeszedhetoSzomszedok();
-		for (var cso:szomszedok) {
+		List<Mezo> szomszedok = GetLeszedhetoSzomszedok();
+		for (var cso : szomszedok) {
 			try {
 				cso.VizetCsokkent(1); //MAXVIZ
 			}
-			catch (BufferUnderflowException e){System.out.println("Csoben nincs eleg viz: " + 1 + " " + e);}
+			catch (BufferUnderflowException e){/* Hmm ez nem szép itt ;) */}
 		}
 	}
 }

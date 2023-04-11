@@ -51,11 +51,14 @@ public abstract class Mezo {
 		return null;
 	}
 
-	public List<Cso> GetLeszedhetoSzomszedok() {
+	public List<Mezo> GetLeszedhetoSzomszedok() {
 		return null;
 	}
 
 	public void setMukodik(boolean status){
 		mukodik = status;
 	}
+
+	public void VizetCsokkent(int meret){};
+	public void VizetNovel(int meret) {};
 }

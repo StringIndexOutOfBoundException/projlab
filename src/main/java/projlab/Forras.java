@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Forras extends AktivElem {
 	public void Frissit() {
-		List<Cso> szomszedok = super.GetLeszedhetoSzomszedok();
+		List<Mezo> szomszedok = super.GetLeszedhetoSzomszedok();
 		int szomszedszam = szomszedok.size();
 		if(szomszedszam > 1){
 			throw new IllegalArgumentException();
