@@ -13,3 +13,5 @@ Borbély +
 | Értekezlet:  Döntések: Feladatok szétosztása, konzultáció átbeszélése
 
 |===
+
+Ez egy test pls ignore
