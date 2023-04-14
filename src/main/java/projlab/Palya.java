@@ -10,7 +10,7 @@ package projlab;//
 //
 
 public class Palya {
-	private Mezo elemek;
-	private Jatekos jatekosok;
+	private List <Mezo> elemek;
+	private List <Jatekos> jatekosok;
 
 }

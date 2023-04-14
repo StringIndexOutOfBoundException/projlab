@@ -9,13 +9,16 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mezo {
 	private Boolean mukodik;
 	private int maxJatekosok;
-	private Jatekos jatekosok;
-	private Mezo szomszedok;
+
+	private List <Jatekos> jatekosok;
+	private List <Mezo> szomszedok;
+
 
 	public List<Mezo> GetSzomszedok() {
 		return null;
@@ -57,4 +60,11 @@ public abstract class Mezo {
 	public List<Mezo> GetLeszedhetoSzomszedok() {
 		return null;
 	}
+
+	public void setMukodik(boolean status){
+		mukodik = status;
+	}
+
+	public void VizetCsokkent(int meret){};
+	public void VizetNovel(int meret) {};
 }
