@@ -11,5 +11,9 @@ package projlab;//
 
 public class Szabotor extends Jatekos {
 	public void Lyukaszt() {
+		System.out.println("Függvényhívás: " + this + "Lyukaszt()");
+		System.out.println();
+		Mezo helyzet = super.getHelyzet();
+		helyzet.Kilyukaszt();
 	}
 }

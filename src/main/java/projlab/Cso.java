@@ -16,13 +16,15 @@ public class Cso extends Mezo {
 	private int vizmennyiseg;
 
 	public void Megjavit() {
-		super.setMukodik(true);
+
+		setMukodik(true);
 	}
 
 	public void PumpaEpit() {
 	}
 
 	public void Kilyukaszt() {
+		setMukodik(false);
 	}
 
 	public void VizetNovel(int meret) {

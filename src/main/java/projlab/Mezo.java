@@ -35,9 +35,13 @@ public abstract class Mezo {
 	}
 
 	public void Megjavit() {
+		System.out.println("Függvényhívás: " + this + "Megjavit()");
+		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
+		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
+		mukodik = true;
 	}
 
 	public void PumpaEpit() {

@@ -25,6 +25,7 @@ public class Pumpa extends AktivElem {
 	}
 
 	public void Megjavit() {
+		setMukodik(true);
 	}
 
 	public void Frissit() {
