@@ -36,7 +36,7 @@ public class Cso extends Mezo {
 	}
 
 	public void VizetCsokkent(int meret) {
-		System.out.println("Függvényhívás:" + this +": VizetCsokkent( " + meret + ") ");
+		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + ") ");
 
 		if(meret < vizmennyiseg) {
 			vizmennyiseg -= meret;

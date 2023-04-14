@@ -14,7 +14,7 @@ import java.util.List;
 public class Forras extends AktivElem {
 	private static int MAXVIZ = 1;
 	public void Frissit() {
-		System.out.println("Függvényhívás:" + this +": Frissit() ");
+		System.out.println("Függvényhívás: " + this +": Frissit() ");
 		List<Mezo> szomszedok = super.GetLeszedhetoSzomszedok();
 		int szomszedszam = szomszedok.size();
 		if(szomszedszam > 1){

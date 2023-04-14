@@ -28,22 +28,28 @@ public class Pumpa extends AktivElem {
 	}
 
 	public void Frissit() {
-		System.out.println("Függvényhívás:" + this +": Frissit() ");
+		System.out.println("Függvényhívás: " + this +": Frissit() ");
 		int befolyoviz = bemenet.getVizmennyiseg();
 		vizmennyiseg += befolyoviz;
 		try {
 			bemenet.VizetCsokkent(befolyoviz);
 		}
 		catch (BufferUnderflowException e){
-			System.out.println("Nincs  eleg viz a csoben " + e);
+			//System.out.println("Nincs  eleg viz a csoben " + e);
 		}
-		int kifolyoviz = kimenet.getVizmennyiseg();	// MAXVIZ
+
+
+		int kifolyoviz = kimenet.getVizmennyiseg();
 		kifolyoviz = MAXVIZ - kifolyoviz;
+		if (vizmennyiseg < kifolyoviz){
+			kifolyoviz = vizmennyiseg;
+		}
+
 		try {
 			kimenet.VizetNovel(kifolyoviz);
 		}
 		catch (BufferOverflowException e){
-			System.out.println("Nem tudsz ennyi vezet a csobe pumpalni: " + kifolyoviz + " " + e );
+			//System.out.println("Nem tudsz ennyi vezet a csobe pumpalni: " + kifolyoviz + " " + e );
 		}
 		vizmennyiseg -= kifolyoviz;
 
