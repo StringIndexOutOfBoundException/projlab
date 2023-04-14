@@ -32,9 +32,13 @@ public abstract class Mezo {
 	}
 
 	public void Megjavit() {
+		System.out.println("Függvényhívás: " + this + "Megjavit()");
+		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
+		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
+		mukodik = true;
 	}
 
 	public void PumpaEpit() {
@@ -52,9 +56,5 @@ public abstract class Mezo {
 
 	public List<Mezo> GetLeszedhetoSzomszedok() {
 		return null;
-	}
-
-	public void setMukodik(boolean allapot){
-		mukodik = allapot;
 	}
 }
