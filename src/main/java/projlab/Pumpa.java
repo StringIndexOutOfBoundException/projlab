@@ -13,6 +13,7 @@ import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 
 public class Pumpa extends AktivElem {
+	private  static int MAXVIZ = 1;
 	private int vizmennyiseg;
 	private Cso bemenet;
 	private Cso kimenet;
@@ -27,7 +28,6 @@ public class Pumpa extends AktivElem {
 	}
 
 	public void Frissit() {
-		int MAXVIZ = 1;
 
 		int befolyoviz = bemenet.getVizmennyiseg();
 		vizmennyiseg += befolyoviz;

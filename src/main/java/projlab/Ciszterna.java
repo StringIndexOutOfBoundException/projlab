@@ -13,6 +13,7 @@ import java.nio.BufferUnderflowException;
 import java.util.List;
 
 public class Ciszterna extends AktivElem {
+	private  static int MAXVIZ = 1;
 	private Pumpa termeltpumpak;
 
 	public void PumpaEltavolit() {
@@ -28,7 +29,7 @@ public class Ciszterna extends AktivElem {
 		List<Mezo> szomszedok = GetLeszedhetoSzomszedok();
 		for (var cso : szomszedok) {
 			try {
-				cso.VizetCsokkent(1); //MAXVIZ
+				cso.VizetCsokkent(MAXVIZ);
 			}
 			catch (BufferUnderflowException e){/* Hmm ez nem szép itt ;) */}
 		}
