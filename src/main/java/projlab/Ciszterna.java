@@ -10,7 +10,7 @@ package projlab;//
 //
 
 public class Ciszterna extends AktivElem {
-	private Pumpa termeltpumpak;
+	private List <Pumpa> termeltpumpak;
 
 	public void PumpaEltavolit() {
 	}

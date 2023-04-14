@@ -12,8 +12,8 @@ package projlab;//
 public abstract class Jatekos {
 	private int maxHatizsakKapacitas;
 	private Mezo helyzet;
-	private Pumpa pumpaHatizsak;
-	private Cso csoHatizsak;
+	private List <Pumpa> pumpaHatizsak;
+	private List <Cso> csoHatizsak;
 
 	public void Lep() {
 	}
