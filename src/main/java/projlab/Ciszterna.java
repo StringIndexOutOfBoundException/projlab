@@ -9,7 +9,11 @@ package projlab;//
 //
 //
 
+import java.nio.BufferUnderflowException;
+import java.util.List;
+
 public class Ciszterna extends AktivElem {
+	private  static int MAXVIZ = 1;
 	private List <Pumpa> termeltpumpak;
 
 	public void PumpaEltavolit() {
@@ -22,5 +26,13 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void Frissit() {
+		System.out.println("Függvényhívás: " + this +": Frissit() ");
+		List<Mezo> szomszedok = GetLeszedhetoSzomszedok();
+		for (var cso : szomszedok) {
+			try {
+				cso.VizetCsokkent(MAXVIZ);
+			}
+			catch (BufferUnderflowException e){/* Hmm ez nem szép itt ;) */}
+		}
 	}
 }
