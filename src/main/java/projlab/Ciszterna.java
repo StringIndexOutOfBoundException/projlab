@@ -26,6 +26,7 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void Frissit() {
+		System.out.println("Függvényhívás:" + this +": Frissit() ");
 		List<Mezo> szomszedok = GetLeszedhetoSzomszedok();
 		for (var cso : szomszedok) {
 			try {

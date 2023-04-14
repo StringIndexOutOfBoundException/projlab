@@ -28,7 +28,7 @@ public class Pumpa extends AktivElem {
 	}
 
 	public void Frissit() {
-
+		System.out.println("Függvényhívás:" + this +": Frissit() ");
 		int befolyoviz = bemenet.getVizmennyiseg();
 		vizmennyiseg += befolyoviz;
 		try {
