@@ -4,7 +4,7 @@
 |===
 | Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
 
-| 2023.04.8
+| 2023.04.08
 | 1 óra
 |Kerekes +
 Ignáth +

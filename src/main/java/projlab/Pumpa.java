@@ -17,7 +17,7 @@ public class Pumpa extends AktivElem {
 	private int vizmennyiseg;
 	private Cso bemenet;
 	private Cso kimenet;
-	private Ciszterna termeltpumpak;
+	
 
 	public void Atallit(Cso kimenet, Cso bemenet) {
 		this.bemenet = bemenet;

@@ -15,8 +15,10 @@ import java.util.List;
 public abstract class Mezo {
 	private Boolean mukodik;
 	private int maxJatekosok;
-	private Jatekos jatekosok;
-	private ArrayList<Mezo> szomszedok;
+
+	private List <Jatekos> jatekosok;
+	private List <Mezo> szomszedok;
+
 
 	public List<Mezo> GetSzomszedok() {
 		return null;

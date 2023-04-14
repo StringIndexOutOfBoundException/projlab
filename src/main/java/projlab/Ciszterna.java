@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Ciszterna extends AktivElem {
 	private  static int MAXVIZ = 1;
-	private Pumpa termeltpumpak;
+	private List <Pumpa> termeltpumpak;
 
 	public void PumpaEltavolit() {
 	}
