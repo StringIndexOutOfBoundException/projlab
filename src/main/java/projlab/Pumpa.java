@@ -12,16 +12,15 @@ import java.nio.BufferUnderflowException;
 public class Pumpa extends AktivElem {
 	private  static int MAXVIZ = 1;
 	private int vizmennyiseg;
-	private Cso bemenet;
-	private Cso kimenet;
+	private Mezo bemenet;
+	private Mezo kimenet;
 	
 
 	/**
 	 * @param kimenet
 	 * @param bemenet
 	 */
-	@Override
-	public void Atallit(Cso kimenet, Cso bemenet) {
+	public void Atallit(Mezo kimenet, Mezo bemenet) {
 		this.bemenet = bemenet;
 		this.kimenet = kimenet;
 	}

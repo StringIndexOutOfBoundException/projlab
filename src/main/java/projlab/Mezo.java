@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mezo {
+	private int vizmennyiseg;
 	private Boolean mukodik;
 	private int maxJatekosok;
 
@@ -31,7 +32,7 @@ public abstract class Mezo {
 	public void JatekosEltavolit(Jatekos j) {
 	}
 
-	public void Atallit(Cso kimenet, Cso bemenet) {
+	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
 	public void Megjavit() {
@@ -67,4 +68,5 @@ public abstract class Mezo {
 
 	public void VizetCsokkent(int meret){};
 	public void VizetNovel(int meret) {};
+	public int getVizmennyiseg(){return vizmennyiseg;}
 }
