@@ -24,7 +24,7 @@ A projlab mappában futtasd a következő parancsot:
 |===
 | Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
 
-| 2023.04.08
+| 2023.04.08 18:00
 | 1 óra
 |Kerekes +
 Ignáth +
@@ -32,9 +32,14 @@ Tasi +
 Borbély +
 | Értekezlet:  Döntések: Feladatok szétosztása, konzultáció átbeszélése
 
-| 2023.04.15
+| 2023.04.15 14:00
 | 30 perc
 |Borbély +
 | Tevékenység: Fordítási útmutató elkészítése, Tartalomjegyzék elkészítése
+
+| 2023.04.15 16:00
+| 1 óra
+|Borbély +
+| Tevékenység: Jdoc készítése
 |===
 
