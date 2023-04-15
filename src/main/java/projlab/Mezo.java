@@ -31,7 +31,7 @@ public abstract class Mezo {
 	public void JatekosEltavolit(Jatekos j) {
 	}
 
-	public void Atallit(Mezo kimenet, Mezo bemenet) {
+	public void Atallit(Cso kimenet, Cso bemenet) {
 	}
 
 	// cso vagy pumpa megjavitasa

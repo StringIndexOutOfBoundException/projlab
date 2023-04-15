@@ -19,10 +19,13 @@ public class Pumpa extends AktivElem {
 	private Cso kimenet;
 	
 
+	@Override
 	public void Atallit(Cso kimenet, Cso bemenet) {
 		this.bemenet = bemenet;
 		this.kimenet = kimenet;
-		System.out.println("Függvényhívás: Atallit(cs1, cs2)\n");
+		System.out.println("Fuggvenyhivas: Atallit(cs1, cs2)");
+		System.out.println("Bemenet allitasa: cs1:Cso\n"
+				+ "Kimenet allitasa: cs2:Cso");
 	}
 
 	public void Megjavit() {

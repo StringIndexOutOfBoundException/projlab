@@ -32,10 +32,6 @@ public abstract class Jatekos {
 		Cso cs1 = new Cso();		//lokalis valtozo a teszteleshez
         Cso cs2 = new Cso();		//lokalis valtozo a teszteleshez
 		helyzet.Atallit(cs1, cs2);	//be es kimenet allitasa
-		
-		System.out.println("Bemenet allitasa: cs1:Cso\n"
-				+ "Kimenet allitasa: cs2:Cso");
-		
 	}
 
 	//Jatekos helyzetenek lekerdezese
