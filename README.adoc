@@ -25,7 +25,6 @@ A projlab mappában futtasd a következő parancsot:
 | Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
 
 | 2023.04.08 18:00
-=======
 | 2023.04.06
 | 1 óra
 | Borbély
