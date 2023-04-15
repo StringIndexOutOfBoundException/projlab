@@ -40,8 +40,7 @@ public abstract class Mezo {
 	}
 
 	public void Kilyukaszt() {
-		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
-		mukodik = true;
+
 	}
 
 	public void PumpaEpit() {
