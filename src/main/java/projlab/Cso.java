@@ -35,7 +35,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetNovel(int meret) {
-		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + ") ");
+		System.out.println("Függvényhívás: " + this +": VizetNovel( " + meret + ") ");
 		if(meret + vizmennyiseg > 1){	//MAXVIZ
 			throw new BufferOverflowException();
 		}
