@@ -67,4 +67,12 @@ public class Pumpa extends AktivElem {
 
 
 	}
+	//setter bemenetre
+	public void setBemenet(Cso cs) {
+		this.bemenet=cs;
+	}
+	//setter kimenetre
+	public void setKimenet(Cso cs) {
+	this.kimenet=cs;
+	}
 }

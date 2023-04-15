@@ -12,10 +12,31 @@ public class Ciszterna extends AktivElem {
 	private  static int MAXVIZ = 1;
 	private List <Pumpa> termeltpumpak;
 
-	public void PumpaEltavolit() {
+	public Ciszterna() {
+		 termeltpumpak=new ArrayList <Pumpa> ();
 	}
-
+	//utolso pumpat torli a listabol
+	public void PumpaEltavolit() {
+		termeltpumpak.remove(termeltpumpak.size()-1);
+	}
+	//getter a termeltpumpaknak
+	public List <Pumpa> ciszternaTermeltPumpak() {
+		return this.termeltpumpak;
+	}
+	//termeltpumpak meretet adja vissza
+	public int CiszternaPumpakSzama() {
+		return this.termeltpumpak.size();
+	}
 	public void PumpatKeszit() {
+			//Random darab uj pumpat rak bele a termeltpumpakba 0-2 kozott
+		Random rand=new Random();
+		int randomNum= rand.nextInt((2-0)+1)+0;
+		for(int i=0; i<randomNum;++i) {
+			Pumpa p=new Pumpa();
+			termeltpumpak.add(p);
+			p.SzomszedHozzaad(this);
+			this.SzomszedHozzaad(p);
+		}
 	}
 
 	public void CsovetKeszit() {

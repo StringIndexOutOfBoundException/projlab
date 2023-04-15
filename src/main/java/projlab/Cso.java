@@ -15,6 +15,31 @@ public class Cso extends Mezo {
 	}
 
 	public void PumpaEpit() {
+		//Teszteleskor letrehozott adatokat nezze meg
+		//p1 az a 0. szomszedja a csonek
+		//p az az 1. szomszedja a csonek
+		//this=cs
+		Pumpa ujPumpa= new Pumpa();
+		Cso ujCso=new Cso();
+	
+		
+		ujPumpa.setBemenet(this);
+		ujPumpa.setKimenet(ujCso);
+		this.SzomszedHozzaad(ujPumpa);
+		ujCso.SzomszedHozzaad(ujPumpa);
+		ujCso.SzomszedHozzaad(this.GetSzomszedok().get(1));
+		ujPumpa.SzomszedHozzaad(ujCso);
+		ujPumpa.SzomszedHozzaad(this);
+		this.GetSzomszedok().get(1).SzomszedHozzaad(ujCso);
+		this.GetSzomszedok().get(1).setBemenet(ujCso);
+		this.GetSzomszedok().get(1).SzomszedTorol(this);
+		this.SzomszedTorol(this.GetSzomszedok().get(1));
+		//kivesszuk az utolso pumpat a jatekos pumpaHatizsakjabol
+		this.getJatekosok().get(0).getpumpaHatizsak().remove(this.getJatekosok().get(0).getpumpaHatizsak().size()-1);
+		
+		//kette vagtuk a "cs" csovet, az elso fele "cs" a masodik pedig "ujCso" a ketto koze ujPumpat berakjuk
+		//a p pumpa bemenete lett az ujCso -> a "p" pumpa mar nem a "cs" pumpaja
+		//az ujPumpa bemenete "cs" kimenete "ujCso"
 	}
 
 	/**

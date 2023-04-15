@@ -19,9 +19,32 @@ public abstract class Mezo {
 	private List <Jatekos> jatekosok;
 	private List <Mezo> szomszedok;
 
+public Mezo() {
+	this.jatekosok=new ArrayList<Jatekos>();
+	this.szomszedok=new ArrayList<Mezo>();
+}
+//teszthez kellett a kovetkezo 4 fuggveny
+public int CiszternaPumpakSzama() {
+	return 0;
+}
+public List<Pumpa> ciszternaTermeltPumpak(){
+	return null;
+}
+public void setKimenet(Cso cs) {
 
+}
+public void setBemenet(Cso cs) {
+	
+}
+//getter a jatekosokra
+public List<Jatekos> getJatekosok() {
+	return this.jatekosok;
+}
+
+
+//getter a szomszedokra
 	public List<Mezo> GetSzomszedok() {
-		return null;
+		return this.szomszedok;
 	}
 
 	public Boolean JatekosElfogad(Jatekos j) {

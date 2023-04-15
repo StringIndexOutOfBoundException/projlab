@@ -17,6 +17,28 @@ public class Szerelo extends Jatekos {
 	}
 
 	public void PumpatFelvesz() {
+	//a szerelo helyzet attributuma  egy ciszterna kell legyen, hogy ez a fuggveny ertelmes eredmenyt adjon
+	
+	//mikor megtelt a pumpaHatizsak
+	if(this.getpumpaHatizsak().size()>=this.getmaxHatizsakKapacitas()) {
+		System.out.println("Nem tud pumpat berakni a szerelo a hatizsakjaba");
+		
+	}
+	//mikor nincs pumpa a ciszternanal
+	else if(this.getHelyzet().CiszternaPumpakSzama()==0) {
+		System.out.println("A ciszternanal nincs pumpa");
+	}
+	
+	//mikor tudunk felvenni pumpat
+	else {
+		System.out.println("A szerelo fel tudja venni a pumpat,"
+						+ "\n Ha a sikertelenseget akarja tesztelni irjon be mas adatot!");
+		//szerelo berakja a hatizsakba a ciszterna termeltpumpak listajaban talalhato utolso pumpat
+		this.getpumpaHatizsak().add(this.getHelyzet().ciszternaTermeltPumpak().get(this.getHelyzet().ciszternaTermeltPumpak().size()-1));
+		//ciszterna eltavolitja azt a pumpat amit felvett a szerelo
+		this.getHelyzet().PumpaEltavolit();
+		
+	}
 	}
 
 	public void CsovetLecsatol() {
@@ -26,5 +48,7 @@ public class Szerelo extends Jatekos {
 	}
 
 	public void PumpatEpit() {
+	//Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
+	this.getHelyzet().PumpaEpit();
 	}
 }
