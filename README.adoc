@@ -24,6 +24,11 @@ A projlab mappában futtasd a következő parancsot:
 |===
 | Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
 
+| 2023.04.06
+| 1 óra
+| Borbély
+| Tevékenység: Build system összerakása
+
 | 2023.04.08
 | 1 óra
 |Kerekes +
@@ -34,7 +39,7 @@ Borbély +
 
 | 2023.04.15
 | 30 perc
-|Borbély +
+|Borbély
 | Tevékenység: Fordítási útmutató elkészítése, Tartalomjegyzék elkészítése
 |===
 
