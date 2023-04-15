@@ -9,11 +9,13 @@ package projlab;//
 //
 //
 
+import java.util.List;
+
 public abstract class Jatekos {
 	private int maxHatizsakKapacitas;
 	private Mezo helyzet;
-	private List <Pumpa> pumpaHatizsak;
-	private List <Cso> csoHatizsak;
+	private List<Pumpa> pumpaHatizsak;
+	private List<Cso> csoHatizsak;
 
 	public void Lep() {
 	}

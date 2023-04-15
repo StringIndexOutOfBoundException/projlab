@@ -9,8 +9,10 @@ package projlab;//
 //
 //
 
+import java.util.List;
+
 public class Palya {
-	private List <Mezo> elemek;
-	private List <Jatekos> jatekosok;
+	private List<Mezo> elemek;
+	private List<Jatekos> jatekosok;
 
 }
