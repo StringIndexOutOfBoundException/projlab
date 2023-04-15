@@ -41,5 +41,10 @@ Borbély +
 | 30 perc
 |Borbély
 | Tevékenység: Fordítási útmutató elkészítése, Tartalomjegyzék elkészítése
+
+| 2023.04.15. 15:00
+| 3 óra
+| Kerekes
+| Tevékenység: Szabotőr/Szerelő pumpát állít, Szerelő csövet/pumpát javít tesztesetek elkészítése
 |===
 
