@@ -14,12 +14,13 @@ public class Pumpa extends AktivElem {
 	private int vizmennyiseg;
 	private Cso bemenet;
 	private Cso kimenet;
-
+	
 
 	/**
 	 * @param kimenet
 	 * @param bemenet
 	 */
+	@Override
 	public void Atallit(Cso kimenet, Cso bemenet) {
 		this.bemenet = bemenet;
 		this.kimenet = kimenet;

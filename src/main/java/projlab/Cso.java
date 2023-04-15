@@ -12,6 +12,7 @@ public class Cso extends Mezo {
 	private int vizmennyiseg;
 
 	public void Megjavit() {
+		setMukodik(true);
 	}
 
 	public void PumpaEpit() {
@@ -23,8 +24,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void Kilyukaszt() {
-		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
-		super.setMukodik(true);
+		setMukodik(false);
 	}
 
 	/**

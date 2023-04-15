@@ -31,16 +31,17 @@ public abstract class Mezo {
 	public void JatekosEltavolit(Jatekos j) {
 	}
 
-	public void Atallit(Mezo kimenet, Mezo bemenet) {
+	public void Atallit(Cso kimenet, Cso bemenet) {
 	}
 
 	public void Megjavit() {
-		System.out.println("Függvényhívás: " + this + "Megjavit()");
+		System.out.println("Fuggvenyhivas: Megjavit()");
 		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
-
+		System.out.println("Fuggvenyhivas: Kilyukaszt()");
+		mukodik = true;
 	}
 
 	public void PumpaEpit() {

@@ -25,4 +25,15 @@ public abstract class Jatekos {
 	public Mezo getHelyzet(){
 		return helyzet;
 	}
+
+	//Jatekos helyzetenek beallitasa
+	public void setHelyzet(Mezo m) {
+		helyzet = m;
+	}
+
+	//Jatekos helyzetenek a szomszedainak a lekerdezese
+	public List<Mezo> GetSzomszedok(){
+		System.out.println("Visszateres: a pumpa szomszedaival");
+		return helyzet.GetSzomszedok();
+	}
 }
