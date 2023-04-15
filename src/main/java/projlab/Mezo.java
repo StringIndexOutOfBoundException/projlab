@@ -34,13 +34,14 @@ public abstract class Mezo {
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
+	// cso vagy pumpa megjavitasa
 	public void Megjavit() {
-		System.out.println("Függvényhívás: " + this + "Megjavit()");
+		System.out.println("Fuggvenyhivas: Megjavit()");
 		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
-		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
+		System.out.println("Fuggvenyhivas: Kilyukaszt()");
 		mukodik = true;
 	}
 

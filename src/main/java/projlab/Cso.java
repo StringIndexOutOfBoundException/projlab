@@ -16,7 +16,6 @@ public class Cso extends Mezo {
 	private int vizmennyiseg;
 
 	public void Megjavit() {
-
 		setMukodik(true);
 	}
 

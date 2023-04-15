@@ -10,10 +10,12 @@ package projlab;//
 //
 
 public class Szerelo extends Jatekos {
+	
+	//a szerelo megjavitja a csovet vagy a pumpat, amin eppen all
 	public void Javit() {
-		System.out.println("Függvényhívás: " + this + "Javít()");
-		Mezo helyzet = super.getHelyzet();
-		helyzet.Megjavit();
+		System.out.println("Fuggvenyhivas: Javit()");
+		Mezo helyzet = super.getHelyzet();	//helyzet lekérése 
+		helyzet.Megjavit();					//cso vagy pumpa megjavitasa
 	}
 
 	public void PumpatFelvesz() {

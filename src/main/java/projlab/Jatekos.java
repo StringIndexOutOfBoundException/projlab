@@ -20,11 +20,37 @@ public abstract class Jatekos {
 	public void Lep() {
 	}
 
-	public void Allit(Mezo kimenet, Mezo bemenet) {
-
+	//Jatekos atallitja egy pumpa be es kimenetet
+	public void Allit() {
+		System.out.println("Fuggvenyhivas: Allit()");
+		
+		List<Mezo> szomszedok = GetSzomszedok();		//szomszedok lekerese
+		
+		//Lokalis valtozokat hasznalok, amik kesz nincsenek a szukseges fuggvenyek
+		//helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
+		
+		Cso cs1 = new Cso();		//lokalis valtozo a teszteleshez
+        Cso cs2 = new Cso();		//lokalis valtozo a teszteleshez
+		helyzet.Atallit(cs1, cs2);	//be es kimenet allitasa
+		
+		System.out.println("Bemenet allitasa: cs1:Cso\n"
+				+ "Kimenet allitasa: cs2:Cso");
+		
 	}
 
+	//Jatekos helyzetenek lekerdezese
 	public Mezo getHelyzet(){
 		return helyzet;
+	}
+	
+	//Jatekos helyzetenek beallitasa
+	public void setHelyzet(Mezo m) {
+		helyzet = m;
+	}
+	
+	//Jatekos helyzetenek a szomszedainak a lekerdezese
+	public List<Mezo> GetSzomszedok(){
+		System.out.println("Visszateres: a pumpa szomszedaival");
+		return helyzet.GetSzomszedok();
 	}
 }

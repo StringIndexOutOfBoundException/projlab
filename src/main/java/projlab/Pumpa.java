@@ -22,6 +22,7 @@ public class Pumpa extends AktivElem {
 	public void Atallit(Cso kimenet, Cso bemenet) {
 		this.bemenet = bemenet;
 		this.kimenet = kimenet;
+		System.out.println("Függvényhívás: Atallit(cs1, cs2)\n");
 	}
 
 	public void Megjavit() {
