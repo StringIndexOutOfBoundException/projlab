@@ -11,6 +11,7 @@ package projlab;//
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.concurrent.ExecutionException;
 
 public class Cso extends Mezo {
 	private int vizmennyiseg;
@@ -26,23 +27,29 @@ public class Cso extends Mezo {
 		setMukodik(false);
 	}
 
-	public void VizetNovel(int meret) {
+	public void VizetNovel(int meret) throws Exception {
 		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + ") ");
 		if(meret + vizmennyiseg > 1){	//MAXVIZ
-			throw new BufferOverflowException();
+			int tulfolyas = meret+vizmennyiseg-1;
+			vizmennyiseg += meret - tulfolyas;
+			throw new Exception(String.valueOf(tulfolyas));
 		}
 		else {
 			vizmennyiseg += meret;
 		}
 	}
 
-	public void VizetCsokkent(int meret) {
+	public void VizetCsokkent(int meret) throws Exception {
 		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + ") ");
 
 		if(meret < vizmennyiseg) {
 			vizmennyiseg -= meret;
 		}
-		else{ throw new BufferUnderflowException();}
+		else{
+			int ki = vizmennyiseg;
+			vizmennyiseg = 0;
+			throw new Exception(String.valueOf(ki));
+		}
 
 	}
 

@@ -3,12 +3,13 @@ package projlab;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Dad!");
-        
-        szereloCsovetJavitTeszt();		//5.2.1
-        szereloPumpatJavitTeszt();		//5.2.2
-        szereloPumpatAllitTeszt();		//5.2.3
-        szabotorPumpatAllitTeszt();		//5.2.4
-       
+        Pumpa p = new Pumpa();
+        Cso cs1 = new Cso();
+        Cso cs2= new Cso();
+
+        p.Atallit(cs1, cs2);
+        p.Frissit();
+
     }
 
     //Teszt: a szerelo atallitja egy pumpa be es kimenetet
