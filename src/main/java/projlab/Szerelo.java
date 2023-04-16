@@ -29,24 +29,26 @@ public class Szerelo extends Jatekos {
 	 * Csohatizsak-ba kerül.
 	 */
 	public void CsovetLecsatol() {
+		System.out.println("Függvényhívás: " + this + ".CsovetLecsatol()");
+
 		// Lekérdezzük a lecsatlakoztatható elemeket
 		Mezo helyzet = getHelyzet();
 		ArrayList<Mezo> lecsatlakoztathatok = helyzet.GetLeszedhetoSzomszedok();
 
 		// Ha nincs ilyen, vagy nincs táska hely, semmi sem történik
-		if (lecsatlakoztathatok.size() == 0 || csoHatizsak.size() > maxHatizsakKapacitas) {
+		if (lecsatlakoztathatok.size() == 0 || getCsoHatizsak().size() > getMaxHatizsakKapacitas()) {
 			return;
 		}
 
 		// Kiválasztunk egyet
-		Mezo kivalasztott = lecsatlakoztathatok.get(0);
+		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet");
 
 		// Eltávolítjuk a referenciákat
 		helyzet.SzomszedTorol(kivalasztott);
 		kivalasztott.SzomszedTorol(helyzet);
 
 		// Eltároljuk a hátizsákba a lecsatlakoztatott elemet
-		csoHatizsak.add(kivalasztott);
+		getCsoHatizsak().add(kivalasztott);
 	}
 
 	/**
@@ -54,21 +56,24 @@ public class Szerelo extends Jatekos {
 	 * amin éppen áll.
 	 */
 	public void CsovetFelcsatol() {
+		System.out.println("Függvényhívás: " + this + ".CsovetFelcsatol()");
+
 		// Kiválasztunk egy felcsatolandót a hátizákból
-		if (csoHatizsak.size() == 0) {
+		if (getCsoHatizsak().size() == 0) {
 			return;
 		}
 
-		Mezo felcsatolando = csoHatizsak.get(0);
+		Mezo felcsatolando = UseCase16.elemKivalaszt(getCsoHatizsak(), "Válassz egy elemet a hátizsákból");
 
 		// Megpróbáljuk felcsatolni
 		Mezo helyzet = getHelyzet();
 		Boolean sikerult = helyzet.SzomszedFelcsatol(felcsatolando);
+		System.out.println("Visszatérés: " + sikerult);
 
 		// Ha sikerült frissítjük a referenciákat
 		if (sikerult) {
 			felcsatolando.SzomszedHozzaad(helyzet);
-			csoHatizsak.remove(felcsatolando);
+			getCsoHatizsak().remove(felcsatolando);
 		}
 
 	}

@@ -61,6 +61,7 @@ public abstract class Mezo {
 	 * @param m - Hozzáadandó szomszéd
 	 */
 	public void SzomszedHozzaad(Mezo m) {
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
 		szomszedok.add(m);
 	}
 
@@ -70,6 +71,7 @@ public abstract class Mezo {
 	 */
 	public void SzomszedTorol(Mezo m) {
 		szomszedok.remove(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedTorol(" + m + ")");
 	}
 
 	/**
@@ -80,6 +82,7 @@ public abstract class Mezo {
 	 * @return Sikerült-e a felcsatolás
 	 */
 	public Boolean SzomszedFelcsatol(Mezo m) {
+		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
 		return false;
 	}
 
@@ -90,6 +93,7 @@ public abstract class Mezo {
 	 * @return lecsatlakoztatható szomszédok
 	 */
 	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		System.out.println("Függvényhívás: " + this + ".GetLeszedhetoSzomszedok()");
 		return new ArrayList<>();
 	}
 

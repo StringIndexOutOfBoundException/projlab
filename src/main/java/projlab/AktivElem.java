@@ -22,12 +22,14 @@ public abstract class AktivElem extends Mezo {
 	 */
 	@Override
 	public Boolean SzomszedFelcsatol(Mezo m) {
+		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
+
 		// Ha nincs hely, akkor visszautasítunk
 		if (GetSzomszedok().size() >= maxCso) {
 			return false;
 		}
 
-		SzomszedHozzaad(m);
+		GetSzomszedok().add(m);
 		return true;
 
 	}
@@ -38,6 +40,15 @@ public abstract class AktivElem extends Mezo {
 	 */
 	@Override
 	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		System.out.println("Függvényhívás: " + this + ".GetLeszedhetoSzomszedok()");
 		return GetSzomszedok();
+	}
+
+	/**
+	 * Beállítja hogy az adott aktívelemre hány csövet lehet maximum csatlakoztatni.
+	 * @param m - Új érték
+	 */
+	public void setMaxCso(int m) {
+		maxCso = m;
 	}
 }
