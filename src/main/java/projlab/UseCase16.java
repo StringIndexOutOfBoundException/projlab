@@ -74,14 +74,10 @@ public class UseCase16 {
 		Cso cs1 = new Cso();
 		Szerelo sz1 = new Szerelo();
 		Pumpa p1 = new Pumpa();
-
-		// Inicializálás
-		System.out.println("--- Teszt inicializálása:");
 		sz1.setHelyzet(p1);
 		sz1.getCsoHatizsak().add(cs1);
 
 		// Futtatás
-		System.out.println("--- Teszt futtatása:");
 		p1.setMaxCso(igenNemKerdes("Legyen hely csőnek az elemen?") ? 1 : 0);
 		sz1.CsovetFelcsatol();
 	}
