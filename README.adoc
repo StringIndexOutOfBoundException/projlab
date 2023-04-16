@@ -67,5 +67,21 @@ Borbély +
 | 0.5 óra
 |Borbély +
 | Tevékenység: Git shenanigens + Cso készít függvény a ciszternában
+
+| 2023.04.16 10:00
+| 4 óra
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciók elkezedése
+
+| 2023.04.16 16:00
+| 1 óra 20 perc
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciók folytatása
+
+| 2023.04.16 17:45
+| 20 perc
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciókban kisebb javítások
+
 |===
 

@@ -15,7 +15,8 @@ import java.util.List;
 public abstract class Mezo {
 	private int vizmennyiseg;
 	private Boolean mukodik;
-	private int maxJatekosok;
+	//Azt tárolja, hogy hány játékos állhat egy mezőn. Ez felül lesz írva a leszármazottak konstruktoraiban.
+	private int maxJatekosok = 0;
 
 	private List <Jatekos> jatekosok;
 	private ArrayList <Mezo> szomszedok;
@@ -23,16 +24,32 @@ public abstract class Mezo {
 	public Mezo(){szomszedok = new ArrayList<Mezo>();}
 
 
-	/**
-	 * Visszaadja az adott mező szomszédainak a listáját.
-	 * @return szomszedok
-	 */
-	public ArrayList<Mezo> GetSzomszedok() {
+	public Mezo(int maxJatekosok) {
+		mukodik = true;
+		jatekosok = new ArrayList<Jatekos>();
+		szomszedok = new ArrayList<Mezo>();
+		this.maxJatekosok = maxJatekosok;
+	}
+
+
+	public List<Mezo> GetSzomszedok() {
 		return szomszedok;
 	}
 
+	/**
+	 * A függvény hozzáadja a játékost a mezőhöz.
+	 * @param j A hozzáadandó játékos.
+	 * @return Igaz, ha sikerült a hozzáadás. Akkor sikerül, ha a mezőn még nincs a maximális játékosok száma.
+	 */
 	public Boolean JatekosElfogad(Jatekos j) {
-		return null;
+		if (jatekosok.size() < maxJatekosok) {
+			jatekosok.add(j);
+			j.setHelyzet(this);
+			//System.out.println("Játékos hozzáadva a mezőhöz: " + this);
+			return true;
+		}
+		//System.out.println("A mezőn már nincs hely a játékosnak: " + this);
+		return false;
 	}
 
 	public void JatekosEltavolit(Jatekos j) {
@@ -43,24 +60,24 @@ public abstract class Mezo {
 
 	// cso vagy pumpa megjavitasa
 	public void Megjavit() {
-		System.out.println("Fuggvenyhivas: Megjavit()");
+		System.out.println("Függvényhívás: " + this + "Megjavit()");
 		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
-		System.out.println("Fuggvenyhivas: Kilyukaszt()");
+		System.out.println("Fuggvenyhivas:"+this+"Kilyukaszt()");
 		mukodik = true;
 	}
 
 	public void PumpaEpit() {
 	}
 
-	
 	/**
-	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához. 
+	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához.
 	 * @param m - Hozzáadandó szomszéd
 	 */
 	public void SzomszedHozzaad(Mezo m) {
+		szomszedok.add(m);
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
 		szomszedok.add(m);
 	}
@@ -87,7 +104,7 @@ public abstract class Mezo {
 	}
 
 	/**
-	 * Működése hasonló a GetSzomszedokhoz, viszont csak a játékosok által lecsatlakoztatható 
+	 * Működése hasonló a GetSzomszedokhoz, viszont csak a játékosok által lecsatlakoztatható
 	 * szomszédokkal tér vissza.
 	 * Default implementációként üres listával tér vissza.
 	 * @return lecsatlakoztatható szomszédok
@@ -105,4 +122,7 @@ public abstract class Mezo {
 	public void VizetCsokkent(int meret) throws Exception {};
 	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
+	public int getMaxJatekosok() {
+		return maxJatekosok;
+	}
 }
