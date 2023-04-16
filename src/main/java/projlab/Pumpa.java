@@ -15,7 +15,10 @@ public class Pumpa extends AktivElem {
 	private int vizmennyiseg;
 	private Mezo bemenet;
 	private Mezo kimenet;
-	
+	//private int maxJatekosok = Integer.MAX_VALUE;
+
+
+
 
 	/**
 	 * @param kimenet

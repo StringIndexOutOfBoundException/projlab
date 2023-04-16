@@ -12,5 +12,14 @@ package projlab;//
 public abstract class AktivElem extends Mezo {
 	private int maxCso;
 
+	/**
+	 * Az aktív elem konstruktora.
+	 * Beállítja a maxJatekosok értékét Integer.MAX_VALUE-re. (Ez azt jelenti, hogy nincs korlát a játékosok számára.)
+	 */
+	public AktivElem()
+	{
+		super(Integer.MAX_VALUE);
+	}
+
 	public abstract void Frissit() throws Exception;
 }
