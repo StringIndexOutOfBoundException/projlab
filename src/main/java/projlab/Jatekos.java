@@ -39,7 +39,7 @@ public abstract class Jatekos {
 	 * Beállítja a játékos helyzetét, azt a mezőt, amelyen az adott játékos éppen
 	 * tartózkodik
 	 * 
-	 * @param h - Az új helyzet
+	 * @param m - Az új helyzet
 	 */
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
