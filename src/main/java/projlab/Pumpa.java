@@ -42,8 +42,8 @@ public class Pumpa extends AktivElem {
 		this.bemenet = bemenet;
 		this.kimenet = kimenet;
 		System.out.println("Függvényhívás:  " + this + ".Atallit("+kimenet+", "+bemenet+")");
-		System.out.println("Bemenet állítása: "+kimenet+":Mezo\n"
-				+ "Kimenet állítása: "+bemenet+":Mezo");
+		System.out.println("Bemenet állítása: "+ this.bemenet +":Mezo\n"
+				+ "Kimenet állítása: "+ this.kimenet +":Mezo");
 	}
 
 	/**
