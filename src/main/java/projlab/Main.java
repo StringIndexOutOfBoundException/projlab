@@ -45,16 +45,22 @@ public class Main {
                 	useCase1_4.szabotorPumpatAllitTeszt();
                     break;
                 case 5:
+                    UseCase5.use_case_test();
                     break;
                 case 6:
+                    UseCase6.use_case_test();
                     break;
                 case 7:
+                    UseCase7.use_case_test();
                     break;
                 case 8:
+                	UseCase8.sikeres_felvesz_pumpa();
                     break;
                 case 9:
+                	UseCase9.sikertelen_felvesz_pumpa();
                     break;
                 case 10:
+                	UseCase10.Pumpa_Epit();
                     break;
                 case 11:
                     ls.lepes_inicializalas();
