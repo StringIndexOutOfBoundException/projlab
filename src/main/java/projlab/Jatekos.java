@@ -80,4 +80,9 @@ public abstract class Jatekos {
 	public Mezo getHelyzet(){
 		return helyzet;
 	}
+
+	//Jatekos helyzetenek beallitasa
+	public void setHelyzet(Mezo m) {
+		helyzet = m;
+	}
 }

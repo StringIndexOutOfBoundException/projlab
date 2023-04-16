@@ -21,9 +21,9 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void CsovetKeszit() {
-		Cso uj = new Cso();
-		SzomszedFelcsatol(uj);
-		uj.SzomszedFelcsatol(this);
+		Cso ujcso = new Cso();
+		SzomszedFelcsatol(ujcso);
+		ujcso.SzomszedFelcsatol(this);
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class Ciszterna extends AktivElem {
 			try {
 				cso.VizetCsokkent(MAXVIZ);
 			}
-			catch (BufferUnderflowException e){/* Hmm ez nem szép itt ;) */}
+			catch (Exception e){/* Hmm ez nem szép itt ;) */}
 		}
 	}
 

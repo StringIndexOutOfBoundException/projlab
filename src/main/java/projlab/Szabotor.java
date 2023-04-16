@@ -10,8 +10,7 @@ public class Szabotor extends Jatekos {
 	 * A függvényt maga a felhasználó fogja meghívni, és ez kezdeményezi a cső{@link Cso}-től, hogy lyukadjon ki
 	 */
 	public void Lyukaszt() {
-		System.out.println("Függvényhívás: " + this + "Lyukaszt()");
-		System.out.println();
+		System.out.println("Függvényhívás: " + this + " Lyukaszt()");
 		Mezo helyzet = super.getHelyzet();
 		helyzet.Kilyukaszt();
 	}

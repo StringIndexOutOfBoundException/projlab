@@ -21,5 +21,5 @@ public abstract class AktivElem extends Mezo {
 		super(Integer.MAX_VALUE);
 	}
 
-	public abstract void Frissit();
+	public abstract void Frissit() throws Exception;
 }

@@ -2,6 +2,7 @@ package projlab;
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.Random;
 
 /**
  * A pumpa a pálya aktív eleme.
@@ -12,9 +13,8 @@ import java.nio.BufferUnderflowException;
 public class Pumpa extends AktivElem {
 	private  static int MAXVIZ = 1;
 	private int vizmennyiseg;
-	private Cso bemenet;
-	private Cso kimenet;
-
+	private Mezo bemenet;
+	private Mezo kimenet;
 	//private int maxJatekosok = Integer.MAX_VALUE;
 
 
@@ -22,13 +22,13 @@ public class Pumpa extends AktivElem {
 	 * @param kimenet
 	 * @param bemenet
 	 */
-	public void Atallit(Cso kimenet, Cso bemenet) {
+	public void Atallit(Mezo kimenet, Mezo bemenet) {
 		this.bemenet = bemenet;
 		this.kimenet = kimenet;
 	}
 
 	/**
-	 * Atállítja a pumpa állapotát működőre.
+	 * Átállítja a pumpa állapotát működőre.
 	 * @Overrride
 	 */
 	@Override
@@ -38,35 +38,39 @@ public class Pumpa extends AktivElem {
 
 	/**
 	 * A függvény azért felelős, hogy a pumpa a vizet pumpálja.
+	 * Továbbá ez felelős a random elromlásokért
 	 * @Override
 	 */
 	@Override
 	public void Frissit() {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
-		int befolyoviz = bemenet.getVizmennyiseg();
+		Random rand = new Random();
+		if(rand.nextDouble(1) > 0.5){
+			setMukodik(false);
+		}
+		int befolyoviz = MAXVIZ;
 		vizmennyiseg += befolyoviz;
 		try {
 			bemenet.VizetCsokkent(befolyoviz);
 		}
-		catch (BufferUnderflowException e){
-			//System.out.println("Nincs  eleg viz a csoben " + e);
+		catch (Exception e){
+			vizmennyiseg -= befolyoviz-Integer.parseInt(e.getMessage());
 		}
 
 
 		int kifolyoviz = kimenet.getVizmennyiseg();
-		kifolyoviz = MAXVIZ - kifolyoviz;
-		if (vizmennyiseg < kifolyoviz){
-			kifolyoviz = vizmennyiseg;
-		}
+		kifolyoviz = MAXVIZ;
 
-		try {
-			kimenet.VizetNovel(kifolyoviz);
-		}
-		catch (BufferOverflowException e){
-			//System.out.println("Nem tudsz ennyi vezet a csobe pumpalni: " + kifolyoviz + " " + e );
-		}
-		vizmennyiseg -= kifolyoviz;
+		if (kifolyoviz <= vizmennyiseg) {
 
+			try {
+				kimenet.VizetNovel(kifolyoviz);
+			} catch (Exception e) {
+				kifolyoviz = kifolyoviz - Integer.parseInt(e.getMessage());
+			}
+			vizmennyiseg -= kifolyoviz;
+
+		}
 	}
 
 }

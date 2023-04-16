@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mezo {
+	private int vizmennyiseg;
 	private Boolean mukodik;
 	//Azt tárolja, hogy hány játékos állhat egy mezőn. Ez felül lesz írva a leszármazottak konstruktoraiban.
 	private int maxJatekosok = 0;
 
 	private List <Jatekos> jatekosok;
-	private List <Mezo> szomszedok;
+	private ArrayList <Mezo> szomszedok;
+
+	public Mezo(){szomszedok = new ArrayList<Mezo>();}
 
 
 	public Mezo(int maxJatekosok) {
@@ -55,13 +58,15 @@ public abstract class Mezo {
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
+	// cso vagy pumpa megjavitasa
 	public void Megjavit() {
 		System.out.println("Függvényhívás: " + this + "Megjavit()");
 		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
-
+		System.out.println("Fuggvenyhivas:"+this+"Kilyukaszt()");
+		mukodik = true;
 	}
 
 	public void PumpaEpit() {
@@ -79,20 +84,21 @@ public abstract class Mezo {
 	}
 
 	public Boolean SzomszedFelcsatol(Mezo m) {
-		return null;
+		szomszedok.add(m);
+		return true;
 	}
 
-	public List<Mezo> GetLeszedhetoSzomszedok() {
-		return null;
+	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		return szomszedok;
 	}
 
 	public void setMukodik(boolean status){
 		mukodik = status;
 	}
 
-	public void VizetCsokkent(int meret){};
-	public void VizetNovel(int meret) {};
-
+	public void VizetCsokkent(int meret) throws Exception {};
+	public void VizetNovel(int meret) throws Exception {};
+	public int getVizmennyiseg(){return vizmennyiseg;}
 	public int getMaxJatekosok() {
 		return maxJatekosok;
 	}
