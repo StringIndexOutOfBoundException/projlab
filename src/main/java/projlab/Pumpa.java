@@ -71,4 +71,16 @@ public class Pumpa extends AktivElem {
 
 		}
 	}
+	/**
+	 * getter a bemenetre
+	 */
+	public Cso getBemenet() {
+	return this.bemenet;
+}
+/**
+	 * getter a Kimenetre
+	 */
+public Cso getKimenet() {
+	return this.kimenet;
+}
 }

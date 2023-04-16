@@ -24,7 +24,7 @@ public abstract class Mezo {
 
 
 	public List<Mezo> GetSzomszedok() {
-		return null;
+		return this.szomszedok;
 	}
 
 	public Boolean JatekosElfogad(Jatekos j) {
@@ -73,4 +73,21 @@ public abstract class Mezo {
 	public void VizetCsokkent(int meret) throws Exception {};
 	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
+	
+public List<Jatekos> getJatekosok() {
+	return this.jatekosok;
+}
+
+public List<Pumpa> getTermeltPumpak(){
+	return null;
+}
+public void PumpaEltavolit() {
+	
+}
+public Cso getKimenet() {
+	return null;
+}
+public Cso getBemenet() {
+	return null;
+}
 }
