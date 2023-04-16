@@ -21,6 +21,7 @@ public abstract class Mezo {
 	private ArrayList <Jatekos> jatekosok;
 	private ArrayList <Mezo> szomszedok;
 
+
 	public Mezo(){szomszedok = new ArrayList<Mezo>();}
 
 
@@ -31,6 +32,10 @@ public abstract class Mezo {
 		this.maxJatekosok = maxJatekosok;
 	}
 
+  /**
+	 * Adott mezo szomszedjait kerdezi le
+	 * @return Adott mezo szomszedjai egy kollekcioban
+	 */
 	public ArrayList<Mezo> GetSzomszedok() {
 		return szomszedok;
 	}
@@ -80,6 +85,7 @@ public abstract class Mezo {
 	public void Kilyukaszt() {
 	}
 
+	
 	public void PumpaEpit() {
 	}
 
@@ -90,7 +96,6 @@ public abstract class Mezo {
 	public void SzomszedHozzaad(Mezo m) {
 		szomszedok.add(m);
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
-		szomszedok.add(m);
 	}
 
 	/**
@@ -134,7 +139,45 @@ public abstract class Mezo {
 	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
 
+	
+	/*
+	 * getter a jatekosok attributumra
+	 */
+public List<Jatekos> getJatekosok() {
+	return this.jatekosok;
+}
+/*
+ * Csak ciszterma osztalyon ertelmezett
+ * getter a ciszterna termeltpumpak attributumra
+ */
+public List<Pumpa> getTermeltPumpak(){
+	return null;
+}
+/*
+ * Csak ciszterma osztalyon ertelmezett
+ * szerelo hivja meg ciszternara
+ */
+public void PumpaEltavolit() {
+	
+}
+/*
+ * Csak Pumpa osztalyon ertelmezett
+ * Visszaadja adott pumpa kimeneti csovet
+ */
+public Mezo getKimenet() {
+	return null;
+}
+/*
+ * Csak Pumpa osztalyon ertelmezett
+ * Visszaadja adott pumpa bemeneti csovet
+ */
+public Mezo getBemenet() {
+	return null;
+}
+
+
 	public int getMaxJatekosok() {
 		return maxJatekosok;
 	}
+
 }
