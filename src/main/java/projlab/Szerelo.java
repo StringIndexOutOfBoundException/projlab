@@ -25,8 +25,8 @@ public class Szerelo extends Jatekos {
 	}
 
 	/**
-	 * Egy szerelő kivesz egy csövet a hátizsákjából és felcsatolja az aktívelemre
-	 * amin éppen áll.
+	 * Egy szerelő lecsatol egy csövet egy aktívelemről (amin éppen áll), ez a
+	 * Csohatizsak-ba kerül.
 	 */
 	public void CsovetLecsatol() {
 		// Lekérdezzük a lecsatlakoztatható elemeket
@@ -50,11 +50,15 @@ public class Szerelo extends Jatekos {
 	}
 
 	/**
-	 * Egy szerelő lecsatol egy csövet egy aktívelemről (amin éppen áll), ez a
-	 * Csohatizsak-ba kerül.
+	 * Egy szerelő kivesz egy csövet a hátizsákjából és felcsatolja az aktívelemre
+	 * amin éppen áll.
 	 */
 	public void CsovetFelcsatol() {
 		// Kiválasztunk egy felcsatolandót a hátizákból
+		if (csoHatizsak.size() == 0) {
+			return;
+		}
+
 		Mezo felcsatolando = csoHatizsak.get(0);
 
 		// Megpróbáljuk felcsatolni

@@ -12,8 +12,13 @@ public abstract class Jatekos {
 
 	protected int maxHatizsakKapacitas;
 
-	protected List<Pumpa> pumpaHatizsak;
+	protected ArrayList<Pumpa> pumpaHatizsak;
 	protected ArrayList<Mezo> csoHatizsak;
+
+	public Jatekos() {
+		pumpaHatizsak = new ArrayList<>();
+		csoHatizsak = new ArrayList<>();
+	}
 
 	public void Lep() {
 	}
