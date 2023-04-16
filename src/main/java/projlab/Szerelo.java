@@ -1,5 +1,4 @@
-package projlab;//
-
+package projlab;
 import java.util.ArrayList;
 
 //

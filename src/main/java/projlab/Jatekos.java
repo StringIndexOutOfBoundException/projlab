@@ -113,6 +113,15 @@ public abstract class Jatekos {
 	public void setMaxHatizsakKapacitas(int c) {
 		maxHatizsakKapacitas = c;
 	}
+	
+	/**
+	 * Kívülről lekéri a játékosra jellemző, a hátizsákban tárolható maximális
+	 * elemek számát
+	 * 
+	 */
+	public int getMaxHatizsakKapacitas() {
+		return maxHatizsakKapacitas;
+	}
 
 	public ArrayList<Mezo> getCsoHatizsak() {
 		return csoHatizsak;
