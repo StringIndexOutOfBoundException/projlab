@@ -14,11 +14,13 @@ import java.util.ArrayList;
 
 public class Szerelo extends Jatekos {
 	
-	//a szerelo megjavitja a csovet vagy a pumpat, amin eppen all
+	/**
+	 * A szerelő megjavít egy csövet, amin éppen áll
+	 */
 	public void Javit() {
-		System.out.println("Fuggvenyhivas: Javit()");
-		Mezo helyzet = super.getHelyzet();	//helyzet lekérése 
-		helyzet.Megjavit();					//cso vagy pumpa megjavitasa
+		System.out.println("Függvényhívás: " + this + ".Javit()");
+		Mezo helyzet = super.getHelyzet();
+		helyzet.Megjavit();
 	}
 
 	public void PumpatFelvesz() {

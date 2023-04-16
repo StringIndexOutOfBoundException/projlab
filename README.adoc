@@ -62,6 +62,11 @@ Borbély +
 | Kerekes
 | Tevékenység: Szabotőr/Szerelő pumpát állít, Szerelő csövet/pumpát javít tesztesetek elkészítése
 
+| 2023.04.1. 16:00
+| 3 óra
+| Kerekes
+| Tevékenység: Szabotőr/Szerelő pumpát állít, Szerelő csövet/pumpát javít tesztesetek javítása és tesztosztály elkészítése, javadoc kommnetek készítése
+
 | 2023.04.15 16:00
 | 1 óra
 |Borbély +
@@ -96,6 +101,5 @@ Borbély +
 | 20 perc
 | Hölbling
 | Tevékenység: Lépéssel kapcsolatos funkciókban kisebb javítások
-
 |===
 

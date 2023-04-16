@@ -1,23 +1,34 @@
 package projlab;
+import java.nio.BufferOverflowException;
+import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 
 /**
- * A csõ osztály a pálya egy passzív eleme.
- * Õ felelõs a víz szállításáért.
- * Ha kijukad akkor a benne levõ víz kifolyik és a sivatagban elveszik.
+ * A csÅ‘ osztÃ¡ly a pÃ¡lya egy passzÃ­v eleme.
+ * Å felelÅ‘s a vÃ­z szÃ¡llÃ­tÃ¡sÃ¡Ã©rt.
+ * Ha kijukad akkor a benne levÅ‘ vÃ­z kifolyik Ã©s a sivatagban elveszik.
  */
 public class Cso extends Mezo {
 	//private int maxJatekosok = 1;
 
 	/**
-	 * A csõ konstruktora
-	 * Beállítja a maxJatekosok változót 1-re
+	 * A csÅ‘ konstruktora
+	 * BeÃ¡llÃ­tja a maxJatekosok vÃ¡ltozÃ³t 1-re
 	 */
 	public Cso() {
 		super(1);
 	}
 	private int vizmennyiseg;
 
+	/**
+	 * A szerelÄ¹Â‘ megjavÄ‚Â­t egy elemet, amin Ä‚Å ppen Ä‚Ä„ll
+	 */
+	@Override
 	public void Megjavit() {
+		System.out.println("FÄ‚ÅºggvÄ‚Å nyhÄ‚Â­vÄ‚Ä„s: " + this + ".Megjavit()");
 		setMukodik(true);
 	}
 
@@ -25,24 +36,24 @@ public class Cso extends Mezo {
 	}
 
 	/**
-	 * A függvény kilyukasztja a csövet, azaz átálllítja a mukodik változoót arra, hogy nem mûködik (false)
+	 * A fÃ¼ggvÃ©ny kilyukasztja a csÃ¶vet, azaz Ã¡tÃ¡lllÃ­tja a mukodik vÃ¡ltozoÃ³t arra, hogy nem mÅ±kÃ¶dik (false)
 	 * @Override
 	 */
 	@Override
 	public void Kilyukaszt() {
-		System.out.println("Függvényhívás: " + this + " Kilyukaszt()");
+		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this + " Kilyukaszt()");
 		setMukodik(false);
 	}
 
 	/**
-	 * <p>A függvény megnöveli a csõbe levõ víz mennyiségét megadott értékkel (nem növekedhet MAXVÍZ felé).</p>
-	 * Ezt a Pumpa {@link Pumpa}, Forrás {@link Forras}  fogja meghívni
-	 * @param meret a víz mennysége amit a csõbe pumpálunk
+	 * <p>A fÃ¼ggvÃ©ny megnÃ¶veli a csÅ‘be levÅ‘ vÃ­z mennyisÃ©gÃ©t megadott Ã©rtÃ©kkel (nem nÃ¶vekedhet MAXVÃZ felÃ©).</p>
+	 * Ezt a Pumpa {@link Pumpa}, ForrÃ¡s {@link Forras}  fogja meghÃ­vni
+	 * @param meret a vÃ­z mennysÃ©ge amit a csÅ‘be pumpÃ¡lunk
 	 * @override
 	 */
 	@Override
 	public void VizetNovel(int meret) throws Exception {
-		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + " ) ");
+		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s:" + this +": VizetNovel( " + meret + " ) ");
 		if(meret + vizmennyiseg > 1){	//MAXVIZ
 			int tulfolyas = meret+vizmennyiseg-1;
 			vizmennyiseg += meret - tulfolyas;
@@ -54,13 +65,13 @@ public class Cso extends Mezo {
 	}
 
 	/**
-	 * <p>A függvény csökkenti a csõbe levõ víz mennyiségét megadott értékkel (nem csökkenhet 0 alá).</p>
-	 * Ezt a Pumpa {@link Pumpa}, Forrás {@link Ciszterna}  fogja meghívni
-	 * @param meret a víz mennysége amit a csõbõl kiszívunk.
+	 * <p>A fÃ¼ggvÃ©ny csÃ¶kkenti a csÅ‘be levÅ‘ vÃ­z mennyisÃ©gÃ©t megadott Ã©rtÃ©kkel (nem csÃ¶kkenhet 0 alÃ¡).</p>
+	 * Ezt a Pumpa {@link Pumpa}, ForrÃ¡s {@link Ciszterna}  fogja meghÃ­vni
+	 * @param meret a vÃ­z mennysÃ©ge amit a csÅ‘bÅ‘l kiszÃ­vunk.
 	 */
 	@Override
 	public void VizetCsokkent(int meret) throws Exception {
-		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + " ) ");
+		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this +": VizetCsokkent( " + meret + " ) ");
 
 		if(meret <= vizmennyiseg) {
 			vizmennyiseg -= meret;
@@ -74,11 +85,24 @@ public class Cso extends Mezo {
 	}
 
 	/**
-	 * Ez a vizmennyiség változóhoz egy getter, visszaadja a csõben levõ víz értkét
-	 * @return int típusú, azt adja vissza, hogy mennyi víz van a csõben éppen.
+	 * Ez a vizmennyisÃ©g vÃ¡ltozÃ³hoz egy getter, visszaadja a csÅ‘ben levÅ‘ vÃ­z Ã©rtkÃ©t
+	 * @return int tÃ­pusÃº, azt adja vissza, hogy mennyi vÃ­z van a csÅ‘ben Ã©ppen.
 	 */
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
 	}
+	
+	/**
+	 * Egy mezÅ‘ szomszÃ¡daihoz hozzÃ¡ad egy Ãºj mezÅ‘t
+	 * @param m a hozzaadnado mezÅ‘
+	 */
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		ArrayList<Mezo> szomszedok = GetSzomszedok();
+		if(szomszedok.size() < 2)
+			szomszedok.add(m);
+		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this + ".SzomszedHozzaad("+m+")");
+	}
+
 	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
 }

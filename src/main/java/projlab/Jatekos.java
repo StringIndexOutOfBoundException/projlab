@@ -67,10 +67,16 @@ public abstract class Jatekos {
 
 	}
 
-	public void Allit(Mezo kimenet, Mezo bemenet) {
-
+	/**
+	 * Jatekos atallitja egy pumpa be es kimenetet
+	 */
+	public void Allit() {
+		System.out.println("Függvényhívás: " + this + ".Allit()");
+		
+		ArrayList<Mezo> szomszedok = GetSzomszedok();
+		
+		helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
 	}
-
 
 
 	/**
@@ -84,12 +90,20 @@ public abstract class Jatekos {
 	/**
 	 * Beállítja a játékos helyzetét, azt a mezőt, amelyen az adott játékos éppen
 	 * tartózkodik
-	 *
 	 * @param m - Az új helyzet
 	 */
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
 	}
+	
+	/**
+	 * Jatekos helyzetenek a szomszedainak a lekerdezese
+	 * @return helyzetének a szomszédai
+	 */
+	public ArrayList<Mezo> GetSzomszedok(){
+		System.out.println("Visszatérés: a pumpa szomszédaival");
+		return helyzet.GetSzomszedok();
+    }
 
 	/**
 	 * Kívülről beállítja a játékosra jellemző, a hátizsákban tárolható maximális
@@ -98,15 +112,6 @@ public abstract class Jatekos {
 	 */
 	public void setMaxHatizsakKapacitas(int c) {
 		maxHatizsakKapacitas = c;
-	}
-
-	/**
-	 * Kívülről beállítja a játékosra jellemző, a hátizsákban tárolható maximális
-	 * elemek számát
-	 *
-	 */
-	public int getMaxHatizsakKapacitas() {
-		return maxHatizsakKapacitas;
 	}
 
 	public ArrayList<Mezo> getCsoHatizsak() {

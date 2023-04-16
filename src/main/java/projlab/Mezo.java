@@ -18,7 +18,7 @@ public abstract class Mezo {
 	//Azt tárolja, hogy hány játékos állhat egy mezőn. Ez felül lesz írva a leszármazottak konstruktoraiban.
 	private int maxJatekosok = 0;
 
-	private List <Jatekos> jatekosok;
+	private ArrayList <Jatekos> jatekosok;
 	private ArrayList <Mezo> szomszedok;
 
 	public Mezo(){szomszedok = new ArrayList<Mezo>();}
@@ -30,7 +30,6 @@ public abstract class Mezo {
 		szomszedok = new ArrayList<Mezo>();
 		this.maxJatekosok = maxJatekosok;
 	}
-
 
 	public ArrayList<Mezo> GetSzomszedok() {
 		return szomszedok;
@@ -52,21 +51,33 @@ public abstract class Mezo {
 		return false;
 	}
 
+	/**
+	 * Egy játékos eltávolítása egy mezőről
+	 * @param j a játékos referenciája
+	 */
 	public void JatekosEltavolit(Jatekos j) {
+		jatekosok.remove(j);
+		System.out.println("Függvényhívás: "+ this +".JatekosEltavolit()");
 	}
 
+	/**
+	 * Egy játékos átállítja egy pumpa be és kimenetét
+	 * @param kimenet amire át lesz állítva a kimenet
+	 * @param bemenet amire át lesz állítva a bemenet
+	 */
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
-	// cso vagy pumpa megjavitasa
+	/**
+	 * A szerelő megjavít egy elemet, amin éppen áll
+	 */
 	public void Megjavit() {
-		System.out.println("Függvényhívás: " + this + "Megjavit()");
-		mukodik = true;
 	}
 
+	/**
+	 * A szabotőr kilyukaszt egy csövet
+	 */
 	public void Kilyukaszt() {
-		System.out.println("Fuggvenyhivas:"+this+"Kilyukaszt()");
-		mukodik = true;
 	}
 
 	public void PumpaEpit() {
@@ -122,6 +133,7 @@ public abstract class Mezo {
 	public void VizetCsokkent(int meret) throws Exception {};
 	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
+
 	public int getMaxJatekosok() {
 		return maxJatekosok;
 	}

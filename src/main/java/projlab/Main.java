@@ -1,6 +1,5 @@
 package projlab;
 
-
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -81,9 +80,6 @@ public class Main {
                 case 19:
                     break;
             }
-
-
         }
-
     }
 }

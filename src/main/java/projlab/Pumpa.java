@@ -2,6 +2,8 @@ package projlab;
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -11,28 +13,44 @@ import java.util.Random;
  * Végül a pumpa random (a sivatagban levő külső erők miatt) el tud romlani, ilyenkor nem működik.
  */
 public class Pumpa extends AktivElem {
-	private static int MAXVIZ = 1;
+	private  static int MAXVIZ = 1;
+	private int maxCso = 5;
 	private int vizmennyiseg;
 	private Mezo bemenet;
 	private Mezo kimenet;
-	//private int maxJatekosok = Integer.MAX_VALUE;
-
-
+	
 	/**
-	 * @param kimenet
-	 * @param bemenet
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
 	 */
-	public void Atallit(Mezo kimenet, Mezo bemenet) {
-		this.bemenet = bemenet;
-		this.kimenet = kimenet;
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		ArrayList<Mezo> szomszedok = super.GetSzomszedok();
+		if(szomszedok.size() < maxCso)
+			szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 
 	/**
-	 * Átállítja a pumpa állapotát működőre.
-	 * @Overrride
+	 * Egy játékos átállítja egy pumpa be és kimenetét
+	 * @param kimenet amire át lesz állítva a kimenet
+	 * @param bemenet amire át lesz állítva a bemenet
+	 */
+	@Override
+	public void Atallit(Mezo kimenet, Mezo bemenet) {
+		this.bemenet = bemenet;
+		this.kimenet = kimenet;
+		System.out.println("Függvényhívás:  " + this + ".Atallit("+kimenet+", "+bemenet+")");
+		System.out.println("Bemenet állítása: "+ this.bemenet +":Mezo\n"
+				+ "Kimenet állítása: "+ this.kimenet +":Mezo");
+	}
+
+	/**
+	 * A szerelő megjavít egy elemet, amin éppen áll
 	 */
 	@Override
 	public void Megjavit() {
+		System.out.println("Függvényhívás: " + this + ".Megjavit()");
 		setMukodik(true);
 	}
 
