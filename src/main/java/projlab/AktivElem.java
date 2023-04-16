@@ -11,6 +11,10 @@ package projlab;//
 
 import java.util.ArrayList;
 
+/**
+ * Egy absztrakt osztály, ami a pumpákat a ciszternákat és a forrásokat foglalja
+ * össze.
+ */
 public abstract class AktivElem extends Mezo {
 	private int maxCso;
 
