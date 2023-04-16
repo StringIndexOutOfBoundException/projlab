@@ -1,5 +1,13 @@
 package projlab;
 
+/**
+ *Ez a teszt a "Pumpa{@link Pumpa} frissül" use-case alapjan keszult
+ * <ul>Diagramm referenciak:
+ *  <li>5.2.6 szkeleton leiras</li>
+ *  <li>5.3.14 szekvenciadiagram</li>
+ *  <li>5.3.11  kommunikacios diagramm</li>
+ * </ul>
+ */
 public class UseCase6 {
     public static void use_case_test() {
         Cso cs2 = new Cso();

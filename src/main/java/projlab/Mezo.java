@@ -33,12 +33,12 @@ public abstract class Mezo {
 	}
 
   /**
-	 * Adott mezo szomszedjait kerdezi le
-	 * @return Adott mezo szomszedjai egy kollekcioban
-	 */
-	public ArrayList<Mezo> GetSzomszedok() {
-		return szomszedok;
-	}
+   * Adott mezo szomszedjait kerdezi le
+   * @return Adott mezo szomszedjai egy kollekcioban
+   */
+  public ArrayList<Mezo> GetSzomszedok() {
+	  return szomszedok;
+  }
 
 	/**
 	 * A függvény hozzáadja a játékost a mezőhöz.
@@ -85,7 +85,7 @@ public abstract class Mezo {
 	public void Kilyukaszt() {
 	}
 
-	
+
 	public void PumpaEpit() {
 	}
 
@@ -131,15 +131,37 @@ public abstract class Mezo {
 		return new ArrayList<>();
 	}
 
+
+	/**
+	 * Ez a függvény azért felelős, hogy a mező működik-e vagy nem.
+	 * @param status Ez egy igaz/hamis értéket felvehető érték ami azt mondja meg, hogy mire állítsuk a mező működik értékét
+	 */
 	public void setMukodik(boolean status){
 		mukodik = status;
 	}
 
+	/**
+	 * Ez a függvény Csökkenti a csőben levő víz mennyiségét
+	 * @param meret ez egy egész érték, amivel csökken a víz értéke
+	 * @throws Exception ezt dobja ha több vizet szeretnénk a csőből kinyerni, mint ami benne van
+	 */
 	public void VizetCsokkent(int meret) throws Exception {};
+
+	/**
+	 * Ez a függvény Növeli a csőben levő víz mennyiségét
+	 * @param meret ez egy egész érték, amivel csökken a víz értéke
+	 * @throws Exception ezt dobja ha több vizet szeretnénk a csőbe pumpálni, mint ami belefér
+	 */
 	public void VizetNovel(int meret) throws Exception {};
+
+
+	/**
+	 * Ez a getter azért felelős, hogy visszaadja mennyi víz van éppen a csőben.
+	 * @return vizmennyiseg - visszaadja, hogy mennyi víz van eppen a csőben
+	 */
 	public int getVizmennyiseg(){return vizmennyiseg;}
 
-	
+
 	/*
 	 * getter a jatekosok attributumra
 	 */
@@ -158,7 +180,7 @@ public ArrayList<Pumpa> getTermeltPumpak() {
  * szerelo hivja meg ciszternara
  */
 public void PumpaEltavolit() {
-	
+
 }
 /*
  * Csak Pumpa osztalyon ertelmezett

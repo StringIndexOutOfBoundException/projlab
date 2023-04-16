@@ -1,7 +1,7 @@
 package projlab;
 
 public class UseCase10 {
-	/* Ez a fuggveny a "Pumpa Epit" nevu use-case  forgatokonyv bemutatasara keszult
+	/** Ez a fuggveny a "Pumpa Epit" nevu use-case  forgatokonyv bemutatasara keszult
 	*Diagram referenciak: Use-case diagram, 5.3.15. szekvenciadiagram, 5.4.10 komm. diagramm
 	*5.2.10 a szkeleton leiras	
 	*/

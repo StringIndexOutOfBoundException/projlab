@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class UseCase8{
 
-	/*
+	/**
 	 *Ez a teszt a "sikeres pumpa felvetel" use-case alapjan keszult
 	 *Diagramm referenciak:
 	 *5.2.8 szkeleton leiras

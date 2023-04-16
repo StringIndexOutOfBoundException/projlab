@@ -10,7 +10,8 @@ public class UseCase16 {
 	/**
 	 * Teszteléshez segédfüggvény: a felhasználótól bekér egy választ
 	 * 
-	 * @param szomszedok
+	 * @param elemek
+	 * @param prompt
 	 * @return A felhasználó által választott szomszéd
 	 */
 	public static Mezo elemKivalaszt(ArrayList<Mezo> elemek, String prompt) {

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UseCase9 {
-	/*
+	/**
 	 *Ez a teszt a "sikertelen pumpa felvetel" nevu use-case 1A es 1B forgatokonyv bemutatasara keszult
 	 *Diagram referenciak: Use-case diagram, 
 	 *5.3.14.1 es 5.3.14.2  szekvenciadiagramok, 5.4.9 komm. diagramm
