@@ -46,10 +46,13 @@ public class Main {
                 case 7:
                     break;
                 case 8:
+                	UseCase8.sikeres_felvesz_pumpa();
                     break;
                 case 9:
+                	UseCase9.sikertelen_felvesz_pumpa();
                     break;
                 case 10:
+                	UseCase10.Pumpa_Epit();
                     break;
                 case 11:
                     ls.lepes_inicializalas();

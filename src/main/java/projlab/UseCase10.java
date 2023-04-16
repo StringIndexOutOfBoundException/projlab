@@ -27,11 +27,11 @@ public class UseCase10 {
 		
 		//most van egy "cs" csovunk, aminek van ket pumpaja "p" es "p1", illetve egy szerelo,
 		// aki a "cs" csovon all es van egy pumpa "ujPumpa" a hatizsakjaban
-		System.out.println("Letrejott: cs:Cso,p:Pumpa,p1:Pumpa,sz:Szerelo,ujPumpa:Pumpa");
-		System.out.println("p bemenete:" + p.getBemenet()+ ",p1 kimenete:" + p1.getKimenet() + ",sz helyzete:" +  sz.getHelyzet());
+		//System.out.println("Letrejott: cs:Cso,p:Pumpa,p1:Pumpa,sz:Szerelo,ujPumpa:Pumpa");
+		
 
-		System.out.println("Fuggvenyhivas:sz.PumpatEpit()");
-		System.out.println("Fuggvenyhivas:cs.PumpaEpit()");
+		//System.out.println("Fuggvenyhivas:sz.PumpatEpit()");
+		//System.out.println("Fuggvenyhivas:cs.PumpaEpit()");
 		sz.PumpatEpit();
 	
 	

@@ -63,9 +63,10 @@ public class Cso extends Mezo {
 		p.SzomszedTorol(this);
 		this.SzomszedTorol(p);
 		
-		System.out.println("p bemenete:" + p.getBemenet() + 
+		System.out.println("\n\n\np bemenete:" + p.getBemenet() + 
 				"\nujPumpa bemenete:" + ujPumpa.getBemenet() +
 		", kimenete:" + ujPumpa.getKimenet());
+		
 		//kette vagtuk a "cs" csovet, az elso fele "cs" a masodik pedig "ujCso" a ketto koze ujPumpat berakjuk
 		//a p pumpa bemenete lett az ujCso -> a "p" pumpa mar nem a "cs" pumpaja
 		//az ujPumpa bemenete "cs" kimenete "ujCso"
