@@ -71,13 +71,6 @@ public abstract class Jatekos {
 
 	}
 
-	/**
-	 Jatekos helyzetenek beallitasa
-	 @param m Ez lesz a jatekos helyzete
-	 */
-	public void setHelyzet(Mezo m) {
-		helyzet = m;
-	}
 
 
 	/**
