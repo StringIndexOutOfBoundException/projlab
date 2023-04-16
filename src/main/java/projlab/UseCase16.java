@@ -75,6 +75,8 @@ public class UseCase16 {
 		Cso cs1 = new Cso();
 		Szerelo sz1 = new Szerelo();
 		Pumpa p1 = new Pumpa();
+
+		// Inicializálás
 		sz1.setHelyzet(p1);
 		sz1.getCsoHatizsak().add(cs1);
 
@@ -110,6 +112,8 @@ public class UseCase16 {
 		Cso cs1 = new Cso();
 		Cso cs2 = new Cso();
 		Szerelo sz1 = new Szerelo();
+
+		// Inicializálás
 		sz1.setHelyzet(cs1);
 		sz1.getCsoHatizsak().add(cs2);
 
