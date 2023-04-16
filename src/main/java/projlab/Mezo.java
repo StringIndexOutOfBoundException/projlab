@@ -150,7 +150,7 @@ public List<Jatekos> getJatekosok() {
  * Csak ciszterma osztalyon ertelmezett
  * getter a ciszterna termeltpumpak attributumra
  */
-public List<Pumpa> getTermeltPumpak(){
+public ArrayList<Pumpa> getTermeltPumpak() {
 	return null;
 }
 /*

@@ -1,5 +1,7 @@
-import java.util.ArrayList;
 package projlab;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Forrás a pálya aktív eleme.

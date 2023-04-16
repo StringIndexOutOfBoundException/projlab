@@ -2,6 +2,7 @@ package projlab;
 
 import java.nio.BufferUnderflowException;
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 
@@ -14,17 +15,12 @@ public class Ciszterna extends AktivElem {
 	//private int maxJatekosok = Integer.MAX_VALUE;
 
 	private  static int MAXVIZ = 1;
-	private List<Pumpa> termeltpumpak;
+	private ArrayList<Pumpa> termeltpumpak;
 	
 	public Ciszterna() {
 		termeltpumpak = new ArrayList<Pumpa>();
 	}
 
-	public Ciszterna() {
-		super();
-		termeltpumpak=new ArrayList <Pumpa> ();
-
-	}
 	
 	/**
 	 * Torli a termeltpumpak kollekcio utolso pumpajat,
@@ -55,7 +51,7 @@ public class Ciszterna extends AktivElem {
 	/*
 	 * getter a termeltpumpakra
 	 */
-	public List<Pumpa> getTermeltPumpak() {
+	public ArrayList<Pumpa> getTermeltPumpak() {
 		return this.termeltpumpak;
 	}
 
@@ -68,7 +64,7 @@ public class Ciszterna extends AktivElem {
 	@Override
 	public void Frissit() {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
-		List<Mezo> szomszedok = GetLeszedhetoSzomszedok();
+		ArrayList<Mezo> szomszedok = GetLeszedhetoSzomszedok();
 		for (var cso : szomszedok) {
 			try {
 				cso.VizetCsokkent(MAXVIZ);

@@ -1,4 +1,4 @@
-package szkeleton_eles;
+package projlab;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -70,21 +70,21 @@ public class UseCase9 {
 				}
 				
 				//itt  beallitjuk mennyi a maximalis kapacitas, majd feltoltjuk a pumpaHatizsakot.
-				sz.setmaxHatizsakKapacitas(10);
+				sz.setMaxHatizsakKapacitas(10);
 				for(int i=0;i<sz_pumpaszam;++i) {
 					if(i<=9) {
 						 Pumpa pumpa1=new Pumpa();
-						 sz.getpumpaHatizsak().add(pumpa1);
+							sz.getPumpaHatizsak().add(pumpa1);
 					}
 			    
 				}
 				
-					System.out.println("A szerelonel levo pumpak szama:" + sz.getpumpaHatizsak().size());
+				System.out.println("A szerelonel levo pumpak szama:" + sz.getPumpaHatizsak().size());
 				
 				
 				sz.PumpatFelvesz();
 				
-				System.out.println("A szerelonel levo pumpak szama:" + sz.getpumpaHatizsak().size());
+				System.out.println("A szerelonel levo pumpak szama:" + sz.getPumpaHatizsak().size());
 				System.out.println("A ciszternanal levo pumpak szama:" + c.getTermeltPumpak().size());		
 				}
 

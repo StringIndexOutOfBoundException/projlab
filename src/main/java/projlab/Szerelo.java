@@ -26,6 +26,7 @@ public void PumpatFelvesz() {
 	//mikor megtelt a pumpaHatizsak
 	if(this.getPumpaHatizsak().size()>=this.getMaxHatizsakKapacitas()) {
 		System.out.println("Nem tud pumpat berakni a szerelo a hatizsakjaba");
+	}
 	//mikor nincs pumpa a ciszternanal
 	else if(this.getHelyzet().getTermeltPumpak().size()==0) {
 		System.out.println("A ciszternanal nincs pumpa");
@@ -41,8 +42,8 @@ public void PumpatFelvesz() {
 		this.getPumpaHatizsak().add(ciszterna_pumpai.get(ciszterna_pumpai_meret-1));
 		//ciszterna eltavolitja azt a pumpat amit felvett a szerelo
 		this.getHelyzet().PumpaEltavolit();
-		
 	}
+}
 
    /**
 	 * A szerelő megjavít egy csövet, amin éppen áll

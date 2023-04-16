@@ -1,4 +1,4 @@
-package szkeleton_eles;
+package projlab;
 
 public class UseCase10 {
 	/* Ez a fuggveny a "Pumpa Epit" nevu use-case  forgatokonyv bemutatasara keszult
@@ -20,7 +20,7 @@ public class UseCase10 {
 		cs.SzomszedHozzaad(p);
 		p1.SzomszedHozzaad(cs);
 		p.SzomszedHozzaad(cs);
-		sz.getpumpaHatizsak().add(ujPumpa);
+		sz.getPumpaHatizsak().add(ujPumpa);
 		sz.setHelyzet(cs);
 		cs.getJatekosok().add(sz);
 		//inicializalas vege

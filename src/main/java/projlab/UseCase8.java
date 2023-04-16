@@ -1,4 +1,4 @@
-package szkeleton_eles;
+package projlab;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -74,19 +74,19 @@ public class UseCase8{
 					
 					//Ehhez a teszthez meg lehetne adni a szerelo maxHatizsakKapacitas attributumerteket, de mivel a sikeres lefutasra
 					//koncentralunk, ezert most nincs kikotve a maximalis kapacitas.
-					sz.setmaxHatizsakKapacitas(sz_pumpaszam+1);
+					sz.setMaxHatizsakKapacitas(sz_pumpaszam + 1);
 					
 					//feltoltjuk a pumpaHatizsakot
 					for(int i=0;i<sz_pumpaszam;++i) {
 						
 							 Pumpa pumpa1=new Pumpa();
-							 sz.getpumpaHatizsak().add(pumpa1);
+								sz.getPumpaHatizsak().add(pumpa1);
 					}
 					
-						System.out.println("A szerelonel levo pumpak szama:" + sz.getpumpaHatizsak().size());
+							System.out.println("A szerelonel levo pumpak szama:" + sz.getPumpaHatizsak().size());
 					
 					sz.PumpatFelvesz();		
-					System.out.println("A szerelonel levo pumpak szama:" + sz.getpumpaHatizsak().size());
+							System.out.println("A szerelonel levo pumpak szama:" + sz.getPumpaHatizsak().size());
 					System.out.println("A ciszternanal levo pumpak szama:" + c.getTermeltPumpak().size());		
 					
 			}
