@@ -10,9 +10,12 @@ package projlab;//
 //
 
 public class Szabotor extends Jatekos {
+	
+	/**
+	 * A szabotőr kilyukaszt egy csövet
+	 */
 	public void Lyukaszt() {
-		System.out.println("Függvényhívás: " + this + "Lyukaszt()");
-		System.out.println();
+		System.out.println("Függvényhívás: " + this + ".Lyukaszt()");
 		Mezo helyzet = super.getHelyzet();
 		helyzet.Kilyukaszt();
 	}

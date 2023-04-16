@@ -13,45 +13,72 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mezo {
+	private int vizmennyiseg;
 	private Boolean mukodik;
 	private int maxJatekosok;
 
 	private List <Jatekos> jatekosok;
 	private List <Mezo> szomszedok;
-
+	
+	public Mezo() {
+		jatekosok = new ArrayList <Jatekos>();
+		szomszedok = new ArrayList<Mezo>();
+	}
 
 	public List<Mezo> GetSzomszedok() {
-		return null;
+		return szomszedok;
 	}
 
 	public Boolean JatekosElfogad(Jatekos j) {
-		return null;
+		return false;
 	}
 
+	/**
+	 * Egy játékos eltávolítása egy mezőről
+	 * @param j a játékos referenciája
+	 */
 	public void JatekosEltavolit(Jatekos j) {
+		jatekosok.remove(j);
+		System.out.println("Függvényhívás: "+ this +".JatekosEltavolit()");
 	}
 
-	public void Atallit(Cso kimenet, Cso bemenet) {
+	/**
+	 * Egy játékos átállítja egy pumpa be és kimenetét
+	 * @param kimenet amire át lesz állítva a kimenet
+	 * @param bemenet amire át lesz állítva a bemenet
+	 */
+	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
-	// cso vagy pumpa megjavitasa
+	/**
+	 * A szerelő megjavít egy elemet, amin éppen áll
+	 */
 	public void Megjavit() {
-		System.out.println("Fuggvenyhivas: Megjavit()");
-		mukodik = true;
 	}
 
+	/**
+	 * A szabotőr kilyukaszt egy csövet
+	 */
 	public void Kilyukaszt() {
-		System.out.println("Fuggvenyhivas: Kilyukaszt()");
-		mukodik = true;
 	}
 
 	public void PumpaEpit() {
 	}
 
+	/**
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
+	 */
 	public void SzomszedHozzaad(Mezo m) {
 	}
 
+	/**
+	 * Egy játékos eltávolítása az adott mezőről
+	 * @param m a mező amin éppen áll
+	 */
 	public void SzomszedTorol(Mezo m) {
+		szomszedok.remove(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedTorol("+m+")");
 	}
 
 	public Boolean SzomszedFelcsatol(Mezo m) {
@@ -68,4 +95,5 @@ public abstract class Mezo {
 
 	public void VizetCsokkent(int meret) throws Exception {};
 	public void VizetNovel(int meret) throws Exception {};
+	public int getVizmennyiseg(){return vizmennyiseg;}
 }

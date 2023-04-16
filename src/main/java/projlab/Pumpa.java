@@ -11,24 +11,47 @@ package projlab;//
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.List;
 
 public class Pumpa extends AktivElem {
 	private  static int MAXVIZ = 1;
+	private int maxCso = 5;
 	private int vizmennyiseg;
-	private Cso bemenet;
-	private Cso kimenet;
+	private Mezo bemenet;
+	private Mezo kimenet;
 	
-
+	/**
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
+	 */
 	@Override
-	public void Atallit(Cso kimenet, Cso bemenet) {
-		this.bemenet = bemenet;
-		this.kimenet = kimenet;
-		System.out.println("Fuggvenyhivas: Atallit(cs1, cs2)");
-		System.out.println("Bemenet allitasa: cs1:Cso\n"
-				+ "Kimenet allitasa: cs2:Cso");
+	public void SzomszedHozzaad(Mezo m) {
+		List<Mezo> szomszedok = super.GetSzomszedok();
+		if(szomszedok.size() < maxCso)
+			szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 
+	/**
+	 * Egy játékos átállítja egy pumpa be és kimenetét
+	 * @param kimenet amire át lesz állítva a kimenet
+	 * @param bemenet amire át lesz állítva a bemenet
+	 */
+	@Override
+	public void Atallit(Mezo kimenet, Mezo bemenet) {
+		this.bemenet = bemenet;
+		this.kimenet = kimenet;
+		System.out.println("Függvényhívás:  " + this + ".Atallit("+kimenet+", "+bemenet+")");
+		System.out.println("Bemenet állítása: "+kimenet+":Mezo\n"
+				+ "Kimenet állítása: "+bemenet+":Mezo");
+	}
+
+	/**
+	 * A szerelő megjavít egy elemet, amin éppen áll
+	 */
+	@Override
 	public void Megjavit() {
+		System.out.println("Függvényhívás: " + this + ".Megjavit()");
 		setMukodik(true);
 	}
 

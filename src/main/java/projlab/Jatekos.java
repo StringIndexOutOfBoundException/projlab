@@ -20,33 +20,39 @@ public abstract class Jatekos {
 	public void Lep() {
 	}
 
-	//Jatekos atallitja egy pumpa be es kimenetet
+	/**
+	 * Jatekos atallitja egy pumpa be es kimenetet
+	 */
 	public void Allit() {
-		System.out.println("Fuggvenyhivas: Allit()");
+		System.out.println("Függvényhívás: " + this + ".Allit()");
 		
-		List<Mezo> szomszedok = GetSzomszedok();		//szomszedok lekerese
+		List<Mezo> szomszedok = GetSzomszedok();
 		
-		//Lokalis valtozokat hasznalok, amik kesz nincsenek a szukseges fuggvenyek
-		//helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
-		
-		Cso cs1 = new Cso();		//lokalis valtozo a teszteleshez
-        Cso cs2 = new Cso();		//lokalis valtozo a teszteleshez
-		helyzet.Atallit(cs1, cs2);	//be es kimenet allitasa
+		helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
 	}
 
-	//Jatekos helyzetenek lekerdezese
+	/**
+	 * Jatekos helyzetének lekerdezese
+	 * @return játékos helyzete
+	 */
 	public Mezo getHelyzet(){
 		return helyzet;
 	}
 	
-	//Jatekos helyzetenek beallitasa
+	/**
+	 *  Jatekos helyzetének beállítása
+	 * @param m játékos leendő helyzete
+	 */
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
 	}
 	
-	//Jatekos helyzetenek a szomszedainak a lekerdezese
+	/**
+	 * Jatekos helyzetenek a szomszedainak a lekerdezese
+	 * @return helyzetének a szomszédai
+	 */
 	public List<Mezo> GetSzomszedok(){
-		System.out.println("Visszateres: a pumpa szomszedaival");
+		System.out.println("Visszatérés: a pumpa szomszédaival");
 		return helyzet.GetSzomszedok();
 	}
 }

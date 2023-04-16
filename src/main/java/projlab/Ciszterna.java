@@ -11,10 +11,15 @@ package projlab;//
 
 import java.nio.BufferUnderflowException;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Ciszterna extends AktivElem {
 	private  static int MAXVIZ = 1;
-	private List <Pumpa> termeltpumpak;
+	private List<Pumpa> termeltpumpak;
+	
+	public Ciszterna() {
+		termeltpumpak = new ArrayList<Pumpa>();
+	}
 
 	public void PumpaEltavolit() {
 	}
@@ -34,5 +39,16 @@ public class Ciszterna extends AktivElem {
 			}
 			catch (Exception e){/* Hmm ez nem szép itt ;) */}
 		}
+	}
+	
+	/**
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
+	 */
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		List<Mezo> szomszedok = super.GetSzomszedok();
+		szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 }

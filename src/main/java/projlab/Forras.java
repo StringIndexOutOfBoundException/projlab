@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Forras extends AktivElem {
 	private static int MAXVIZ = 1;
+	
 	public void Frissit() throws Exception {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
 		List<Mezo> szomszedok = super.GetLeszedhetoSzomszedok();
@@ -22,5 +23,17 @@ public class Forras extends AktivElem {
 		} else if (szomszedszam == 1) {
 			szomszedok.get(0).VizetNovel(MAXVIZ);
 		}
+	}
+	
+	/**
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
+	 */
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		List<Mezo> szomszedok = super.GetSzomszedok();
+		if(szomszedok.size() < 1)
+			szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 }

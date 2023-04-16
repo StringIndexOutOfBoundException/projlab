@@ -11,19 +11,30 @@ package projlab;//
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class Cso extends Mezo {
 	private int vizmennyiseg;
 
+	/**
+	 * A szerelő megjavít egy elemet, amin éppen áll
+	 */
+	@Override
 	public void Megjavit() {
+		System.out.println("Függvényhívás: " + this + ".Megjavit()");
 		setMukodik(true);
 	}
 
 	public void PumpaEpit() {
 	}
 
+	/**
+	 * A szabotőr kilyukaszt egy csövet
+	 */
+	@Override
 	public void Kilyukaszt() {
+		System.out.println("Függvényhívás: " + this + ".Kilyukaszt()");
 		setMukodik(false);
 	}
 
@@ -55,6 +66,18 @@ public class Cso extends Mezo {
 
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
+	}
+	
+	/**
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
+	 */
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		List<Mezo> szomszedok = GetSzomszedok();
+		if(szomszedok.size() < 2)
+			szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 
 }
