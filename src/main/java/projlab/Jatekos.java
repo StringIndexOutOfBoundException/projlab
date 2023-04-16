@@ -1,4 +1,6 @@
 package projlab;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -6,10 +8,17 @@ import java.util.List;
  * A jatekos az amit a játékos irányíthat, ez lehet Szabotőr{@link Szabotor} vagy Szerelő{@link Szerelo}
  */
 public abstract class Jatekos {
-	private int maxHatizsakKapacitas;
 	private Mezo helyzet;
-	private List<Pumpa> pumpaHatizsak;
-	private List<Cso> csoHatizsak;
+
+	private int maxHatizsakKapacitas;
+
+	private ArrayList<Pumpa> pumpaHatizsak;
+	private ArrayList<Mezo> csoHatizsak;
+
+	public Jatekos() {
+		pumpaHatizsak = new ArrayList<>();
+		csoHatizsak = new ArrayList<>();
+	}
 
 	public void Lep() {
 	}
@@ -26,8 +35,36 @@ public abstract class Jatekos {
 		return helyzet;
 	}
 
-	//Jatekos helyzetenek beallitasa
+	/**
+	 * Beállítja a játékos helyzetét, azt a mezőt, amelyen az adott játékos éppen
+	 * tartózkodik
+	 * 
+	 * @param m - Az új helyzet
+	 */
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
 	}
+
+	/**
+	 * Kívülről beállítja a játékosra jellemző, a hátizsákban tárolható maximális
+	 * elemek számát
+	 * @param c - Az új kapacitás értéke
+	 */
+	public void setMaxHatizsakKapacitas(int c) {
+		maxHatizsakKapacitas = c;
+	}
+
+	/**
+	 * Kívülről beállítja a játékosra jellemző, a hátizsákban tárolható maximális
+	 * elemek számát
+	 * 
+	 */
+	public int getMaxHatizsakKapacitas() {
+		return maxHatizsakKapacitas;
+	}
+
+	public ArrayList<Mezo> getCsoHatizsak() {
+		return csoHatizsak;
+	}
+
 }

@@ -9,8 +9,50 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
+
+/**
+ * Egy absztrakt osztály, ami a pumpákat a ciszternákat és a forrásokat foglalja
+ * össze.
+ */
 public abstract class AktivElem extends Mezo {
 	private int maxCso;
 
 	public abstract void Frissit() throws Exception;
+
+	/**
+	 * A Játékosok ezen a függvényen keresztül csatolhatnak fel elemeket.
+	 * @Override
+	 */
+	@Override
+	public Boolean SzomszedFelcsatol(Mezo m) {
+		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
+
+		// Ha nincs hely, akkor visszautasítunk
+		if (GetSzomszedok().size() >= maxCso) {
+			return false;
+		}
+
+		GetSzomszedok().add(m);
+		return true;
+
+	}
+
+	/**
+	 * A játékosok által lecsatlakoztatható szomszédokkal tér vissza.
+	 * @Override
+	 */
+	@Override
+	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		System.out.println("Függvényhívás: " + this + ".GetLeszedhetoSzomszedok()");
+		return GetSzomszedok();
+	}
+
+	/**
+	 * Beállítja hogy az adott aktívelemre hány csövet lehet maximum csatlakoztatni.
+	 * @param m - Új érték
+	 */
+	public void setMaxCso(int m) {
+		maxCso = m;
+	}
 }
