@@ -15,9 +15,6 @@ public class Cso extends Mezo {
 	 * A cső konstruktora
 	 * Beállítja a maxJatekosok változót 1-re
 	 */
-	public Cso() {
-		super(1);
-	}
 	private int vizmennyiseg;
 
 	public void Megjavit() {
