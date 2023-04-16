@@ -9,6 +9,15 @@ import java.nio.BufferUnderflowException;
  * Ha kijukad akkor a benne levő víz kifolyik és a sivatagban elveszik.
  */
 public class Cso extends Mezo {
+	//private int maxJatekosok = 1;
+
+	/**
+	 * A cső konstruktora
+	 * Beállítja a maxJatekosok változót 1-re
+	 */
+	public Cso() {
+		super(1);
+	}
 	private int vizmennyiseg;
 
 	public void Megjavit() {
