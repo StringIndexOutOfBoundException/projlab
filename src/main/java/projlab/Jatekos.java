@@ -135,9 +135,6 @@ public abstract class Jatekos {
 	 * elemek számát
 	 * 
 	 */
-	public int getMaxHatizsakKapacitas() {
-		return maxHatizsakKapacitas;
-	}
 
 	public ArrayList<Mezo> getCsoHatizsak() {
 		return csoHatizsak;

@@ -45,10 +45,13 @@ public class Main {
                 	useCase1_4.szabotorPumpatAllitTeszt();
                     break;
                 case 5:
+                    UseCase5.use_case_test();
                     break;
                 case 6:
+                    UseCase6.use_case_test();
                     break;
                 case 7:
+                    UseCase7.use_case_test();
                     break;
                 case 8:
                 	UseCase8.sikeres_felvesz_pumpa();
