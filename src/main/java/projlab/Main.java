@@ -83,12 +83,16 @@ public class Main {
                     ls.szerelo_forrasra_lep();
                     break;
                 case 16:
+					UseCase16.csovetFelcsatolTest();
                     break;
                 case 17:
+					UseCase16.csovetLecsatolTest();
                     break;
                 case 18:
+					UseCase16.csoreProbalFelcsatolni();
                     break;
                 case 19:
+					UseCase16.csorolProbalLecsatolniTest();
                     break;
             }
         }
