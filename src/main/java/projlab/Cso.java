@@ -30,6 +30,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void Kilyukaszt() {
+		System.out.println("Függvényhívás: " + this + " Kilyukaszt()");
 		setMukodik(false);
 	}
 
