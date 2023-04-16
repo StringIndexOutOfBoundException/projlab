@@ -9,8 +9,35 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
+
 public abstract class AktivElem extends Mezo {
 	private int maxCso;
 
 	public abstract void Frissit() throws Exception;
+
+	/**
+	 * A Játékosok ezen a függvényen keresztül csatolhatnak fel elemeket.
+	 * @Override
+	 */
+	@Override
+	public Boolean SzomszedFelcsatol(Mezo m) {
+		// Ha nincs hely, akkor visszautasítunk
+		if (GetSzomszedok().size() >= maxCso) {
+			return false;
+		}
+
+		SzomszedHozzaad(m);
+		return true;
+
+	}
+
+	/**
+	 * A játékosok által lecsatlakoztatható szomszédokkal tér vissza.
+	 * @Override
+	 */
+	@Override
+	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		return GetSzomszedok();
+	}
 }

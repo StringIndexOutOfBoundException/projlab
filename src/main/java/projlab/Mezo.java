@@ -23,8 +23,12 @@ public abstract class Mezo {
 	public Mezo(){szomszedok = new ArrayList<Mezo>();}
 
 
-	public List<Mezo> GetSzomszedok() {
-		return null;
+	/**
+	 * Visszaadja az adott mező szomszédainak a listáját.
+	 * @return szomszedok
+	 */
+	public ArrayList<Mezo> GetSzomszedok() {
+		return szomszedok;
 	}
 
 	public Boolean JatekosElfogad(Jatekos j) {
@@ -51,19 +55,42 @@ public abstract class Mezo {
 	public void PumpaEpit() {
 	}
 
+	
+	/**
+	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához. 
+	 * @param m - Hozzáadandó szomszéd
+	 */
 	public void SzomszedHozzaad(Mezo m) {
-	}
-
-	public void SzomszedTorol(Mezo m) {
-	}
-
-	public Boolean SzomszedFelcsatol(Mezo m) {
 		szomszedok.add(m);
-		return true;
 	}
 
+	/**
+	 * Egy mezőt leválasztottunk egy másik mezőről. Az adott mezőnek a szomszédok kollekciójából törli az m mezőt.
+	 * @param m Törlendő szomszéd
+	 */
+	public void SzomszedTorol(Mezo m) {
+		szomszedok.remove(m);
+	}
+
+	/**
+	 * A Játékosok ezen a függvényen keresztül csatolhatnak fel elemeket a mezőkhöz.
+	 * Minden aktívelemnél ugyanazt csinálja mint a SzomszedHozzaad, viszont a Cső
+	 * osztály felüldefiniálja. Default implementációként nem enged felcsatolni.
+	 * @param m - Felcsatolandó
+	 * @return Sikerült-e a felcsatolás
+	 */
+	public Boolean SzomszedFelcsatol(Mezo m) {
+		return false;
+	}
+
+	/**
+	 * Működése hasonló a GetSzomszedokhoz, viszont csak a játékosok által lecsatlakoztatható 
+	 * szomszédokkal tér vissza.
+	 * Default implementációként üres listával tér vissza.
+	 * @return lecsatlakoztatható szomszédok
+	 */
 	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
-		return szomszedok;
+		return new ArrayList<>();
 	}
 
 	public void setMukodik(boolean status){
