@@ -81,7 +81,7 @@ public class UseCase16 {
 		sz1.getCsoHatizsak().add(cs1);
 
 		// Futtatás
-		p1.setMaxCso(igenNemKerdes("Legyen hely csőnek az elemen?") ? 1 : 0);
+		p1.setMaxCso(igenNemKerdes("A pumpán legyen már maximális cső?") ? 0 : 1);
 		sz1.CsovetFelcsatol();
 	}
 
