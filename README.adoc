@@ -62,5 +62,10 @@ Borbély +
 | 0.5 óra
 |Borbély +
 | Tevékenység: Use-case tesztek készítése
+
+| 2023.04.16 14:00
+| 0.5 óra
+|Borbély +
+| Tevékenység: Git shenanigens + Cso készít függvény a ciszternában
 |===
 
