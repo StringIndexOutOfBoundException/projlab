@@ -20,9 +20,17 @@ public abstract class Mezo {
 	private List <Jatekos> jatekosok;
 	private ArrayList <Mezo> szomszedok;
 
-	public Mezo(){szomszedok = new ArrayList<Mezo>();}
+	public Mezo(int maxJatekos){
+		szomszedok = new ArrayList<Mezo>();
+		jatekosok= new ArrayList<Jatekos>();
+		mukodik=true;
+		this.maxJatekosok = maxJatekos;
+		}
 
-
+	/**
+	 * Adott mezo szomszedjait kerdezi le
+	 * @return Adott mezo szomszedjai egy kollekcioban
+	 */
 	public List<Mezo> GetSzomszedok() {
 		return this.szomszedok;
 	}
@@ -48,13 +56,26 @@ public abstract class Mezo {
 		mukodik = true;
 	}
 
+	
 	public void PumpaEpit() {
 	}
 
+	/**
+	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához. 
+	 * @param m - Hozzáadandó szomszéd
+	 */
 	public void SzomszedHozzaad(Mezo m) {
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
+		szomszedok.add(m);
 	}
 
+	/**
+	 * Egy mezőt leválasztottunk egy másik mezőről. Az adott mezőnek a szomszédok kollekciójából törli az m mezőt.
+	 * @param m Törlendő szomszéd
+	 */
 	public void SzomszedTorol(Mezo m) {
+		szomszedok.remove(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedTorol(" + m + ")");
 	}
 
 	public Boolean SzomszedFelcsatol(Mezo m) {
@@ -74,20 +95,38 @@ public abstract class Mezo {
 	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
 	
+	/*
+	 * getter a jatekosok attributumra
+	 */
 public List<Jatekos> getJatekosok() {
 	return this.jatekosok;
 }
-
+/*
+ * Csak ciszterma osztalyon ertelmezett
+ * getter a ciszterna termeltpumpak attributumra
+ */
 public List<Pumpa> getTermeltPumpak(){
 	return null;
 }
+/*
+ * Csak ciszterma osztalyon ertelmezett
+ * szerelo hivja meg ciszternara
+ */
 public void PumpaEltavolit() {
 	
 }
-public Cso getKimenet() {
+/*
+ * Csak Pumpa osztalyon ertelmezett
+ * Visszaadja adott pumpa kimeneti csovet
+ */
+public Mezo getKimenet() {
 	return null;
 }
-public Cso getBemenet() {
+/*
+ * Csak Pumpa osztalyon ertelmezett
+ * Visszaadja adott pumpa bemeneti csovet
+ */
+public Mezo getBemenet() {
 	return null;
 }
 }

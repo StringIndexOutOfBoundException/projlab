@@ -1,4 +1,5 @@
 package projlab;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,6 +12,10 @@ public abstract class Jatekos {
 	private List<Pumpa> pumpaHatizsak;
 	private List<Cso> csoHatizsak;
 
+	public Jatekos() {
+		pumpaHatizsak=new ArrayList<Pumpa>();
+		csoHatizsak=new ArrayList<Cso>();
+	}
 	public void Lep() {
 	}
 
@@ -26,8 +31,30 @@ public abstract class Jatekos {
 		return helyzet;
 	}
 
-	//Jatekos helyzetenek beallitasa
+	/**
+	 * Jatekos helyzetenek beallitasa
+	 */
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
+	}
+	/*
+	 * getter a jatekos pumpaHatizsakjra
+	 */
+	public List<Pumpa> getPumpaHatizsak(){
+		return this.pumpaHatizsak;
+	}
+	
+	/**
+	 * getter a maxHatizsakKapacitasra
+	 */ 
+	public int getMaxHatizsakKapacitas() {
+		return this.maxHatizsakKapacitas;
+	}
+	
+	/**
+	 * setter a jatekos HatizsakKapacitasara
+	 */
+	public void setMaxHatizsakKapacitas(int value) {
+		this.maxHatizsakKapacitas=value;
 	}
 }

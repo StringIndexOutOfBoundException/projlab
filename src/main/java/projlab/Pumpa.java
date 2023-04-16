@@ -11,12 +11,16 @@ import java.util.Random;
  * Végül a pumpa random (a sivatagban levő külső erők miatt) el tud romlani, ilyenkor nem működik.
  */
 public class Pumpa extends AktivElem {
+
 	private  static int MAXVIZ = 1;
 	private int vizmennyiseg;
 	private Mezo bemenet;
 	private Mezo kimenet;
 	
-
+	public Pumpa() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @param kimenet
 	 * @param bemenet
@@ -74,13 +78,14 @@ public class Pumpa extends AktivElem {
 	/**
 	 * getter a bemenetre
 	 */
-	public Cso getBemenet() {
+	public Mezo getBemenet() {
 	return this.bemenet;
 }
-/**
+	/**
 	 * getter a Kimenetre
+	 * Hasznalva van
 	 */
-public Cso getKimenet() {
+public Mezo getKimenet() {
 	return this.kimenet;
 }
 }

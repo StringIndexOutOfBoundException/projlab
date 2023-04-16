@@ -33,24 +33,28 @@ public class Cso extends Mezo {
 		//p az az 1. szomszedja a csonek
 		//this=cs
 		//ujPumpa=this.getJatekosok().get(0).getpumpaHatizsak().get(0);
-	
+		Pumpa ujPumpa=this.getJatekosok().get(0).getPumpaHatizsak().get(0);
+		Jatekos sz=this.getJatekosok().get(0);
+		Mezo p1=this.GetSzomszedok().get(0);
+		Mezo p= this.GetSzomszedok().get(1);
+		
 		Cso ujCso=new Cso();
-	System.out.println("Ujcso id:" + ujCso);
+		System.out.println("Ujcso id:" + ujCso);
 		
-		this.getJatekosok().get(0).getpumpaHatizsak().get(0).Atallit(ujCso,this);	
-		this.SzomszedHozzaad(this.getJatekosok().get(0).getpumpaHatizsak().get(0));
-		ujCso.SzomszedHozzaad(this.getJatekosok().get(0).getpumpaHatizsak().get(0));
-		ujCso.SzomszedHozzaad(this.GetSzomszedok().get(1));
-		this.getJatekosok().get(0).getpumpaHatizsak().get(0).SzomszedHozzaad(ujCso);
-		this.getJatekosok().get(0).getpumpaHatizsak().get(0).SzomszedHozzaad(this);
-		this.GetSzomszedok().get(1).SzomszedHozzaad(ujCso);
-		this.GetSzomszedok().get(1).Atallit(this.GetSzomszedok().get(1).getKimenet(), ujCso);
-		this.GetSzomszedok().get(1).SzomszedTorol(this);
-		this.SzomszedTorol(this.GetSzomszedok().get(1));
+		ujPumpa.Atallit(ujCso,this);	
+		this.SzomszedHozzaad(ujPumpa);
+		ujCso.SzomszedHozzaad(ujPumpa);
+		ujCso.SzomszedHozzaad(p);
+		ujPumpa.SzomszedHozzaad(ujCso);
+		ujPumpa.SzomszedHozzaad(this);
+		p.SzomszedHozzaad(ujCso);
+		p.Atallit(p.getKimenet(), ujCso);
+		p.SzomszedTorol(this);
+		this.SzomszedTorol(p);
 		
-		System.out.println("p bemenete:" + this.GetSzomszedok().get(1).getBemenet() + "\nujPumpa bemenete:" 
-		+ this.getJatekosok().get(0).getpumpaHatizsak().get(0).getBemenet() +
-		", kimenete:" + this.getJatekosok().get(0).getpumpaHatizsak().get(0).getKimenet());
+		System.out.println("p bemenete:" + p.getBemenet() + 
+				"\nujPumpa bemenete:" + ujPumpa.getBemenet() +
+		", kimenete:" + ujPumpa.getKimenet());
 		//kette vagtuk a "cs" csovet, az elso fele "cs" a masodik pedig "ujCso" a ketto koze ujPumpat berakjuk
 		//a p pumpa bemenete lett az ujCso -> a "p" pumpa mar nem a "cs" pumpaja
 		//az ujPumpa bemenete "cs" kimenete "ujCso"

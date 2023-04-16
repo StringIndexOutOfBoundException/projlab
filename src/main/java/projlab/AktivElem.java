@@ -10,6 +10,11 @@ package projlab;//
 //
 
 public abstract class AktivElem extends Mezo {
+	public AktivElem() {
+		super(Integer.MAX_VALUE);
+		// TODO Auto-generated constructor stub
+	}
+
 	private int maxCso;
 
 	public abstract void Frissit() throws Exception;

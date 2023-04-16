@@ -3,18 +3,24 @@ package projlab;
 import java.nio.BufferUnderflowException;
 import java.util.List;
 
+
 /**
  * A Forrás a pálya aktív eleme.
  * Azért felelős, hogy vizet nyeljen el, amit a csőhálózaton keresztűl kap.
  * Továbbá Pumpákat és Csöveket termel.
  */
 public class Ciszterna extends AktivElem {
+	
+
 	private  static int MAXVIZ = 1;
 	private List <Pumpa> termeltpumpak;
 
 	public Ciszterna() {
-		 termeltpumpak=new ArrayList <Pumpa> ();
+		super();
+		termeltpumpak=new ArrayList <Pumpa> ();
+
 	}
+	
 	/**
 	 * Torli a termeltpumpak kollekcio utolso pumpajat,
 	 *  ezt a pumpat veszi fel a szerelo a PumpatFelvesz fuggvenyben
@@ -37,6 +43,12 @@ public class Ciszterna extends AktivElem {
 		}
 	}
 	public void CsovetKeszit() {
+	}
+	/*
+	 * getter a termeltpumpakra
+	 */
+	public List<Pumpa> getTermeltPumpak() {
+		return this.termeltpumpak;
 	}
 
 	/**
