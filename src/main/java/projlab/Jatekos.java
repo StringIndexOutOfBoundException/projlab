@@ -82,7 +82,5 @@ public abstract class Jatekos {
 	}
 
 	//Jatekos helyzetenek beallitasa
-	public void setHelyzet(Mezo m) {
-		helyzet = m;
-	}
+
 }

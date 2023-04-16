@@ -28,7 +28,7 @@ public class Pumpa extends AktivElem {
 	}
 
 	/**
-	 * Átállítja a pumpa állapotát működőre.
+	 * átállítja a pumpa állapotát működőre.
 	 * @Overrride
 	 */
 	@Override
