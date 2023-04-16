@@ -9,6 +9,7 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Forras extends AktivElem {
@@ -31,7 +32,7 @@ public class Forras extends AktivElem {
 	 */
 	@Override
 	public void SzomszedHozzaad(Mezo m) {
-		List<Mezo> szomszedok = super.GetSzomszedok();
+		ArrayList<Mezo> szomszedok = super.GetSzomszedok();
 		if(szomszedok.size() < 1)
 			szomszedok.add(m);
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");

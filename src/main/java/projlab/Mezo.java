@@ -17,15 +17,15 @@ public abstract class Mezo {
 	private Boolean mukodik;
 	private int maxJatekosok;
 
-	private List <Jatekos> jatekosok;
-	private List <Mezo> szomszedok;
+	private ArrayList <Jatekos> jatekosok;
+	private ArrayList <Mezo> szomszedok;
 	
 	public Mezo() {
 		jatekosok = new ArrayList <Jatekos>();
 		szomszedok = new ArrayList<Mezo>();
 	}
 
-	public List<Mezo> GetSzomszedok() {
+	public ArrayList<Mezo> GetSzomszedok() {
 		return szomszedok;
 	}
 

@@ -11,6 +11,7 @@ package projlab;//
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pumpa extends AktivElem {
@@ -26,7 +27,7 @@ public class Pumpa extends AktivElem {
 	 */
 	@Override
 	public void SzomszedHozzaad(Mezo m) {
-		List<Mezo> szomszedok = super.GetSzomszedok();
+		ArrayList<Mezo> szomszedok = super.GetSzomszedok();
 		if(szomszedok.size() < maxCso)
 			szomszedok.add(m);
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");

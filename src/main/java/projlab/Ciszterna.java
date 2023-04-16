@@ -47,7 +47,7 @@ public class Ciszterna extends AktivElem {
 	 */
 	@Override
 	public void SzomszedHozzaad(Mezo m) {
-		List<Mezo> szomszedok = super.GetSzomszedok();
+		ArrayList<Mezo> szomszedok = super.GetSzomszedok();
 		szomszedok.add(m);
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}

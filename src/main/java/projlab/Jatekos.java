@@ -9,6 +9,7 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Jatekos {
@@ -26,7 +27,7 @@ public abstract class Jatekos {
 	public void Allit() {
 		System.out.println("Függvényhívás: " + this + ".Allit()");
 		
-		List<Mezo> szomszedok = GetSzomszedok();
+		ArrayList<Mezo> szomszedok = GetSzomszedok();
 		
 		helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
 	}
@@ -51,7 +52,7 @@ public abstract class Jatekos {
 	 * Jatekos helyzetenek a szomszedainak a lekerdezese
 	 * @return helyzetének a szomszédai
 	 */
-	public List<Mezo> GetSzomszedok(){
+	public ArrayList<Mezo> GetSzomszedok(){
 		System.out.println("Visszatérés: a pumpa szomszédaival");
 		return helyzet.GetSzomszedok();
 	}

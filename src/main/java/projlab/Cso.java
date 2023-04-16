@@ -11,6 +11,7 @@ package projlab;//
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -74,7 +75,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void SzomszedHozzaad(Mezo m) {
-		List<Mezo> szomszedok = GetSzomszedok();
+		ArrayList<Mezo> szomszedok = GetSzomszedok();
 		if(szomszedok.size() < 2)
 			szomszedok.add(m);
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
