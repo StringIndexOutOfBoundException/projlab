@@ -16,7 +16,12 @@ public class Szerelo extends Jatekos {
 		helyzet.Megjavit();
 	}
 
-	public void PumpatFelvesz() {
+	/**
+ * A szerelo egy pumpat akar felvenni annal a ciszternanal ahol eppen tartozkodik
+ * Eloszor megnezi, hogy van-e eleg hely a pumpaHatizsakjaban, majd megnezi a ciszternanal talalhato-e pumpa
+ * Ha a feltetelek teljesulnek, a ciszterna termeltpumpak kollekciobol kiveszi az utolso pumpat es belerakja a hatizsakjaba.
+ */
+public void PumpatFelvesz() {
 	//a szerelo helyzet attributuma  egy ciszterna kell legyen, hogy ez a fuggveny ertelmes eredmenyt adjon
 	
 	//mikor megtelt a pumpaHatizsak
@@ -25,7 +30,7 @@ public class Szerelo extends Jatekos {
 		
 	}
 	//mikor nincs pumpa a ciszternanal
-	else if(this.getHelyzet().CiszternaPumpakSzama()==0) {
+	else if(this.getHelyzet().getTermeltPumpak().size()==0) {
 		System.out.println("A ciszternanal nincs pumpa");
 	}
 	
@@ -34,12 +39,13 @@ public class Szerelo extends Jatekos {
 		System.out.println("A szerelo fel tudja venni a pumpat,"
 						+ "\n Ha a sikertelenseget akarja tesztelni irjon be mas adatot!");
 		//szerelo berakja a hatizsakba a ciszterna termeltpumpak listajaban talalhato utolso pumpat
-		this.getpumpaHatizsak().add(this.getHelyzet().ciszternaTermeltPumpak().get(this.getHelyzet().ciszternaTermeltPumpak().size()-1));
+		this.getpumpaHatizsak().add(this.getHelyzet().getTermeltPumpak().get(this.getHelyzet().getTermeltPumpak().size()-1));
 		//ciszterna eltavolitja azt a pumpat amit felvett a szerelo
 		this.getHelyzet().PumpaEltavolit();
 		
 	}
 	}
+	
 
 	public void CsovetLecsatol() {
 	}
@@ -47,8 +53,16 @@ public class Szerelo extends Jatekos {
 	public void CsovetFelcsatol() {
 	}
 
-	public void PumpatEpit() {
+	/**
+ *Ha a szerelo uj pumpat akar helyezni a csorendszerbe, ezt a fuggvenyt hasznalja
+ *A szerelonek egy csovon kell allnia, ennek a csonek hivja meg a PumpaEpit fuggvenyet
+ *A szerelo pumpaHatizsak kollekciojabol ki is torli a pumpat, amit elhelyezett.
+ */
+public void PumpatEpit() {
 	//Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
 	this.getHelyzet().PumpaEpit();
-	}
+	//szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez
+	this.getpumpaHatizsak().remove(this.getpumpaHatizsak().get(this.getpumpaHatizsak().size()-1));
+	
+}
 }

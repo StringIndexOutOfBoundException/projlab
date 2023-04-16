@@ -13,33 +13,41 @@ public class Cso extends Mezo {
 
 	public void Megjavit() {
 	}
-
+	/**
+	 * Ezt a fuggveny a szerelo hivja meg azon a csovon amin all, mikor uj pumpat akar lerakni
+	 * A fuggveny az eredeti csovet "kette vagja", ugy hogy 
+	 * az "eredeti cso lesz az elso fele "a masodik fele pedig  egy uj cso lesz amit a fuggveny hoz letre
+	 * es  a ketto koze a szerelo egy pumpat rak
+	 */
 	public void PumpaEpit() {
 		//Teszteleskor letrehozott adatokat nezze meg
 		//p1 az a 0. szomszedja a csonek
 		//p az az 1. szomszedja a csonek
 		//this=cs
-		Pumpa ujPumpa= new Pumpa();
+		//ujPumpa=this.getJatekosok().get(0).getpumpaHatizsak().get(0);
+	
 		Cso ujCso=new Cso();
 	
 		
-		ujPumpa.setBemenet(this);
-		ujPumpa.setKimenet(ujCso);
-		this.SzomszedHozzaad(ujPumpa);
-		ujCso.SzomszedHozzaad(ujPumpa);
+		this.getJatekosok().get(0).getpumpaHatizsak().get(0).Atallit(ujCso,this);	
+		this.SzomszedHozzaad(this.getJatekosok().get(0).getpumpaHatizsak().get(0));
+		ujCso.SzomszedHozzaad(this.getJatekosok().get(0).getpumpaHatizsak().get(0));
 		ujCso.SzomszedHozzaad(this.GetSzomszedok().get(1));
-		ujPumpa.SzomszedHozzaad(ujCso);
-		ujPumpa.SzomszedHozzaad(this);
+		this.getJatekosok().get(0).getpumpaHatizsak().get(0).SzomszedHozzaad(ujCso);
+		this.getJatekosok().get(0).getpumpaHatizsak().get(0).SzomszedHozzaad(this);
 		this.GetSzomszedok().get(1).SzomszedHozzaad(ujCso);
 		this.GetSzomszedok().get(1).setBemenet(ujCso);
 		this.GetSzomszedok().get(1).SzomszedTorol(this);
 		this.SzomszedTorol(this.GetSzomszedok().get(1));
-		//kivesszuk az utolso pumpat a jatekos pumpaHatizsakjabol
-		this.getJatekosok().get(0).getpumpaHatizsak().remove(this.getJatekosok().get(0).getpumpaHatizsak().size()-1);
 		
+		System.out.println("p bemenete:" + this.GetSzomszedok().get(1).getBemenet() + "\nujPumpa bemenete:" 
+		+ this.getJatekosok().get(0).getpumpaHatizsak().get(0).getBemenet() +
+		", kimenete:" + this.getJatekosok().get(0).getpumpaHatizsak().get(0).getKimenet());
 		//kette vagtuk a "cs" csovet, az elso fele "cs" a masodik pedig "ujCso" a ketto koze ujPumpat berakjuk
 		//a p pumpa bemenete lett az ujCso -> a "p" pumpa mar nem a "cs" pumpaja
 		//az ujPumpa bemenete "cs" kimenete "ujCso"
+	}
+
 	}
 
 	/**

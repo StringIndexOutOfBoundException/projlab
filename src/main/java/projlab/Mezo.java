@@ -23,18 +23,28 @@ public Mezo() {
 	this.jatekosok=new ArrayList<Jatekos>();
 	this.szomszedok=new ArrayList<Mezo>();
 }
-//teszthez kellett a kovetkezo 4 fuggveny
-public int CiszternaPumpakSzama() {
-	return 0;
-}
+
+/** 
+ * Csak ciszternan ertelmezett
+ * Visszaadja a ciszternanal termelt pumpakat
+*/
 public List<Pumpa> ciszternaTermeltPumpak(){
 	return null;
 }
-public void setKimenet(Cso cs) {
 
+/** 
+ * Csak pumpan ertelmezett
+ * Visszaadja a pumpa kimeneti csovet
+*/
+public Cso getKimenet() {
+	return null;
 }
-public void setBemenet(Cso cs) {
-	
+/** 
+ * Csak pumpan ertelmezett
+ * Visszaadja a pumpa bemeneti csovet
+*/
+public Cso getBemenet() {
+	return null;
 }
 //getter a jatekosokra
 public List<Jatekos> getJatekosok() {
