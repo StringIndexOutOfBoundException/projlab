@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         UseCase11_15 ls = new UseCase11_15();
+        UseCase1_4 useCase1_4 = new UseCase1_4();
 
         while (true) {
             System.out.print("\nVálaszd ki a futtatandó tesztesetet (1-19) Vagy írj \"-1\"-et a kilépéshez: ");
@@ -32,12 +33,16 @@ public class Main {
                 case -1:
                     return;
                 case 1:
+                	useCase1_4.szereloCsovetJavitTeszt();
                     break;
                 case 2:
+                	useCase1_4.szereloPumpatJavitTeszt();
                     break;
                 case 3:
+                	useCase1_4.szereloPumpatAllitTeszt();
                     break;
                 case 4:
+                	useCase1_4.szabotorPumpatAllitTeszt();
                     break;
                 case 5:
                     break;

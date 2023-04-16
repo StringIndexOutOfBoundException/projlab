@@ -1,4 +1,5 @@
 package projlab;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Forras extends AktivElem {
 	@Override
 	public void Frissit() throws Exception {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
-		List<Mezo> szomszedok = super.GetLeszedhetoSzomszedok();
+		ArrayList<Mezo> szomszedok = super.GetLeszedhetoSzomszedok();
 		int szomszedszam = szomszedok.size();
 		if(szomszedszam > 1){
 			throw new IllegalArgumentException();
