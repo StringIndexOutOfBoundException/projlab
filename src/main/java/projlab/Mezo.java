@@ -13,11 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mezo {
+	private int vizmennyiseg;
 	private Boolean mukodik;
 	private int maxJatekosok;
 
 	private List <Jatekos> jatekosok;
-	private List <Mezo> szomszedok;
+	private ArrayList <Mezo> szomszedok;
+
+	public Mezo(){szomszedok = new ArrayList<Mezo>();}
 
 
 	public List<Mezo> GetSzomszedok() {
@@ -34,13 +37,15 @@ public abstract class Mezo {
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
+	// cso vagy pumpa megjavitasa
 	public void Megjavit() {
-		System.out.println("Függvényhívás: " + this + "Megjavit()");
+		System.out.println("Fuggvenyhivas: Megjavit()");
 		mukodik = true;
 	}
 
 	public void Kilyukaszt() {
-
+		System.out.println("Fuggvenyhivas: Kilyukaszt()");
+		mukodik = true;
 	}
 
 	public void PumpaEpit() {
@@ -53,17 +58,19 @@ public abstract class Mezo {
 	}
 
 	public Boolean SzomszedFelcsatol(Mezo m) {
-		return null;
+		szomszedok.add(m);
+		return true;
 	}
 
-	public List<Mezo> GetLeszedhetoSzomszedok() {
-		return null;
+	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		return szomszedok;
 	}
 
 	public void setMukodik(boolean status){
 		mukodik = status;
 	}
 
-	public void VizetCsokkent(int meret){};
-	public void VizetNovel(int meret) {};
+	public void VizetCsokkent(int meret) throws Exception {};
+	public void VizetNovel(int meret) throws Exception {};
+	public int getVizmennyiseg(){return vizmennyiseg;}
 }

@@ -35,7 +35,7 @@ public class Ciszterna extends AktivElem {
 			try {
 				cso.VizetCsokkent(MAXVIZ);
 			}
-			catch (BufferUnderflowException e){/* Hmm ez nem szép itt ;) */}
+			catch (Exception e){/* Hmm ez nem szép itt ;) */}
 		}
 	}
 }

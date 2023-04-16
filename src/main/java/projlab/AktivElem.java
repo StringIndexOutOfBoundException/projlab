@@ -12,5 +12,5 @@ package projlab;//
 public abstract class AktivElem extends Mezo {
 	private int maxCso;
 
-	public abstract void Frissit();
+	public abstract void Frissit() throws Exception;
 }

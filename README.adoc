@@ -24,13 +24,13 @@ A projlab mappában futtasd a következő parancsot:
 |===
 | Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
 
-| 2023.04.08 18:00
-| 2023.04.06
+
+| 2023.04.06 15:00
 | 1 óra
 | Borbély
 | Tevékenység: Build system összerakása
 
-| 2023.04.08
+| 2023.04.08 18:00
 | 1 óra
 |Kerekes +
 Ignáth +
@@ -43,9 +43,24 @@ Borbély +
 |Borbély
 | Tevékenység: Fordítási útmutató elkészítése, Tartalomjegyzék elkészítése
 
+| 2023.04.15. 15:00
+| 3 óra
+| Kerekes
+| Tevékenység: Szabotőr/Szerelő pumpát állít, Szerelő csövet/pumpát javít tesztesetek elkészítése
+
 | 2023.04.15 16:00
 | 1 óra
 |Borbély +
 | Tevékenység: Jdoc készítése
+
+| 2023.04.15 21:00
+| 1 óra
+|Borbély +
+| Tevékenység: Pupában hiba javítása
+
+| 2023.04.15 21:00
+| 0.5 óra
+|Borbély +
+| Tevékenység: Use-case tesztek készítése
 |===
 

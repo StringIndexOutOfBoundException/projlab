@@ -12,6 +12,7 @@ public class Cso extends Mezo {
 	private int vizmennyiseg;
 
 	public void Megjavit() {
+		setMukodik(true);
 	}
 
 	public void PumpaEpit() {
@@ -23,8 +24,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void Kilyukaszt() {
-		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
-		super.setMukodik(true);
+		setMukodik(false);
 	}
 
 	/**
@@ -34,10 +34,12 @@ public class Cso extends Mezo {
 	 * @override
 	 */
 	@Override
-	public void VizetNovel(int meret) {
-		System.out.println("Függvényhívás: " + this +": VizetNovel( " + meret + ") ");
+	public void VizetNovel(int meret) throws Exception {
+		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + " ) ");
 		if(meret + vizmennyiseg > 1){	//MAXVIZ
-			throw new BufferOverflowException();
+			int tulfolyas = meret+vizmennyiseg-1;
+			vizmennyiseg += meret - tulfolyas;
+			throw new Exception(String.valueOf(tulfolyas));
 		}
 		else {
 			vizmennyiseg += meret;
@@ -50,13 +52,17 @@ public class Cso extends Mezo {
 	 * @param meret a víz mennysége amit a csőből kiszívunk.
 	 */
 	@Override
-	public void VizetCsokkent(int meret) {
-		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + ") ");
+	public void VizetCsokkent(int meret) throws Exception {
+		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + " ) ");
 
-		if(meret < vizmennyiseg) {
+		if(meret <= vizmennyiseg) {
 			vizmennyiseg -= meret;
 		}
-		else{ throw new BufferUnderflowException();}
+		else{
+			int ki = vizmennyiseg;
+			vizmennyiseg = 0;
+			throw new Exception(String.valueOf(ki));
+		}
 
 	}
 
@@ -67,5 +73,5 @@ public class Cso extends Mezo {
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
 	}
-
+	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
 }
