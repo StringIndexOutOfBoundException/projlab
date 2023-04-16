@@ -43,6 +43,10 @@ public class Ciszterna extends AktivElem {
 			this.SzomszedHozzaad(p);
 		}
 	}
+
+	/**
+	 * A ciszterna egy magához kapcsolódó szabad végű csövet hoz létre.
+	 */
 	public void CsovetKeszit() {
 		Cso ujcso = new Cso();
 		SzomszedFelcsatol(ujcso);
