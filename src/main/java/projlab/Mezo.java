@@ -14,18 +14,39 @@ import java.util.List;
 
 public abstract class Mezo {
 	private Boolean mukodik;
-	private int maxJatekosok;
+	//Azt tárolja, hogy hány játékos állhat egy mezőn. Ez felül lesz írva a leszármazottak konstruktoraiban.
+	private int maxJatekosok = 0;
 
 	private List <Jatekos> jatekosok;
 	private List <Mezo> szomszedok;
 
 
-	public List<Mezo> GetSzomszedok() {
-		return null;
+	public Mezo(int maxJatekosok) {
+		mukodik = true;
+		jatekosok = new ArrayList<Jatekos>();
+		szomszedok = new ArrayList<Mezo>();
+		this.maxJatekosok = maxJatekosok;
 	}
 
+
+	public List<Mezo> GetSzomszedok() {
+		return szomszedok;
+	}
+
+	/**
+	 * A függvény hozzáadja a játékost a mezőhöz.
+	 * @param j A hozzáadandó játékos.
+	 * @return Igaz, ha sikerült a hozzáadás. Akkor sikerül, ha a mezőn még nincs a maximális játékosok száma.
+	 */
 	public Boolean JatekosElfogad(Jatekos j) {
-		return null;
+		if (jatekosok.size() < getMaxJatekosok()) {
+			jatekosok.add(j);
+			j.setHelyzet(this);
+			//System.out.println("Játékos hozzáadva a mezőhöz: " + this);
+			return true;
+		}
+		//System.out.println("A mezőn már nincs hely a játékosnak: " + this);
+		return false;
 	}
 
 	public void JatekosEltavolit(Jatekos j) {
@@ -46,7 +67,12 @@ public abstract class Mezo {
 	public void PumpaEpit() {
 	}
 
+	/**
+	Hozzáad egy mezőt a szomszédokhoz.
+	@param m A hozzáadandó mező.
+	 */
 	public void SzomszedHozzaad(Mezo m) {
+		szomszedok.add(m);
 	}
 
 	public void SzomszedTorol(Mezo m) {
@@ -66,4 +92,8 @@ public abstract class Mezo {
 
 	public void VizetCsokkent(int meret){};
 	public void VizetNovel(int meret) {};
+
+	public int getMaxJatekosok() {
+		return maxJatekosok;
+	}
 }

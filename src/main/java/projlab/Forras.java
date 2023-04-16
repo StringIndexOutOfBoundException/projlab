@@ -6,6 +6,7 @@ import java.util.List;
  * Azért felelős, hogy vizet készítsen, amit a csőhálózat elszállít.
  */
 public class Forras extends AktivElem {
+	//private int maxJatekosok = Integer.MAX_VALUE;
 	private static int MAXVIZ = 1;
 	/**
 	 * Frissít függvény a víz folyásáért felelős
@@ -24,4 +25,5 @@ public class Forras extends AktivElem {
 			szomszedok.get(0).VizetNovel(MAXVIZ);
 		}
 	}
+
 }

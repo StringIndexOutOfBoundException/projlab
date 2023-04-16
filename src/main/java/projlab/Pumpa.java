@@ -4,16 +4,18 @@ import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 
 /**
- * A pumpa a pÃ¡lya aktÃ­v eleme.
- * AzÃ©rt felelÅ‘s, hogy az egyik csÅ‘bÅ‘l mÃ¡sik csÅ‘be jutassa a vizet.
- * TovÃ¡bbÃ¡ a pumpÃ¡ban van egy tartÃ¡ly, amibe vizet tÃ¡rolhat.
- * VÃ©gÃ¼l a pumpa random (a sivatagban levÅ‘ kÃ¼lsÅ‘ erÅ‘k miatt) el tud romlani, ilyenkor nem mÅ±kÃ¶dik.
+ * A pumpa a pálya aktív eleme.
+ * Azért felelõs, hogy az egyik csõbõl másik csõbe jutassa a vizet.
+ * Továbbá a pumpában van egy tartály, amibe vizet tárolhat.
+ * Végül a pumpa random (a sivatagban levõ külsõ erõk miatt) el tud romlani, ilyenkor nem mûködik.
  */
 public class Pumpa extends AktivElem {
 	private  static int MAXVIZ = 1;
 	private int vizmennyiseg;
 	private Cso bemenet;
 	private Cso kimenet;
+
+	//private int maxJatekosok = Integer.MAX_VALUE;
 
 
 	/**
@@ -26,7 +28,7 @@ public class Pumpa extends AktivElem {
 	}
 
 	/**
-	 * ÃtÃ¡llÃ­tja a pumpa Ã¡llapotÃ¡t mÅ±kÃ¶dÅ‘re.
+	 * Átállítja a pumpa állapotát mûködõre.
 	 * @Overrride
 	 */
 	@Override
@@ -35,12 +37,12 @@ public class Pumpa extends AktivElem {
 	}
 
 	/**
-	 * A fÃ¼ggvÃ©ny azÃ©rt felelÅ‘s, hogy a pumpa a vizet pumpÃ¡lja.
+	 * A függvény azért felelõs, hogy a pumpa a vizet pumpálja.
 	 * @Override
 	 */
 	@Override
 	public void Frissit() {
-		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this +": Frissit() ");
+		System.out.println("Függvényhívás: " + this +": Frissit() ");
 		int befolyoviz = bemenet.getVizmennyiseg();
 		vizmennyiseg += befolyoviz;
 		try {
@@ -67,4 +69,5 @@ public class Pumpa extends AktivElem {
 
 
 	}
+
 }

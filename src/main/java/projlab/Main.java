@@ -1,5 +1,9 @@
 package projlab;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Dad!");
@@ -9,6 +13,12 @@ public class Main {
 
         p.Atallit(cs1, cs2);
         p.Frissit();
+
+        //lepes_inicializalas();
+        LepesSkeleton ls = new LepesSkeleton();
+        ls.lepes_inicializalas();
+        ls.szerelo_ures_csore_lep();
+
     }
 
 }

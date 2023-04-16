@@ -9,6 +9,8 @@ import java.util.List;
  * Továbbá Pumpákat és Csöveket termel.
  */
 public class Ciszterna extends AktivElem {
+
+	//private int maxJatekosok = Integer.MAX_VALUE;
 	private  static int MAXVIZ = 1;
 	private List <Pumpa> termeltpumpak;
 
@@ -38,4 +40,5 @@ public class Ciszterna extends AktivElem {
 			catch (BufferUnderflowException e){/* Hmm ez nem szép itt ;) */}
 		}
 	}
+
 }

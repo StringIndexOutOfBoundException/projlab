@@ -4,11 +4,20 @@ import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 
 /**
- * A csÅ‘ osztÃ¡ly a pÃ¡lya egy passzÃ­v eleme.
- * Å felelÅ‘s a vÃ­z szÃ¡llÃ­tÃ¡sÃ¡Ã©rt.
- * Ha kijukad akkor a benne levÅ‘ vÃ­z kifolyik Ã©s a sivatagban elveszik.
+ * A csõ osztály a pálya egy passzív eleme.
+ * Õ felelõs a víz szállításáért.
+ * Ha kijukad akkor a benne levõ víz kifolyik és a sivatagban elveszik.
  */
 public class Cso extends Mezo {
+	//private int maxJatekosok = 1;
+
+	/**
+	 * A csõ konstruktora
+	 * Beállítja a maxJatekosok változót 1-re
+	 */
+	public Cso() {
+		super(1);
+	}
 	private int vizmennyiseg;
 
 	public void Megjavit() {
@@ -18,24 +27,24 @@ public class Cso extends Mezo {
 	}
 
 	/**
-	 * A fÃ¼ggvÃ©ny kilyukasztja a csÃ¶vet, azaz Ã¡tÃ¡lllÃ­tja a mukodik vÃ¡ltozoÃ³t arra, hogy nem mÅ±kÃ¶dik (false)
+	 * A függvény kilyukasztja a csövet, azaz átálllítja a mukodik változoót arra, hogy nem mûködik (false)
 	 * @Override
 	 */
 	@Override
 	public void Kilyukaszt() {
-		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this + "Kilyukaszt()");
+		System.out.println("Függvényhívás: " + this + "Kilyukaszt()");
 		super.setMukodik(true);
 	}
 
 	/**
-	 * <p>A fÃ¼ggvÃ©ny megnÃ¶veli a csÅ‘be levÅ‘ vÃ­z mennyisÃ©gÃ©t megadott Ã©rtÃ©kkel (nem nÃ¶vekedhet MAXVÃZ felÃ©).</p>
-	 * Ezt a Pumpa {@link Pumpa}, ForrÃ¡s {@link Forras}  fogja meghÃ­vni
-	 * @param meret a vÃ­z mennysÃ©ge amit a csÅ‘be pumpÃ¡lunk
+	 * <p>A függvény megnöveli a csõbe levõ víz mennyiségét megadott értékkel (nem növekedhet MAXVÍZ felé).</p>
+	 * Ezt a Pumpa {@link Pumpa}, Forrás {@link Forras}  fogja meghívni
+	 * @param meret a víz mennysége amit a csõbe pumpálunk
 	 * @override
 	 */
 	@Override
 	public void VizetNovel(int meret) {
-		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this +": VizetNovel( " + meret + ") ");
+		System.out.println("Függvényhívás: " + this +": VizetNovel( " + meret + ") ");
 		if(meret + vizmennyiseg > 1){	//MAXVIZ
 			throw new BufferOverflowException();
 		}
@@ -45,13 +54,13 @@ public class Cso extends Mezo {
 	}
 
 	/**
-	 * <p>A fÃ¼ggvÃ©ny csÃ¶kkenti a csÅ‘be levÅ‘ vÃ­z mennyisÃ©gÃ©t megadott Ã©rtÃ©kkel (nem csÃ¶kkenhet 0 alÃ¡).</p>
-	 * Ezt a Pumpa {@link Pumpa}, ForrÃ¡s {@link Ciszterna}  fogja meghÃ­vni
-	 * @param meret a vÃ­z mennysÃ©ge amit a csÅ‘bÅ‘l kiszÃ­vunk.
+	 * <p>A függvény csökkenti a csõbe levõ víz mennyiségét megadott értékkel (nem csökkenhet 0 alá).</p>
+	 * Ezt a Pumpa {@link Pumpa}, Forrás {@link Ciszterna}  fogja meghívni
+	 * @param meret a víz mennysége amit a csõbõl kiszívunk.
 	 */
 	@Override
 	public void VizetCsokkent(int meret) {
-		System.out.println("FÃ¼ggvÃ©nyhÃ­vÃ¡s: " + this +": VizetCsokkent( " + meret + ") ");
+		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + ") ");
 
 		if(meret < vizmennyiseg) {
 			vizmennyiseg -= meret;
@@ -61,8 +70,8 @@ public class Cso extends Mezo {
 	}
 
 	/**
-	 * Ez a vizmennyisÃ©g vÃ¡ltozÃ³hoz egy getter, visszaadja a csÅ‘ben levÅ‘ vÃ­z Ã©rtkÃ©t
-	 * @return int tÃ­pusÃº, azt adja vissza, hogy mennyi vÃ­z van a csÅ‘ben Ã©ppen.
+	 * Ez a vizmennyiség változóhoz egy getter, visszaadja a csõben levõ víz értkét
+	 * @return int típusú, azt adja vissza, hogy mennyi víz van a csõben éppen.
 	 */
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
