@@ -2,11 +2,13 @@ package projlab;
 
 import java.util.Scanner;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
-    	UseCase1_4 useCase1_4 = new UseCase1_4();
-    	
+        UseCase11_15 ls = new UseCase11_15();
+
         while (true) {
             System.out.print("\nVálaszd ki a futtatandó tesztesetet (1-19) Vagy írj \"-1\"-et a kilépéshez: ");
             Scanner sc = new Scanner(System.in);
@@ -30,16 +32,12 @@ public class Main {
                 case -1:
                     return;
                 case 1:
-                	useCase1_4.szereloCsovetJavitTeszt();
                     break;
                 case 2:
-                	useCase1_4.szereloPumpatJavitTeszt();
                     break;
                 case 3:
-                	useCase1_4.szereloPumpatAllitTeszt();
                     break;
                 case 4:
-                	useCase1_4.szabotorPumpatAllitTeszt();
                     break;
                 case 5:
                     break;
@@ -54,14 +52,24 @@ public class Main {
                 case 10:
                     break;
                 case 11:
+                    ls.lepes_inicializalas();
+                    ls.szerelo_ures_csore_lep();
                     break;
                 case 12:
+                    ls.lepes_inicializalas();
+                    ls.szerelo_foglalt_csore_akar_lepni();
                     break;
                 case 13:
+                    ls.lepes_inicializalas();
+                    ls.szerelo_pumpara_lep();
                     break;
                 case 14:
+                    ls.lepes_inicializalas();
+                    ls.szerelo_ciszternara_lep();
                     break;
                 case 15:
+                    ls.lepes_inicializalas();
+                    ls.szerelo_forrasra_lep();
                     break;
                 case 16:
                     break;

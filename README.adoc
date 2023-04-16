@@ -5,6 +5,13 @@
 A projlab mappában futtasd a következő parancsot:
 
 === Linux
+[source, bash]
+----
+  javac -d javacompile src/main/java/projlab/*.java
+  cd javacompile
+  java projlab.Main
+----
+
 
 [source, bash]
 ----
@@ -12,6 +19,13 @@ A projlab mappában futtasd a következő parancsot:
 ----
 
 === Windows
+[source, cmd]
+----
+  javac -d javacompile src/main/java/projlab/*.java
+  cd javacompile
+  java projlab.Main
+----
+
 [, cmd]
 ----
 ./gradlew.bat run
@@ -24,12 +38,13 @@ A projlab mappában futtasd a következő parancsot:
 |===
 | Kezdet, header row | Időtartam, header row | Résztvevők, header row | Leírás, header row
 
-| 2023.04.06
+
+| 2023.04.06 15:00
 | 1 óra
 | Borbély
 | Tevékenység: Build system összerakása
 
-| 2023.04.08
+| 2023.04.08 18:00
 | 1 óra
 |Kerekes +
 Ignáth +
@@ -37,7 +52,7 @@ Tasi +
 Borbély +
 | Értekezlet:  Döntések: Feladatok szétosztása, konzultáció átbeszélése
 
-| 2023.04.15
+| 2023.04.15 14:00
 | 30 perc
 |Borbély
 | Tevékenység: Fordítási útmutató elkészítése, Tartalomjegyzék elkészítése
@@ -51,5 +66,40 @@ Borbély +
 | 3 óra
 | Kerekes
 | Tevékenység: Szabotőr/Szerelő pumpát állít, Szerelő csövet/pumpát javít tesztesetek javítása és tesztosztály elkészítése, javadoc kommnetek készítése
+
+| 2023.04.15 16:00
+| 1 óra
+|Borbély +
+| Tevékenység: Jdoc készítése
+
+| 2023.04.15 21:00
+| 1 óra
+|Borbély +
+| Tevékenység: Pupában hiba javítása
+
+| 2023.04.15 21:00
+| 0.5 óra
+|Borbély +
+| Tevékenység: Use-case tesztek készítése
+
+| 2023.04.16 14:00
+| 0.5 óra
+|Borbély +
+| Tevékenység: Git shenanigens + Cso készít függvény a ciszternában
+
+| 2023.04.16 10:00
+| 4 óra
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciók elkezedése
+
+| 2023.04.16 16:00
+| 1 óra 20 perc
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciók folytatása
+
+| 2023.04.16 17:45
+| 20 perc
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciókban kisebb javítások
 |===
 
