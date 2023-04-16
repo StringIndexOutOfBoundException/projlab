@@ -1,8 +1,5 @@
 package projlab;
 
-import java.nio.BufferOverflowException;
-import java.nio.BufferUnderflowException;
-
 /**
  * A cső osztály a pálya egy passzív eleme.
  * Ő felelős a víz szállításáért.
