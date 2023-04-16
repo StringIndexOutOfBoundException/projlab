@@ -32,7 +32,7 @@ public abstract class Mezo {
 	}
 
 
-	public List<Mezo> GetSzomszedok() {
+	public ArrayList<Mezo> GetSzomszedok() {
 		return szomszedok;
 	}
 

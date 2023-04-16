@@ -5,6 +5,13 @@
 A projlab mappában futtasd a következő parancsot:
 
 === Linux
+[source, bash]
+----
+  javac -d javacompile src/main/java/projlab/*.java
+  cd javacompile
+  java projlab.Main
+----
+
 
 [source, bash]
 ----
@@ -12,6 +19,13 @@ A projlab mappában futtasd a következő parancsot:
 ----
 
 === Windows
+[source, cmd]
+----
+  javac -d javacompile src/main/java/projlab/*.java
+  cd javacompile
+  java projlab.Main
+----
+
 [, cmd]
 ----
 ./gradlew.bat run
