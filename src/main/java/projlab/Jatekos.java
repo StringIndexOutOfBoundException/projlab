@@ -49,7 +49,10 @@ public abstract class Jatekos {
 		Mezo cel = szomszedok.get(valasz-1);
 		//Ha sikeresen lépett, akkor eltávolítja magát a régi mezőről
 		System.out.println("Függvényhívás: " + cel + ": JatekosElfogad(" + this +")");
-		if (cel.JatekosElfogad(this)) {
+		boolean sikeresLepes = cel.JatekosElfogad(this);
+		System.out.println("Visszatérés: " + sikeresLepes);
+		if (sikeresLepes) {
+			System.out.println("Függvényhívás: " + eredetiHelyzet + ": JatekosEltavolit(" + this +")");
 			eredetiHelyzet.JatekosEltavolit(this);
 		}
 

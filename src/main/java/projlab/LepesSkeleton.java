@@ -24,19 +24,59 @@ public class LepesSkeleton {
      */
     public void szerelo_ures_csore_lep()
     {
+        System.out.println("---\nTeszt: Szerelő üres csőre lép. Az 1-es cső lesz az üres.\n---");
         System.out.println("Függvényhívás: Szerelo: Lep()");
         sz2.Lep();
     }
 
+    /**
+     * A 5.3.6-os szekvenciadiagram alapján teszteli azt, hogy a szerelő foglalt csőre lép.
+     * A foglalt cső a cs2, azaz a 2-es opció. (vagy a cs3, azaz a 3-as opció)
+     */
+    public void szerelo_foglalt_csore_akar_lepni()
+    {
+        System.out.println("---\nTeszt: Szerelő foglalt csőre akar lépni. A 2-es (és 3-as) cső lesz a foglalt.\n---");
+        System.out.println("Függvényhívás: Szerelo: Lep()");
+        sz2.Lep();
+    }
+
+    /**
+     * A 5.3.7-es szekvenciadiagram alapján teszteli azt, hogy a szerelő pumpára lép.
+     *
+     */
+    public void szerelo_pumpara_lep()
+    {
+        System.out.println("---\nTeszt: Szerelő pumpára lép. Az 1-es lesz a pumpa\n---");
+        System.out.println("Függvényhívás: Szerelo: Lep()");
+        sz1.Lep();
+    }
+
+    /**
+     * A 5.3.8-as szekvenciadiagram alapján teszteli azt, hogy a szerelő ciszternára lép.
+     */
+    public void szerelo_ciszternara_lep()
+    {
+        System.out.println("---\nTeszt: Szerelő ciszternára lép. A 2-es lesz a ciszterna\n---");
+        System.out.println("Függvényhívás: Szerelo: Lep()");
+        sz3.Lep();
+    }
+
+    /**
+     * A 5.3.9-es szekvenciadiagram alapján teszteli azt, hogy a szerelő forráshoz lép.
+     */
+    public void szerelo_forrasra_lep()
+    {
+        System.out.println("---\nTeszt: Szerelő forráshoz lép. A 2-es lesz a forrás\n---");
+        System.out.println("Függvényhívás: Szerelo: Lep()");
+        sz1.Lep();
+    }
 
     /**
      * Az 5.4.5-ös kommunikációs diagram alapján inicializál egy pályát a lépések
      * teszteléséhez.
      * Az 5.3.5-5.3.9-es szekvenciadiagramok alapján készült tesztekhez lesz felhasználva.
      */
-    public Map lepes_inicializalas() {
-        //Ebben a hashmapben tároljuk a pályaelemeket és a játékosokat, hogy a tesztekben könnyebben hozzájuk tudjunk férni a nevük alapján.
-        Map<Object, String> elemek = new HashMap<>();
+    public void lepes_inicializalas() {
         //A pályában felhasznált elemek létrehozása
         p = new Pumpa();
         cs1 = new Cso();
@@ -44,19 +84,10 @@ public class LepesSkeleton {
         cs3 = new Cso();
         f = new Forras();
         c = new Ciszterna();
-        elemek.put(p, "p");
-        elemek.put(cs1, "cs1");
-        elemek.put(cs2, "cs2");
-        elemek.put(cs3, "cs3");
-        elemek.put(f, "f");
-        elemek.put(c, "c");
 
         sz1 = new Szerelo();
         sz2 = new Szerelo();
         sz3 = new Szerelo();
-        elemek.put(sz1, "sz1");
-        elemek.put(sz2, "sz2");
-        elemek.put(sz3, "sz3");
 
 
 
@@ -82,9 +113,10 @@ public class LepesSkeleton {
         p.JatekosElfogad(sz2);
         cs2.JatekosElfogad(sz1);
         cs3.JatekosElfogad(sz3);
-
+        //tmp
+        p.JatekosElfogad(new Szerelo());
+        cs2.JatekosElfogad(new Szerelo());
         //Visszatérés az elemekkel.
-        return elemek;
 
     }
 

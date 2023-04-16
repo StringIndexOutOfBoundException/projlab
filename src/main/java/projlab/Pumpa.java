@@ -18,8 +18,6 @@ public class Pumpa extends AktivElem {
 	//private int maxJatekosok = Integer.MAX_VALUE;
 
 
-
-
 	/**
 	 * @param kimenet
 	 * @param bemenet
@@ -74,4 +72,5 @@ public class Pumpa extends AktivElem {
 
 		}
 	}
+
 }
