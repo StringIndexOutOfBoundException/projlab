@@ -21,6 +21,9 @@ public class Ciszterna extends AktivElem {
 	}
 
 	public void CsovetKeszit() {
+		Cso uj = new Cso();
+		SzomszedFelcsatol(uj);
+		uj.SzomszedFelcsatol(this);
 	}
 
 	/**
