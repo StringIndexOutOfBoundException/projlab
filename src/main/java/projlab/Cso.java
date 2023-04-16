@@ -35,7 +35,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetNovel(int meret) throws Exception {
-		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + ") ");
+		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + " ) ");
 		if(meret + vizmennyiseg > 1){	//MAXVIZ
 			int tulfolyas = meret+vizmennyiseg-1;
 			vizmennyiseg += meret - tulfolyas;
@@ -53,9 +53,9 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetCsokkent(int meret) throws Exception {
-		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + ") ");
+		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + " ) ");
 
-		if(meret < vizmennyiseg) {
+		if(meret <= vizmennyiseg) {
 			vizmennyiseg -= meret;
 		}
 		else{
@@ -73,5 +73,5 @@ public class Cso extends Mezo {
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
 	}
-
+	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
 }

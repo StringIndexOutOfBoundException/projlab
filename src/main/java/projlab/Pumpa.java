@@ -54,7 +54,7 @@ public class Pumpa extends AktivElem {
 		int kifolyoviz = kimenet.getVizmennyiseg();
 		kifolyoviz = MAXVIZ;
 
-		if (kifolyoviz < vizmennyiseg) {
+		if (kifolyoviz <= vizmennyiseg) {
 
 			try {
 				kimenet.VizetNovel(kifolyoviz);

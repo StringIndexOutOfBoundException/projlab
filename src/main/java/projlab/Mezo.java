@@ -18,7 +18,9 @@ public abstract class Mezo {
 	private int maxJatekosok;
 
 	private List <Jatekos> jatekosok;
-	private List <Mezo> szomszedok;
+	private ArrayList <Mezo> szomszedok;
+
+	public Mezo(){szomszedok = new ArrayList<Mezo>();}
 
 
 	public List<Mezo> GetSzomszedok() {
@@ -56,11 +58,12 @@ public abstract class Mezo {
 	}
 
 	public Boolean SzomszedFelcsatol(Mezo m) {
-		return null;
+		szomszedok.add(m);
+		return true;
 	}
 
-	public List<Mezo> GetLeszedhetoSzomszedok() {
-		return null;
+	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		return szomszedok;
 	}
 
 	public void setMukodik(boolean status){
