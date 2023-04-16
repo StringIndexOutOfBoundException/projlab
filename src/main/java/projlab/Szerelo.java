@@ -58,11 +58,12 @@ public class Szerelo extends Jatekos {
 	public void CsovetFelcsatol() {
 		System.out.println("Függvényhívás: " + this + ".CsovetFelcsatol()");
 
-		// Kiválasztunk egy felcsatolandót a hátizákból
+		// Üres hátizsák esetén nem történik semmi
 		if (getCsoHatizsak().size() == 0) {
 			return;
 		}
 
+		// Kiválasztunk egy felcsatolandót a hátizákból
 		Mezo felcsatolando = UseCase16.elemKivalaszt(getCsoHatizsak(), "Válassz egy elemet a hátizsákból!");
 
 		// Megpróbáljuk felcsatolni
