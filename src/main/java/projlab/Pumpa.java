@@ -2,6 +2,7 @@ package projlab;
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.Random;
 
 /**
  * A pumpa a pálya aktív eleme.
@@ -36,11 +37,16 @@ public class Pumpa extends AktivElem {
 
 	/**
 	 * A függvény azért felelős, hogy a pumpa a vizet pumpálja.
+	 * Továbbá ez felelős a random elromlásokért
 	 * @Override
 	 */
 	@Override
 	public void Frissit() {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
+		Random rand = new Random();
+		if(rand.nextDouble(1) > 0.5){
+			setMukodik(false);
+		}
 		int befolyoviz = MAXVIZ;
 		vizmennyiseg += befolyoviz;
 		try {
