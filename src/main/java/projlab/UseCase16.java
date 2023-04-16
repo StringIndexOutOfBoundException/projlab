@@ -31,8 +31,8 @@ public class UseCase16 {
 			try {
 				String line = br.readLine();
 				valasz = Integer.parseInt(line);
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				System.out.println("Rossz bemenet!");
 			}
 		}
 
@@ -65,6 +65,7 @@ public class UseCase16 {
 
 	}
 
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * A szerelő a hátizsákjából egy kiválasztott csövet felcsatlakoztat egy aktív
