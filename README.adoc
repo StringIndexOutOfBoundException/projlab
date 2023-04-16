@@ -57,5 +57,10 @@ Borbély +
 | 1 óra
 |Borbély +
 | Tevékenység: Pupában hiba javítása
+
+| 2023.04.15 21:00
+| 0.5 óra
+|Borbély +
+| Tevékenység: Use-case tesztek készítése
 |===
 
