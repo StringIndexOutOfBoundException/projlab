@@ -1,6 +1,9 @@
 package projlab;
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A Forrás a pálya aktív eleme.
  * Azért felelős, hogy vizet készítsen, amit a csőhálózat elszállít.

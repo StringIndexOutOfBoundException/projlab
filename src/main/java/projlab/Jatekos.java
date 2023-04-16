@@ -18,6 +18,7 @@ public abstract class Jatekos {
 	public Jatekos() {
 		pumpaHatizsak = new ArrayList<>();
 		csoHatizsak = new ArrayList<>();
+
 	}
 
 	/**
@@ -95,6 +96,21 @@ public abstract class Jatekos {
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
 	}
+
+	/*
+	 * getter a jatekos pumpaHatizsakjra
+	 */
+	public ArrayList<Pumpa> getPumpaHatizsak(){
+		return this.pumpaHatizsak;
+	}
+	
+	/**
+	 * getter a maxHatizsakKapacitasra
+	 */ 
+	public int getMaxHatizsakKapacitas() {
+		return this.maxHatizsakKapacitas;
+	}
+	
 	
 	/**
 	 * Jatekos helyzetenek a szomszedainak a lekerdezese
