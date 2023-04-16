@@ -47,5 +47,16 @@ Borbély +
 | 1 óra
 |Borbély +
 | Tevékenység: Jdoc készítése
+
+| 2023.04.16 10:00
+| 4 óra
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciók elkezedése
+
+| 2023.04.16 16:00
+| 1 óra
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciók folytatása
+
 |===
 

@@ -39,7 +39,7 @@ public abstract class Mezo {
 	 * @return Igaz, ha sikerült a hozzáadás. Akkor sikerül, ha a mezőn még nincs a maximális játékosok száma.
 	 */
 	public Boolean JatekosElfogad(Jatekos j) {
-		if (jatekosok.size() < getMaxJatekosok()) {
+		if (jatekosok.size() < maxJatekosok) {
 			jatekosok.add(j);
 			j.setHelyzet(this);
 			//System.out.println("Játékos hozzáadva a mezőhöz: " + this);

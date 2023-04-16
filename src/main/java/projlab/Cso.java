@@ -5,11 +5,14 @@ import java.nio.BufferUnderflowException;
 
 /**
  * A cső osztály a pálya egy passzív eleme.
- * Ő felelős a víz szállításáért.
+ * ő felelős a víz szállításáért.
  * Ha kijukad akkor a benne levő víz kifolyik és a sivatagban elveszik.
  */
 public class Cso extends Mezo {
 	//private int maxJatekosok = 1;
+
+
+	private int vizmennyiseg;
 
 	/**
 	 * A cső konstruktora
@@ -18,7 +21,6 @@ public class Cso extends Mezo {
 	public Cso() {
 		super(1);
 	}
-	private int vizmennyiseg;
 
 	public void Megjavit() {
 	}
