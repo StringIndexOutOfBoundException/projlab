@@ -1,7 +1,10 @@
 package projlab;
 
-import java.io.Console;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 
 public class UseCase16 {
 	/**
@@ -10,25 +13,58 @@ public class UseCase16 {
 	 * @param szomszedok
 	 * @return A felhasználó által választott szomszéd
 	 */
-	public static Mezo szomszedKivalaszt(ArrayList<Mezo> szomszedok) {
-		Console cnsl = System.console();
+	public static Mezo elemKivalaszt(ArrayList<Mezo> elemek, String prompt) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
 		int valasz = -1;
 
 		// Kiírjuk a lehetőségeket
-		System.out.println("Válassz egy szomszédot (sorszámmal):");
-		for (int i = 0; i < szomszedok.size(); i++) {
-			Mezo m = szomszedok.get(i);
-			System.out.print(i + ": " + m + ", ");
+		System.out.println(prompt);
+		for (int i = 0; i < elemek.size(); i++) {
+			Mezo m = elemek.get(i);
+			System.out.println(" " + i + ": " + m);
 		}
 
 		// Bekérdezzük a választott sorszámot
-		while (valasz < 0 || valasz > szomszedok.size() - 1) {
-			String str = cnsl.readLine("Választott sorszám: ");
-			valasz = Integer.parseInt(str, 0);
+		while (valasz < 0 || valasz > elemek.size() - 1) {
+			System.out.print("\nVálasztott elem sorszáma: ");
+			try {
+				String line = br.readLine();
+				valasz = Integer.parseInt(line);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
-		return szomszedok.get(valasz);
+		return elemek.get(valasz);
+
 	}
+
+	/**
+	 * Teszteléshez segédfüggvény: Bekérdez a felhasználótól egy boolt.
+	 * 
+	 * @param kerdes - Kiírt kérdés
+	 * @return Bool ami a felhasználó válasza
+	 */
+	public static boolean igenNemKerdes(String kerdes) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String valasz = "";
+
+		System.out.print("\n" + kerdes + " [i/n] : ");
+
+		// Bekérdezzük a választott sorszámot
+		while (!valasz.contains("i") && !valasz.contains("n")) {
+			try {
+				valasz = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return valasz.contains("i");
+
+	}
+
 
 	/**
 	 * A szerelő a hátizsákjából egy kiválasztott csövet felcsatlakoztat egy aktív
@@ -39,34 +75,61 @@ public class UseCase16 {
 		Szerelo sz1 = new Szerelo();
 		Pumpa p1 = new Pumpa();
 
+		// Inicializálás
 		System.out.println("--- Teszt inicializálása:");
 		sz1.setHelyzet(p1);
-		ArrayList<Mezo> opciok = sz1.getHelyzet().GetLeszedhetoSzomszedok();
+		sz1.getCsoHatizsak().add(cs1);
 
+		// Futtatás
 		System.out.println("--- Teszt futtatása:");
-
+		p1.setMaxCso(igenNemKerdes("Legyen hely csőnek az elemen?") ? 1 : 0);
 		sz1.CsovetFelcsatol();
-
 	}
 
 	/**
 	 * A szerelő lecsatol egy kiválasztott csövet egy aktív elemről, amin éppen áll.
 	 */
 	public static void csovetLecsatolTest() {
+		Cso cs1 = new Cso();
+		Szerelo sz1 = new Szerelo();
+		Pumpa p1 = new Pumpa();
 
+		// Inicializálás
+		System.out.println("--- Teszt inicializálása:");
+		p1.SzomszedHozzaad(cs1);
+		cs1.SzomszedHozzaad(p1);
+		sz1.setHelyzet(p1);
+		sz1.setMaxHatizsakKapacitas(1);
+
+		// Futtatás
+		System.out.println("--- Teszt futtatása:");
+		sz1.CsovetLecsatol();
 	}
 
 	/**
 	 * A szerelő megpróbál egy csövet felcsatlakoztatni egy csőre, amin éppen áll.
 	 */
 	public static void csoreProbalFelcsatolni() {
+		Cso cs1 = new Cso();
+		Cso cs2 = new Cso();
+		Szerelo sz1 = new Szerelo();
+		sz1.setHelyzet(cs1);
+		sz1.getCsoHatizsak().add(cs2);
 
+		// Futtatás
+		sz1.CsovetFelcsatol();
 	}
 
 	/**
 	 * A szerelő megpróbál lecsatlakoztatni valamit egy csőről, amin éppen áll.
 	 */
 	public static void csorolProbalLecsatolniTest() {
+		Cso cs1 = new Cso();
+		Szerelo sz1 = new Szerelo();
+		sz1.setHelyzet(cs1);
+		sz1.setMaxHatizsakKapacitas(1);
 
+		// Futtatás
+		sz1.CsovetLecsatol();
 	}
 }

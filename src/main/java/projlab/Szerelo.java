@@ -41,7 +41,7 @@ public class Szerelo extends Jatekos {
 		}
 
 		// Kiválasztunk egyet
-		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet");
+		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet!");
 
 		// Eltávolítjuk a referenciákat
 		helyzet.SzomszedTorol(kivalasztott);
@@ -63,7 +63,7 @@ public class Szerelo extends Jatekos {
 			return;
 		}
 
-		Mezo felcsatolando = UseCase16.elemKivalaszt(getCsoHatizsak(), "Válassz egy elemet a hátizsákból");
+		Mezo felcsatolando = UseCase16.elemKivalaszt(getCsoHatizsak(), "Válassz egy elemet a hátizsákból!");
 
 		// Megpróbáljuk felcsatolni
 		Mezo helyzet = getHelyzet();

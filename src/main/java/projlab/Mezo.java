@@ -94,6 +94,7 @@ public abstract class Mezo {
 	 */
 	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
 		System.out.println("Függvényhívás: " + this + ".GetLeszedhetoSzomszedok()");
+		System.out.println("Az elemről nem engedett a lecsatlakoztatás, leszedhető szomszédok száma: 0");
 		return new ArrayList<>();
 	}
 
