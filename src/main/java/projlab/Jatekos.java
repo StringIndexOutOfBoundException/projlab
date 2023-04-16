@@ -135,7 +135,6 @@ public abstract class Jatekos {
 	 * elemek számát
 	 * 
 	 */
-
 	public ArrayList<Mezo> getCsoHatizsak() {
 		return csoHatizsak;
 	}
