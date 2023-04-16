@@ -41,30 +41,28 @@ public class Pumpa extends AktivElem {
 	@Override
 	public void Frissit() {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
-		int befolyoviz = bemenet.getVizmennyiseg();
+		int befolyoviz = MAXVIZ;
 		vizmennyiseg += befolyoviz;
 		try {
 			bemenet.VizetCsokkent(befolyoviz);
 		}
-		catch (BufferUnderflowException e){
-			//System.out.println("Nincs  eleg viz a csoben " + e);
+		catch (Exception e){
+			vizmennyiseg -= befolyoviz-Integer.parseInt(e.getMessage());
 		}
 
 
 		int kifolyoviz = kimenet.getVizmennyiseg();
-		kifolyoviz = MAXVIZ - kifolyoviz;
-		if (vizmennyiseg < kifolyoviz){
-			kifolyoviz = vizmennyiseg;
-		}
+		kifolyoviz = MAXVIZ;
 
-		try {
-			kimenet.VizetNovel(kifolyoviz);
-		}
-		catch (BufferOverflowException e){
-			//System.out.println("Nem tudsz ennyi vezet a csobe pumpalni: " + kifolyoviz + " " + e );
-		}
-		vizmennyiseg -= kifolyoviz;
+		if (kifolyoviz < vizmennyiseg) {
 
+			try {
+				kimenet.VizetNovel(kifolyoviz);
+			} catch (Exception e) {
+				kifolyoviz = kifolyoviz - Integer.parseInt(e.getMessage());
+			}
+			vizmennyiseg -= kifolyoviz;
 
+		}
 	}
 }

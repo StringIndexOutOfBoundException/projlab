@@ -35,6 +35,7 @@ public abstract class Mezo {
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
+	// cso vagy pumpa megjavitasa
 	public void Megjavit() {
 		System.out.println("Fuggvenyhivas: Megjavit()");
 		mukodik = true;
@@ -66,7 +67,7 @@ public abstract class Mezo {
 		mukodik = status;
 	}
 
-	public void VizetCsokkent(int meret){};
-	public void VizetNovel(int meret) {};
+	public void VizetCsokkent(int meret) throws Exception {};
+	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
 }

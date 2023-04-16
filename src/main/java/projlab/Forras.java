@@ -14,7 +14,7 @@ public class Forras extends AktivElem {
 	 * @since 0.1
 	 */
 	@Override
-	public void Frissit() {
+	public void Frissit() throws Exception {
 		System.out.println("Függvényhívás: " + this +": Frissit() ");
 		List<Mezo> szomszedok = super.GetLeszedhetoSzomszedok();
 		int szomszedszam = szomszedok.size();
