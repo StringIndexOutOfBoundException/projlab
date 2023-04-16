@@ -1,14 +1,12 @@
 package projlab;
 
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        LepesSkeleton ls = new LepesSkeleton();
+        UseCase11_15 ls = new UseCase11_15();
 
         while (true) {
             System.out.print("\nVálaszd ki a futtatandó tesztesetet (1-19) Vagy írj \"-1\"-et a kilépéshez: ");

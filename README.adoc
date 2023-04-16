@@ -78,5 +78,10 @@ Borbély +
 | Hölbling
 | Tevékenység: Lépéssel kapcsolatos funkciók folytatása
 
+| 2023.04.16 17:45
+| 20 perc
+| Hölbling
+| Tevékenység: Lépéssel kapcsolatos funkciókban kisebb javítások
+
 |===
 
