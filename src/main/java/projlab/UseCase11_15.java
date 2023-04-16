@@ -1,12 +1,9 @@
 package projlab;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
 A lépéssel kapcsolatos teszteket végző Skeleton osztály.
  */
-public class LepesSkeleton {
+public class UseCase11_15 {
     //A teszteléshez szükséges elemek
     Pumpa p;
     Cso cs1;
@@ -117,6 +114,8 @@ public class LepesSkeleton {
         p.JatekosElfogad(new Szerelo());
         cs2.JatekosElfogad(new Szerelo());
         //Visszatérés az elemekkel.
+
+        System.out.println("!! "+ p.getMaxJatekosok());
 
     }
 
