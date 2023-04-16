@@ -1,92 +1,77 @@
 package projlab;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello Dad!");
-        
-    }
 
-    /**
-     * Teszt: 5.2.3 Szerelo pumpat allit
-     * a szerelo atallitja egy pumpa be es kimenetet
-     */
-    public static void szereloPumpatAllitTeszt() {
-    	System.out.println("\nSzerelo pumpat allit");
-    	//szukseges valtozok letrehozasa
-    	Szerelo sz = new Szerelo();
-    	Pumpa p = new Pumpa();
-        Cso cs1 = new Cso();
-        Cso cs2 = new Cso();
-        
-        //szukseges valtozok inicializalasa
-        p.JatekosElfogad(sz);
-        sz.setHelyzet(p);
-        cs1.SzomszedHozzaad(p);
-        p.SzomszedHozzaad(cs1);
-        cs2.SzomszedHozzaad(p);
-        p.SzomszedHozzaad(cs2);
-        
-        //szerelo atallitja egy pumpa be es kimenetet
-        sz.Allit();
-    }
-    
-    /**
-     * Teszt: 5.2.4 Szabotor pumpat allit
-     * a szabotor atallitja egy pumpa be es kimenetet
-     */
-    public static void szabotorPumpatAllitTeszt() {
-    	System.out.println("\nSzabotor pumpat allit");
-    	//szukseges valtozok letrehozasa
-    	Szabotor sz = new Szabotor();
-    	Pumpa p = new Pumpa();
-        Cso cs1 = new Cso();
-        Cso cs2 = new Cso();
-        
-        //szukseges valtozok inicializalasa
-        p.JatekosElfogad(sz);
-        sz.setHelyzet(p);
-        cs1.SzomszedHozzaad(p);
-        p.SzomszedHozzaad(cs1);
-        cs2.SzomszedHozzaad(p);
-        p.SzomszedHozzaad(cs2);
-        
-        //szerelo atallitja egy pumpa be es kimenetet
-        sz.Allit();
-    }
-    
-    /**
-     * Teszt: 5.2.1 Szerelo csovet javit 
-     * a szerelo megjavít egy csovet
-     */
-    public static void szereloCsovetJavitTeszt() {
-    	System.out.println("\nSzerelo csovet javit");
-    	//szukseges valtozok letrehozasa
-    	Cso cs = new Cso();
-    	Szerelo sz = new Szerelo();
-        
-    	//szukseges valtozok inicializalasa
-        cs.JatekosElfogad(sz);
-        sz.setHelyzet(cs);
-        
-        //szerelo megjavitja a csovet
-        sz.Javit();
-    }
-    
-    /**
-     * Teszt: 5.2.2 Szerelo pumpat javit 
-     * a szerelo megjavít egy pumpat
-     */
-    public static void szereloPumpatJavitTeszt() {
-    	System.out.println("\nSzerelo pumpat javit");
-    	//szukseges valtozok letrehozasa
-    	Pumpa p = new Pumpa();
-    	Szerelo sz = new Szerelo();
-        
-    	//szukseges valtozok inicializalasa
-        p.JatekosElfogad(sz);
-        sz.setHelyzet(p);
-        
-        //szerelo megjavitja a pumpat
-        sz.Javit();
+    	UseCase1_4 useCase1_4 = new UseCase1_4();
+    	
+        while (true) {
+            System.out.print("\nVálaszd ki a futtatandó tesztesetet (1-19) Vagy írj \"-1\"-et a kilépéshez: ");
+            Scanner sc = new Scanner(System.in);
+            int valasz;
+            try
+            {
+                valasz = sc.nextInt();
+
+                if (valasz < -1 || valasz > 19) {
+                    throw new Exception();
+                }
+            }
+            //Ha nem számot adott meg, vagy nem létező tesztesetet választott, akkor újra kell próbálkozni
+            catch (Exception e)
+            {
+                System.out.println("Nem megfelelő bemenet!");
+                continue;
+            }
+            switch (valasz)
+            {
+                case -1:
+                    return;
+                case 1:
+                	useCase1_4.szereloCsovetJavitTeszt();
+                    break;
+                case 2:
+                	useCase1_4.szereloPumpatJavitTeszt();
+                    break;
+                case 3:
+                	useCase1_4.szereloPumpatAllitTeszt();
+                    break;
+                case 4:
+                	useCase1_4.szabotorPumpatAllitTeszt();
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    break;
+                case 11:
+                    break;
+                case 12:
+                    break;
+                case 13:
+                    break;
+                case 14:
+                    break;
+                case 15:
+                    break;
+                case 16:
+                    break;
+                case 17:
+                    break;
+                case 18:
+                    break;
+                case 19:
+                    break;
+            }
+        }
     }
 }
