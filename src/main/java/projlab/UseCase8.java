@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Sikeres_Pumpat_Felvesz_teszt {
+public class UseCase8{
 
 	/*
 	 *Ez a teszt a "sikeres pumpa felvetel" use-case alapjan keszult
