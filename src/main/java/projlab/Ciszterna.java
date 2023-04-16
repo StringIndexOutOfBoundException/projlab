@@ -2,6 +2,7 @@ package projlab;
 
 import java.nio.BufferUnderflowException;
 import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -10,10 +11,14 @@ import java.util.List;
  * Továbbá Pumpákat és Csöveket termel.
  */
 public class Ciszterna extends AktivElem {
-	
+	//private int maxJatekosok = Integer.MAX_VALUE;
 
 	private  static int MAXVIZ = 1;
-	private List <Pumpa> termeltpumpak;
+	private List<Pumpa> termeltpumpak;
+	
+	public Ciszterna() {
+		termeltpumpak = new ArrayList<Pumpa>();
+	}
 
 	public Ciszterna() {
 		super();
@@ -43,6 +48,9 @@ public class Ciszterna extends AktivElem {
 		}
 	}
 	public void CsovetKeszit() {
+		Cso ujcso = new Cso();
+		SzomszedFelcsatol(ujcso);
+		ujcso.SzomszedFelcsatol(this);
 	}
 	/*
 	 * getter a termeltpumpakra
@@ -67,5 +75,16 @@ public class Ciszterna extends AktivElem {
 			}
 			catch (Exception e){/* Hmm ez nem szép itt ;) */}
 		}
+	}
+	
+	/**
+	 * Egy mező szomszédaihoz hozzáad egy új mezőt
+	 * @param m a hozzáadandó mező
+	 */
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		ArrayList<Mezo> szomszedok = super.GetSzomszedok();
+		szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 }

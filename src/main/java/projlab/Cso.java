@@ -1,7 +1,10 @@
 package projlab;
-
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 
 /**
  * A cső osztály a pálya egy passzív eleme.
@@ -15,9 +18,17 @@ public class Cso extends Mezo {
 	 * A cső konstruktora
 	 * Beállítja a maxJatekosok változót 1-re
 	 */
+	public Cso() {
+		super(1);
+	}
 	private int vizmennyiseg;
 
+	/**
+	 * A szerelĹ megjavĂ­t egy elemet, amin ĂŠppen ĂĄll
+	 */
+	@Override
 	public void Megjavit() {
+		System.out.println("FĂźggvĂŠnyhĂ­vĂĄs: " + this + ".Megjavit()");
 		setMukodik(true);
 	}
 
@@ -66,6 +77,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void Kilyukaszt() {
+		System.out.println("Függvényhívás: " + this + " Kilyukaszt()");
 		setMukodik(false);
 	}
 
@@ -115,5 +127,18 @@ public class Cso extends Mezo {
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
 	}
+	
+	/**
+	 * Egy mező szomszádaihoz hozzáad egy új mezőt
+	 * @param m a hozzaadnado mező
+	 */
+	@Override
+	public void SzomszedHozzaad(Mezo m) {
+		ArrayList<Mezo> szomszedok = GetSzomszedok();
+		if(szomszedok.size() < 2)
+			szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
+	}
+
 	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
 }

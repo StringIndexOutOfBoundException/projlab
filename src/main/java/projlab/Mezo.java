@@ -15,45 +15,74 @@ import java.util.List;
 public abstract class Mezo {
 	private int vizmennyiseg;
 	private Boolean mukodik;
-	private int maxJatekosok;
+	//Azt tárolja, hogy hány játékos állhat egy mezőn. Ez felül lesz írva a leszármazottak konstruktoraiban.
+	private int maxJatekosok = 0;
 
-	private List <Jatekos> jatekosok;
+	private ArrayList <Jatekos> jatekosok;
 	private ArrayList <Mezo> szomszedok;
 
-	public Mezo(int maxJatekos){
-		szomszedok = new ArrayList<Mezo>();
-		jatekosok= new ArrayList<Jatekos>();
-		mukodik=true;
-		this.maxJatekosok = maxJatekos;
-		}
 
-	/**
+	public Mezo(){szomszedok = new ArrayList<Mezo>();}
+
+
+	public Mezo(int maxJatekosok) {
+		mukodik = true;
+		jatekosok = new ArrayList<Jatekos>();
+		szomszedok = new ArrayList<Mezo>();
+		this.maxJatekosok = maxJatekosok;
+	}
+
+  /**
 	 * Adott mezo szomszedjait kerdezi le
 	 * @return Adott mezo szomszedjai egy kollekcioban
 	 */
-	public List<Mezo> GetSzomszedok() {
-		return this.szomszedok;
+	public ArrayList<Mezo> GetSzomszedok() {
+		return szomszedok;
 	}
 
+	/**
+	 * A függvény hozzáadja a játékost a mezőhöz.
+	 * @param j A hozzáadandó játékos.
+	 * @return Igaz, ha sikerült a hozzáadás. Akkor sikerül, ha a mezőn még nincs a maximális játékosok száma.
+	 */
 	public Boolean JatekosElfogad(Jatekos j) {
-		return null;
+		if (jatekosok.size() < maxJatekosok) {
+			jatekosok.add(j);
+			j.setHelyzet(this);
+			//System.out.println("Játékos hozzáadva a mezőhöz: " + this);
+			return true;
+		}
+		//System.out.println("A mezőn már nincs hely a játékosnak: " + this);
+		return false;
 	}
 
+	/**
+	 * Egy játékos eltávolítása egy mezőről
+	 * @param j a játékos referenciája
+	 */
 	public void JatekosEltavolit(Jatekos j) {
+		jatekosok.remove(j);
+		System.out.println("Függvényhívás: "+ this +".JatekosEltavolit()");
 	}
 
+	/**
+	 * Egy játékos átállítja egy pumpa be és kimenetét
+	 * @param kimenet amire át lesz állítva a kimenet
+	 * @param bemenet amire át lesz állítva a bemenet
+	 */
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 	}
 
-	// cso vagy pumpa megjavitasa
+	/**
+	 * A szerelő megjavít egy elemet, amin éppen áll
+	 */
 	public void Megjavit() {
-		System.out.println("Fuggvenyhivas: Megjavit()");
-		mukodik = true;
 	}
 
+	/**
+	 * A szabotőr kilyukaszt egy csövet
+	 */
 	public void Kilyukaszt() {
-		System.out.println("Fuggvenyhivas: Kilyukaszt()");
-		mukodik = true;
 	}
 
 	
@@ -61,12 +90,12 @@ public abstract class Mezo {
 	}
 
 	/**
-	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához. 
+	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához.
 	 * @param m - Hozzáadandó szomszéd
 	 */
 	public void SzomszedHozzaad(Mezo m) {
-		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
 		szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
 	}
 
 	/**
@@ -78,13 +107,28 @@ public abstract class Mezo {
 		System.out.println("Függvényhívás: " + this + ".SzomszedTorol(" + m + ")");
 	}
 
+	/**
+	 * A Játékosok ezen a függvényen keresztül csatolhatnak fel elemeket a mezőkhöz.
+	 * Minden aktívelemnél ugyanazt csinálja mint a SzomszedHozzaad, viszont a Cső
+	 * osztály felüldefiniálja. Default implementációként nem enged felcsatolni.
+	 * @param m - Felcsatolandó
+	 * @return Sikerült-e a felcsatolás
+	 */
 	public Boolean SzomszedFelcsatol(Mezo m) {
-		szomszedok.add(m);
-		return true;
+		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
+		return false;
 	}
 
+	/**
+	 * Működése hasonló a GetSzomszedokhoz, viszont csak a játékosok által lecsatlakoztatható
+	 * szomszédokkal tér vissza.
+	 * Default implementációként üres listával tér vissza.
+	 * @return lecsatlakoztatható szomszédok
+	 */
 	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
-		return szomszedok;
+		System.out.println("Függvényhívás: " + this + ".GetLeszedhetoSzomszedok()");
+		System.out.println("Az elemről nem engedett a lecsatlakoztatás, leszedhető szomszédok száma: 0");
+		return new ArrayList<>();
 	}
 
 	public void setMukodik(boolean status){
@@ -94,6 +138,7 @@ public abstract class Mezo {
 	public void VizetCsokkent(int meret) throws Exception {};
 	public void VizetNovel(int meret) throws Exception {};
 	public int getVizmennyiseg(){return vizmennyiseg;}
+
 	
 	/*
 	 * getter a jatekosok attributumra
@@ -129,4 +174,10 @@ public Mezo getKimenet() {
 public Mezo getBemenet() {
 	return null;
 }
+
+
+	public int getMaxJatekosok() {
+		return maxJatekosok;
+	}
+
 }
