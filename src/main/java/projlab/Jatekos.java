@@ -30,10 +30,4 @@ public abstract class Jatekos {
 	public void setHelyzet(Mezo m) {
 		helyzet = m;
 	}
-
-	//Jatekos helyzetenek a szomszedainak a lekerdezese
-	public List<Mezo> GetSzomszedok(){
-		System.out.println("Visszateres: a pumpa szomszedaival");
-		return helyzet.GetSzomszedok();
-	}
 }
