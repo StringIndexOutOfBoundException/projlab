@@ -33,7 +33,7 @@ public abstract class Jatekos {
 		try
 		{
 			valasz = sc.nextInt();
-
+			sc.nextLine(); //Ez a sor abban segít hogy linuxon is jól működjön a beolvasás
 			if (valasz < 1 || valasz > szomszedok.size()) {
 				throw new Exception();
 			}
