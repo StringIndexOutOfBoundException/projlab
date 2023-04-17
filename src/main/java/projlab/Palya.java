@@ -11,8 +11,11 @@ package projlab;//
 
 import java.util.List;
 
+/**
+ * A Palya osztály tárolja az összes aktív elemet és a játékosokat.
+ *
+ */
 public class Palya {
 	private List<Mezo> elemek;
 	private List<Jatekos> jatekosok;
-
 }
