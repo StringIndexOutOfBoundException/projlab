@@ -72,6 +72,11 @@ Borbély +
 |Borbély +
 | Tevékenység: Jdoc készítése
 
+| 2023.04.15 21:00 
+| 2 óra
+| Tasi
+| Tevékenység: Usecase 16 – 19 hez szükséges függvények implementálása 
+
 | 2023.04.15 21:00
 | 1 óra
 |Borbély +
@@ -96,6 +101,11 @@ Borbély +
 | 1 óra 20 perc
 | Hölbling
 | Tevékenység: Lépéssel kapcsolatos funkciók folytatása
+
+| 2023.04.16. 16:15 
+| 4 óra
+| Tasi
+| Tevékenység: Kimaradt függvények a 16-os usecase-hez implemetálása, csovetFelcsatolTest, csovetLecsatolTest, csoreProbalFelcsatolni, csorolProbalLecsatolniTest teszesetek implementálása 
 
 | 2023.04.16 17:45
 | 20 perc
