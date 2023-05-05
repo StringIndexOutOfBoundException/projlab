@@ -28,10 +28,15 @@ hs_err_pid*
 # Ignore Gradle build output directory
 build
 
-#Exlips
+# Ignore Eclipse's shit
 .classpath
 .project
 .settings/org.eclipse.buildship.core.prefs
 .settings/org.eclipse.jdt.core.prefs
+.classpath
+.project
 
 bin
+
+Ignore idea's stuff
+.idea
