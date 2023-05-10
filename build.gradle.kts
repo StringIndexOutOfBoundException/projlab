@@ -24,4 +24,8 @@ application {
     mainClass.set("projlab.Main")
 }
 
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
+
 version = "1.2.1"
