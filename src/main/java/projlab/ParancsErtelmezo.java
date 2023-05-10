@@ -207,7 +207,7 @@ public class ParancsErtelmezo {
         {
             case "cso":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
-                if (mezoMap.containsKey(param[1])) {
+                if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
                     System.out.println("Már létezik ilyen nevű elem");
                     break;
                 }
@@ -222,7 +222,7 @@ public class ParancsErtelmezo {
 
             case "pumpa":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
-                if (mezoMap.containsKey(param[1])) {
+                if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
                     System.out.println("Már létezik ilyen nevű elem");
                     break;
                 }
@@ -237,7 +237,7 @@ public class ParancsErtelmezo {
 
             case "ciszterna":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
-                if (mezoMap.containsKey(param[1])) {
+                if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
                     System.out.println("Már létezik ilyen nevű elem");
                     break;
                 }
@@ -252,7 +252,7 @@ public class ParancsErtelmezo {
 
             case "forras":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
-                if (mezoMap.containsKey(param[1])) {
+                if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
                     System.out.println("Már létezik ilyen nevű elem");
                     break;
                 }
@@ -267,7 +267,7 @@ public class ParancsErtelmezo {
 
             case "szerelo":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
-                if (jatekosMap.containsKey(param[1])) {
+                if (jatekosMap.containsKey(param[1]) || mezoMap.containsKey(param[1])) {
                     System.out.println("Már létezik ilyen nevű elem");
                     break;
                 }
@@ -282,7 +282,7 @@ public class ParancsErtelmezo {
 
             case "szabotor":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
-                if (jatekosMap.containsKey(param[1])) {
+                if (jatekosMap.containsKey(param[1]) || mezoMap.containsKey(param[1])) {
                     System.out.println("Már létezik ilyen nevű elem");
                     break;
                 }
@@ -576,9 +576,9 @@ public class ParancsErtelmezo {
      */
     private void cAllapot(String[] param)
     {
-        //Megnézzük hogy legalább egy, legfeljebb három paraméter van-e
-        if (param.length < 1 || param.length > 3) {
-            System.out.println("Az allapot parancs két vagy három paramétert vár. (allapot <objektum> <objektum_attributum> <filenév>)");
+        //Megnézzük hogy legalább kettő, legfeljebb három paraméter van-e
+        if (param.length < 2 || param.length > 3) {
+            System.out.println("Az allapot parancs két vagy három paramétert vár. (allapot <objektum> <objektum_attributum> [filenév])");
             return;
         }
         String fileName = null; //Fájl neve (ha van)
