@@ -12,7 +12,7 @@ public abstract class Jatekos {
 
 	private int maxHatizsakKapacitas;
 
-	private ArrayList<Pumpa> pumpaHatizsak;
+	private ArrayList<Mezo> pumpaHatizsak;
 	private ArrayList<Mezo> csoHatizsak;
 
 	public Jatekos() {
@@ -22,6 +22,7 @@ public abstract class Jatekos {
 	}
 
 	/**
+	 * NEM HASZNALANDÓ! A PARAMÉTERES VERZIÓT KELL MAJD HASZNALNI!
 	 * Amikor a játékos lépni akar, akkor ezt a függvényt hívja meg.
 	 * A szomszédos mezők közül választhat a felhasználó, és a kiválasztott mezőre lép.
 	 */
@@ -69,6 +70,16 @@ public abstract class Jatekos {
 	}
 
 	/**
+	 * A játékos lép a paraméterként kapott mezőre
+	 * NINCS IMPLEMENTALVA, DE EZT A PARAMÉTEREZETT VERZIÓT KELL MAJD HASZNALNI A PARAMÉTER NÉLKÜLI LÉPÉS HELYETT!
+	 */
+	public void Lep(Mezo m)
+	{
+		System.out.println("lépés...");
+	}
+
+	/**
+	 * NEM HASZNALANDO! A PARAMÉTERES VERZIÓT KELL HASZNALNI!
 	 * Jatekos atallitja egy pumpa be es kimenetet
 	 */
 	public void Allit() {
@@ -79,6 +90,27 @@ public abstract class Jatekos {
 		helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
 	}
 
+	/**
+	 * EZT KELL HASZNALNI, NEM A PARAMÉTER NÉLKÜLIT!
+	 * Jatekos atallitja egy pumpa be es kimenetet
+	 * @param be bemeneti mezo
+	 * @param ki kimeneti mezo
+	 */
+	public void Allit(Mezo be, Mezo ki) {
+		System.out.println("Függvényhívás: " + this + ".Allit()");
+
+		helyzet.Atallit(be, ki);
+	}
+
+	public void Javit()
+	{
+		System.out.println("Javít...");
+	}
+
+	public void Lyukaszt()
+	{
+		System.out.println("Lyukaszt...");
+	}
 
 	/**
 	 * Ez egy getter ami a helyzet értékeét adja vissza, a helyzet az a mező, amin éppen a játékos áll
@@ -100,7 +132,7 @@ public abstract class Jatekos {
 	/*
 	 * getter a jatekos pumpaHatizsakjra
 	 */
-	public ArrayList<Pumpa> getPumpaHatizsak(){
+	public ArrayList<Mezo> getPumpaHatizsak(){
 		return this.pumpaHatizsak;
 	}
 	
@@ -137,6 +169,61 @@ public abstract class Jatekos {
 	 */
 	public ArrayList<Mezo> getCsoHatizsak() {
 		return csoHatizsak;
+	}
+
+	/**
+	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 */
+	public void PumpatEpit()
+	{
+		//A kiírást ki lehet szedni
+		System.out.println("PumpatEpit...");
+	}
+
+	/**
+	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 */
+	public void CsovetFelcsatol()
+	{
+		//A kiírást ki lehet szedni
+		System.out.println("CsovetFelcsatol...");
+	}
+
+	/**
+	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 */
+	public void PumpatFelvesz()
+	{
+		//A kiírást ki lehet szedni
+		System.out.println("PumpatFelvesz...");
+	}
+
+	/**
+	 * Ez az lesz amikor az egész csövet lecsatoljuk, de ez még sehol sincs implementálva
+	 */
+	public void EgeszCsovetLecsatol(Mezo m)
+	{
+		//A kiírást ki lehet szedni
+		System.out.println("EgeszCsovetLecsatol... NINCS IMPLEMENTALVA SEHOL");
+	}
+
+	/**
+	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 * KELL PARAMÉTER!
+	 */
+	public void CsovetLecsatol(Mezo m)
+	{
+		System.out.println("CsovetLecsatol...");
+	}
+
+	public void CsuszossaTesz()
+	{
+		System.out.println("CsuszossaTesz...");
+	}
+
+	public void RagadossaTesz()
+	{
+		System.out.println("RagadossaTesz...");
 	}
 
 }

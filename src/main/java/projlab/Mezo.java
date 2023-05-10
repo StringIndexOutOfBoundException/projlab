@@ -10,12 +10,20 @@ import java.util.List;
  */
 public abstract class Mezo {
 	private int vizmennyiseg;
-	private Boolean mukodik;
+	protected Boolean mukodik;
+	protected int maxSzomszedok;
 	//Azt tárolja, hogy hány játékos állhat egy mezőn. Ez felül lesz írva a leszármazottak konstruktoraiban.
-	private int maxJatekosok = 0;
+	protected int maxJatekosok = 0;
+
+	//Csináljon véletlenszerű dolgokat a program (true), vagy determinisztikus legyen (false)
+	static boolean doRandomThings = true;
 
 	private ArrayList <Jatekos> jatekosok;
 	private ArrayList <Mezo> szomszedok;
+
+	public int getMaxSzomszedok() {
+		return maxSzomszedok;
+	}
 
 	/**
 	 * Default konstruktor
@@ -181,7 +189,7 @@ public abstract class Mezo {
 	 * Csak ciszterma osztalyon ertelmezett getter a ciszterna termeltpumpak
 	 * attributumra
 	 */
-	public ArrayList<Pumpa> getTermeltPumpak() {
+	public ArrayList<Mezo> getTermeltPumpak() {
 		return null;
 	}
 
@@ -213,6 +221,54 @@ public abstract class Mezo {
 	 */
 	public int getMaxJatekosok() {
 		return maxJatekosok;
+	}
+
+	public void PumpatKeszit()
+	{
+		System.out.println("Pumpa keszitese");
+	}
+
+	public void CsovetKeszit()
+	{
+		System.out.println("Cso keszitese");
+	}
+
+	public void Csuszik()
+	{
+		System.out.println("Csuszik");
+	}
+
+	public void Ragad()
+	{
+		System.out.println("Ragad");
+	}
+
+	public void SetVizmennyiseg(int mennyiseg) {
+		vizmennyiseg = mennyiseg;
+	}
+
+	public abstract void Frissit() throws Exception;
+
+	public boolean getMukodik() {
+		return mukodik;
+	}
+
+	public int getLyukCooldown() {
+		return -1;
+	}
+
+	public int getCsuszos()
+	{
+		return -1;
+	}
+
+	public int getRagados()
+	{
+		return -1;
+	}
+
+	public Jatekos getRagadossaTette() {
+		return null;
 	}
 
 }

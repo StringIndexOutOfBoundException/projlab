@@ -13,6 +13,22 @@ public class Main {
         UseCase11_15 ls = new UseCase11_15();
         UseCase1_4 useCase1_4 = new UseCase1_4();
 
+
+
+
+        //PARANCSÉRTELMEZO PÉLDA
+        Palya palya = new Palya();
+        ParancsErtelmezo pe = new ParancsErtelmezo(palya);
+        //Fájlból parancs futtatás
+        pe.runFromFile("commandfiles/test.txt");
+        //Stringből parancs futtatás
+        pe.runFromString("parancs1\nparancs2"); //Akárhány parancsot beírhatsz \n-nel elválasztva
+        //Konzolról parancs futtatás
+        pe.runFromUser();
+
+
+
+        /*
         while (true) {
             System.out.print("\nVálaszd ki a futtatandó tesztesetet (1-20) Vagy írj \"-1\"-et a kilépéshez: ");
             Scanner sc = new Scanner(System.in);
@@ -101,6 +117,6 @@ public class Main {
                     UseCaseNull.use_case_test();
                     break;
             }
-        }
+        } */
     }
 }

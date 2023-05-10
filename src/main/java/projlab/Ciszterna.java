@@ -15,10 +15,10 @@ public class Ciszterna extends AktivElem {
 	//private int maxJatekosok = Integer.MAX_VALUE;
 
 	private  static int MAXVIZ = 1;
-	private ArrayList<Pumpa> termeltpumpak;
+	private ArrayList<Mezo> termeltpumpak;
 	
 	public Ciszterna() {
-		termeltpumpak = new ArrayList<Pumpa>();
+		termeltpumpak = new ArrayList<Mezo>();
 	}
 
 	
@@ -55,7 +55,7 @@ public class Ciszterna extends AktivElem {
 	/*
 	 * getter a termeltpumpakra
 	 */
-	public ArrayList<Pumpa> getTermeltPumpak() {
+	public ArrayList<Mezo> getTermeltPumpak() {
 		return this.termeltpumpak;
 	}
 

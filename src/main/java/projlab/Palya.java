@@ -9,6 +9,7 @@ package projlab;//
 //
 //
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,22 @@ import java.util.List;
  *
  */
 public class Palya {
-	private List<Mezo> elemek;
-	private List<Jatekos> jatekosok;
+	private List<Mezo> elemek = new ArrayList<>();
+	private List<Jatekos> jatekosok = new ArrayList<>();
+
+	public List<Mezo> getElemek() {
+		return elemek;
+	}
+
+	public void setElemek(List<Mezo> elemek) {
+		this.elemek = elemek;
+	}
+
+	public List<Jatekos> getJatekosok() {
+		return jatekosok;
+	}
+
+	public void setJatekosok(List<Jatekos> jatekosok) {
+		this.jatekosok = jatekosok;
+	}
 }
