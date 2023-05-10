@@ -5,138 +5,121 @@ import java.util.Scanner;
 
 
 /**
- * A jatekos az amit a játékos irányíthat, ez lehet Szabotőr{@link Szabotor} vagy Szerelő{@link Szerelo}
+ * A jatekos osztály egy irányítható karaktert valósít meg a játékban,
+ * ez lehet Szabotőr{@link Szabotor} vagy Szerelő{@link Szerelo}
  */
 public abstract class Jatekos {
-	private Mezo helyzet;
-
-	private int maxHatizsakKapacitas;
-
-	private ArrayList<Pumpa> pumpaHatizsak;
-	private ArrayList<Mezo> csoHatizsak;
+	private Mezo helyzet;		//a játékos helyzete
+	protected int maxHatizsakKapacitas;		//a játékos hátizsákjainak maximum kapacitása
+	protected ArrayList<Pumpa> pumpaHatizsak;		//a játékos hátizsákja, ami pumpákat tartalmaz
+	protected ArrayList<Mezo> csoHatizsak;		//a játékos hátizsákja, ami csöveket tartalmaz
 
 	public Jatekos() {
 		pumpaHatizsak = new ArrayList<>();
 		csoHatizsak = new ArrayList<>();
-
 	}
 
+
 	/**
-	 * Amikor a játékos lépni akar, akkor ezt a függvényt hívja meg.
-	 * A szomszédos mezők közül választhat a felhasználó, és a kiválasztott mezőre lép.
+	 * A játékos lépést kezdeményez egy általa választott mezőre
+	 * @param m a választott mező referenciája
 	 */
-	public void Lep() {
-		System.out.println("Függvényhívás:" + helyzet + ": GetSzomszedok()");
+	public void Lep(Mezo m) {
+		boolean elengedve = helyzet.JatekosElenged(this);
 		List<Mezo> szomszedok = helyzet.GetSzomszedok();
-		System.out.println("Visszatérés:" + helyzet + " mező szomszédjai:");
-		Mezo eredetiHelyzet = helyzet;
-		//Kiírni a szomszédokat
-		for (int i = 0; i < szomszedok.size(); i++) {
-			System.out.println((i+1) + ". " + szomszedok.get(i));
+
+		if(elengedve && szomszedok.contains(m)){
+			boolean elfogadva = m.JatekosElfogad(this);
+			if(elfogadva)
+				helyzet.JatekosEltavolit(this);
 		}
-		//Kérdés a felhasználótól
-		System.out.print("Válaszd ki melyik mezőre lépsz: ");
-		Scanner sc = new Scanner(System.in);
-		int valasz;
-		try
-		{
-			valasz = sc.nextInt();
-
-			if (valasz < 1 || valasz > szomszedok.size()) {
-				throw new Exception();
-			}
-		}
-		//Ha nem számot adott meg, vagy nem létező szomszédot választott, akkor sikertelen a lépés
-		catch (Exception e)
-		{
-			System.out.println("Nem megfelelő bemenet!");
-			return;
-		}
-
-		//Lépés
-		Mezo cel = szomszedok.get(valasz-1);
-		//Ha sikeresen lépett, akkor eltávolítja magát a régi mezőről
-		System.out.println("Függvényhívás: " + cel + ": JatekosElfogad(" + this +")");
-		//Megpróbáljuk, hogy rá tud-e lépni a játékos a kiválasztott mezőre
-		boolean sikeresLepes = cel.JatekosElfogad(this);
-		System.out.println("Visszatérés: " + sikeresLepes);
-		//Ha sikeres volt a lépés, akkor eltávolítjuk a játékost a régi mezőről
-		if (sikeresLepes) {
-			System.out.println("Függvényhívás: " + eredetiHelyzet + ": JatekosEltavolit(" + this +")");
-			eredetiHelyzet.JatekosEltavolit(this);
-		}
-
 	}
 
 	/**
-	 * Jatekos atallitja egy pumpa be es kimenetet
+	 * A játékos kilyukasztja azt az elemet, amin éppen áll.
 	 */
-	public void Allit() {
-		System.out.println("Függvényhívás: " + this + ".Allit()");
-		
-		ArrayList<Mezo> szomszedok = GetSzomszedok();
-		
-		helyzet.Atallit(szomszedok.get(0), szomszedok.get(1));
-	}
-
+	public void Lyukaszt(){	helyzet.Kilyukaszt(); }
 
 	/**
-	 * Ez egy getter ami a helyzet értékeét adja vissza, a helyzet az a mező, amin éppen a játékos áll
-	 * @return Mezo típusú, és azt adja vissza, hogy hol van a játékos
+	 * A játékos átállítja a pumpa be és kimenetét
 	 */
-	public Mezo getHelyzet(){
-		return helyzet;
-	}
+	public void Allit(Mezo kimenet, Mezo bemenet) {	helyzet.Atallit(kimenet, bemenet); }
 
 	/**
-	 * Beállítja a játékos helyzetét, azt a mezőt, amelyen az adott játékos éppen
-	 * tartózkodik
-	 * @param m - Az új helyzet
+	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
 	 */
-	public void setHelyzet(Mezo m) {
-		helyzet = m;
-	}
-
-	/*
-	 * getter a jatekos pumpaHatizsakjra
-	 */
-	public ArrayList<Pumpa> getPumpaHatizsak(){
-		return this.pumpaHatizsak;
-	}
-	
-	/**
-	 * getter a maxHatizsakKapacitasra
-	 */ 
-	public int getMaxHatizsakKapacitas() {
-		return this.maxHatizsakKapacitas;
-	}
-	
-	
-	/**
-	 * Jatekos helyzetenek a szomszedainak a lekerdezese
-	 * @return helyzetének a szomszédai
-	 */
-	public ArrayList<Mezo> GetSzomszedok(){
-		System.out.println("Visszatérés: a pumpa szomszédaival");
-		return helyzet.GetSzomszedok();
-    }
+	public void Javit(){}
 
 	/**
-	 * Kívülről beállítja a játékosra jellemző, a hátizsákban tárolható maximális
-	 * elemek számát
+	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 */
+	public void PumpatFelvesz(){}
+
+	/**
+	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 */
+	public void CsovetLecsatol(){}
+
+	/**
+	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 */
+	public void EgeszCsovetLecsatol(){}
+
+	/**
+	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 */
+	public void CsovetFelcsatol(){}
+
+	/**
+	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 */
+	public void PumpatEpit(){}
+
+	/**
+	 * A játékos ragadóssá teszi a mezőt, amin áll
+	 */
+	public void RagadossaTesz(){ helyzet.Ragad(); }
+
+	/**
+	 * Jatekos tartózkodási helyéhez tartózó szomszédok lekerdezese
+	 * @return tartótkodási helyének szomszédai
+	 */
+	public ArrayList<Mezo> GetSzomszedok(){ return helyzet.GetSzomszedok(); }
+
+	/**
+	 * A játékos helyzetének referenciáját adja vissza.
+	 * @return a játékos helyzete
+	 */
+	public Mezo getHelyzet(){ return helyzet; }
+
+	/**
+	 * A játékos helyzetének beállítása
+	 * @param m - az új helyzet referenciája
+	 */
+	public void setHelyzet(Mezo m) { helyzet = m; }
+
+	/**
+	 * Visszaadja a hátizsákok maximum kapacitását
+	 * @return maximum kapacitás
+	 */
+	public int getMaxHatizsakKapacitas() { return this.maxHatizsakKapacitas; }
+
+	/**
+	 * Beállítja a hátizsákok maximum kapacitását
 	 * @param c - Az új kapacitás értéke
 	 */
-	public void setMaxHatizsakKapacitas(int c) {
-		maxHatizsakKapacitas = c;
-	}
-	
+	public void setMaxHatizsakKapacitas(int c) { maxHatizsakKapacitas = c; }
+
 	/**
-	 * Kívülről lekéri a játékosra jellemző, a hátizsákban tárolható maximális
-	 * elemek számát
-	 * 
+	 * Visszaadja a pumpákat tartalmazó hátizsákot
+	 * @return a hátizsákban található pumpák listája
 	 */
-	public ArrayList<Mezo> getCsoHatizsak() {
-		return csoHatizsak;
-	}
+	public ArrayList<Pumpa> getPumpaHatizsak(){	return this.pumpaHatizsak; }
+
+	/**
+	 * Visszaadja a csöveket tartalmazó hátizsákot
+	 * @return a hátizsákban található csövek listája
+	 */
+	public ArrayList<Mezo> getCsoHatizsak() { return csoHatizsak; }
 
 }
