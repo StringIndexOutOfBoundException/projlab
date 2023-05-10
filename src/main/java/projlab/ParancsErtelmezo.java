@@ -588,7 +588,6 @@ public class ParancsErtelmezo {
             fileName = param[2];
             file = true;
         }
-
         //Ha az első paraméter csillag, akkor az összes objektum állapotát ki kell írni
         if (param[0].equals("*")) {
             //Egész egyszerűen meghívjuk a csillagos parancsokat az összes objektumra
