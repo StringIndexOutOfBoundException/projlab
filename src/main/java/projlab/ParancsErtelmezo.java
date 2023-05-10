@@ -577,7 +577,7 @@ public class ParancsErtelmezo {
     private void cAllapot(String[] param)
     {
         //Megnézzük hogy legalább kettő, legfeljebb három paraméter van-e
-        if (param.length < 2 || param.length > 3) {
+        if (param.length < 1 || param.length > 3) {
             System.out.println("Az allapot parancs két vagy három paramétert vár. (allapot <objektum> <objektum_attributum> <filenév>)");
             return;
         }
@@ -591,40 +591,40 @@ public class ParancsErtelmezo {
 
         //Ha az első paraméter csillag, akkor az összes objektum állapotát ki kell írni
         if (param[0].equals("*")) {
-            //Ha a második paraméter is csillag, akkor az összes objektum összes attribútumát ki kell írni
-            //Egész egyszerűen meghívjuk egyesével a parancsokat a különböző állapotok kiírására
-            if (param[1].equals("*")) {
+            //Egész egyszerűen meghívjuk a csillagos parancsokat az összes objektumra
+
                 //Végigmegyünk az összes mezőn
-
                 for (Mezo m : mezoMap.values()) {
-                    runFromString("allapot " + getMezoName(m) + " mukodik");
-                    runFromString("allapot " + getMezoName(m) + " szomszedok");
-                    runFromString("allapot " + getMezoName(m) + " maxJatekosok");
-                    runFromString("allapot " + getMezoName(m) + " maxSzomszedok");
-                    runFromString("allapot " + getMezoName(m) + " jatekosok");
-                    runFromString("allapot " + getMezoName(m) + " vizmennyiseg");
-                    runFromString("allapot " + getMezoName(m) + " csuszos");
-                    runFromString("allapot " + getMezoName(m) + " ragados");
-                    runFromString("allapot " + getMezoName(m) + " ragadossaTette");
-                    runFromString("allapot " + getMezoName(m) + " termeltPumpak");
-                    runFromString("allapot " + getMezoName(m) + " bemenet");
-                    runFromString("allapot " + getMezoName(m) + " kimenet");
-
+                    if (param.length == 3)
+                    {
+                        runFromString("allapot " + getMezoName(m) + " * " + param[2]);
+                    }
+                    else
+                    {
+                        runFromString("allapot " + getMezoName(m) + " *");
+                    }
+                    PrintOrWrite("", file, fileName);
                 }
                 //Végigmegyünk az összes játékoson
                 for (Jatekos j : jatekosMap.values()) {
-                    runFromString("allapot " + getJatekosName(j) + " maxHatizsakKapacitas");
-                    runFromString("allapot " + getJatekosName(j) + " pumpaHatizsak");
-                    runFromString("allapot " + getJatekosName(j) + " csoHatizsak");
-                    runFromString("allapot " + getJatekosName(j) + " helyzet");
 
+                    if (param.length == 3)
+                    {
+                        runFromString("allapot " + getJatekosName(j) + " * " + param[2]);
+                    }
+                    else
+                    {
+                        runFromString("allapot " + getJatekosName(j) + " *");
+                    }
+                    PrintOrWrite("", file, fileName);
                 }
+            //A második paraméternek is csillagnak kéne lennie, ha az első az volt. Erre azért figyelmeztetjük a felhasználót, de a parancs lefut
+            //Itt amúgy kihasználjuk a rövidzár szabályt.
+            if (param.length == 1 || !param[1].equals("*")) {
+                System.out.println("Figyelmeztetés: Ha az első paraméter csillag, akkor a második paraméternek is csillagnak kéne lennie. A parancs ettől függetlenül lefutott. (Kiírtuk az egész pályát)");
+            }
 
-            }
-            else
-            {
-                System.out.println("Nem lehet csillag az első paraméter, ha a második nem csillag.");
-            }
+
             return;
             }
 
