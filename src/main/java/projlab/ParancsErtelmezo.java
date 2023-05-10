@@ -576,7 +576,7 @@ public class ParancsErtelmezo {
      */
     private void cAllapot(String[] param)
     {
-        //Megnézzük hogy legalább kettő, legfeljebb három paraméter van-e
+        //Megnézzük hogy legalább egy, legfeljebb három paraméter van-e
         if (param.length < 1 || param.length > 3) {
             System.out.println("Az allapot parancs két vagy három paramétert vár. (allapot <objektum> <objektum_attributum> <filenév>)");
             return;
