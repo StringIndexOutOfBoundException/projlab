@@ -589,6 +589,47 @@ public class ParancsErtelmezo {
             file = true;
         }
 
+        //Ha az első paraméter csillag, akkor az összes objektum állapotát ki kell írni
+        if (param[0].equals("*")) {
+            //Ha a második paraméter is csillag, akkor az összes objektum összes attribútumát ki kell írni
+            //Egész egyszerűen meghívjuk egyesével a parancsokat a különböző állapotok kiírására
+            if (param[1].equals("*")) {
+                //Végigmegyünk az összes mezőn
+
+                for (Mezo m : mezoMap.values()) {
+                    runFromString("allapot " + getMezoName(m) + " mukodik");
+                    runFromString("allapot " + getMezoName(m) + " szomszedok");
+                    runFromString("allapot " + getMezoName(m) + " maxJatekosok");
+                    runFromString("allapot " + getMezoName(m) + " maxSzomszedok");
+                    runFromString("allapot " + getMezoName(m) + " jatekosok");
+                    runFromString("allapot " + getMezoName(m) + " vizmennyiseg");
+                    runFromString("allapot " + getMezoName(m) + " csuszos");
+                    runFromString("allapot " + getMezoName(m) + " ragados");
+                    runFromString("allapot " + getMezoName(m) + " ragadossaTette");
+                    runFromString("allapot " + getMezoName(m) + " termeltPumpak");
+                    runFromString("allapot " + getMezoName(m) + " bemenet");
+                    runFromString("allapot " + getMezoName(m) + " kimenet");
+
+                }
+                //Végigmegyünk az összes játékoson
+                for (Jatekos j : jatekosMap.values()) {
+                    runFromString("allapot " + getJatekosName(j) + " maxHatizsakKapacitas");
+                    runFromString("allapot " + getJatekosName(j) + " pumpaHatizsak");
+                    runFromString("allapot " + getJatekosName(j) + " csoHatizsak");
+                    runFromString("allapot " + getJatekosName(j) + " helyzet");
+
+                }
+
+            }
+            else
+            {
+                System.out.println("Nem lehet csillag az első paraméter, ha a második nem csillag.");
+            }
+            return;
+            }
+
+
+
 
         //Pain and suffering
         if(jatekosMap.containsKey(param[0]))
@@ -1220,10 +1261,14 @@ public class ParancsErtelmezo {
     private void PrintOrWrite(String s, boolean fajlba, String filename)
     {
         //Ha nincs a fájl nevének a végén .txt, akkor hozzáadjuk
-        if (!filename.endsWith(".txt"))
+        if (filename != null)
         {
-            filename += ".txt";
+            if (!filename.endsWith(".txt"))
+            {
+                filename += ".txt";
+            }
         }
+
 
         if (fajlba)
         {
