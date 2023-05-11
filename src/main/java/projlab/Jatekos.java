@@ -57,13 +57,15 @@ public abstract class Jatekos {
 
 	/**
 	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 * @param m a lecsatolandó mező referenciája
 	 */
-	public void CsovetLecsatol(){}
+	public void CsovetLecsatol(Mezo m){}
 
 	/**
 	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
+	 * @param m a lecsatolandó mező referenciája
 	 */
-	public void EgeszCsovetLecsatol(){}
+	public void EgeszCsovetLecsatol(Mezo m){}
 
 	/**
 	 * Nincs alap implementáció, a szerelő osztály felüldefiniálja
