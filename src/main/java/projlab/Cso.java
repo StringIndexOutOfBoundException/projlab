@@ -1,9 +1,5 @@
 package projlab;
-import java.nio.BufferOverflowException;
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -151,6 +147,6 @@ public class Cso extends Mezo {
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 
-	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
+	public void SetVizmennyiseg(int viz){vizmennyiseg = viz;}
 
 }

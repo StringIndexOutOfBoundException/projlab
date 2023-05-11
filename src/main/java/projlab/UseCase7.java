@@ -12,7 +12,7 @@ public class UseCase7 {
         Ciszterna c = new Ciszterna();
         Cso cs = new Cso();
 
-        cs.setVizmennyiseg(1);
+        cs.SetVizmennyiseg(1);
         cs.SzomszedFelcsatol(c);
         c.SzomszedFelcsatol(cs);
 

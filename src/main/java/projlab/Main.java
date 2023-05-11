@@ -16,17 +16,14 @@ public class Main {
 
 
 
-        //PARANCSÉRTELMEZO PÉLDA
-        Palya palya = new Palya();
-        ParancsErtelmezo pe = new ParancsErtelmezo(palya);
+        //PARANCSÉRTELMEZO PÉLDA:
+        ParancsErtelmezo pe = new ParancsErtelmezo();
         //Fájlból parancs futtatás
-        pe.runFromFile("commandfiles/test.txt");
+        pe.runFromFile("commandfiles/test.txt"); //Akárhány parancs lehet a fájlban, minden sorban egy
         //Stringből parancs futtatás
-        pe.runFromString("parancs1\nparancs2"); //Akárhány parancsot beírhatsz \n-nel elválasztva
-        //Konzolról parancs futtatás
+        pe.runFromString("letrehoz cso cs2\nletrehoz szabotor sza1"); //Akárhány parancsot beírhatsz \n-nel elválasztva
+        //Konzolról parancs futtatás (Beírsz egy parancsot, majd entert nyomsz. EOF-al ki lehet lépni belőle)
         pe.runFromUser();
-
-
 
         /*
         while (true) {

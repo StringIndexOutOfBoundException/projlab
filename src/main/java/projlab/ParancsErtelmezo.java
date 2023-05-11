@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ParancsErtelmezo {
 
-    private Palya palya;
+    private Palya palya = new Palya();
 
     //Pályán lévő mezők neveit tároló HashMap
     private HashMap<String, Mezo> mezoMap = new HashMap<String, Mezo>();
@@ -31,9 +31,6 @@ public class ParancsErtelmezo {
     //Létrehozható elemek listája egy tömbben
     private String[] acElemek = new String[] {"cso", "pumpa", "ciszterna", "forras", "szerelo", "szabotor"};
 
-    public ParancsErtelmezo(Palya palya) {
-        this.palya = palya;
-    }
 
     /**
      Adott stringből olvas be egy vagy több parancsot.
@@ -177,6 +174,9 @@ public class ParancsErtelmezo {
                 break;
             case "csofelulet":
                 cCsofelulet(param);
+                break;
+            case "vizmennyiseg":
+                cVizmennyiseg(param);
                 break;
 
             //Igazából nem parancs, az autocorrectnél lehet ezt használni hogy kijavítsa a parancsot.
@@ -628,22 +628,22 @@ public class ParancsErtelmezo {
             }
 
 
-
+        param[1] = param[1].toLowerCase(); //A kényelem kedvéért kisbetűssé tesszük, és akkor mindegy hogy hogy van beírva.
 
         //Pain and suffering
         if(jatekosMap.containsKey(param[0]))
         {
             switch (param[1])
             {
-                case "maxHatizsakKapacitas":
+                case "maxhatizsakkapacitas":
                     PrintOrWrite(param[0] + " maxHatizsakKapacitas: " + jatekosMap.get(param[0]).getMaxHatizsakKapacitas(), file, fileName);
                     allapotString += param[0] + " maxHatizsakKapacitas: " + jatekosMap.get(param[0]).getMaxHatizsakKapacitas() + "\n";
                     break;
-                case "pumpaHatizsak":
+                case "pumpahatizsak":
                     PrintOrWrite(param[0] + " pumpaHatizsak: " + getMezoListName(jatekosMap.get(param[0]).getPumpaHatizsak()), file, fileName);
                     allapotString += param[0] + " pumpaHatizsak: " + getMezoListName(jatekosMap.get(param[0]).getPumpaHatizsak()) + "\n";
                     break;
-                case "csoHatizsak":
+                case "csohatizsak":
                     PrintOrWrite(param[0] + " csoHatizsak: " + getMezoListName(jatekosMap.get(param[0]).getCsoHatizsak()), file, fileName);
                     allapotString += param[0] + " csoHatizsak: " + getMezoListName(jatekosMap.get(param[0]).getCsoHatizsak()) + "\n";
                     break;
@@ -669,7 +669,7 @@ public class ParancsErtelmezo {
                     break;
                 default:
                     System.out.println("Nincs ilyen attribútum: " + param[1]);
-                    Autocorrect("allapot", param, new String[]{"maxHatizsakKapacitas", "pumpaHatizsak", "csoHatizsak", "helyzet"}, 2);
+                    Autocorrect("allapot", param, new String[]{"maxhatizsakkapacitas", "pumpahatizsak", "csohatizsak", "helyzet"}, 2);
                     return;
 
             }
@@ -689,11 +689,11 @@ public class ParancsErtelmezo {
                         allapotString += param[0] + " szomszedok: " + getMezoListName(mezoMap.get(param[0]).GetSzomszedok()) + "\n";
                     }
                     break;
-                case "maxJatekosok":
+                case "maxjatekosok":
                     PrintOrWrite(param[0] + " maxJatekosok: " + mezoMap.get(param[0]).getMaxJatekosok(), file, fileName);
                     allapotString += param[0] + " maxJatekosok: " + mezoMap.get(param[0]).getMaxJatekosok() + "\n";
                     break;
-                case "maxSzomszedok":
+                case "maxszomszedok":
                     PrintOrWrite(param[0] + " maxSzomszedok: " + mezoMap.get(param[0]).getMaxSzomszedok(), file, fileName);
                     allapotString += param[0] + " maxSzomszedok: " + mezoMap.get(param[0]).getMaxSzomszedok() + "\n";
                     break;
@@ -705,7 +705,7 @@ public class ParancsErtelmezo {
                     PrintOrWrite(param[0] + " vizmennyiseg: " + mezoMap.get(param[0]).getVizmennyiseg(), file, fileName);
                     allapotString += param[0] + " vizmennyiseg: " + mezoMap.get(param[0]).getVizmennyiseg() + "\n";
                     break;
-                case "lyukCooldown":
+                case "lyukcooldown":
                     if (mezoMap.get(param[0]).getLyukCooldown() != -1)
                     {
                         PrintOrWrite(param[0] + " lyukCooldown: " + mezoMap.get(param[0]).getLyukCooldown(), file, fileName);
@@ -726,14 +726,14 @@ public class ParancsErtelmezo {
                         allapotString += param[0] + " ragados: " + mezoMap.get(param[0]).getRagados() + "\n";
                     }
                     break;
-                case "ragadossaTette":
+                case "ragadossatette":
                     if (mezoMap.get(param[0]).getRagadossaTette() != null)
                     {
                         PrintOrWrite(param[0] + " ragadossaTette: " + getJatekosName(mezoMap.get(param[0]).getRagadossaTette()), file, fileName);
                         allapotString += param[0] + " ragadossaTette: " + getJatekosName(mezoMap.get(param[0]).getRagadossaTette()) + "\n";
                     }
                     break;
-                case "termeltPumpak":
+                case "termeltpumpak":
                     if (mezoMap.get(param[0]).getTermeltPumpak() != null)
                     {
                         PrintOrWrite(param[0] + " termeltPumpak: " + getMezoListName(mezoMap.get(param[0]).getTermeltPumpak()), file, fileName);
@@ -804,7 +804,7 @@ public class ParancsErtelmezo {
                     break;
                 default:
                     System.out.println("Nincs ilyen attribútum: " + param[1]);
-                    Autocorrect("allapot", param, new String[]{"nev", "maxJatekosok", "maxSzomszedok", "jatekosok", "vizmennyiseg", "lyukCooldown", "csuszos", "ragados", "ragadossaTette", "termeltPumpak", "bemenet", "kimenet"}, 2);
+                    Autocorrect("allapot", param, new String[]{"nev", "maxjatekosok", "maxszomszedok", "jatekosok", "vizmennyiseg", "lyukcooldown", "csuszos", "ragados", "ragadossatette", "termeltpumpak", "bemenet", "kimenet"}, 2);
                     return;
             }
         }
@@ -814,12 +814,6 @@ public class ParancsErtelmezo {
             Autocorrect("allapot", param, mezoMap.keySet().toArray(new String[0]), 1);
             return;
         }
-
-
-
-
-
-
 
     }
 
@@ -1113,8 +1107,8 @@ public class ParancsErtelmezo {
                 closest = s;
             }
         }
-        //Ha a legközelebbi szó távolsága kisebb mint 3, akkor figyelmeztetjük a felhasználót
-        if (min < 3) {
+        //Ha a legközelebbi szó távolsága kisebb mint 4, akkor figyelmeztetjük a felhasználót
+        if (min < 4) {
             System.out.println("* Erre gondotál: \"" + closest+ "\"?");
             System.out.println("* Ha igen, akkor írd be hogy \"i\", és a parancs automatikusan ki lesz javítva és újra lefut!");
 
@@ -1130,19 +1124,15 @@ public class ParancsErtelmezo {
                 acLastParams[corretedParamIndex-1] = closest;
             }
         }
-
-        //System.out.println("Closest: "+ closest);
-        //System.out.println("Min: "+ min);
-
-
     }
 
     /**
-     * Visszaadja a legutóbbi állapotstringet
+     * Visszaadja a legutóbbi állapotstringet. A fölösleges entereket/szóközöket levágja.
      * @return Legutóbbi állapotstring
      */
     public String getAllapotString()
     {
+        allapotString = allapotString.trim();
         return allapotString;
     }
 
