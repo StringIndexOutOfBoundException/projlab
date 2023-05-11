@@ -149,4 +149,10 @@ public class Cso extends Mezo {
 
 	public void SetVizmennyiseg(int viz){vizmennyiseg = viz;}
 
+	/**
+	 * !!Ezt nem kéne használni, de van ahol így van írva...
+	 * @param viz a víz mennyisége
+	 */
+	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
+
 }
