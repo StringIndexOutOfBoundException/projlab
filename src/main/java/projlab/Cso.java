@@ -1,14 +1,10 @@
 package projlab;
-import java.nio.BufferOverflowException;
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 /**
  * A cső osztály a pálya egy passzív eleme.
- * Ő felelős a víz szállításáért.
+ * ő felelős a víz szállításáért.
  * Ha kijukad akkor a benne levő víz kifolyik és a sivatagban elveszik.
  */
 public class Cso extends Mezo {
@@ -22,6 +18,11 @@ public class Cso extends Mezo {
 		super(1);
 	}
 	private int vizmennyiseg;
+
+	private int lyukCooldown;
+	private int csuszos;
+	private int ragados;
+	 Jatekos ragadossaTette;
 
 	/**
 	 * A szerelĹ megjavĂ­t egy elemet, amin ĂŠppen ĂĄll
@@ -44,7 +45,7 @@ public class Cso extends Mezo {
 		//p az az 1. szomszedja a csonek
 		//this=cs
 		//ujPumpa=this.getJatekosok().get(0).getpumpaHatizsak().get(0);
-		Pumpa ujPumpa=this.getJatekosok().get(0).getPumpaHatizsak().get(0);
+		Mezo ujPumpa=this.getJatekosok().get(0).getPumpaHatizsak().get(0);
 		Jatekos sz=this.getJatekosok().get(0);
 		Mezo p1=this.GetSzomszedok().get(0);
 		Mezo p= this.GetSzomszedok().get(1);
@@ -128,7 +129,12 @@ public class Cso extends Mezo {
 	public int getVizmennyiseg(){
 		return vizmennyiseg;
 	}
-	
+
+	@Override
+	public void Frissit() throws Exception {
+		System.out.println("Nincs implementálva");
+	}
+
 	/**
 	 * Egy mező szomszádaihoz hozzáad egy új mezőt
 	 * @param m a hozzaadnado mező
@@ -141,5 +147,12 @@ public class Cso extends Mezo {
 		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 
+	public void SetVizmennyiseg(int viz){vizmennyiseg = viz;}
+
+	/**
+	 * !!Ezt nem kéne használni, de van ahol így van írva...
+	 * @param viz a víz mennyisége
+	 */
 	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
+
 }

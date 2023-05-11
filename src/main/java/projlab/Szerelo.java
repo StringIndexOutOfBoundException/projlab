@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * A szerelők tartják karban a csőhálózatot. Ők javítják meg az elromlott
+ * A szerelők tartják karban a csőhálózatot. ők javítják meg az elromlott
  * pumpákat, ők állítják át a pumpákat, hogy mindig a lehető legtöbb víz tudjon
  * áthaladni a hálózaton, és ha egy cső kilyukad, az ő dolguk a cső megfoltozása
  * is. A szerelők dolga a ciszternáknál lévő szabad csövekkel a hálózat
@@ -33,7 +33,7 @@ public void PumpatFelvesz() {
 		System.out.println("A szerelo fel tudja venni a pumpat,"
 						+ "\n Ha a sikertelenseget akarja tesztelni irjon be mas adatot!");
 		//szerelo berakja a hatizsakba a ciszterna termeltpumpak listajaban talalhato utolso pumpat
-		ArrayList<Pumpa> ciszterna_pumpai=this.getHelyzet().getTermeltPumpak();
+		ArrayList<Mezo> ciszterna_pumpai=this.getHelyzet().getTermeltPumpak();
 		int ciszterna_pumpai_meret=ciszterna_pumpai.size();
 		this.getPumpaHatizsak().add(ciszterna_pumpai.get(ciszterna_pumpai_meret-1));
 		//ciszterna eltavolitja azt a pumpat amit felvett a szerelo
@@ -117,7 +117,7 @@ public void PumpatEpit() {
 	//Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
 	this.getHelyzet().PumpaEpit();
 	//szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez, azaz a pumpahatizsak kollekcio utolso pumpaja
-	Pumpa torlodo=this.getPumpaHatizsak().get(this.getPumpaHatizsak().size()-1);
+	Mezo torlodo=this.getPumpaHatizsak().get(this.getPumpaHatizsak().size()-1);
 	this.getPumpaHatizsak().remove(torlodo);
 	
 }
