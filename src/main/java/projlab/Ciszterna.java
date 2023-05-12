@@ -3,11 +3,6 @@ package projlab;
 import java.nio.BufferUnderflowException;
 import java.util.List;
 import java.util.Random;
-
-import projlab_iros.Cso;
-import projlab_iros.Mezo;
-import projlab_iros.Pumpa;
-
 import java.util.ArrayList;
 
 /**

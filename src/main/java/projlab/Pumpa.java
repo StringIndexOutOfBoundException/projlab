@@ -5,9 +5,6 @@ import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import projlab_iros.Mezo;
-
 /**
 *A pumpák a víz folyását szabályozzák. Minden pumpához adott számú csövet(maxCso) lehet csatlakoztatni,
 *de ezekből mindig 1 kiválasztott cső a bemeneti cső(bemenet), amiből a pumpa magába tud szívni vizet 
@@ -62,7 +59,7 @@ public class Pumpa extends Mezo {
 
 	public void Atallit(Mezo kimenet, Mezo bemenet) {
 		//megnezzuk szomszedok-e
-		ArrayList<Mezo> szomszedok = super.GetSzomszedok(); //Mezo osztaly attributuma
+		ArrayList<Mezo> szomszedok = GetSzomszedok(); //Mezo osztaly attributuma
 		for(int i=0; i<szomszedok.size();++i) {
 			if(bemenet==szomszedok.get(i)) {
 				this.bemenet = bemenet;
