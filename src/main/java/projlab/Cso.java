@@ -1,5 +1,7 @@
 package projlab;
+
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -16,61 +18,73 @@ public class Cso extends Mezo {
 	 */
 	public Cso() {
 		super(1);
-	}
+	} //TODO: meg nem tudom hova rakjam bele
+
 	private int vizmennyiseg;
 
 	private int lyukCooldown;
 	private int csuszos;
 	private int ragados;
-	 Jatekos ragadossaTette;
+	Jatekos ragadossaTette;
 
 	/**
-	 * A szerelĹ megjavĂ­t egy elemet, amin ĂŠppen ĂĄll
+	 * A szerelő megjavít egy elemet, amin Éppen Áll
 	 */
 	@Override
 	public void Megjavit() {
-		System.out.println("FĂźggvĂŠnyhĂ­vĂĄs: " + this + ".Megjavit()");
 		setMukodik(true);
+	}
+
+	@Override
+	public boolean JatekosElenged(Jatekos j) {
+		if (ragados > 0){return false;}
+		return true;
+	}
+
+	@Override
+	public boolean JatekosElfogad(Jatekos j) {
+		if (getJatekosok().isEmpty() && csuszos == 0){
+			Mezo volthelyzet = j.getHelyzet();
+			volthelyzet.removeJatekos(j);
+			addJatekos(j);
+			return true;
+		} else if (getJatekosok().isEmpty() && csuszos != 0) {
+			Mezo volthelyzet = j.getHelyzet();
+			volthelyzet.removeJatekos(j);
+			if (doRandomThings && GetSzomszedok().size() > 1){
+				GetSzomszedok().get(new Random().nextInt(1)).addJatekos(j);
+			}
+			else {GetSzomszedok().get(0).addJatekos(j);}
+			return true;
+		}
+		return false;
 	}
 
 	/**
 	 * Ezt a fuggveny a szerelo hivja meg azon a csovon amin all, mikor uj pumpat akar lerakni
-	 * A fuggveny az eredeti csovet "kette vagja", ugy hogy 
+	 * A fuggveny az eredeti csovet "kette vagja", ugy hogy
 	 * az "eredeti cso lesz az elso fele "a masodik fele pedig  egy uj cso lesz amit a fuggveny hoz letre
 	 * es  a ketto koze a szerelo egy pumpat rak
 	 */
+	@Override
 	public void PumpaEpit() {
-		//Teszteleskor letrehozott adatokat nezze meg
-		//p1 az a 0. szomszedja a csonek
-		//p az az 1. szomszedja a csonek
-		//this=cs
-		//ujPumpa=this.getJatekosok().get(0).getpumpaHatizsak().get(0);
-		Mezo ujPumpa=this.getJatekosok().get(0).getPumpaHatizsak().get(0);
-		Jatekos sz=this.getJatekosok().get(0);
-		Mezo p1=this.GetSzomszedok().get(0);
-		Mezo p= this.GetSzomszedok().get(1);
-		
-		Cso ujCso=new Cso();
-		System.out.println("Ujcso id:" + ujCso);
-		
-		ujPumpa.Atallit(ujCso,this);	
-		this.SzomszedHozzaad(ujPumpa);
-		ujCso.SzomszedHozzaad(ujPumpa);
-		ujCso.SzomszedHozzaad(p);
-		ujPumpa.SzomszedHozzaad(ujCso);
-		ujPumpa.SzomszedHozzaad(this);
-		p.SzomszedHozzaad(ujCso);
-		p.Atallit(p.getKimenet(), ujCso);
-		p.SzomszedTorol(this);
-		this.SzomszedTorol(p);
-		
-		System.out.println("\n\n\np bemenete:" + p.getBemenet() + 
-				"\nujPumpa bemenete:" + ujPumpa.getBemenet() +
-		", kimenete:" + ujPumpa.getKimenet());
-		
-		//kette vagtuk a "cs" csovet, az elso fele "cs" a masodik pedig "ujCso" a ketto koze ujPumpat berakjuk
-		//a p pumpa bemenete lett az ujCso -> a "p" pumpa mar nem a "cs" pumpaja
-		//az ujPumpa bemenete "cs" kimenete "ujCso"
+		ArrayList<Mezo> voltszomszedok = GetSzomszedok(); //btw ez miért nagy G?
+		Jatekos jatekos = getJatekosok().get(0);
+		Mezo pumpa = jatekos.getPumpaHatizsak().remove(0);
+		Mezo cso = jatekos.getCsoHatizsak().remove(0);
+
+		pumpa.SzomszedFelcsatol(this);
+		pumpa.SzomszedFelcsatol(cso);
+		pumpa.Atallit(cso, this);
+
+		cso.SzomszedHozzaad(pumpa);
+		cso.SzomszedHozzaad(voltszomszedok.get(0));
+
+		Mezo torlendo = voltszomszedok.get(0);
+		torlendo.SzomszedTorol(this);
+		SzomszedTorol(torlendo);
+		SzomszedHozzaad(pumpa);
+
 	}
 
 	/**
@@ -79,25 +93,24 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void Kilyukaszt() {
-		System.out.println("Függvényhívás: " + this + " Kilyukaszt()");
-		setMukodik(false);
+		if (lyukCooldown == 0) {
+			setMukodik(false);
+		}
+		lyukCooldown = 5; //5 Körig nem lehet majd kilyukasztani a csövet
+		//Ez NINCS a leírásban
 	}
 
 	/**
 	 * <p>A függvény megnöveli a csőbe levő víz mennyiségét megadott értékkel (nem növekedhet MAXVÍZ felé).</p>
 	 * Ezt a Pumpa {@link Pumpa}, Forrás {@link Forras}  fogja meghívni
 	 * @param meret a víz mennysége amit a csőbe pumpálunk
-	 * @override
+	 * @Override
 	 */
 	@Override
 	public void VizetNovel(int meret) throws Exception {
-		System.out.println("Függvényhívás:" + this +": VizetNovel( " + meret + " ) ");
-		if(meret + vizmennyiseg > 1){	//MAXVIZ
-			int tulfolyas = meret+vizmennyiseg-1;
-			vizmennyiseg += meret - tulfolyas;
-			throw new Exception(String.valueOf(tulfolyas));
-		}
-		else {
+		if (meret + vizmennyiseg > 1) {
+			throw new ArithmeticException();
+		} else {
 			vizmennyiseg += meret;
 		}
 	}
@@ -109,50 +122,67 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetCsokkent(int meret) throws Exception {
-		System.out.println("Függvényhívás: " + this +": VizetCsokkent( " + meret + " ) ");
 
-		if(meret <= vizmennyiseg) {
+		if (meret <= vizmennyiseg) {
 			vizmennyiseg -= meret;
-		}
-		else{
-			int ki = vizmennyiseg;
-			vizmennyiseg = 0;
-			throw new Exception(String.valueOf(ki));
+		} else {
+			throw new ArithmeticException();
 		}
 
+	}
+
+	public void Csuszik() {
+		csuszos = 3;
+	} //3 körig lesz csúszós a cső
+
+	public void Ragad() {
+		if (ragados == 0) {
+			ragados = 3; //3 körig lesz ragadós a cső
+			this.getJatekosok().get(0).ragadossaTette = true;
+		}
 	}
 
 	/**
 	 * Ez a vizmennyiség változóhoz egy getter, visszaadja a csőben levő víz értkét
+	 *
 	 * @return int típusú, azt adja vissza, hogy mennyi víz van a csőben éppen.
 	 */
-	public int getVizmennyiseg(){
-		return vizmennyiseg;
-	}
 
 	@Override
 	public void Frissit() throws Exception {
-		System.out.println("Nincs implementálva");
+		if (ragados > 0) {
+			ragados -= 1;
+		}
+		if (csuszos > 0) {
+			csuszos -= 1;
+		}
+		if (lyukCooldown > 0) {
+			lyukCooldown -= 1;
+		}
 	}
+
+	public void SetVizmennyiseg(int viz) {
+		vizmennyiseg = viz;
+	}
+
+	public int getVizmennyiseg() {
+		return vizmennyiseg;
+	}
+
 
 	/**
 	 * Egy mező szomszádaihoz hozzáad egy új mezőt
+	 *
 	 * @param m a hozzaadnado mező
 	 */
 	@Override
 	public void SzomszedHozzaad(Mezo m) {
 		ArrayList<Mezo> szomszedok = GetSzomszedok();
-		if(szomszedok.size() < 2)
+		if (szomszedok.size() < 2)
 			szomszedok.add(m);
-		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
 	}
 
-	public void SetVizmennyiseg(int viz){vizmennyiseg = viz;}
-
-	/**
-	 * !!Ezt nem kéne használni, de van ahol így van írva...
-	 * @param viz a víz mennyisége
-	 */
-	public void setVizmennyiseg(int viz){vizmennyiseg = viz;}
-
+	public boolean SzomszedFelcsatol(Mezo m) {
+		return true;
+	}
 }

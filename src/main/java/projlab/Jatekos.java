@@ -14,6 +14,7 @@ public abstract class Jatekos {
 
 	private ArrayList<Mezo> pumpaHatizsak;
 	private ArrayList<Mezo> csoHatizsak;
+	protected boolean ragadossaTette;		//EZ NINCS BENNE AZ OSZTÁLYDIAGRAMMBAN DE A FÜGGVÉNYEK LEÍRÁSÁBAN IGEN!!!!!!!!!!!!!!!!!!!
 
 	public Jatekos() {
 		pumpaHatizsak = new ArrayList<>();

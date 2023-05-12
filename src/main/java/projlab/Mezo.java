@@ -53,10 +53,11 @@ public abstract class Mezo {
 
 	/**
 	 * A függvény hozzáadja a játékost a mezőhöz.
+	 *
 	 * @param j A hozzáadandó játékos.
 	 * @return Igaz, ha sikerült a hozzáadás. Akkor sikerül, ha a mezőn még nincs a maximális játékosok száma.
 	 */
-	public Boolean JatekosElfogad(Jatekos j) {
+	public boolean JatekosElfogad(Jatekos j) {
 		if (jatekosok.size() < maxJatekosok) {
 			jatekosok.add(j);
 			j.setHelyzet(this);
@@ -127,10 +128,11 @@ public abstract class Mezo {
 	 * A Játékosok ezen a függvényen keresztül csatolhatnak fel elemeket a mezőkhöz.
 	 * Minden aktívelemnél ugyanazt csinálja mint a SzomszedHozzaad, viszont a Cső
 	 * osztály felüldefiniálja. Default implementációként nem enged felcsatolni.
+	 *
 	 * @param m - Felcsatolandó
 	 * @return Sikerült-e a felcsatolás
 	 */
-	public Boolean SzomszedFelcsatol(Mezo m) {
+	public boolean SzomszedFelcsatol(Mezo m) {
 		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
 		return false;
 	}
@@ -177,12 +179,24 @@ public abstract class Mezo {
 	 */
 	public int getVizmennyiseg(){return vizmennyiseg;}
 
-	
+
 	/*
 	 * getter a jatekosok attributumra
 	 */
 	public List<Jatekos> getJatekosok() {
 		return this.jatekosok;
+	}
+
+	public void setJatekosok(ArrayList<Jatekos> j) {
+		jatekosok = j;
+	}
+
+	public void removeJatekos(Jatekos j){
+		jatekosok.remove(j);
+	}
+
+	public void addJatekos(Jatekos j){
+		jatekosok.add(j);
 	}
 
 	/*
@@ -223,23 +237,19 @@ public abstract class Mezo {
 		return maxJatekosok;
 	}
 
-	public void PumpatKeszit()
-	{
+	public void PumpatKeszit() {
 		System.out.println("Pumpa keszitese");
 	}
 
-	public void CsovetKeszit()
-	{
+	public void CsovetKeszit() {
 		System.out.println("Cso keszitese");
 	}
 
-	public void Csuszik()
-	{
+	public void Csuszik() {
 		System.out.println("Csuszik");
 	}
 
-	public void Ragad()
-	{
+	public void Ragad() {
 		System.out.println("Ragad");
 	}
 
@@ -257,13 +267,11 @@ public abstract class Mezo {
 		return -1;
 	}
 
-	public int getCsuszos()
-	{
+	public int getCsuszos() {
 		return -1;
 	}
 
-	public int getRagados()
-	{
+	public int getRagados() {
 		return -1;
 	}
 
