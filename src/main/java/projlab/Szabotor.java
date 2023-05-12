@@ -2,16 +2,14 @@ package projlab;
 
 
 /**
- * A szobotőr a játékban az egyik játszható klassz, a feladatuk, hogy megakadályozzák, azt hogy a víz a ciszternába érjen,
- * ezt úgy tudják elérni, ha a víz kifolyik a sivatagba.
+ * Az osztély a szabotőr típusú játékos által elvégezhető cselekvéseket megvalósító metódusok, változókat tartalmazza.
  */
 public class Szabotor extends Jatekos {
 	/**
-	 * A függvényt maga a felhasználó fogja meghívni, és ez kezdeményezi a cső{@link Cso}-től, hogy lyukadjon ki
+	 * A szabotőr csúszóssá teszi a mezőt, amin éppen áll
 	 */
-	public void Lyukaszt() {
-		System.out.println("Függvényhívás: " + this + " Lyukaszt()");
+	public void CsuszossaTesz(){
 		Mezo helyzet = super.getHelyzet();
-		helyzet.Kilyukaszt();
+		helyzet.Csuszik();
 	}
 }
