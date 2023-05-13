@@ -5,54 +5,67 @@ import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
-
 /**
- * A Forrás a pálya aktív eleme.
- * Azért felelős, hogy vizet nyeljen el, amit a csőhálózaton keresztűl kap.
- * Továbbá Pumpákat és Csöveket termel.
+ * A Forrás a pálya aktív eleme. Azért felelős, hogy vizet nyeljen el, amit a
+ * csőhálózaton keresztűl kap. Továbbá Pumpákat és Csöveket termel. Összesen
+ * maximum 20 pumpája és hozzácsatlakozott csöve lehet egy csiszternának
  */
-public class Ciszterna extends AktivElem {
-	//private int maxJatekosok = Integer.MAX_VALUE;
+public class Ciszterna extends Mezo {
 
-	private  static int MAXVIZ = 1;
 	private ArrayList<Mezo> termeltpumpak;
-	
+
 	public Ciszterna() {
+		super(Integer.MAX_VALUE);
 		termeltpumpak = new ArrayList<Mezo>();
+		maxSzomszedok = 20;
 	}
 
-	
 	/**
-	 * Torli a termeltpumpak kollekcio utolso pumpajat,
-	 *  ezt a pumpat veszi fel a szerelo a PumpatFelvesz fuggvenyben
+	 * Ha a termeltpumpák elemszáma 0, akkor visszajelzést ad, hogy nincs felvehető
+	 * pumpa. Ha a termeltpumpák elemszáma nagyobb mint 0, akkor az listaban utolso
+	 * pumpaja eltávolításra kerül.
 	 */
 	public void PumpaEltavolit() {
-		termeltpumpak.remove(termeltpumpak.size()-1);
+		// ha van pumpa a ciszterna korul
+		if (termeltpumpak.size() >= 1)
+			termeltpumpak.remove(termeltpumpak.size() - 1);
 	}
+
 	/**
-	 * A ciszternak ezzel a fuggvennyel keszitenek uj pumpakat minden hivas utan 0-2 szam intervallumban
+	 * A ciszternak ezzel a fuggvennyel keszitenek uj pumpakat minden hivas utan 0-2
+	 * szam intervallumban
 	 */
-	public void PumpatKeszit() {
-		//Random darab uj pumpat rak bele a termeltpumpakba 0-2 kozott
-		Random rand=new Random();
-		int randomNum= rand.nextInt(3);
-		for(int i=0; i<randomNum;++i) {
-			Pumpa p=new Pumpa();
+	public void PumpaKeszit() {
+		// Random darab uj pumpat rak bele a termeltpumpakba 0-2 kozott
+		Random rand = new Random();
+		int randomNum = 0;
+		if (doRandomThings) // ha determinisztikus a mukodes
+			randomNum = rand.nextInt(3);
+		for (int i = 0; i < randomNum; ++i) {
+			Pumpa p = new Pumpa();
 			termeltpumpak.add(p);
 			p.SzomszedHozzaad(this);
 			this.SzomszedHozzaad(p);
 		}
+
 	}
 
 	/**
 	 * A ciszterna egy magához kapcsolódó szabad végű csövet hoz létre.
 	 */
 	public void CsovetKeszit() {
-		Cso ujcso = new Cso();
-		SzomszedFelcsatol(ujcso);
-		ujcso.SzomszedFelcsatol(this);
+		Random rand = new Random();
+		int randomNum = 0;
+		if (doRandomThings) // ha determinisztikus a mukodes
+			randomNum = rand.nextInt(3);
+		for (int i = 0; i < randomNum; ++i) {
+			Cso ujcso = new Cso();
+			ujcso.SzomszedHozzaad(this);
+			this.SzomszedHozzaad(ujcso);
+		}
 	}
-	/*
+
+	/**
 	 * getter a termeltpumpakra
 	 */
 	public ArrayList<Mezo> getTermeltPumpak() {
@@ -60,31 +73,22 @@ public class Ciszterna extends AktivElem {
 	}
 
 	/**
-	 * Frissít függvény a víz folyásáért felelős
-	 * Itt azt csinálja, hogy a Ciszterna elnyeli vizet
+	 * A szomszédok listájában mindenkire meghívja a VizetCsokkent függvényt. Azaz
+	 * minden rá csatlakoztatott csőtől elveszi a benne található vizet. (ha nincs
+	 * víz a csőben, nem kap vizet) Meghívja a PumpatKeszit, CsovetKeszit
+	 * függvényeket is.
+	 * 
 	 * @Override
-	 * @since 0.1
 	 */
-	@Override
 	public void Frissit() {
-		System.out.println("Függvényhívás: " + this +": Frissit() ");
-		ArrayList<Mezo> szomszedok = GetLeszedhetoSzomszedok();
+		ArrayList<Mezo> szomszedok = GetSzomszedok(); // GetLeszedhetoSzomszedok lesz
 		for (var cso : szomszedok) {
 			try {
-				cso.VizetCsokkent(MAXVIZ);
-			}
-			catch (Exception e){/* Hmm ez nem szép itt ;) */}
+				cso.VizetCsokkent(1);
+			} catch (Exception e) {
+				/* Hmm ez nem szép itt ;) */}
 		}
-	}
-	
-	/**
-	 * Egy mező szomszédaihoz hozzáad egy új mezőt
-	 * @param m a hozzáadandó mező
-	 */
-	@Override
-	public void SzomszedHozzaad(Mezo m) {
-		ArrayList<Mezo> szomszedok = super.GetSzomszedok();
-		szomszedok.add(m);
-		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad("+m+")");
+		this.CsovetKeszit();
+		this.PumpaKeszit();
 	}
 }
