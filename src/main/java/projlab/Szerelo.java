@@ -1,6 +1,5 @@
 package projlab;
 
-import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -20,65 +19,81 @@ public class Szerelo extends Jatekos {
 	 * hatizsakjaba.
 	 */
 	public void PumpatFelvesz() {
-		// a szerelo helyzet attributuma egy ciszterna kell legyen, hogy ez a fuggveny
-		// ertelmes eredmenyt adjon
-		// mikor megtelt a pumpaHatizsak
-		if (this.getPumpaHatizsak().size() >= this.getMaxHatizsakKapacitas()) {
-			System.out.println("Nem tud pumpat berakni a szerelo a hatizsakjaba");
-		}
-		// mikor nincs pumpa a ciszternanal
-		else if (this.getHelyzet().getTermeltPumpak().size() == 0) {
-			System.out.println("A ciszternanal nincs pumpa");
-		}
+		// Ha nincs hely a hátizsákban
+		if (pumpaHatizsak.size() >= maxHatizsakKapacitas)
+			return;
 
-		// mikor tudunk felvenni pumpat
-		else {
-			System.out.println("A szerelo fel tudja venni a pumpat,"
-					+ "\n Ha a sikertelenseget akarja tesztelni irjon be mas adatot!");
-			// szerelo berakja a hatizsakba a ciszterna termeltpumpak listajaban talalhato
-			// utolso pumpat
-			ArrayList<Mezo> ciszterna_pumpai = this.getHelyzet().getTermeltPumpak();
-			int ciszterna_pumpai_meret = ciszterna_pumpai.size();
-			this.getPumpaHatizsak().add(ciszterna_pumpai.get(ciszterna_pumpai_meret - 1));
-			// ciszterna eltavolitja azt a pumpat amit felvett a szerelo
-			this.getHelyzet().PumpaEltavolit();
-		}
+		// Ha nincs termelt pumpa
+		if (helyzet.getTermeltPumpak().size() > 0)
+			return;
+
+		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
+		// utolsó pumpát
+		ArrayList<Mezo> ciszterna_pumpai = helyzet.getTermeltPumpak();
+		int ciszterna_pumpai_meret = ciszterna_pumpai.size();
+		pumpaHatizsak.add(ciszterna_pumpai.get(ciszterna_pumpai_meret - 1));
+
+		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő
+		helyzet.PumpaEltavolit();
 	}
 
 	/**
-	 * A szerelő megjavít egy csövet, amin éppen áll
+	 * A szerelő megjavít egy mezőt, amin éppen áll
 	 */
 	public void Javit() {
-		System.out.println("Függvényhívás: " + this + ".Javit()");
-		Mezo helyzet = super.getHelyzet();
 		helyzet.Megjavit();
 	}
 
 	/**
-	 * Egy szerelő lecsatol egy csövet egy aktívelemről (amin éppen áll), ez a
-	 * Csohatizsak-ba kerül.
+	 * Ezzel a függvénnyel lecsatolhat a szerelő egy csőnek az egyik végét a mezőről
+	 * amin éppen áll és ez a csoHatizsak-ba kerül. Ekkor a cső szomszédai közül a
+	 * mező, a mező szomszédai közül pedig a cső kikerül. A cső ezután bekerül a
+	 * hátizsákba.
 	 */
 	public void CsovetLecsatol() {
-		System.out.println("Függvényhívás: " + this + ".CsovetLecsatol()");
-
 		// Lekérdezzük a lecsatlakoztatható elemeket
-		Mezo helyzet = getHelyzet();
 		ArrayList<Mezo> lecsatlakoztathatok = helyzet.GetLeszedhetoSzomszedok();
 
 		// Ha nincs ilyen, vagy nincs táska hely, semmi sem történik
-		if (lecsatlakoztathatok.size() == 0 || getCsoHatizsak().size() > getMaxHatizsakKapacitas()) {
+		if (lecsatlakoztathatok.size() == 0 || csoHatizsak.size() > maxHatizsakKapacitas) {
 			return;
 		}
 
 		// Kiválasztunk egyet
 		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet!");
 
-		// Eltávolítjuk a referenciákat
+		// Frissítjül a referenciákat
+		csoHatizsak.add(kivalasztott);
 		helyzet.SzomszedTorol(kivalasztott);
 		kivalasztott.SzomszedTorol(helyzet);
+	}
 
-		// Eltároljuk a hátizsákba a lecsatlakoztatott elemet
-		getCsoHatizsak().add(kivalasztott);
+	/**
+	 * A szerelő lecsatol egy teljes csövet (mindkét végét) a mezőről amin éppen
+	 * áll, és ez a csoHatizsak-ba kerül. Ilyenkor a cső kikerül mindkét
+	 * szomszédjának a szomszedok listájából, és a cső referenciája bekerül a
+	 * hátizsákba kétszer (mind a két vége, hiszen felcsatolásnál majd kétszer lehet
+	 * felcsatolni ugyanazt a csövet).
+	 */
+	public void EgeszCsovetLecsatol() {
+		// Lekérdezzük a lecsatlakoztatható elemeket
+		ArrayList<Mezo> lecsatlakoztathatok = helyzet.GetLeszedhetoSzomszedok();
+
+		// Ha nincs ilyen, vagy nincs táska hely, semmi sem történik
+		if (lecsatlakoztathatok.size() == 0 || csoHatizsak.size() > maxHatizsakKapacitas) {
+			return;
+		}
+
+		// Kiválasztunk egyet
+		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet!");
+
+		// Lecsatoljuk az összes végét és a hátizsákba tesszük
+		for (Mezo sz : kivalasztott.GetSzomszedok()) {
+			csoHatizsak.add(kivalasztott);
+			sz.SzomszedTorol(kivalasztott);
+		}
+
+		kivalasztott.GetSzomszedok().clear();
 	}
 
 	/**
@@ -86,10 +101,8 @@ public class Szerelo extends Jatekos {
 	 * amin éppen áll.
 	 */
 	public void CsovetFelcsatol() {
-		System.out.println("Függvényhívás: " + this + ".CsovetFelcsatol()");
-
 		// Üres hátizsák esetén nem történik semmi
-		if (getCsoHatizsak().size() == 0) {
+		if (csoHatizsak.size() == 0) {
 			return;
 		}
 
@@ -97,14 +110,12 @@ public class Szerelo extends Jatekos {
 		Mezo felcsatolando = UseCase16.elemKivalaszt(getCsoHatizsak(), "Válassz egy elemet a hátizsákból!");
 
 		// Megpróbáljuk felcsatolni
-		Mezo helyzet = getHelyzet();
 		Boolean sikerult = helyzet.SzomszedFelcsatol(felcsatolando);
-		System.out.println("Visszatérés: " + sikerult);
 
 		// Ha sikerült frissítjük a referenciákat
 		if (sikerult) {
 			felcsatolando.SzomszedHozzaad(helyzet);
-			getCsoHatizsak().remove(felcsatolando);
+			csoHatizsak.remove(felcsatolando);
 		}
 
 	}
@@ -117,11 +128,9 @@ public class Szerelo extends Jatekos {
 	 */
 	public void PumpatEpit() {
 		// Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
-		this.getHelyzet().PumpaEpit();
+		helyzet.PumpaEpit();
 		// szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez, azaz a
 		// pumpahatizsak kollekcio utolso pumpaja
-		Mezo torlodo = this.getPumpaHatizsak().get(this.getPumpaHatizsak().size() - 1);
-		this.getPumpaHatizsak().remove(torlodo);
-
+		pumpaHatizsak.remove(pumpaHatizsak.size() - 1);
 	}
 }
