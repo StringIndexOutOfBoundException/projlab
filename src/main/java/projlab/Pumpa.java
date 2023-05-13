@@ -100,52 +100,42 @@ public class Pumpa extends Mezo {
 		if(this.mukodik) {
 		//ha a pumpa tartalya ures vagy nincs tele	
 		if(vizmennyiseg<5) {
-			try {
-				
 				if(bemenet!=null) {
-					bemenet.VizetCsokkent(MAXVIZ);
-					vizmennyiseg+=MAXVIZ;
+					int vizet_sziv=bemenet.getVizmennyiseg(); //annyi vizet sziv ki amennyi a bemenetben van
+					bemenet.VizetCsokkent(vizet_sziv);
+					vizmennyiseg+=vizet_sziv;
 				}
-			}
-			//ha nincs benne viz
-			catch (Exception e){}
 			//vizet átad kimenetnek, ha van viz
 			if(vizmennyiseg>=1) {	
-			try {
-				kimenet.VizetNovel(MAXVIZ);
-				vizmennyiseg-=MAXVIZ;
-				//ha nem fér kimenetnek víz
-			} catch (Exception e) {}
+				int vizet_pumpal=MAXVIZ-kimenet.getVizmennyiseg(); //MAXVIZ=1, ennyi fér bele egy csőbe
+				kimenet.VizetNovel(vizet_pumpal);
+				vizmennyiseg-=vizet_pumpal;
 		}
 		}
-		
-		
+
 		//ha tele van a pumpa
 		 if(vizmennyiseg==5) {
 			
 			//eloszor megprobal kimenetre kipumpalni
-			try {
-				kimenet.VizetNovel(MAXVIZ);
-				vizmennyiseg-=MAXVIZ;	
-			}
-			//ha nem fér kimenetnek víz
-			catch (Exception e) {
-			}
+				int vizet_pumpal=MAXVIZ-kimenet.getVizmennyiseg();
+				kimenet.VizetNovel(vizet_pumpal);
+				vizmennyiseg-=vizet_pumpal;		
+			
 			//ha sikerult atadni a vizet a kimenetnek a bemenettol kaphat vizet
 			 if(vizmennyiseg!=5) {
-				try {
-				//bemenet.VizetCsokkent(befolyoviz);
 				if(bemenet!=null) {
-					bemenet.VizetCsokkent(MAXVIZ);
-					vizmennyiseg+=MAXVIZ;
+					int vizet_sziv=bemenet.getVizmennyiseg();
+					//Ha tul tolteni a pumpat a bementrol kapott viz, akkor csak annyit toltunk be amennyi a pumpaba befer
+					if(vizmennyiseg+vizet_sziv>5)
+					vizet_sziv=5-vizmennyiseg;
+					bemenet.VizetCsokkent(vizet_sziv);
+					vizmennyiseg+=vizet_sziv;
 				}
 				}
-			//ha nincs benne viz
-			catch (Exception e){}
 			}
 		}
 		}
-	}
+	
 
 	/**
 	 * getter a bemenetre
