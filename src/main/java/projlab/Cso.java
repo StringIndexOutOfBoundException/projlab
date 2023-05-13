@@ -43,13 +43,13 @@ public class Cso extends Mezo {
 	@Override
 	public void JatekosEltavolit(Jatekos j) {
 		ragadossaTette = null;
-		removeJatekos(j);
+		super.JatekosEltavolit(j);
 	}
 
 	@Override
 	public boolean JatekosElfogad(Jatekos j) {
 		if (getJatekosok().size() < maxJatekosok) {
-			addJatekos(j);
+			super.JatekosElfogad(j);
 			j.setHelyzet(this);
 
 			if (csuszos != 0) {
