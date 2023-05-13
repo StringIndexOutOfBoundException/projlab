@@ -196,4 +196,19 @@ public class Cso extends Mezo {
 	public boolean SzomszedFelcsatol(Mezo m) {
 		return false;
 	}
+	public int getLyukCooldown() {
+		return lyukCooldown;
+	}
+
+	public int getCsuszos() {
+		return csuszos;
+	}
+
+	public int getRagados() {
+		return ragados;
+	}
+	public Jatekos getRagadossaTette() {
+		return ragadossaTette;
+	}
+
 }

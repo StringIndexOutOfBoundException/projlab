@@ -28,7 +28,7 @@ class Tests {
                 "letrehoz cso pcs7\n" +
                 "letrehoz szerelo psze1\n" +
                 "letrehoz szerelo psze2\n" +
-                "letrehoz szerelo psza1\n" +
+                "letrehoz szabotor psza1\n" +
                 "osszekot pcs1 pf1\n" +
                 "osszekot pcs1 pp1\n" +
                 "osszekot pp1 pcs2\n" +
@@ -65,9 +65,9 @@ class Tests {
                         "cs1 maxSzomszedok: 2\n" +
                         "cs1 jatekosok: \n" +
                         "cs1 vizmennyiseg: 0\n"+
-                        "lyukCooldown: 0\n" +
-                        "csuszos: 0\n" +
-                        "ragados: 0\n",
+                        "cs1 lyukCooldown: 0\n" +
+                        "cs1 csuszos: 0\n" +
+                        "cs1 ragados: 0",
                 pre.getAllapotString());
     }
 
@@ -1138,7 +1138,8 @@ class Tests {
                 "csuszik psza1\n" +
                 "allapot pcs3 csuszos");
         String out = pre.getAllapotString();
-        assertEquals("k", out);
+        assertEquals("pcs3 csuszos: 0\n" +
+                "pcs3 csuszos: 3", out);
     }
 
 }
