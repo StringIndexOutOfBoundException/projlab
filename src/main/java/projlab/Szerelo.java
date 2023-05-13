@@ -108,7 +108,7 @@ public class Szerelo extends Jatekos {
 
 		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
 		// utolsó pumpát
-		ArrayList<Mezo> termeltPumpak = helyzet.getTermeltPumpak();
+		ArrayList<Pumpa> termeltPumpak = helyzet.getTermeltPumpak();
 		pumpaHatizsak.add(termeltPumpak.get(termeltPumpak.size() - 1));
 
 		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő (ez is az utolsót
