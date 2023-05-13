@@ -8,12 +8,12 @@ import java.util.Scanner;
  * A jatekos az amit a játékos irányíthat, ez lehet Szabotőr{@link Szabotor} vagy Szerelő{@link Szerelo}
  */
 public abstract class Jatekos {
-	private Mezo helyzet;
+	protected Mezo helyzet;
 
-	private int maxHatizsakKapacitas;
+	protected int maxHatizsakKapacitas;
 
-	private ArrayList<Mezo> pumpaHatizsak;
-	private ArrayList<Mezo> csoHatizsak;
+	protected ArrayList<Mezo> pumpaHatizsak;
+	protected ArrayList<Mezo> csoHatizsak;
 
 	public Jatekos() {
 		pumpaHatizsak = new ArrayList<>();
