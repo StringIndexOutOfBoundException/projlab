@@ -12,45 +12,48 @@ import java.util.ArrayList;
  */
 public class Szerelo extends Jatekos {
 
-/**
- * A szerelo egy pumpat akar felvenni annal a ciszternanal ahol eppen tartozkodik
- * Eloszor megnezi, hogy van-e eleg hely a pumpaHatizsakjaban, majd megnezi a ciszternanal talalhato-e pumpa
- * Ha a feltetelek teljesulnek, a ciszterna termeltpumpak kollekciobol kiveszi az utolso pumpat es belerakja a hatizsakjaba.
- */
-public void PumpatFelvesz() {
-	//a szerelo helyzet attributuma  egy ciszterna kell legyen, hogy ez a fuggveny ertelmes eredmenyt adjon
-	//mikor megtelt a pumpaHatizsak
-	if(this.getPumpaHatizsak().size()>=this.getMaxHatizsakKapacitas()) {
-		System.out.println("Nem tud pumpat berakni a szerelo a hatizsakjaba");
-	}
-	//mikor nincs pumpa a ciszternanal
-	else if(this.getHelyzet().getTermeltPumpak().size()==0) {
-		System.out.println("A ciszternanal nincs pumpa");
-	}
-    
-	//mikor tudunk felvenni pumpat
-	else {
-		System.out.println("A szerelo fel tudja venni a pumpat,"
-						+ "\n Ha a sikertelenseget akarja tesztelni irjon be mas adatot!");
-		//szerelo berakja a hatizsakba a ciszterna termeltpumpak listajaban talalhato utolso pumpat
-		ArrayList<Mezo> ciszterna_pumpai=this.getHelyzet().getTermeltPumpak();
-		int ciszterna_pumpai_meret=ciszterna_pumpai.size();
-		this.getPumpaHatizsak().add(ciszterna_pumpai.get(ciszterna_pumpai_meret-1));
-		//ciszterna eltavolitja azt a pumpat amit felvett a szerelo
-		this.getHelyzet().PumpaEltavolit();
-	}
-}
+	/**
+	 * A szerelo egy pumpat akar felvenni annal a ciszternanal ahol eppen
+	 * tartozkodik Eloszor megnezi, hogy van-e eleg hely a pumpaHatizsakjaban, majd
+	 * megnezi a ciszternanal talalhato-e pumpa Ha a feltetelek teljesulnek, a
+	 * ciszterna termeltpumpak kollekciobol kiveszi az utolso pumpat es belerakja a
+	 * hatizsakjaba.
+	 */
+	public void PumpatFelvesz() {
+		// a szerelo helyzet attributuma egy ciszterna kell legyen, hogy ez a fuggveny
+		// ertelmes eredmenyt adjon
+		// mikor megtelt a pumpaHatizsak
+		if (this.getPumpaHatizsak().size() >= this.getMaxHatizsakKapacitas()) {
+			System.out.println("Nem tud pumpat berakni a szerelo a hatizsakjaba");
+		}
+		// mikor nincs pumpa a ciszternanal
+		else if (this.getHelyzet().getTermeltPumpak().size() == 0) {
+			System.out.println("A ciszternanal nincs pumpa");
+		}
 
-   /**
+		// mikor tudunk felvenni pumpat
+		else {
+			System.out.println("A szerelo fel tudja venni a pumpat,"
+					+ "\n Ha a sikertelenseget akarja tesztelni irjon be mas adatot!");
+			// szerelo berakja a hatizsakba a ciszterna termeltpumpak listajaban talalhato
+			// utolso pumpat
+			ArrayList<Mezo> ciszterna_pumpai = this.getHelyzet().getTermeltPumpak();
+			int ciszterna_pumpai_meret = ciszterna_pumpai.size();
+			this.getPumpaHatizsak().add(ciszterna_pumpai.get(ciszterna_pumpai_meret - 1));
+			// ciszterna eltavolitja azt a pumpat amit felvett a szerelo
+			this.getHelyzet().PumpaEltavolit();
+		}
+	}
+
+	/**
 	 * A szerelő megjavít egy csövet, amin éppen áll
 	 */
 	public void Javit() {
 		System.out.println("Függvényhívás: " + this + ".Javit()");
 		Mezo helyzet = super.getHelyzet();
 		helyzet.Megjavit();
-  }
-  
-  
+	}
+
 	/**
 	 * Egy szerelő lecsatol egy csövet egy aktívelemről (amin éppen áll), ez a
 	 * Csohatizsak-ba kerül.
@@ -105,20 +108,20 @@ public void PumpatFelvesz() {
 		}
 
 	}
-	
 
+	/**
+	 * Ha a szerelo uj pumpat akar helyezni a csorendszerbe, ezt a fuggvenyt
+	 * hasznalja A szerelonek egy csovon kell allnia, ennek a csonek hivja meg a
+	 * PumpaEpit fuggvenyet A szerelo pumpaHatizsak kollekciojabol ki is torli a
+	 * pumpat, amit elhelyezett.
+	 */
+	public void PumpatEpit() {
+		// Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
+		this.getHelyzet().PumpaEpit();
+		// szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez, azaz a
+		// pumpahatizsak kollekcio utolso pumpaja
+		Mezo torlodo = this.getPumpaHatizsak().get(this.getPumpaHatizsak().size() - 1);
+		this.getPumpaHatizsak().remove(torlodo);
 
-/**
- *Ha a szerelo uj pumpat akar helyezni a csorendszerbe, ezt a fuggvenyt hasznalja
- *A szerelonek egy csovon kell allnia, ennek a csonek hivja meg a PumpaEpit fuggvenyet
- *A szerelo pumpaHatizsak kollekciojabol ki is torli a pumpat, amit elhelyezett.
- */
-public void PumpatEpit() {
-	//Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
-	this.getHelyzet().PumpaEpit();
-	//szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez, azaz a pumpahatizsak kollekcio utolso pumpaja
-	Mezo torlodo=this.getPumpaHatizsak().get(this.getPumpaHatizsak().size()-1);
-	this.getPumpaHatizsak().remove(torlodo);
-	
-}
+	}
 }
