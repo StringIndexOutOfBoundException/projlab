@@ -28,4 +28,12 @@ tasks.named<JavaExec>("run") {
     standardInput = System.`in`
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.9.3"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
 version = "1.2.1"
