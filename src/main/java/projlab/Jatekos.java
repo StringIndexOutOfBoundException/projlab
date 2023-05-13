@@ -172,58 +172,50 @@ public abstract class Jatekos {
 	}
 
 	/**
-	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 * Ha a játékos tud pumpát építeni, felüldefiniálhatja.
 	 */
-	public void PumpatEpit()
-	{
-		//A kiírást ki lehet szedni
-		System.out.println("PumpatEpit...");
+	public void PumpatEpit() {
 	}
 
 	/**
-	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 * Leszármazottak akik tudnak felcsatolni felüldefiniálhatják. Ezzel a
+	 * függvénnyel felcsatolhat egy csővéget a hátizsákból a mezőrre amin éppen áll.
 	 */
-	public void CsovetFelcsatol()
-	{
-		//A kiírást ki lehet szedni
-		System.out.println("CsovetFelcsatol...");
+	public void CsovetFelcsatol() {
 	}
 
 	/**
-	 * Csak hogy bármilyen játékoson hívható legyen a függvény
+	 * Ha a játékos vehet fel pumpát a ciszternából, felüldefiniálhatja.
 	 */
-	public void PumpatFelvesz()
-	{
-		//A kiírást ki lehet szedni
-		System.out.println("PumpatFelvesz...");
+	public void PumpatFelvesz() {
 	}
 
 	/**
-	 * Ez az lesz amikor az egész csövet lecsatoljuk, de ez még sehol sincs implementálva
+	 * Leszármazottak akik tudnak lecsatolni felüldefiniálhatják. Ezzel a
+	 * függvénnyel lecsatolhat egy teljes csövet a mezőről amin éppen áll.
+	 * @param m - A helyzetről lecsatolandó mező
 	 */
-	public void EgeszCsovetLecsatol(Mezo m)
-	{
-		//A kiírást ki lehet szedni
-		System.out.println("EgeszCsovetLecsatol... NINCS IMPLEMENTALVA SEHOL");
+	public void EgeszCsovetLecsatol(Mezo m) {
 	}
 
 	/**
-	 * Csak hogy bármilyen játékoson hívható legyen a függvény
-	 * KELL PARAMÉTER!
+	 * Leszármazottak akik tudnak lecsatolni felüldefiniálhatják. Ezzel a
+	 * függvénnyel lecsatolhat egy csőnek az egyik végét a mezőről amin éppen áll.
+	 * @param m - A helyzetről lecsatolandó mező
 	 */
-	public void CsovetLecsatol(Mezo m)
-	{
-		System.out.println("CsovetLecsatol...");
+	public void CsovetLecsatol(Mezo m) {
 	}
 
-	public void CsuszossaTesz()
-	{
-		System.out.println("CsuszossaTesz...");
+	/**
+	 * Ha a játékos tud csúszóssá tenni, akkor felüldefiniálhatja
+	 */
+	public void CsuszossaTesz() {
 	}
 
-	public void RagadossaTesz()
-	{
-		System.out.println("RagadossaTesz...");
+	/**
+	 * Ha a játékos tud ragadóssá tenni, akkor felüldefiniálhatja
+	 */
+	public void RagadossaTesz() {
 	}
 
 }
