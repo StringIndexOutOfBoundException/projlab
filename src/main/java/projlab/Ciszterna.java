@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 public class Ciszterna extends Mezo {
 
-	private ArrayList<Mezo> termeltpumpak;
+	private ArrayList<Pumpa> termeltpumpak;
 
 	public Ciszterna() {
 		super(Integer.MAX_VALUE);
-		termeltpumpak = new ArrayList<Mezo>();
+		termeltpumpak = new ArrayList<Pumpa>();
 		maxSzomszedok = 20;
 	}
 
