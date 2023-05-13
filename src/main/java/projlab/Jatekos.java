@@ -9,7 +9,8 @@ import java.util.Scanner;
  * ez lehet Szabotőr{@link Szabotor} vagy Szerelő{@link Szerelo}
  */
 public abstract class Jatekos {
-	private Mezo helyzet;		//a játékos helyzete
+
+	protected Mezo helyzet;		//a játékos helyzete
 	protected int maxHatizsakKapacitas;		//a játékos hátizsákjainak maximum kapacitása
 	protected ArrayList<Pumpa> pumpaHatizsak;		//a játékos hátizsákja, ami pumpákat tartalmaz
 	protected ArrayList<Mezo> csoHatizsak;		//a játékos hátizsákja, ami csöveket tartalmaz
@@ -84,7 +85,7 @@ public abstract class Jatekos {
 
 	/**
 	 * Jatekos tartózkodási helyéhez tartózó szomszédok lekerdezese
-	 * @return tartótkodási helyének szomszédai
+	 * @return tartózkodási helyének szomszédai
 	 */
 	public ArrayList<Mezo> GetSzomszedok(){ return helyzet.GetSzomszedok(); }
 
