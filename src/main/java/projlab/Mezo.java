@@ -114,6 +114,14 @@ public abstract class Mezo {
 	}
 
 	/**
+	 * Egy játékos eltávolítása egy mezőről
+	 * @param j a játékos referenciája
+	 */
+	public void JatekosEltavolit(Jatekos j) {
+		jatekosok.remove(j);
+	}
+
+	/**
 	 * Ha a mezőnek lehet be- és kimenete, felüldefiniálhatja.
 	 * @param kimenet amire át lesz állítva a kimenet
 	 * @param bemenet amire át lesz állítva a bemenet
@@ -227,7 +235,7 @@ public abstract class Mezo {
 	 * Csak ciszterma osztalyon ertelmezett getter a ciszterna termeltpumpak
 	 * attributumra
 	 */
-	public ArrayList<Mezo> getTermeltPumpak() {
+	public ArrayList<Pumpa> getTermeltPumpak() {
 		return null;
 	}
 
