@@ -1,6 +1,7 @@
 package projlab;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -51,8 +52,12 @@ public class Cso extends Mezo {
 			addJatekos(j);
 			j.setHelyzet(this);
 
-			if (csuszos != 0)
-				j.Lep(/* Ennek a csonek egy random szomszedja */);
+			if (csuszos != 0) {
+				if (GetSzomszedok().size() > 0 && doRandomThings) {
+					j.Lep(GetSzomszedok().get(new Random().nextInt(1)));
+				}
+				else {j.Lep(GetSzomszedok().get(0));}
+			}
 
 			return true;
 		}
