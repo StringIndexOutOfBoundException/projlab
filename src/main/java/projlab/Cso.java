@@ -1,7 +1,6 @@
 package projlab;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 
 /**
@@ -35,30 +34,32 @@ public class Cso extends Mezo {
 		setMukodik(true);
 	}
 
-	@Override
 	public boolean JatekosElenged(Jatekos j) {
-		if (ragados > 0){return false;}
-		return true;
+		return ragados == 0 || j == ragadossaTette;
+	}
+
+
+	@Override
+	public void JatekosEltavolit(Jatekos j) {
+		ragadossaTette = null;
+		removeJatekos(j);
 	}
 
 	@Override
 	public boolean JatekosElfogad(Jatekos j) {
-		if (getJatekosok().isEmpty() && csuszos == 0){
-			Mezo volthelyzet = j.getHelyzet();
-			volthelyzet.removeJatekos(j);
+		if (getJatekosok().size() < maxJatekosok) {
 			addJatekos(j);
-			return true;
-		} else if (getJatekosok().isEmpty() && csuszos != 0) {
-			Mezo volthelyzet = j.getHelyzet();
-			volthelyzet.removeJatekos(j);
-			if (doRandomThings && GetSzomszedok().size() > 1){
-				GetSzomszedok().get(new Random().nextInt(1)).addJatekos(j);
-			}
-			else {GetSzomszedok().get(0).addJatekos(j);}
+			j.setHelyzet(this);
+
+			if (csuszos != 0)
+				j.Lep(/* Ennek a csonek egy random szomszedja */);
+
 			return true;
 		}
+
 		return false;
 	}
+
 
 	/**
 	 * Ezt a fuggveny a szerelo hivja meg azon a csovon amin all, mikor uj pumpat akar lerakni
@@ -138,7 +139,7 @@ public class Cso extends Mezo {
 	public void Ragad() {
 		if (ragados == 0) {
 			ragados = 3; //3 körig lesz ragadós a cső
-			this.getJatekosok().get(0).ragadossaTette = true;
+			ragadossaTette = getJatekosok().get(0);
 		}
 	}
 
@@ -183,6 +184,6 @@ public class Cso extends Mezo {
 	}
 
 	public boolean SzomszedFelcsatol(Mezo m) {
-		return true;
+		return false;
 	}
 }
