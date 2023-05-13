@@ -10,33 +10,6 @@ import java.util.ArrayList;
  * kapacitásának növelése.
  */
 public class Szerelo extends Jatekos {
-
-	/**
-	 * A szerelo egy pumpat akar felvenni annal a ciszternanal ahol eppen
-	 * tartozkodik Eloszor megnezi, hogy van-e eleg hely a pumpaHatizsakjaban, majd
-	 * megnezi a ciszternanal talalhato-e pumpa Ha a feltetelek teljesulnek, a
-	 * ciszterna termeltpumpak kollekciobol kiveszi az utolso pumpat es belerakja a
-	 * hatizsakjaba.
-	 */
-	public void PumpatFelvesz() {
-		// Ha nincs hely a hátizsákban
-		if (pumpaHatizsak.size() >= maxHatizsakKapacitas)
-			return;
-
-		// Ha nincs termelt pumpa
-		if (helyzet.getTermeltPumpak().size() > 0)
-			return;
-
-		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
-		// utolsó pumpát
-		ArrayList<Mezo> ciszterna_pumpai = helyzet.getTermeltPumpak();
-		int ciszterna_pumpai_meret = ciszterna_pumpai.size();
-		pumpaHatizsak.add(ciszterna_pumpai.get(ciszterna_pumpai_meret - 1));
-
-		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő
-		helyzet.PumpaEltavolit();
-	}
-
 	/**
 	 * A szerelő megjavít egy mezőt, amin éppen áll
 	 */
@@ -56,7 +29,7 @@ public class Szerelo extends Jatekos {
 			return;
 		}
 
-		// Frissítjül a referenciákat
+		// Frissítjük a referenciákat
 		csoHatizsak.add(m);
 		helyzet.SzomszedTorol(m);
 		m.SzomszedTorol(helyzet);
@@ -84,9 +57,11 @@ public class Szerelo extends Jatekos {
 		m.GetSzomszedok().clear();
 	}
 
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	/**
-	 * Egy szerelő kivesz egy csövet a hátizsákjából és felcsatolja az aktívelemre
-	 * amin éppen áll.
+	 * A szerelő kivesz egy csövet a hátizsákjából (ha úgy nézzük akkor az egyik
+	 * végét) és felcsatolja a mezőre, amin éppen áll. Ekkor mind a mező és a cső
+	 * "szomszedok" listája frissül, és a cső ezen vége kikerül a hátizsákból.
 	 */
 	public void CsovetFelcsatol() {
 		// Üres hátizsák esetén nem történik semmi
@@ -108,6 +83,7 @@ public class Szerelo extends Jatekos {
 
 	}
 
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	/**
 	 * Ha a szerelo uj pumpat akar helyezni a csorendszerbe, ezt a fuggvenyt
 	 * hasznalja A szerelonek egy csovon kell allnia, ennek a csonek hivja meg a
@@ -120,5 +96,28 @@ public class Szerelo extends Jatekos {
 		// szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez, azaz a
 		// pumpahatizsak kollekcio utolso pumpaja
 		pumpaHatizsak.remove(pumpaHatizsak.size() - 1);
+	}
+
+	/**
+	 * A szerelo egy pumpat akar felvenni annal a ciszternanal ahol eppen
+	 * tartozkodik Eloszor megnezi, hogy van-e eleg hely a pumpaHatizsakjaban, majd
+	 * megnezi a ciszternanal talalhato-e pumpa Ha a feltetelek teljesulnek, a
+	 * ciszterna termeltpumpak kollekciobol kiveszi az utolso pumpat es belerakja a
+	 * hatizsakjaba.
+	 */
+	public void PumpatFelvesz() {
+		// Ha nincs hely a hátizsákban vagy nincs termelt pumpa, semmi sem történik
+		if (pumpaHatizsak.size() >= maxHatizsakKapacitas || helyzet.getTermeltPumpak().size() > 0) {
+			return;
+		}
+
+		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
+		// utolsó pumpát
+		ArrayList<Mezo> ciszterna_pumpai = helyzet.getTermeltPumpak();
+		int ciszterna_pumpai_meret = ciszterna_pumpai.size();
+		pumpaHatizsak.add(ciszterna_pumpai.get(ciszterna_pumpai_meret - 1));
+
+		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő
+		helyzet.PumpaEltavolit();
 	}
 }
