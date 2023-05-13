@@ -331,4 +331,8 @@ public abstract class Mezo {
 	 * @throws Exception
 	 */
 	public abstract void Frissit() throws Exception;
+
+	//Default
+	public void PumpaKeszit() {
+	}
 }

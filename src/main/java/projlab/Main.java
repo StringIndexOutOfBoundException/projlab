@@ -19,7 +19,7 @@ public class Main {
         //Fájlból parancs futtatás
         pe.runFromFile("commandfiles/test.txt"); //Akárhány parancs lehet a fájlban, minden sorban egy
         //Stringből parancs futtatás
-        pe.runFromString("letrehoz cso cs2\nletrehoz szabotor sza1"); //Akárhány parancsot beírhatsz \n-nel elválasztva
+        pe.runFromString(" letrehoz cso cs2 \n letrehoz szabotor sza1 \n "); //Akárhány parancsot beírhatsz \n-nel elválasztva
         //Konzolról parancs futtatás (Beírsz egy parancsot, majd entert nyomsz. EOF-al ki lehet lépni belőle)
         pe.runFromUser();
 
