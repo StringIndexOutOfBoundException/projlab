@@ -34,7 +34,7 @@ public abstract class AktivElem extends Mezo {
 	 * @Override
 	 */
 	@Override
-	public Boolean SzomszedFelcsatol(Mezo m) {
+	public boolean SzomszedFelcsatol(Mezo m) {
 		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
 
 		// Ha nincs hely, akkor visszautasítunk

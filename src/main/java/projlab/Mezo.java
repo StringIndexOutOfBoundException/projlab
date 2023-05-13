@@ -1,4 +1,4 @@
-package projlab;
+package projlab;//
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,10 @@ public abstract class Mezo {
 	 */
 	private ArrayList <Mezo> szomszedok;
 
+	public int getMaxSzomszedok() {
+		return maxSzomszedok;
+	}
+
 	/**
 	 * Default konstruktor
 	 */
@@ -75,7 +79,7 @@ public abstract class Mezo {
 	 * lecsatlakoztatható szomszédokkal tér vissza. Default implementációként minden
 	 * szomszéddal visszatér, de a leszármazottaktól függ, hogy hogyan
 	 * implementálják.
-	 * 
+	 *
 	 * @return lecsatlakoztatható szomszédok
 	 */
 	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
@@ -87,7 +91,7 @@ public abstract class Mezo {
 	 * Az olyan leszármazottak, akik saját logikájuk szerint nem engedik el a
 	 * játékosokat, felüldefiniálják ezt a függvényt. (Egyelőre csak a Cso
 	 * definiálja felül.)
-	 * 
+	 *
 	 * @param j - A játékos aki lépni akar
 	 * @return Léphet a játékos vagy sem
 	 */
@@ -107,6 +111,7 @@ public abstract class Mezo {
 		if (jatekosok.size() < maxJatekosok) {
 			jatekosok.add(j);
 			j.setHelyzet(this);
+			//System.out.println("Játékos hozzáadva a mezőhöz: " + this);
 			return true;
 		}
 
@@ -146,49 +151,59 @@ public abstract class Mezo {
 	 * kettévágja és új pumpát rak a kettő közé. A szerelőknél lévő pumpák száma
 	 * csökken. Default implementációja üres.
 	 */
+
 	public void PumpaEpit() {
 	}
 
 	/**
-	 * Hozzáadja a paraméterként átadott mezőt a szomszédok kollekcióhoz.
+	 *  Az érintett mezőnek hozzáadja a paraméterként átadott mezőt a szomszédok kollekciójához.
 	 * @param m - Hozzáadandó szomszéd
 	 */
 	public void SzomszedHozzaad(Mezo m) {
-		if (szomszedok.size() < maxSzomszedok) {
-			szomszedok.add(m);
-		}
+		szomszedok.add(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedHozzaad(" + m + ")");
 	}
 
 	/**
-	 * Az "m" paraméterként kapott mezőt eltávolítja a "szomszedok” listából.
+	 * Egy mezőt leválasztottunk egy másik mezőről. Az adott mezőnek a szomszédok kollekciójából törli az m mezőt.
 	 * @param m Törlendő szomszéd
 	 */
 	public void SzomszedTorol(Mezo m) {
 		szomszedok.remove(m);
+		System.out.println("Függvényhívás: " + this + ".SzomszedTorol(" + m + ")");
 	}
 
 	/**
 	 * A Játékosok ezen a függvényen keresztül csatolhatnak fel elemeket a mezőkhöz.
-	 * A visszatérési értékben megadja, hogy sikeres volt-e a felcsatolás. Default
-	 * implementációja megegyezik a "SzomszedHozzaad" függvénnyel. Minden
-	 * leszármazott amelyikre nem lehet felcsatolni, felüldefiniálhatja.
-	 * 
+	 * Minden aktívelemnél ugyanazt csinálja mint a SzomszedHozzaad, viszont a Cső
+	 * osztály felüldefiniálja. Default implementációként nem enged felcsatolni.
 	 * @param m - Felcsatolandó
 	 * @return Sikerült-e a felcsatolás
 	 */
-	public boolean SzomszedFelcsatol(Mezo m) {
-		if (szomszedok.size() < maxSzomszedok) {
-			szomszedok.add(m);
-			return true;
-		}
+	public Boolean SzomszedFelcsatol(Mezo m) {
+		System.out.println("Függvényhívás: " + this + ".SzomszedFelcsatol(" + m + ")");
 		return false;
 	}
 
-	/*
-	 * Csak ciszterma osztalyon ertelmezett szerelo hivja meg ciszternara. Default
-	 * implementációja üres.
+	/**
+	 * Működése hasonló a GetSzomszedokhoz, viszont csak a játékosok által lecsatlakoztatható
+	 * szomszédokkal tér vissza.
+	 * Default implementációként üres listával tér vissza.
+	 * @return lecsatlakoztatható szomszédok
 	 */
-	public void PumpaEltavolit() {
+	public ArrayList<Mezo> GetLeszedhetoSzomszedok() {
+		System.out.println("Függvényhívás: " + this + ".GetLeszedhetoSzomszedok()");
+		System.out.println("Az elemről nem engedett a lecsatlakoztatás, leszedhető szomszédok száma: 0");
+		return new ArrayList<>();
+	}
+
+
+	/**
+	 * Ez a függvény azért felelős, hogy a mező működik-e vagy nem.
+	 * @param status Ez egy igaz/hamis értéket felvehető érték ami azt mondja meg, hogy mire állítsuk a mező működik értékét
+	 */
+	public void setMukodik(boolean status){
+		mukodik = status;
 	}
 
 	/**
@@ -196,34 +211,23 @@ public abstract class Mezo {
 	 * @param meret ez egy egész érték, amivel csökken a víz értéke
 	 * @throws Exception ezt dobja ha több vizet szeretnénk a csőből kinyerni, mint ami benne van
 	 */
-	public void VizetCsokkent(int meret) throws Exception {
-	}
+	public void VizetCsokkent(int meret) throws Exception {};
 
 	/**
 	 * Ez a függvény Növeli a csőben levő víz mennyiségét
 	 * @param meret ez egy egész érték, amivel csökken a víz értéke
 	 * @throws Exception ezt dobja ha több vizet szeretnénk a csőbe pumpálni, mint ami belefér
 	 */
-	public void VizetNovel(int meret) throws Exception {
-	}
+	public void VizetNovel(int meret) throws Exception {};
 
-	/**
-	 * Ez a függvény azért felelős, hogy a mező működik-e vagy nem.
-	 * @param status Ez egy igaz/hamis értéket felvehető érték ami azt mondja meg,
-	 *               hogy mire állítsuk a mező működik értékét
-	 */
-	public void setMukodik(boolean status) {
-		mukodik = status;
-	}
 
 	/**
 	 * Ez a getter azért felelős, hogy visszaadja mennyi víz van éppen a csőben.
 	 * @return vizmennyiseg - visszaadja, hogy mennyi víz van eppen a csőben
 	 */
-	public int getVizmennyiseg() {
-		return vizmennyiseg;
-	}
+	public int getVizmennyiseg(){return vizmennyiseg;}
 
+	
 	/*
 	 * getter a jatekosok attributumra
 	 */
@@ -235,7 +239,29 @@ public abstract class Mezo {
 	 * Csak ciszterma osztalyon ertelmezett getter a ciszterna termeltpumpak
 	 * attributumra
 	 */
-	public ArrayList<Pumpa> getTermeltPumpak() {
+	public ArrayList<Mezo> getTermeltPumpak() {
+		return null;
+	}
+
+	/*
+	 * Csak ciszterma osztalyon ertelmezett szerelo hivja meg ciszternara. Default
+	 * implementációja üres.
+	 */
+	public void PumpaEltavolit() {
+
+	}
+
+	/*
+	 * Csak Pumpa osztalyon ertelmezett Visszaadja adott pumpa kimeneti csovet
+	 */
+	public Mezo getKimenet() {
+		return null;
+	}
+
+	/*
+	 * Csak Pumpa osztalyon ertelmezett Visszaadja adott pumpa bemeneti csovet
+	 */
+	public Mezo getBemenet() {
 		return null;
 	}
 
@@ -247,76 +273,52 @@ public abstract class Mezo {
 		return maxJatekosok;
 	}
 
-	/**
-	 * Visszaadja hogy maximum hány szomszédja lehet mezőnek.
-	 * @return maxSzomszedok
-	 */
-	public int getMaxSzomszedok() {
-		return maxSzomszedok;
+	public void PumpatKeszit()
+	{
+		System.out.println("Pumpa keszitese");
 	}
 
-	/**
-	 * Csúszóssá teszi a mezőt ha implementálja.
-	 */
-	public void Csuszik() {
+	public void CsovetKeszit()
+	{
+		System.out.println("Cso keszitese");
 	}
 
-	/**
-	 * Ragadóssá teszi a mezőt ha implementálja.
-	 */
-	public void Ragad() {
+	public void Csuszik()
+	{
+		System.out.println("Csuszik");
+	}
+
+	public void Ragad()
+	{
+		System.out.println("Ragad");
 	}
 
 	public void SetVizmennyiseg(int mennyiseg) {
 		vizmennyiseg = mennyiseg;
 	}
 
+	public abstract void Frissit() throws Exception;
+
 	public boolean getMukodik() {
 		return mukodik;
 	}
 
-	/**
-	 * Ha a mezőnek lehet kimenete, akkor felüldefiniálhatja a függvényt.
-	 * @return kimenet
-	 */
-	public Mezo getKimenet() {
-		return null;
-	}
-
-	/**
-	 * Ha a mezőnek lehet bemenete, akkor felüldefiniálhatja a függvényt.
-	 * @return bemenet
-	 */
-	public Mezo getBemenet() {
-		return null;
-	}
-
-	/**
-	 * Tesztekhez kellő függvények állapot lekérdezésre, don't touch them, don't use
-	 * them!
-	 * @return semmit, ne használd
-	 */
 	public int getLyukCooldown() {
 		return -1;
 	}
-	public int getCsuszos() {
+
+	public int getCsuszos()
+	{
 		return -1;
 	}
-	public int getRagados() {
+
+	public int getRagados()
+	{
 		return -1;
 	}
+
 	public Jatekos getRagadossaTette() {
 		return null;
 	}
-	public void PumpatKeszit() {
-	}
-	public void CsovetKeszit() {
-	}
 
-	/**
-	 * Frissíti a mezőt. Ez a függvény alapból nem csinál semmit, a Mezo összes
-	 * gyerekosztály felüldefiniálja.
-	 * @throws Exception
-	 */
-	public abstract void Frissit() throws Exception;
 }
