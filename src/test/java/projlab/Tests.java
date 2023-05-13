@@ -60,11 +60,11 @@ class Tests {
         pre.runFromString("letrehoz cso cs1");
         pre.runFromString("allapot cs1 *");
         assertEquals("cs1 mukodik: true\n" +
-                        "szomszedok:\n" +
-                        "maxJatekosok: 1\n" +
-                        "maxSzomszedok: 2\n" +
-                        "jatekosok:\n" +
-                        "vizmennyiseg: 0\n" +
+                        "cs1 szomszedok: \n" +
+                        "cs1 maxJatekosok: 1\n" +
+                        "cs1 maxSzomszedok: 2\n" +
+                        "cs1 jatekosok: \n" +
+                        "cs1 vizmennyiseg: 0\n"+
                         "lyukCooldown: 0\n" +
                         "csuszos: 0\n" +
                         "ragados: 0\n",
@@ -101,7 +101,7 @@ class Tests {
                 "allapot cs1 szomszedok\n" +
                 "allapot cs2 szomszedok");
         assertEquals("cs1 szomszedok: \n" +
-                "cs2 szomszedok:", pre.getAllapotString());
+                "cs2 szomszedok: ", pre.getAllapotString());
     }
 
     @Test
@@ -308,7 +308,7 @@ class Tests {
                 "psza1\n" +
                 "psze2\n" +
                 "pcs3 jatekosok:\n" +
-                "pp3 jatekosok:", out);
+                "pp3 jatekosok: ", out);
     }
 
     @Test
@@ -354,7 +354,7 @@ class Tests {
                 "psza1\n" +
                 "pcs3 jatekosok:\n" +
                 "psze2\n" +
-                "pp3 jatekosok:", out);
+                "pp3 jatekosok: ", out);
     }
 
     @Test
@@ -379,7 +379,7 @@ class Tests {
                 "psza1\n" +
                 "pcs3 jatekosok:\n" +
                 "psze2\n" +
-                "pp3 jatekosok:", out);
+                "pp3 jatekosok: ", out);
     }
 
     @Test
@@ -399,7 +399,7 @@ class Tests {
                 "pcs3 csuszos: 5\n" +
                 "pcs3 jatekosok:\n" +
                 "psze2\n" +
-                "pp3 jatekosok:", out);
+                "pp3 jatekosok: ", out);
     }
 
     @Test
@@ -456,7 +456,7 @@ class Tests {
                 "osszekot p1 p2\n" +
                 "allapot p1 szomszedok");
         String out = pre.getAllapotString();
-        assertEquals("szomszedok:", out);
+        assertEquals("szomszedok: ", out);
     }
 
     @Test
@@ -672,7 +672,7 @@ class Tests {
     }
 
     @Test
-    @DisplayName("Forrashoz aktiv elem csatlakoztatasa:")
+    @DisplayName("Forrashoz aktiv elem csatlakoztatasa: ")
     void hozzacsatol() {
         pre.runFromString("letrehoz forras tesztforras \n" +
                 "letrehoz pumpa p1 \n" +
@@ -722,7 +722,7 @@ class Tests {
         );
         String out = pre.getAllapotString();
         assertEquals("pf1 jatekosok: psza1\n" +
-                "pcs1 jatekosok:", out);  //TODO: Nincsen jatekos rajta(pcs3) inicializacio utan hmmmmmmm
+                "pcs1 jatekosok: ", out);  //TODO: Nincsen jatekos rajta(pcs3) inicializacio utan hmmmmmmm
     }
 
     @Test
@@ -746,7 +746,7 @@ class Tests {
                 "allapot tesztciszterna szomszedok");
         String out = pre.getAllapotString();
         assertEquals("tesztciszterna termeltPumpak: \n" +
-                "tesztciszterna szomszedok:", out);
+                "tesztciszterna szomszedok: ", out);
 
     }
 
@@ -785,7 +785,7 @@ class Tests {
     }
 
     @Test
-    @DisplayName("Ciszternahoz aktiv elemet csatlakoztatok:")
+    @DisplayName("Ciszternahoz aktiv elemet csatlakoztatok: ")
     void aktiv_csati() {
         pre.runFromString("letrehoz ciszterna tesztciszterna\n" +
                 "letrehoz pumpa p1\n" +
@@ -944,7 +944,7 @@ class Tests {
         pre.runFromString("lyukaszt psza1\n" +
                 "lep psza1 pp1\n" +
                 "lep psze2 pcs3\n" +
-                "javit psze2\n" +
+                "javít psze2\n" +
                 "allapot pcs3 mukodik");
         String out = pre.getAllapotString();
         assertEquals("pcs3 mukodik: true", out);
@@ -961,7 +961,7 @@ class Tests {
         );
         String out = pre.getAllapotString();
         assertEquals("psze1 pumpaHatizsak: p1\n" +
-                "pc1 termeltPumpak:", out);
+                "pc1 termeltPumpak: ", out);
     }
 
     @Test
@@ -1005,7 +1005,7 @@ class Tests {
                 "allapot pc1 szomszedok");
         String out = pre.getAllapotString();
         assertEquals("psze1 pumpaHatizsak: p1\n" +
-                "pc1 szomszedok:", out);
+                "pc1 szomszedok: ", out);
     }
 
     @Test
@@ -1053,7 +1053,7 @@ class Tests {
                 "pcs3\n" +
                 "pcs4\n" +
                 "pcs5\n" +
-                "psze2 csoHatizsak:", out);
+                "psze2 csoHatizsak: ", out);
     }
 
     @Test

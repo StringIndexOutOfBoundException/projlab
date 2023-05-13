@@ -18,7 +18,11 @@ public class Cso extends Mezo {
 	 */
 	public Cso() {
 		super(1);
-	} //TODO: meg nem tudom hova rakjam bele
+		maxSzomszedok = 2;
+		lyukCooldown = 0;
+		csuszos = 0;
+		ragados = 0;
+	}
 
 	private int vizmennyiseg;
 
@@ -101,6 +105,7 @@ public class Cso extends Mezo {
 	public void Kilyukaszt() {
 		if (lyukCooldown == 0) {
 			setMukodik(false);
+			vizmennyiseg = 0;
 		}
 		lyukCooldown = 5; //5 Körig nem lehet majd kilyukasztani a csövet
 		//Ez NINCS a leírásban

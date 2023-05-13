@@ -1,6 +1,5 @@
 package projlab;
 
-import java.nio.BufferUnderflowException;
 import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
@@ -12,11 +11,11 @@ import java.util.ArrayList;
  */
 public class Ciszterna extends Mezo {
 
-	private ArrayList<Pumpa> termeltpumpak;
+	private ArrayList<Mezo> termeltpumpak;
 
 	public Ciszterna() {
 		super(Integer.MAX_VALUE);
-		termeltpumpak = new ArrayList<Pumpa>();
+		termeltpumpak = new ArrayList<Mezo>();
 		maxSzomszedok = 20;
 	}
 
@@ -68,7 +67,7 @@ public class Ciszterna extends Mezo {
 	/**
 	 * getter a termeltpumpakra
 	 */
-	public ArrayList<Mezo> getTermeltPumpak() {
+	public List<Mezo> getTermeltPumpak() {
 		return this.termeltpumpak;
 	}
 

@@ -1,7 +1,6 @@
 package projlab;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 /**
@@ -12,7 +11,7 @@ public abstract class Jatekos {
 
 	protected Mezo helyzet;		//a játékos helyzete
 	protected int maxHatizsakKapacitas;		//a játékos hátizsákjainak maximum kapacitása
-	protected ArrayList<Pumpa> pumpaHatizsak;		//a játékos hátizsákja, ami pumpákat tartalmaz
+	protected ArrayList<Mezo> pumpaHatizsak;		//a játékos hátizsákja, ami pumpákat tartalmaz
 	protected ArrayList<Mezo> csoHatizsak;		//a játékos hátizsákja, ami csöveket tartalmaz
 
 	public Jatekos() {
@@ -26,13 +25,16 @@ public abstract class Jatekos {
 	 * @param m a választott mező referenciája
 	 */
 	public void Lep(Mezo m) {
-		boolean elengedve = helyzet.JatekosElenged(this);
-		List<Mezo> szomszedok = helyzet.GetSzomszedok();
+		if (helyzet == null){helyzet = m;}
+		else {
+			boolean elengedve = helyzet.JatekosElenged(this);
+			List<Mezo> szomszedok = helyzet.GetSzomszedok();
 
-		if(elengedve && szomszedok.contains(m)){
-			boolean elfogadva = m.JatekosElfogad(this);
-			if(elfogadva)
-				helyzet.JatekosEltavolit(this);
+			if (elengedve && szomszedok.contains(m)) {
+				boolean elfogadva = m.JatekosElfogad(this);
+				if (elfogadva)
+					helyzet.JatekosEltavolit(this);
+			}
 		}
 	}
 
@@ -115,9 +117,10 @@ public abstract class Jatekos {
 
 	/**
 	 * Visszaadja a pumpákat tartalmazó hátizsákot
+	 *
 	 * @return a hátizsákban található pumpák listája
 	 */
-	public ArrayList<Pumpa> getPumpaHatizsak(){	return this.pumpaHatizsak; }
+	public List<Mezo> getPumpaHatizsak(){	return this.pumpaHatizsak; }
 
 	/**
 	 * Visszaadja a csöveket tartalmazó hátizsákot
@@ -125,4 +128,7 @@ public abstract class Jatekos {
 	 */
 	public ArrayList<Mezo> getCsoHatizsak() { return csoHatizsak; }
 
+	public void CsuszossaTesz() {
+
+	}
 }

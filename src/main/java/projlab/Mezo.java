@@ -238,7 +238,7 @@ public abstract class Mezo {
 	 * Csak ciszterma osztalyon ertelmezett getter a ciszterna termeltpumpak
 	 * attributumra
 	 */
-	public ArrayList<Pumpa> getTermeltPumpak() {
+	public List<Mezo> getTermeltPumpak() {
 		return null;
 	}
 

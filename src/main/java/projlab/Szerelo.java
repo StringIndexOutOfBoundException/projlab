@@ -1,6 +1,7 @@
 package projlab;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A szerelők tartják karban a csőhálózatot. ők javítják meg az elromlott
@@ -108,8 +109,8 @@ public class Szerelo extends Jatekos {
 
 		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
 		// utolsó pumpát
-		ArrayList<Pumpa> termeltPumpak = helyzet.getTermeltPumpak();
-		pumpaHatizsak.add(termeltPumpak.get(termeltPumpak.size() - 1));
+		List<Mezo> termeltPumpak = helyzet.getTermeltPumpak();
+		pumpaHatizsak.add((Pumpa) termeltPumpak.get(termeltPumpak.size() - 1));
 
 		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő (ez is az utolsót
 		// távolítja el)

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        UseCase11_15 ls = new UseCase11_15();
-        UseCase1_4 useCase1_4 = new UseCase1_4();
 
 
 
