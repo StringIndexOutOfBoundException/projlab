@@ -13,6 +13,7 @@ public class Szerelo extends Jatekos {
 	/**
 	 * A szerelő megjavít egy mezőt, amin éppen áll
 	 */
+	@Override
 	public void Javit() {
 		helyzet.Megjavit();
 	}
@@ -22,7 +23,10 @@ public class Szerelo extends Jatekos {
 	 * amin éppen áll és ez a csoHatizsak-ba kerül. Ekkor a cső szomszédai közül a
 	 * mező, a mező szomszédai közül pedig a cső kikerül. A cső ezután bekerül a
 	 * hátizsákba.
+	 * 
+	 * @param m - A helyzetről lecsatolandó mező
 	 */
+	@Override
 	public void CsovetLecsatol(Mezo m) {
 		// Ha nincs ilyen leszedhető szomszéd, vagy nincs táska hely, semmi sem történik
 		if (!helyzet.GetLeszedhetoSzomszedok().contains(m) || csoHatizsak.size() > maxHatizsakKapacitas) {
@@ -41,7 +45,10 @@ public class Szerelo extends Jatekos {
 	 * szomszédjának a szomszedok listájából, és a cső referenciája bekerül a
 	 * hátizsákba kétszer (mind a két vége, hiszen felcsatolásnál majd kétszer lehet
 	 * felcsatolni ugyanazt a csövet).
+	 * 
+	 * @param m - A helyzetről lecsatolandó mező
 	 */
+	@Override
 	public void EgeszCsovetLecsatol(Mezo m) {
 		// Ha nincs ilyen leszedhető szomszéd, vagy nincs táska hely, semmi sem történik
 		if (!helyzet.GetLeszedhetoSzomszedok().contains(m) || csoHatizsak.size() > maxHatizsakKapacitas) {
@@ -57,20 +64,22 @@ public class Szerelo extends Jatekos {
 		m.GetSzomszedok().clear();
 	}
 
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	/**
 	 * A szerelő kivesz egy csövet a hátizsákjából (ha úgy nézzük akkor az egyik
 	 * végét) és felcsatolja a mezőre, amin éppen áll. Ekkor mind a mező és a cső
 	 * "szomszedok" listája frissül, és a cső ezen vége kikerül a hátizsákból.
 	 */
+	@Override
 	public void CsovetFelcsatol() {
 		// Üres hátizsák esetén nem történik semmi
 		if (csoHatizsak.size() == 0) {
 			return;
 		}
 
-		// Kiválasztunk egy felcsatolandót a hátizákból
-		Mezo felcsatolando = UseCase16.elemKivalaszt(getCsoHatizsak(), "Válassz egy elemet a hátizsákból!");
+		// Kiválasztunk egy felcsatolandót a hátizákból.
+		// TODO: Lehet hogy még változik, hogy melyiket csatoljuk fel ilyenkor.
+		// Egyenlőre a legutóbbi felvett csővéget választjuk.
+		Mezo felcsatolando = csoHatizsak.get(csoHatizsak.size() - 1);
 
 		// Megpróbáljuk felcsatolni
 		Boolean sikerult = helyzet.SzomszedFelcsatol(felcsatolando);
@@ -83,21 +92,6 @@ public class Szerelo extends Jatekos {
 
 	}
 
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	/**
-	 * Ha a szerelo uj pumpat akar helyezni a csorendszerbe, ezt a fuggvenyt
-	 * hasznalja A szerelonek egy csovon kell allnia, ennek a csonek hivja meg a
-	 * PumpaEpit fuggvenyet A szerelo pumpaHatizsak kollekciojabol ki is torli a
-	 * pumpat, amit elhelyezett.
-	 */
-	public void PumpatEpit() {
-		// Szerelo egy csovon all, ennek a csonek meghivja a PumpaEpit fuggvenyet
-		helyzet.PumpaEpit();
-		// szerelo pumpaHatizsakjabol torlodik a pumpa amit elhelyez, azaz a
-		// pumpahatizsak kollekcio utolso pumpaja
-		pumpaHatizsak.remove(pumpaHatizsak.size() - 1);
-	}
-
 	/**
 	 * A szerelo egy pumpat akar felvenni annal a ciszternanal ahol eppen
 	 * tartozkodik Eloszor megnezi, hogy van-e eleg hely a pumpaHatizsakjaban, majd
@@ -105,6 +99,7 @@ public class Szerelo extends Jatekos {
 	 * ciszterna termeltpumpak kollekciobol kiveszi az utolso pumpat es belerakja a
 	 * hatizsakjaba.
 	 */
+	@Override
 	public void PumpatFelvesz() {
 		// Ha nincs hely a hátizsákban vagy nincs termelt pumpa, semmi sem történik
 		if (pumpaHatizsak.size() >= maxHatizsakKapacitas || helyzet.getTermeltPumpak().size() > 0) {
@@ -113,11 +108,25 @@ public class Szerelo extends Jatekos {
 
 		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
 		// utolsó pumpát
-		ArrayList<Mezo> ciszterna_pumpai = helyzet.getTermeltPumpak();
-		int ciszterna_pumpai_meret = ciszterna_pumpai.size();
-		pumpaHatizsak.add(ciszterna_pumpai.get(ciszterna_pumpai_meret - 1));
+		ArrayList<Mezo> termeltPumpak = helyzet.getTermeltPumpak();
+		pumpaHatizsak.add(termeltPumpak.get(termeltPumpak.size() - 1));
 
-		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő
+		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő (ez is az utolsót
+		// távolítja el)
 		helyzet.PumpaEltavolit();
+	}
+
+	/**
+	 * Ha a szerelo uj pumpat akar helyezni a csorendszerbe, ezt a fuggvenyt
+	 * hasznalja A szerelonek egy csovon kell allnia, ennek a csonek hivja meg a
+	 * PumpaEpit fuggvenyet A szerelo pumpaHatizsak kollekciojabol ki is torli a
+	 * pumpat, amit elhelyezett.
+	 */
+	@Override
+	public void PumpatEpit() {
+		helyzet.PumpaEpit();
+
+		// TODO: Csőben amikor épül a pumpa elvenni a játékostól azt a pumpát:
+		// pumpaHatizsak.remove(A_PUMPA);
 	}
 }
