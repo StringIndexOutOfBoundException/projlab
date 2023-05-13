@@ -50,22 +50,16 @@ public class Szerelo extends Jatekos {
 	 * mező, a mező szomszédai közül pedig a cső kikerül. A cső ezután bekerül a
 	 * hátizsákba.
 	 */
-	public void CsovetLecsatol() {
-		// Lekérdezzük a lecsatlakoztatható elemeket
-		ArrayList<Mezo> lecsatlakoztathatok = helyzet.GetLeszedhetoSzomszedok();
-
-		// Ha nincs ilyen, vagy nincs táska hely, semmi sem történik
-		if (lecsatlakoztathatok.size() == 0 || csoHatizsak.size() > maxHatizsakKapacitas) {
+	public void CsovetLecsatol(Mezo m) {
+		// Ha nincs ilyen leszedhető szomszéd, vagy nincs táska hely, semmi sem történik
+		if (!helyzet.GetLeszedhetoSzomszedok().contains(m) || csoHatizsak.size() > maxHatizsakKapacitas) {
 			return;
 		}
 
-		// Kiválasztunk egyet
-		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet!");
-
 		// Frissítjül a referenciákat
-		csoHatizsak.add(kivalasztott);
-		helyzet.SzomszedTorol(kivalasztott);
-		kivalasztott.SzomszedTorol(helyzet);
+		csoHatizsak.add(m);
+		helyzet.SzomszedTorol(m);
+		m.SzomszedTorol(helyzet);
 	}
 
 	/**
@@ -75,25 +69,19 @@ public class Szerelo extends Jatekos {
 	 * hátizsákba kétszer (mind a két vége, hiszen felcsatolásnál majd kétszer lehet
 	 * felcsatolni ugyanazt a csövet).
 	 */
-	public void EgeszCsovetLecsatol() {
-		// Lekérdezzük a lecsatlakoztatható elemeket
-		ArrayList<Mezo> lecsatlakoztathatok = helyzet.GetLeszedhetoSzomszedok();
-
-		// Ha nincs ilyen, vagy nincs táska hely, semmi sem történik
-		if (lecsatlakoztathatok.size() == 0 || csoHatizsak.size() > maxHatizsakKapacitas) {
+	public void EgeszCsovetLecsatol(Mezo m) {
+		// Ha nincs ilyen leszedhető szomszéd, vagy nincs táska hely, semmi sem történik
+		if (!helyzet.GetLeszedhetoSzomszedok().contains(m) || csoHatizsak.size() > maxHatizsakKapacitas) {
 			return;
 		}
 
-		// Kiválasztunk egyet
-		Mezo kivalasztott = UseCase16.elemKivalaszt(lecsatlakoztathatok, "Válassz egy lecsatolandó elemet!");
-
 		// Lecsatoljuk az összes végét és a hátizsákba tesszük
-		for (Mezo sz : kivalasztott.GetSzomszedok()) {
-			csoHatizsak.add(kivalasztott);
-			sz.SzomszedTorol(kivalasztott);
+		for (Mezo sz : m.GetSzomszedok()) {
+			csoHatizsak.add(m);
+			sz.SzomszedTorol(m);
 		}
 
-		kivalasztott.GetSzomszedok().clear();
+		m.GetSzomszedok().clear();
 	}
 
 	/**
