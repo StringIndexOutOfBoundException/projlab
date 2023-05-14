@@ -120,21 +120,23 @@ public class Pumpa extends Mezo {
 						vizmennyiseg += vizet_sziv;
 					}
 					// vizet átad kimenetnek, ha van viz
+					if(kimenet!=null) {
 					if (vizmennyiseg >= 1) {
 						int vizet_pumpal = MAXVIZ - kimenet.getVizmennyiseg(); // MAXVIZ=1, ennyi fér bele egy csőbe
 						kimenet.VizetNovel(vizet_pumpal);
 						vizmennyiseg -= vizet_pumpal;
 					}
 				}
+				}
 
 				// ha tele van a pumpa
 				if (vizmennyiseg == 5) {
-
+					if(kimenet!=null) {
 					// eloszor megprobal kimenetre kipumpalni
 					int vizet_pumpal = MAXVIZ - kimenet.getVizmennyiseg();
 					kimenet.VizetNovel(vizet_pumpal);
 					vizmennyiseg -= vizet_pumpal;
-
+					}
 					// ha sikerult atadni a vizet a kimenetnek a bemenettol kaphat vizet
 					if (vizmennyiseg != 5) {
 						if (bemenet != null) {

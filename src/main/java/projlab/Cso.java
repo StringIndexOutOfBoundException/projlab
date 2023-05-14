@@ -78,7 +78,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void PumpaEpit() {
-		ArrayList<Mezo> voltszomszedok = GetSzomszedok(); //btw ez miért nagy G?
+		/*ArrayList<Mezo> voltszomszedok = GetSzomszedok(); //btw ez miért nagy G?
 		Jatekos jatekos = getJatekosok().get(0);
 		Mezo pumpa = jatekos.getPumpaHatizsak().remove(0);
 		Mezo cso = jatekos.getCsoHatizsak().remove(0);
@@ -89,6 +89,23 @@ public class Cso extends Mezo {
 
 		cso.SzomszedHozzaad(pumpa);
 		cso.SzomszedHozzaad(voltszomszedok.get(0));
+
+		Mezo torlendo = voltszomszedok.get(0);
+		torlendo.SzomszedTorol(this);
+		SzomszedTorol(torlendo);
+		SzomszedHozzaad(pumpa);*/
+
+		ArrayList<Mezo> voltszomszedok = GetSzomszedok();
+		Cso ujcso = new Cso();
+		Jatekos jatekos = getJatekosok().get(0);
+		Mezo pumpa = jatekos.getPumpaHatizsak().remove(0);
+
+		pumpa.SzomszedFelcsatol(this);
+		pumpa.SzomszedFelcsatol(ujcso);
+		pumpa.Atallit(ujcso, this);
+
+		ujcso.SzomszedHozzaad(pumpa);
+		ujcso.SzomszedHozzaad(voltszomszedok.get(0));
 
 		Mezo torlendo = voltszomszedok.get(0);
 		torlendo.SzomszedTorol(this);
@@ -119,6 +136,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetNovel(int meret) throws Exception {
+		if (!mukodik){return;}
 		if (meret + vizmennyiseg > 1) {
 			throw new ArithmeticException();
 		}

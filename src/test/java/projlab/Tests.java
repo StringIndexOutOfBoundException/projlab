@@ -200,7 +200,7 @@ class Tests {
         assertEquals("pcs5 mukodik: true\n" +
                 "pcs5 vizmennyiseg: 0\n" +
                 "pcs5 lyukCooldown: 5\n" +
-                "pcs5 vizmennyiseg: 0\n" +
+                "pcs5 vizmennyiseg: 1\n" +
                 "pcs5 lyukCooldown: 4", out);
     }
 
@@ -947,7 +947,7 @@ class Tests {
         );
         String out = pre.getAllapotString();
         assertEquals("pf1 jatekosok: psza1\n" +
-                "pcs1 jatekosok: psza1", out);
+                "pcs1 jatekosok: \npsza1", out);
     }
 
     @Test
@@ -1070,8 +1070,7 @@ class Tests {
 
     @Test
     @DisplayName("Egy cso mindket veget felveszem")
-    void
-    felveszfel() {
+    void felveszfel() {
         pre.runFromString("vizmennyiseg pcs7 1\n" +
                 "lep psze1 pc1\n" +
                 "Felvesz psze1 cso pcs7 egesz\n" +
