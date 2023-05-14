@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * A Forrás a pálya aktív eleme. Azért felelős, hogy vizet nyeljen el, amit a
  * csőhálózaton keresztűl kap. Továbbá Pumpákat és Csöveket termel. Összesen
- * maximum 20 pumpája és hozzácsatlakozott csöve lehet egy csiszternának
+ * maximum 20 hozzácsatlakozott csöve lehet egy csiszternának és bármennyi pumpát termelhet.
  */
 public class Ciszterna extends Mezo {
 
@@ -20,9 +20,9 @@ public class Ciszterna extends Mezo {
 	}
 
 	/**
-	 * Ha a termeltpumpák elemszáma 0, akkor visszajelzést ad, hogy nincs felvehető
-	 * pumpa. Ha a termeltpumpák elemszáma nagyobb mint 0, akkor az listaban utolso
-	 * pumpaja eltávolításra kerül.
+	 * Ha a termeltpumpák elemszáma 0, akkor nincs felvehető pumpa.
+	 * Ha a termeltpumpák elemszáma nagyobb mint 0, akkor az termeltpumpak listaban
+	 * az utolso pumpa eltávolításra kerül.
 	 */
 	public void PumpaEltavolit() {
 		// ha van pumpa a ciszterna korul
@@ -32,7 +32,7 @@ public class Ciszterna extends Mezo {
 
 	/**
 	 * A ciszternak ezzel a fuggvennyel keszitenek uj pumpakat minden hivas utan 0-2
-	 * szam intervallumban
+	 * szam intervallumban ha determinisztikus. Ha a randomizálás ki van kapcsolva akkor 1 pumpát termel.
 	 */
 	public void PumpaKeszit() {
 		// Random darab uj pumpat rak bele a termeltpumpakba 0-2 kozott
@@ -74,7 +74,6 @@ public class Ciszterna extends Mezo {
 	 * minden rá csatlakoztatott csőtől elveszi a benne található vizet. (ha nincs
 	 * víz a csőben, nem kap vizet) Meghívja a PumpatKeszit, CsovetKeszit
 	 * függvényeket is.
-	 * 
 	 * @Override
 	 */
 	public void Frissit() {
