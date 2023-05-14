@@ -49,6 +49,7 @@ public abstract class Mezo {
 	 */
 	public Mezo() {
 		szomszedok = new ArrayList<Mezo>();
+		maxSzomszedok = 5;
 	}
 
 	/**

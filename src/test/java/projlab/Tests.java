@@ -44,7 +44,8 @@ class Tests {
                 "osszekot pcs5 pc1\n" +
                 "lep psza1 pcs3\n" +
                 "lep psze2 pp3\n" +
-                "lep psze1 pcs5\n"
+                "lep psze1 pcs5\n"+
+                "veletlen ki"
         );
     }
 
@@ -124,10 +125,11 @@ class Tests {
                 "vizmennyiseg pp3 3\n" +
                 "frissit\n" +
                 "frissit\n" +
-                "allapot pcs5 vizmennyiseg\n" +
+                "allapot pcs3 vizmennyiseg\n" +
                 "allapot pp3 vizmennyiseg");
         String out = pre.getAllapotString();
-        assertEquals("vizmennyiseg: 1\nvizmennyiseg: 2", out);
+        assertEquals("pcs3 vizmennyiseg: 1\n" +
+                "pp3 vizmennyiseg: 2", out);
     }
 
 
@@ -491,8 +493,8 @@ class Tests {
                 "allapot pp3 bemenet\n" +
                 "allapot pp3 kimenet");
         String out = pre.getAllapotString();
-        assertEquals("pp3 bemenet: pcs3\n" +
-                "pp3 kimenet: pcs4", out);
+        assertEquals("pp3 bemenet: pcs4\n" +
+                "pp3 kimenet: pcs3", out);
     }
 
     @Test
@@ -569,9 +571,9 @@ class Tests {
                 "allapot pp3 vizmennyiseg\n" +
                 "allapot pcs4 vizmennyiseg");
         String out = pre.getAllapotString();
-        assertEquals("pcs3 vizmennyiseg: 0\n" +
+        assertEquals("pcs3 vizmennyiseg: 1\n" +
                 "pp3 vizmennyiseg: 2\n" +
-                "pcs4 vizmennyiseg: 1\n", out);
+                "pcs4 vizmennyiseg: 0", out);
     }
 
     @Test
@@ -746,7 +748,7 @@ class Tests {
                 "allapot tesztciszterna szomszedok");
         String out = pre.getAllapotString();
         assertEquals("tesztciszterna termeltPumpak: \n" +
-                "tesztciszterna szomszedok: ", out);
+                "tesztciszterna szomszedok:", out);
 
     }
 
@@ -774,19 +776,57 @@ class Tests {
                 "osszekot tesztciszterna cso9\n" +
                 "letrehoz cso cso10\n" +
                 "osszekot tesztciszterna cso10\n" +
+                "letrehoz cso cso11\n" +
+                "osszekot tesztciszterna cso11\n" +
+                "letrehoz cso cso12\n" +
+                "osszekot tesztciszterna cso12\n" +
+                "letrehoz cso cso13\n" +
+                "osszekot tesztciszterna cso13\n" +
+                "letrehoz cso cso14\n" +
+                "osszekot tesztciszterna cso14\n" +
+                "letrehoz cso cso15\n" +
+                "osszekot tesztciszterna cso15\n" +
+                "letrehoz cso cso16\n" +
+                "osszekot tesztciszterna cso16\n" +
+                "letrehoz cso cso17\n" +
+                "osszekot tesztciszterna cso17\n" +
+                "letrehoz cso cso18\n" +
+                "osszekot tesztciszterna cso18\n" +
+                "letrehoz cso cso19\n" +
+                "osszekot tesztciszterna cso19\n" +
+                "letrehoz cso cso20\n" +
+                "osszekot tesztciszterna cso20\n" +
+                "letrehoz cso cso21\n" +
+                "osszekot tesztciszterna cso21\n" +
                 "allapot tesztciszterna szomszedok"
         );
         String out = pre.getAllapotString();
         assertEquals("tesztciszterna szomszedok: \n" +
                 "cso1\n" +
+                "cso10\n" +
+                "cso11\n" +
+                "cso12\n" +
+                "cso13\n" +
+                "cso14\n" +
+                "cso15\n" +
+                "cso16\n" +
+                "cso17\n" +
+                "cso18\n" +
+                "cso19\n" +
                 "cso2\n" +
+                "cso20\n" +
                 "cso3\n" +
-                "cso4", out);
+                "cso4\n" +
+                "cso5\n" +
+                "cso6\n" +
+                "cso7\n" +
+                "cso8\n" +
+                "cso9", out);
     }
 
     @Test
     @DisplayName("Ciszternahoz aktiv elemet csatlakoztatok: ")
-    void aktiv_csati() {
+    void  aktiv_csati() {
         pre.runFromString("letrehoz ciszterna tesztciszterna\n" +
                 "letrehoz pumpa p1\n" +
                 "letrehoz ciszterna c1\n" +
@@ -845,7 +885,7 @@ class Tests {
                 "allapot pc1 termeltpumpak");
         String out = pre.getAllapotString();
         assertEquals("pc1 termeltPumpak: \n" +
-                "[Nem található mező]", out);
+                "gen0", out);
     }
 
     @Test
@@ -861,12 +901,13 @@ class Tests {
                         "allapot pc1 szomszedok"
         );
         String out = pre.getAllapotString();
-        assertEquals("pc1 szomszedok: cs1\n" +
+        assertEquals("pc1 szomszedok: \n" +
+                        "cs1\n" +
                         "cs2\n" +
                         "cs3\n" +
                         "pcs5\n" +
                         "pcs6\n" +
-                        "pcs7\n"
+                        "pcs7"
                 , out);
     }
 
@@ -926,7 +967,7 @@ class Tests {
         pre.runFromString("ragad psza1\n" +
                 "allapot pcs3 ragados");
         String out = pre.getAllapotString();
-        assertEquals("r", out); //TODO: ITT valami sus
+        assertEquals("pcs3 ragados: 3", out);
     }
 
     @Test
@@ -1053,7 +1094,7 @@ class Tests {
                 "pcs3\n" +
                 "pcs4\n" +
                 "pcs5\n" +
-                "psze2 csoHatizsak: ", out);
+                "psze2 csoHatizsak:", out);
     }
 
     @Test
@@ -1079,7 +1120,7 @@ class Tests {
         assertEquals("pp3 szomszedok: \n" +
                 "cs0\n" +
                 "cs1\n" +
-                "cs2\n" +
+                "pcs3\n" +
                 "pcs4\n" +
                 "pcs5", out);
     }
@@ -1128,7 +1169,7 @@ class Tests {
         String out = pre.getAllapotString();
         assertEquals("sz maxHatizsakKapacitas: 5\n" +
                 "sz pumpaHatizsak: \n" +
-                "sz csoHatizsak: \n", out);
+                "sz csoHatizsak:", out);
     }
 
     @Test

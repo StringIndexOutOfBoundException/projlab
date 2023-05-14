@@ -172,12 +172,15 @@ public class Pumpa extends Mezo {
 	 * 
 	 * @param meret: viz mennyisege
 	 */
-	public void setVizmennyiseg(int meret) {
+	public void SetVizmennyiseg(int meret) {
 		// max 5 viz lehet benne
 		if (meret > 5) {
 			this.vizmennyiseg = 5;
 		} else if (meret < 0) {
 		} else
 			this.vizmennyiseg = meret;
+	}
+	public int getVizmennyiseg() {
+		return vizmennyiseg;
 	}
 }

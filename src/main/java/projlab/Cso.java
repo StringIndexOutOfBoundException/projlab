@@ -121,7 +121,8 @@ public class Cso extends Mezo {
 	public void VizetNovel(int meret) throws Exception {
 		if (meret + vizmennyiseg > 1) {
 			throw new ArithmeticException();
-		} else {
+		}
+		else{
 			vizmennyiseg += meret;
 		}
 	}
@@ -136,8 +137,6 @@ public class Cso extends Mezo {
 
 		if (meret <= vizmennyiseg) {
 			vizmennyiseg -= meret;
-		} else {
-			throw new ArithmeticException();
 		}
 
 	}

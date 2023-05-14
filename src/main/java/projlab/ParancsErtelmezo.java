@@ -367,6 +367,7 @@ public class ParancsErtelmezo {
         }
         //Összekötjük a két mezőt
         mezoMap.get(param[0]).SzomszedHozzaad(mezoMap.get(param[1]));
+        mezoMap.get(param[1]).SzomszedHozzaad(mezoMap.get(param[0])); //nem elég ha egyiket kötjük a másikhoz vica-versa is kell kicsit szar ez de ...
 
     }
 

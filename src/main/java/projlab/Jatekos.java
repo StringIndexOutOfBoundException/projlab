@@ -25,7 +25,7 @@ public abstract class Jatekos {
 	 * @param m a választott mező referenciája
 	 */
 	public void Lep(Mezo m) {
-		if (helyzet == null){helyzet = m;}
+		if (helyzet == null){helyzet = m; m.JatekosElfogad(this);}
 		else {
 			boolean elengedve = helyzet.JatekosElenged(this);
 			List<Mezo> szomszedok = helyzet.GetSzomszedok();
@@ -34,6 +34,7 @@ public abstract class Jatekos {
 				boolean elfogadva = m.JatekosElfogad(this);
 				if (elfogadva)
 					helyzet.JatekosEltavolit(this);
+					m.JatekosElfogad(this);	//monkey patch
 			}
 		}
 	}
