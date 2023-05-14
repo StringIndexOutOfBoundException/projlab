@@ -17,6 +17,7 @@ public abstract class Jatekos {
 	public Jatekos() {
 		pumpaHatizsak = new ArrayList<>();
 		csoHatizsak = new ArrayList<>();
+		maxHatizsakKapacitas = 5;
 	}
 
 
