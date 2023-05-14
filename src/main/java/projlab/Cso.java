@@ -32,7 +32,7 @@ public class Cso extends Mezo {
 	Jatekos ragadossaTette;
 
 	/**
-	 * A szerelő megjavít egy elemet, amin Éppen Áll
+	 * A szerelő megjavít egy elemet, amin éppen áll
 	 */
 	@Override
 	public void Megjavit() {

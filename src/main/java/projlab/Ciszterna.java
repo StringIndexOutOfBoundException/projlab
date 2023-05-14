@@ -37,14 +37,12 @@ public class Ciszterna extends Mezo {
 	public void PumpaKeszit() {
 		// Random darab uj pumpat rak bele a termeltpumpakba 0-2 kozott
 		Random rand = new Random();
-		int randomNum = 0;
+		int randomNum = 1;
 		if (doRandomThings) // ha determinisztikus a mukodes
 			randomNum = rand.nextInt(3);
 		for (int i = 0; i < randomNum; ++i) {
 			Pumpa p = new Pumpa();
 			termeltpumpak.add(p);
-			p.SzomszedHozzaad(this);
-			this.SzomszedHozzaad(p);
 		}
 
 	}
@@ -54,7 +52,7 @@ public class Ciszterna extends Mezo {
 	 */
 	public void CsovetKeszit() {
 		Random rand = new Random();
-		int randomNum = 0;
+		int randomNum = 1;
 		if (doRandomThings) // ha determinisztikus a mukodes
 			randomNum = rand.nextInt(3);
 		for (int i = 0; i < randomNum; ++i) {

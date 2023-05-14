@@ -13,6 +13,9 @@ public class ParancsErtelmezo {
     private HashMap<String, Jatekos> jatekosMap = new HashMap<String, Jatekos>();
 
 
+    //Automatikusan generált neveknél mi a következő szám, amit hozzá kell adni a nevekhez
+    private int autoGenNextNumber = 0;
+
     //A parancsértelmező képes arra, hogy érzékelje az elgépelt parancsokat, és javaslatot adjon helyettük, vagy akár ki is javítsa az elgépelt parancsot.
     //Ezt a változót át szabad írni, vagy akár a megfelelő függvénnyel lehet módosítani, ez szabályozza, hogy ez be legyen-e kapcsolva.
     //true: be van kapcsolva, false: ki van kapcsolva
@@ -39,6 +42,16 @@ public class ParancsErtelmezo {
      */
     public void runFromString(String parancs)
     {
+
+        //Ez a következő néhány sor varázslat azt csinálja, hogy a parancsokat soronként szétválasszuk, és a sorok végéről levágjuk a whitespace karaktereket.
+        String[] lines = parancs.trim().split("\\n");
+        StringBuilder sb = new StringBuilder();
+        for (String line : lines) {
+            sb.append(line.trim()).append("\n");
+        }
+        parancs = sb.toString().trim();
+
+
         //Egy tömb amiben először soronként szétválasztjuk a parancsokat
         String[] parancsokTomb = parancs.split("\n");
         //Egy lista, amibe átmásoljuk a tömböt
@@ -453,6 +466,8 @@ public class ParancsErtelmezo {
             System.out.println("Figyelmeztetés: A frissit parancs nem vár paramétert. A parancs ettől függetlenül lefutott.");
         }
 
+        GiveNamesToThingsThatDontHaveNames(); //Létrejöhetett új pumpa és cső, ezeknek is kell nevet adni
+
     }
 
     /**
@@ -486,6 +501,8 @@ public class ParancsErtelmezo {
         else{
             jatekosMap.get(param[0]).CsovetFelcsatol();
         }
+
+        GiveNamesToThingsThatDontHaveNames(); //Ez elvileg ide nem kell de itt marad mert a bánat tudja. Nem baj ha fut fölöslegesen, arra való a processzor hogy fusson.
 
     }
 
@@ -952,11 +969,12 @@ public class ParancsErtelmezo {
         }
         //Letermeljük a megfelelő objektumot
         if (param[1].equals("pumpa")) {
-            mezoMap.get(param[0]).PumpatKeszit();
+            mezoMap.get(param[0]).PumpaKeszit();
         }
         else {
             mezoMap.get(param[0]).CsovetKeszit();
         }
+        GiveNamesToThingsThatDontHaveNames(); //Ha a termelés hatására létrejött valami, akkor neki is kell nevet adni
     }
 
     /**
@@ -1275,6 +1293,63 @@ public class ParancsErtelmezo {
         {
             System.out.println(s);
         }
+
+    }
+
+    /**
+     * Van, hogy nem a parancsértelmező hoz létre új dolgokat. Ilyenkor ezeknek alapból nincs neve,
+     * Ezért automatikusan generálunk nekik neveket.
+     * Ez a függvény végigmegy olyan helyeken ahol lehet hogy kellhet új név, és ad
+     * A nevek amiket generál: gen0, gen1, gen2, ...
+     * P.S.: Azért ilyen agyhalál a neve, mert agyhlál hogy ilyen kell egyáltalán.
+     */
+    private void GiveNamesToThingsThatDontHaveNames()
+    {
+
+        //Mezők szomszédai
+        for (Mezo m : mezoMap.values())
+        {
+            for (Mezo m2 : m.GetSzomszedok())
+            {
+                //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
+                if (!mezoMap.containsValue(m2))
+                {
+                    //Hozzá kell adni a mezoMap-hez autogenerált névvel
+                    mezoMap.put(NextAutogenName(), m2);
+                }
+            }
+        }
+
+        //Mezőknek a termelt pumpái (Igazából ciszternáknak van csak termelt pumpája)
+        for (Mezo m : mezoMap.values())
+        {
+            //Ha null akkor az nem ciszerna volt, azt skippeljük)
+            if (m.getTermeltPumpak() == null)
+            {
+                continue;
+            }
+            for (Mezo p : m.getTermeltPumpak())
+            {
+                //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
+                if (!mezoMap.containsValue(p))
+                {
+                    //Hozzá kell adni a mezoMap-hez autogenerált névvel
+                    mezoMap.put(NextAutogenName(), p);
+                }
+            }
+        }
+
+    }
+
+    /**
+     * Következő autogenerált nevet csinálja meg és adja vissza
+     * @return A következő autogenerált név
+     */
+    private String NextAutogenName()
+    {
+        String s = "gen"+autoGenNextNumber;
+        autoGenNextNumber++;
+        return s;
 
     }
 
