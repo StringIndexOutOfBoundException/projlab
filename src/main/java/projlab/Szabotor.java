@@ -8,6 +8,7 @@ public class Szabotor extends Jatekos {
 	/**
 	 * A szabotőr csúszóssá teszi a mezőt, amin éppen áll
 	 */
+	@Override
 	public void CsuszossaTesz(){
 		Mezo helyzet = super.getHelyzet();
 		helyzet.Csuszik();

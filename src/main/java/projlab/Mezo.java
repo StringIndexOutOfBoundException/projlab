@@ -186,7 +186,7 @@ public abstract class Mezo {
 		return false;
 	}
 
-	/*
+	/**
 	 * Csak ciszterma osztalyon ertelmezett szerelo hivja meg ciszternara. Default
 	 * implementációja üres.
 	 */
@@ -227,14 +227,14 @@ public abstract class Mezo {
 		return vizmennyiseg;
 	}
 
-	/*
+	/**
 	 * getter a jatekosok attributumra
 	 */
 	public List<Jatekos> getJatekosok() {
 		return this.jatekosok;
 	}
 
-	/*
+	/**
 	 * Csak ciszterma osztalyon ertelmezett getter a ciszterna termeltpumpak
 	 * attributumra
 	 */
@@ -281,7 +281,6 @@ public abstract class Mezo {
 
 	/**
 	 * Ha a mezőnek lehet kimenete, akkor felüldefiniálhatja a függvényt.
-	 * 
 	 * @return kimenet
 	 */
 	public Mezo getKimenet() {
@@ -327,7 +326,6 @@ public abstract class Mezo {
 	/**
 	 * Frissíti a mezőt. Ez a függvény alapból nem csinál semmit, a Mezo összes
 	 * gyerekosztály felüldefiniálja.
-	 * 
 	 * @throws Exception
 	 */
 	public abstract void Frissit() throws Exception;

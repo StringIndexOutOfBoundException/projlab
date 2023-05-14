@@ -25,7 +25,8 @@ public abstract class Jatekos {
 	 * @param m a választott mező referenciája
 	 */
 	public void Lep(Mezo m) {
-		if (helyzet == null){helyzet = m;}
+		Mezo tmp = helyzet;
+		if (helyzet == null){helyzet = m; m.JatekosElfogad(this);}
 		else {
 			boolean elengedve = helyzet.JatekosElenged(this);
 			List<Mezo> szomszedok = helyzet.GetSzomszedok();
@@ -33,7 +34,7 @@ public abstract class Jatekos {
 			if (elengedve && szomszedok.contains(m)) {
 				boolean elfogadva = m.JatekosElfogad(this);
 				if (elfogadva)
-					helyzet.JatekosEltavolit(this);
+					tmp.JatekosEltavolit(this);
 			}
 		}
 	}
@@ -128,7 +129,8 @@ public abstract class Jatekos {
 	 */
 	public ArrayList<Mezo> getCsoHatizsak() { return csoHatizsak; }
 
-	public void CsuszossaTesz() {
-
-	}
+	/**
+	 * Nincs alap implementáció, a szabotőr osztály felüldefiniálja
+	 */
+	public void CsuszossaTesz() { }
 }
