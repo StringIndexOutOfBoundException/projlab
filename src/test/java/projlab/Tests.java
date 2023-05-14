@@ -1060,12 +1060,12 @@ class Tests {
     void pumpa_hatizsak() {
         pre.runFromString("lep psze1 pc1\n" +
                 "termel pc1 pumpa\n" +
-                "felvesz pc1 pumpa \n" +
+                "felvesz psze1 pumpa \n" +
                 "allapot psze1 pumpaHatizsak\n" +
                 "allapot pc1 szomszedok");
         String out = pre.getAllapotString();
         assertEquals("psze1 pumpaHatizsak: \n" +
-                "p1\n" +
+                "gen0\n" +
                 "pc1 szomszedok: \n" +
                 "pcs5\n" +
                 "pcs6\n" +
@@ -1077,7 +1077,7 @@ class Tests {
     void felveszfel() {
         pre.runFromString("vizmennyiseg pcs7 1\n" +
                 "lep psze1 pc1\n" +
-                "Felvesz psze1 cso pcs7 egesz\n" +
+                "felvesz psze1 cso pcs7 egesz\n" +
                 "allapot pc1 szomszedok\n" +
                 "allapot psze1 csoHatizsak\n" +
                 "allapot pcs7 vizmennyiseg");
