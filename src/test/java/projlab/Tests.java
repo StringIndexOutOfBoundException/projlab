@@ -725,8 +725,9 @@ class Tests {
 
         );
         String out = pre.getAllapotString();
-        assertEquals("pf1 jatekosok: psza1\n" +
-                "pcs1 jatekosok: ", out);  //TODO: Nincsen jatekos rajta(pcs3) inicializacio utan hmmmmmmm
+        assertEquals("pf1 jatekosok: \n" +
+                "psza1\n" +
+                "pcs1 jatekosok:", out);
     }
 
     @Test
@@ -735,6 +736,7 @@ class Tests {
         pre.runFromString(
                 "lep psza1 pp1 \n" +
                 "lep psza1 pcs1\n" +
+                "lep psza1 pf1\n" +
                 "lep psze2 pcs3 \n" +
                 "lep psze2 pp1 \n" +
                 "lep psze2 pcs1 \n" +
@@ -745,8 +747,9 @@ class Tests {
         String out = pre.getAllapotString();
         assertEquals("pf1 jatekosok: \n" +
                 "psza1\n" +
-                "pcs1 jatekosok: \n" +
-                "psze2", out);
+                "psze2\n" +
+                "pcs1 jatekosok:"
+, out);
     }
 
     @Test
@@ -946,7 +949,8 @@ class Tests {
                 "allapot pcs1 jatekosok"
         );
         String out = pre.getAllapotString();
-        assertEquals("pf1 jatekosok: psza1\n" +
+        assertEquals("pf1 jatekosok: \n" +
+                "psza1\n" +
                 "pcs1 jatekosok: \npsza1", out);
     }
 
