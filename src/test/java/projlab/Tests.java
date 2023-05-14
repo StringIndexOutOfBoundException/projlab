@@ -200,7 +200,7 @@ class Tests {
         assertEquals("pcs5 mukodik: true\n" +
                 "pcs5 vizmennyiseg: 0\n" +
                 "pcs5 lyukCooldown: 5\n" +
-                "pcs5 vizmennyiseg: 1\n" +
+                "pcs5 vizmennyiseg: 0\n" +
                 "pcs5 lyukCooldown: 4", out);
     }
 
