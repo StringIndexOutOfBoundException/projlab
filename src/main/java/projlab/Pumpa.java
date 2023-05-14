@@ -79,11 +79,10 @@ public class Pumpa extends Mezo {
 	}
 
 	/**
-	 * Átállítja a mukodik attributumot true-ra.
+	 * Atallitja a mukodik attributumot true-ra.
 	 * 
 	 * @Override
 	 */
-
 	public void Megjavit() {
 		setMukodik(true);
 	}
