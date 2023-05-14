@@ -1106,7 +1106,8 @@ class Tests {
     void csovet_felcsatol() {
         pre.runFromString("vizmennyiseg pcs3 1\n" +
                 "allit psze2 pcs3 pcs4\n" +
-                "felvesz cso pcs4 fel\n" +
+				"felvesz psze2 cso pcs4 fel\n"
+				+
                 "allapot pp3 szomszedok\n" +
                 "epit psze2 cso\n" +
                 "allapot pp3 szomszedok\n" +
