@@ -119,6 +119,7 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetNovel(int meret) throws Exception {
+		if (!mukodik){return;}
 		if (meret + vizmennyiseg > 1) {
 			throw new ArithmeticException();
 		}
