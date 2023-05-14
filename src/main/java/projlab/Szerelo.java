@@ -57,13 +57,17 @@ public class Szerelo extends Jatekos {
 			return;
 		}
 
-		// Lecsatoljuk az összes végét és a hátizsákba tesszük
+		// Lecsatoljuk az összes végét
 		for (Mezo sz : m.GetSzomszedok()) {
-			csoHatizsak.add(m);
 			sz.SzomszedTorol(m);
 		}
-
 		m.GetSzomszedok().clear();
+		
+		// Hátizsákba tesszük az összes végét
+		for (int i = 0; i < m.maxSzomszedok; i++) {
+			csoHatizsak.add(m);
+		}
+
 	}
 
 	/**
