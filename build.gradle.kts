@@ -28,8 +28,17 @@ tasks.named<JavaExec>("run") {
     standardInput = System.`in`
 }
 
-tasks.withType<Test> {
+tasks.named<Test>("test") {
     useJUnitPlatform()
+
+    maxHeapSize = "8G"
+
+    testLogging {
+        events("passed")
+    }
+
+    maxParallelForks = 16;
+
 }
 
 dependencies {
