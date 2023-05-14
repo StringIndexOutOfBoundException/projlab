@@ -17,6 +17,7 @@ public class Szerelo extends Jatekos {
 	@Override
 	public void Javit() {
 		helyzet.Megjavit();
+		maxHatizsakKapacitas = 5;
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class Szerelo extends Jatekos {
 	@Override
 	public void PumpatFelvesz() {
 		// Ha nincs hely a hátizsákban vagy nincs termelt pumpa, semmi sem történik
-		if (pumpaHatizsak.size() >= maxHatizsakKapacitas || helyzet.getTermeltPumpak().size() > 0) {
+		if (pumpaHatizsak.size() >= maxHatizsakKapacitas || helyzet.getTermeltPumpak().size() == 0) {
 			return;
 		}
 

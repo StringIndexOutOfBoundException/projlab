@@ -183,7 +183,7 @@ class Tests {
     @Test
     @DisplayName("Nemy lyukaszthato cso lyukasztasa")
     void lyukaszt2() {
-        pre.runFromString("allit psze2 pcs3 pcs5\n" +
+        pre.runFromString("allit psze2 pcs5 pcs3\n" +
                 "vizmennyiseg pcs5 1\n" +
                 "vizmennyiseg pp3 3\n" +
                 "lyukaszt psze1\n" +
@@ -200,7 +200,7 @@ class Tests {
                 "pcs5 vizmennyiseg: 0\n" +
                 "pcs5 lyukCooldown: 5\n" +
                 "pcs5 vizmennyiseg: 1\n" +
-                "pcs5 lyukCooldown: 4\n", out);
+                "pcs5 lyukCooldown: 4", out);
     }
 
     @Test
@@ -221,7 +221,7 @@ class Tests {
         assertEquals("pcs5 mukodik: true\n" +
                 "pcs5 vizmennyiseg: 0\n" +
                 "pcs5 lyukCooldown: 5\n" +
-                "pcs5 vizmennyiseg: 1\n" +
+                "pcs5 vizmennyiseg: 0\n" +
                 "pcs5 lyukCooldown: 4", out);
     }
 
@@ -995,14 +995,14 @@ class Tests {
     void pumpatfelvesz() {
         pre.runFromString("lep psze1 pc1 \n" +
                 "termel pc1 pumpa\n" +
-                "elvesz psze1 pumpa \n" +
+                "felvesz psze1 pumpa \n" +
                 "allapot psze1 pumpaHatizsak \n" +
                 "allapot pc1 termeltPumpak"
         );
         String out = pre.getAllapotString();
         assertEquals("psze1 pumpaHatizsak: \n" +
                 "gen0\n" +
-                "pc1 termeltPumpak: ", out);
+                "pc1 termeltPumpak:", out);
     }
 
     @Test
@@ -1032,7 +1032,7 @@ class Tests {
                         "gen2\n" +
                         "gen3\n" +
                         "gen4\n" +
-                        "gen5\n"
+                        "gen5"
                 , out);
     }
 
@@ -1132,7 +1132,7 @@ class Tests {
                 "termel pc1 pumpa\n" +
                 "termel pc1 cso\n" +    //TODO: itt hogy van a cső létrehozás?
                 "felvesz psze1 pumpa\n" +
-                "felvesz psze1 cso c1\n" +
+                "felvesz psze1 cso gen0\n" +
                 "lep psze1 pcs5\n" +
                 "epit psze1 pumpa\n" +
                 "allapot pcs5 szomszedok\n" +
@@ -1158,7 +1158,7 @@ class Tests {
                 "allapot cs1 szomszedok"
         );
         String out = pre.getAllapotString();
-        assertEquals("", out);
+        assertEquals("pcs7 szomszedok:", out);
     }
 
     @Test
