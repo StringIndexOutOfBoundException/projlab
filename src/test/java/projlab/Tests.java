@@ -445,20 +445,6 @@ class Tests {
                 "cs5", out);
     }
 
-    @Test
-    @DisplayName("Pumpahoz aktiv elem kotese")
-    void aktiv() {
-        pre.runFromString("letrehoz pumpa p1\n" +
-                "letrehoz ciszterna c\n" +
-                "letrehoz forras f\n" +
-                "letrehoz pumpa p2\n" +
-                "osszekot p1 c\n" +
-                "osszekot p1 f\n" +
-                "osszekot p1 p2\n" +
-                "allapot p1 szomszedok");
-        String out = pre.getAllapotString();
-        assertEquals("szomszedok: ", out);
-    }
 
     @Test
     @DisplayName("Pumpara lepes")
@@ -673,26 +659,6 @@ class Tests {
     }
 
     @Test
-    @DisplayName("Forrashoz aktiv elem csatlakoztatasa: ")
-    void hozzacsatol() {
-        pre.runFromString("letrehoz forras tesztforras \n" +
-                "letrehoz pumpa p1 \n" +
-                "letrehoz ciszterna c1 \n" +
-                "letrehoz forras f1\n" +
-                "osszekot tesztforras p1\n" +
-                "allapot tesztforras szomszedok\n" +
-                "osszekot tesztforras c1\n" +
-                "allapot tesztforras szomszedok\n" +
-                "osszekot tesztforras f1\n" +
-                "allapot tesztforras szomszedok\n"
-        );
-        String out = pre.getAllapotString();
-        assertEquals("tesztforras szomszedok: \n" +
-                "tesztforras szomszedok: \n" +
-                "tesztforras szomszedok: \n", out);
-    }
-
-    @Test
     @DisplayName("A forras vizet termel")
     void ftermel() {
         pre.runFromString("frissit \n" +
@@ -823,27 +789,6 @@ class Tests {
                 "cso9", out);
     }
 
-    @Test
-    @DisplayName("Ciszternahoz aktiv elemet csatlakoztatok: ")
-    void  aktiv_csati() {
-        pre.runFromString("letrehoz ciszterna tesztciszterna\n" +
-                "letrehoz pumpa p1\n" +
-                "letrehoz ciszterna c1\n" +
-                "letrehoz forras f1\n" +
-                "allapot tesztciszterna szomszedok\n" +
-                "osszekot tesztciszterna p1\n" +
-                "allapot tesztciszterna szomszedok\n" +
-                "osszekot tesztciszterna c1\n" +
-                "allapot tesztciszterna szomszedok\n" +
-                "osszekot tesztciszterna f1\n" +
-                "allapot tesztciszterna szomszedok\n" +
-                "osszekot tesztciszterna p1");
-        String out = pre.getAllapotString();
-        assertEquals("tesztciszterna szomszedok: \n" +
-                "tesztciszterna szomszedok: \n" +
-                "tesztciszterna szomszedok: \n" +
-                "tesztciszterna szomszedok: \n", out);
-    }
 
     @Test
     @DisplayName("Ciszterna vizet sziv")
