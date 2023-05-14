@@ -37,6 +37,7 @@ public class Pumpa extends Mezo {
 		vizmennyiseg = 0;
 		bemenet = null;
 		kimenet = null;
+		maxSzomszedok = 5;
 	}
 
 	/**

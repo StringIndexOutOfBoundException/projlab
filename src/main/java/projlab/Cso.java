@@ -142,12 +142,12 @@ public class Cso extends Mezo {
 	}
 
 	public void Csuszik() {
-		csuszos = 3;
+		csuszos = 5;
 	} //3 körig lesz csúszós a cső
 
 	public void Ragad() {
 		if (ragados == 0) {
-			ragados = 3; //3 körig lesz ragadós a cső
+			ragados = 5; //3 körig lesz ragadós a cső
 			ragadossaTette = getJatekosok().get(0);
 		}
 	}
