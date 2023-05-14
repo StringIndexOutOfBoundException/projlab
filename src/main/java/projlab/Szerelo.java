@@ -111,7 +111,7 @@ public class Szerelo extends Jatekos {
 		// Szerelő berakja a hátizsákba a ciszterna termeltpumpak listájában található
 		// utolsó pumpát
 		List<Mezo> termeltPumpak = helyzet.getTermeltPumpak();
-		pumpaHatizsak.add((Pumpa) termeltPumpak.get(termeltPumpak.size() - 1));
+		pumpaHatizsak.add(termeltPumpak.get(termeltPumpak.size() - 1));
 
 		// Ciszterna eltavolítja azt a pumpát amit felvett a szerelő (ez is az utolsót
 		// távolítja el)
@@ -126,9 +126,9 @@ public class Szerelo extends Jatekos {
 	 */
 	@Override
 	public void PumpatEpit() {
-		helyzet.PumpaEpit();
-
-		// TODO: Csőben amikor épül a pumpa elvenni a játékostól azt a pumpát:
-		// pumpaHatizsak.remove(A_PUMPA);
+		if(pumpaHatizsak.size() == 0)
+			System.out.println("Nincs pumpa a hatizsakban");
+		else
+			helyzet.PumpaEpit();
 	}
 }

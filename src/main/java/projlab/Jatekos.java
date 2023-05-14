@@ -26,7 +26,7 @@ public abstract class Jatekos {
 	 * @param m a választott mező referenciája
 	 */
 	public void Lep(Mezo m) {
-		Mezo tmp = helyzet;
+		Mezo tmp = getHelyzet();
 		if (helyzet == null){helyzet = m; m.JatekosElfogad(this);}
 		else {
 			boolean elengedve = helyzet.JatekosElenged(this);

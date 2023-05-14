@@ -181,7 +181,7 @@ class Tests {
     }
 
     @Test
-    @DisplayName("Nemy lyukaszthato cso lyukasztasa")
+    @DisplayName("Nem lyukaszthato cso lyukasztasa")
     void lyukaszt2() {
         pre.runFromString("allit psze2 pcs5 pcs3\n" +
                 "vizmennyiseg pcs5 1\n" +
@@ -262,9 +262,9 @@ class Tests {
                 "allapot pcs5 vizmennyiseg");
         String out = pre.getAllapotString();
         assertEquals("pcs5 mukodik: true\n" +
-                "pcs5 vizmennyiseg: 0\n" +
+                "pcs5 vizmennyiseg: 1\n" +
                 "pcs5 lyukCooldown: 0\n" +
-                "pcs5 vizmennyiseg: 1", out);
+                "pcs5 vizmennyiseg: 0", out);
     }
 
     @Test
@@ -286,7 +286,7 @@ class Tests {
                 "psza1\n" +
                 "psze2\n" +
                 "pcs3 jatekosok: \n" +
-                "pp3 jatekosok: \n", out);
+                "pp3 jatekosok:", out);
     }
 
     @Test
@@ -400,7 +400,7 @@ class Tests {
                 "pcs3 csuszos: 5\n" +
                 "pcs3 jatekosok: \n" +
                 "psze2\n" +
-                "pp3 jatekosok: ", out);
+                "pp3 jatekosok:", out);
     }
 
     @Test
@@ -729,14 +729,14 @@ class Tests {
     @Test
     @DisplayName("Csorol forrasra lep, ahol van ember")
     void ralep2() {
-        pre.runFromString("ep psza1 pp1 \n" +
+        pre.runFromString("lep psza1 pp1 \n" +
                 "lep psza1 pcs1\n" +
                 "lep psza1 pf1 \n" +
                 "allapot pf1 jatekosok \n" +
                 "allapot pcs1 jatekosok"
         );
         String out = pre.getAllapotString();
-        assertEquals("pf1 jatekosok: sza1\npcs1 jatekosok: pasza1", out);
+        assertEquals("pf1 jatekosok: psza1\npcs1 jatekosok: psza1", out);
     }
 
     @Test
@@ -927,14 +927,14 @@ class Tests {
     void lep2() {
         pre.runFromString("lep psza1 pp1\n" +
                 "lep psza1 pcs1\n" +
-                "ep psza1 pf1\n" +
+                "lep psza1 pf1\n" +
                 "allapot pf1 jatekosok\n" +
                 "lep psza1 pcs1 \n" +
                 "allapot pcs1 jatekosok"
         );
         String out = pre.getAllapotString();
         assertEquals("pf1 jatekosok: psza1\n" +
-                "pcs1 jatekosok: psza1", out);
+                "pcs1 jatekosok: \npsza1", out);
     }
 
     @Test
@@ -952,7 +952,7 @@ class Tests {
     @Test
     @DisplayName("Kilyukasztok egy csovet")
     void lyuk() {
-        pre.runFromString("lyukaszt psza1\n" +
+        pre.runFromString("lyukaszt psze1\n" +
                 "allapot pcs5 mukodik\n" +
                 "allapot pcs5 vizmennyiseg");
         String out = pre.getAllapotString();
@@ -1046,7 +1046,10 @@ class Tests {
                 "allapot pc1 szomszedok");
         String out = pre.getAllapotString();
         assertEquals("psze1 pumpaHatizsak: p1\n" +
-                "pc1 szomszedok: ", out);
+                "pc1 szomszedok: \n" +
+                "pcs5\n" +
+                "pcs6\n" +
+                "pcs7", out);
     }
 
     @Test

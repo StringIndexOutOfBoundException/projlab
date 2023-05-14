@@ -48,6 +48,7 @@ public abstract class Mezo {
 	 * Default konstruktor
 	 */
 	public Mezo() {
+		jatekosok = new ArrayList<Jatekos>();
 		szomszedok = new ArrayList<Mezo>();
 		maxSzomszedok = 5;
 	}
@@ -110,7 +111,6 @@ public abstract class Mezo {
 			j.setHelyzet(this);
 			return true;
 		}
-
 		return false;
 	}
 
