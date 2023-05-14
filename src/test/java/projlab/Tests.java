@@ -111,9 +111,9 @@ class Tests {
                 "allapot pp3 jatekosok\n" +
                 "allapot pcs5 jatekosok");
         String out = pre.getAllapotString();
-        assertEquals("játékosok:\n" +
+        assertEquals("játékosok: \n" +
                 "psze2\n" +
-                "játékosok:\n" +
+                "játékosok: \n" +
                 "psze1", out);
     }
 
@@ -279,13 +279,13 @@ class Tests {
                 "allapot pp3 jatekosok");
         String out = pre.getAllapotString();
         assertEquals("pcs3 csuszos: 5\n" +
-                "pcs3 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
                 "psza1\n" +
-                "pp1 jatekosok:\n" +
+                "pp1 jatekosok: \n" +
                 "psza1\n" +
                 "psze2\n" +
-                "pcs3 jatekosok:\n" +
-                "pp3 jatekosok:\n", out);
+                "pcs3 jatekosok: \n" +
+                "pp3 jatekosok: \n", out);
     }
 
     @Test
@@ -302,12 +302,12 @@ class Tests {
                 "allapot pp3 jatekosok");
         String out = pre.getAllapotString();
         assertEquals("csuszos: 5\n" +
-                "pcs3 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
                 "psza1\n" +
-                "pp1 jatekosok:\n" +
+                "pp1 jatekosok: \n" +
                 "psza1\n" +
                 "psze2\n" +
-                "pcs3 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
                 "pp3 jatekosok: ", out);
     }
 
@@ -324,8 +324,8 @@ class Tests {
         String out = pre.getAllapotString();
         assertEquals("pcs3 ragados: 5\n" +
                 "pcs3 ragadossatette: psza1\n" +
-                "pcs3 jatekosok:\n" +
-                "pp1 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
+                "pp1 jatekosok: \n" +
                 "psza1\n", out);
     }
 
@@ -349,10 +349,10 @@ class Tests {
         String out = pre.getAllapotString();
         assertEquals("pcs3 ragados: 5\n" +
                 "pcs3 ragadossatette: psza1\n" +
-                "pcs3 jatekosok:\n" +
-                "pp1 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
+                "pp1 jatekosok: \n" +
                 "psza1\n" +
-                "pcs3 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
                 "psze2\n" +
                 "pp3 jatekosok: ", out);
     }
@@ -374,10 +374,10 @@ class Tests {
         String out = pre.getAllapotString();
         assertEquals("pcs3 ragados: 5\n" +
                 "pcs3 ragadossatette: psza1\n" +
-                "pcs3 jatekosok:\n" +
-                "pp1 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
+                "pp1 jatekosok: \n" +
                 "psza1\n" +
-                "pcs3 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
                 "psze2\n" +
                 "pp3 jatekosok: ", out);
     }
@@ -397,7 +397,7 @@ class Tests {
         String out = pre.getAllapotString();
         assertEquals("pcs3 ragados: 5\n" +
                 "pcs3 csuszos: 5\n" +
-                "pcs3 jatekosok:\n" +
+                "pcs3 jatekosok: \n" +
                 "psze2\n" +
                 "pp3 jatekosok: ", out);
     }
@@ -466,8 +466,8 @@ class Tests {
                 "allapot pcs3 jatekosok\n" +
                 "allapot pp3 jatekosok");
         String out = pre.getAllapotString();
-        assertEquals("pcs3 jatekosok:\n" +
-                "pp3 jatekosok:\n" +
+        assertEquals("pcs3 jatekosok: \n" +
+                "pp3 jatekosok: \n" +
                 "psza1\n" +
                 "psze2", out);
     }
@@ -801,7 +801,7 @@ class Tests {
                 "osszekot tesztciszterna p1");
         String out = pre.getAllapotString();
         assertEquals("tesztciszterna szomszedok: \n" +
-                "tesztciszterna szomszedok:\n" +
+                "tesztciszterna szomszedok: \n" +
                 "tesztciszterna szomszedok: \n" +
                 "tesztciszterna szomszedok: \n", out);
     }
@@ -1127,8 +1127,8 @@ class Tests {
                 "allapot sz *");
         String out = pre.getAllapotString();
         assertEquals("sz maxHatizsakKapacitas: 5\n" +
-                "sz pumpaHatizsak:\n" +
-                "sz csoHatizsak:\n", out);
+                "sz pumpaHatizsak: \n" +
+                "sz csoHatizsak: \n", out);
     }
 
     @Test
