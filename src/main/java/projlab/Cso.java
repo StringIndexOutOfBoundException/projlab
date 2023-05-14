@@ -209,5 +209,7 @@ public class Cso extends Mezo {
 	public Jatekos getRagadossaTette() {
 		return ragadossaTette;
 	}
-
+	public boolean getMukodik() {
+		return mukodik;
+	}
 }
