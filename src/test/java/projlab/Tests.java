@@ -1166,7 +1166,9 @@ class Tests {
                 "allapot cs1 szomszedok"
         );
         String out = pre.getAllapotString();
-        assertEquals("", out);
+        assertEquals("pcs5 szomszedok: \n" +
+                "gen0\n" +
+                "pc1", out);
     }
 
     @Test
