@@ -503,7 +503,6 @@ public class ParancsErtelmezo {
             jatekosMap.get(param[0]).CsovetFelcsatol();
         }
 
-        GiveNamesToThingsThatDontHaveNames(); //Ez elvileg ide nem kell de itt marad mert a bánat tudja. Nem baj ha fut fölöslegesen, arra való a processzor hogy fusson.
 
     }
 
