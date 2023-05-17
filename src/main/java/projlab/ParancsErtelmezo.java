@@ -21,6 +21,9 @@ public class ParancsErtelmezo {
     //true: be van kapcsolva, false: ki van kapcsolva
     private boolean ENABLE_AUTOCORRECT = true;
 
+    //Írja-e ki a parancsértelmező a sikeres parancsok után a sikeres üzenetet
+    private boolean success_message = false;
+
     private String allapotString = "";
 
     //Legutóbb javított parancs (Autocorrect)
@@ -215,6 +218,12 @@ public class ParancsErtelmezo {
             System.out.println("A letrehoz parancs 2 paramétert vár. (letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev>)");
             return;
         }
+        //Ha gen-nel kezdődik a név, akkor azt nem engedjük, mert az csak generált név lehet
+        if (param[1].startsWith("gen")) {
+            System.out.println("A név nem kezdődhet \"gen\"-nel, mert az csak generált név lehet.");
+            return;
+        }
+
         //Megnézzük hogy milyen típusú elemet kell létrehozni
         switch (param[0])
         {
@@ -230,7 +239,7 @@ public class ParancsErtelmezo {
                 mezoMap.put(param[1], cso);
                 //Hozzáadjuk a pályához
                 palya.getElemek().add(cso);
-                System.out.println("A " + param[1] + " nevű cső létrehozása sikeres volt!");
+                if(success_message) System.out.println("A " + param[1] + " nevű cső létrehozása sikeres volt!");
                 break;
 
             case "pumpa":
@@ -245,7 +254,7 @@ public class ParancsErtelmezo {
                 mezoMap.put(param[1], pumpa);
                 //Hozzáadjuk a pályához
                 palya.getElemek().add(pumpa);
-                System.out.println("A " + param[1] + " nevű pumpa létrehozása sikeres volt!");
+                if(success_message) System.out.println("A " + param[1] + " nevű pumpa létrehozása sikeres volt!");
                 break;
 
             case "ciszterna":
@@ -260,7 +269,7 @@ public class ParancsErtelmezo {
                 mezoMap.put(param[1], ciszterna);
                 //Hozzáadjuk a pályához
                 palya.getElemek().add(ciszterna);
-                System.out.println("A " + param[1] + " nevű ciszterna létrehozása sikeres volt!");
+                if(success_message) System.out.println("A " + param[1] + " nevű ciszterna létrehozása sikeres volt!");
                 break;
 
             case "forras":
@@ -275,7 +284,7 @@ public class ParancsErtelmezo {
                 mezoMap.put(param[1], forras);
                 //Hozzáadjuk a pályához
                 palya.getElemek().add(forras);
-                System.out.println("A " + param[1] + " nevű forrás létrehozása sikeres volt!");
+                if(success_message) System.out.println("A " + param[1] + " nevű forrás létrehozása sikeres volt!");
                 break;
 
             case "szerelo":
@@ -290,7 +299,7 @@ public class ParancsErtelmezo {
                 jatekosMap.put(param[1], szerelo);
                 //Hozzáadjuk a pályához
                 palya.getJatekosok().add(szerelo);
-                System.out.println("A " + param[1] + " nevű szerelő létrehozása sikeres volt!");
+                if(success_message) System.out.println("A " + param[1] + " nevű szerelő létrehozása sikeres volt!");
                 break;
 
             case "szabotor":
@@ -305,7 +314,7 @@ public class ParancsErtelmezo {
                 jatekosMap.put(param[1], szabotor);
                 //Hozzáadjuk a pályához
                 palya.getJatekosok().add(szabotor);
-                System.out.println("A " + param[1] + " nevű szabotőr létrehozása sikeres volt!");
+                if(success_message) System.out.println("A " + param[1] + " nevű szabotőr létrehozása sikeres volt!");
                 break;
 
             default:
@@ -502,6 +511,8 @@ public class ParancsErtelmezo {
         else{
             jatekosMap.get(param[0]).CsovetFelcsatol();
         }
+
+        GiveNamesToThingsThatDontHaveNames(); //Létrejöhetett új cső a cső félbevágásakor, ennek is kell nevet adni
 
 
     }
@@ -1096,6 +1107,13 @@ public class ParancsErtelmezo {
      */
     private void Autocorrect(String command, String[] param, String[] compareTo, int corretedParamIndex)
     {
+        //Ha a parancs üres akkor nem csinálunk semmit, kiírjuk hogy üres parancs
+        if(command.equals(""))
+        {
+            System.out.println(" * Üres parancsot írtál be.");
+            return;
+        }
+
         //Ha az osztály elején kikapcsoltuk az autocorrectet, akkor nem csinálunk semmit
         if(!ENABLE_AUTOCORRECT)
         {
@@ -1127,6 +1145,25 @@ public class ParancsErtelmezo {
         }
         //Ha a legközelebbi szó távolsága kisebb mint 4, akkor figyelmeztetjük a felhasználót
         if (min < 4) {
+            //Kiírjuk a hibás parancsot és az összes paramétert
+            System.out.print("* Hibás parancs: " + command);
+            //Ha a parancs volt a hibás, akkor rakunk utána egy (?)-t
+            if (corretedParamIndex == 0)
+            {
+                System.out.print("(??)");
+            }
+            //Egy for ciklussal kiírjuk az összes paramétert, és ha az adott paraméter volt a hibás, akkor rakunk utána egy (?)-t
+            for (int i = 0; i < param.length; i++)
+            {
+                System.out.print(" " + param[i]);
+                if (corretedParamIndex == i+1)
+                {
+                    System.out.print("(??)");
+                }
+            }
+
+
+            System.out.println();
             System.out.println("* Erre gondotál: \"" + closest+ "\"?");
             System.out.println("* Ha igen, akkor írd be hogy \"i\", és a parancs automatikusan ki lesz javítva és újra lefut!");
 
@@ -1306,19 +1343,39 @@ public class ParancsErtelmezo {
     private void GiveNamesToThingsThatDontHaveNames()
     {
 
-        //Mezők szomszédai
-        for (Mezo m : mezoMap.values())
+        try
         {
-            for (Mezo m2 : m.GetSzomszedok())
+            //Mezők szomszédai
+            for (Mezo m : mezoMap.values())
             {
-                //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
-                if (!mezoMap.containsValue(m2))
+                for (Mezo m2 : m.GetSzomszedok())
                 {
-                    //Hozzá kell adni a mezoMap-hez autogenerált névvel
-                    mezoMap.put(NextAutogenName(), m2);
+                    //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
+                    if (!mezoMap.containsValue(m2))
+                    {
+                        //Hozzá kell adni a mezoMap-hez autogenerált névvel
+                        mezoMap.put(NextAutogenName(), m2);
+                    }
                 }
             }
         }
+        catch (ConcurrentModificationException e)
+        {
+            //Exception? Milyen exception? Nincs itt semmiféle exception! :P
+
+            //Na, de mi is történik itt?
+            //A mezoMap-ben ugye végigmegyünk, és minden mező szomszédjait megvizsgáljuk, hogy van-e akinek nincs neve, és ha van, akkor nevet adunk neki.
+            //Viszont előfordulhat olyan, hogy pumpát építettünk, amikoris egy új cső jön lére, aminek rögtön kettő szomszédja van
+            //Pl így: p1--[névtelen cső]--p2
+            //Amikor a p1 szomszédjait vizsgáljuk, akkor a névtelen csövet is vizsgáljuk, és hozzáadunk neki egy nevet.
+            //Ezután a p2 szomszédjait is fogjuk vizsgálni, de ekkor a névtelen csőnek már van neve, és ezért kapjuk a ConcurrentModificationException-t
+            //Na most itt a biztonság kedvéért ilyen gyönyörűen rekurzívan újra meghívjuk a függvényt, mert ugye a catch miatt megáll a ciklus, de lehet hogy még van olyan névtelen dolog, aminek nevet kell adni
+            //***Elvileg*** ilyen amúgy nem kéne hogy előforduljon, hogy egyszerre két cső is épüljön, de azért biztos ami biztos...
+            //P.S. Ez amúgy valami undorító
+            GiveNamesToThingsThatDontHaveNames();
+            return;
+        }
+
 
         //Mezőknek a termelt pumpái (Igazából ciszternáknak van csak termelt pumpája)
         for (Mezo m : mezoMap.values())
@@ -1353,4 +1410,12 @@ public class ParancsErtelmezo {
 
     }
 
+    /**
+     * Legyen-e sikeres üzenet a parancs végén. Igazából csak a létrehoz-ra vonatkozik.
+     * Hibaüzenet mindig van, ha hiba történt.
+     * @param success_message Ha true, akkor legyen sikeres üzenet, ha false, akkor ne legyen
+     */
+    public void EnableSuccessessage(boolean success_message) {
+        this.success_message = success_message;
+    }
 }

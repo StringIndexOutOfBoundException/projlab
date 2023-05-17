@@ -1,0 +1,35 @@
+---- Ez a tesztekben is használt "alap pálya" ----
+
+letrehoz forras pf1
+letrehoz ciszterna pc1
+letrehoz pumpa pp1
+letrehoz pumpa pp2
+letrehoz pumpa pp3
+letrehoz cso pcs1
+letrehoz cso pcs2
+letrehoz cso pcs3
+letrehoz cso pcs4
+letrehoz cso pcs5
+letrehoz cso pcs6
+letrehoz cso pcs7
+letrehoz szerelo psze1
+letrehoz szerelo psze2
+letrehoz szerelo psza1
+
+osszekot pcs1 pf1
+osszekot pcs1 pp1
+osszekot pp1 pcs2
+osszekot pcs2 pp2
+osszekot pp2 pcs6
+osszekot pcs6 pc1
+osszekot pc1 pcs7
+osszekot pp1 pcs3
+osszekot pcs3 pp3
+osszekot pp3 pcs4
+osszekot pcs4 pp2
+osszekot pp3 pcs5
+osszekot pcs5 pc1
+
+lep psza1 pcs3
+lep psze2 pp3
+lep psze1 pcs5

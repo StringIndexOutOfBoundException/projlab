@@ -1,0 +1,11 @@
+---- Ezekkel a parancsokkal lehet pumpát építeni és utána frissit-et hívni (Ha alap pálya megvan). Most már ettől se hal meg a program :D ----
+
+veletlen ki
+lep psze1 pc1
+termel pc1 pumpa
+termel pc1 pumpa
+felvesz psze1 pumpa
+felvesz psze1 pumpa
+lep psze1 pcs5
+epit psze1 pumpa
+frissit
