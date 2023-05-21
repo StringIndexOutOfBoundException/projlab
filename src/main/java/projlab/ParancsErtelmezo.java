@@ -813,6 +813,11 @@ public class ParancsErtelmezo {
                         PrintOrWrite(param[0] + " ragados: " + mezoMap.get(param[0]).getRagados(), file, fileName);
                         allapotString += param[0] + " ragados: " + mezoMap.get(param[0]).getRagados() + "\n";
                     }
+                    if (mezoMap.get(param[0]).getRagadossaTette() != null)
+                    {
+                        PrintOrWrite(param[0] + " ragadossaTette: " + getJatekosName(mezoMap.get(param[0]).getRagadossaTette()), file, fileName);
+                        allapotString += param[0] + " ragadossaTette: " + getJatekosName(mezoMap.get(param[0]).getRagadossaTette()) + "\n";
+                    }
                     if (mezoMap.get(param[0]).getTermeltPumpak() != null)
                     {
                         PrintOrWrite(param[0] + " termeltPumpak: " + getMezoListName(mezoMap.get(param[0]).getTermeltPumpak()), file, fileName);
