@@ -233,7 +233,6 @@ public class Main {
         frame.getContentPane().add(panel);
 		frame.pack();
         frame.setVisible(true);
-        pe2.runFromUser();
-        drawPanel.repaint();
+        //pe2.runFromUser();
     }
 }

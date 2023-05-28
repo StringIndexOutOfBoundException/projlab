@@ -1411,6 +1411,28 @@ public class ParancsErtelmezo {
                     }
                 }
             }
+
+            //Mezőknek a termelt pumpái (Igazából ciszternáknak van csak termelt pumpája)
+            for (Mezo m : mezoMap.values())
+            {
+                //Ha null akkor az nem ciszerna volt, azt skippeljük)
+                if (m.getTermeltPumpak() == null)
+                {
+                    continue;
+                }
+                for (Mezo p : m.getTermeltPumpak())
+                {
+                    //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
+                    if (!mezoMap.containsValue(p))
+                    {
+                        String name = NextAutogenName();
+                        //Hozzá kell adni a mezoMap-hez autogenerált névvel
+                        mezoMap.put(name, p);
+                        p.getView().SetNev(name); // A viewjának be kell állítani a nevét
+
+                    }
+                }
+            }
         }
         catch (ConcurrentModificationException e)
         {
@@ -1430,27 +1452,7 @@ public class ParancsErtelmezo {
         }
 
 
-        //Mezőknek a termelt pumpái (Igazából ciszternáknak van csak termelt pumpája)
-        for (Mezo m : mezoMap.values())
-        {
-            //Ha null akkor az nem ciszerna volt, azt skippeljük)
-            if (m.getTermeltPumpak() == null)
-            {
-                continue;
-            }
-            for (Mezo p : m.getTermeltPumpak())
-            {
-                //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
-                if (!mezoMap.containsValue(p))
-                {
-                    String name = NextAutogenName();
-                    //Hozzá kell adni a mezoMap-hez autogenerált névvel
-                    mezoMap.put(name, p);
-                    p.getView().SetNev(name); // A viewjának be kell állítani a nevét
 
-                }
-            }
-        }
 
     }
 
