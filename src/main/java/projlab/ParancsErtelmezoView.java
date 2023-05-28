@@ -53,5 +53,9 @@ public class ParancsErtelmezoView {
     	return drawpanel;
     }
 
+    public void EnableDebugMode(boolean b) {
+    	pe.EnableDebugMode(b);
+    }
+
 
 }
