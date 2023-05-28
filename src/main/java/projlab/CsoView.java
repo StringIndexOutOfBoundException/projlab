@@ -43,20 +43,6 @@ public class CsoView extends MezoView {
 	@Override
 	public void Notify(Mezo m) {
 		ArrayList<Mezo> szomszedok = m.GetSzomszedok();
-		int szomszedSzam = szomszedok.size();
-
-		if (szomszedSzam == 2) {
-			// Cső beállítása a két szomszéd közé
-			lathato = true;
-			ObjectView v1 = szomszedok.get(0).getView();
-			ObjectView v2 = szomszedok.get(1).getView();
-			x = v1.x;
-			y = v1.y;
-			x2 = v2.x;
-			y2 = v2.y;
-		} else if (szomszedSzam == 1) {
-			// Vagy
-		}
 
 		// Cső nem látható ha nincs két szomszédja
 		if (szomszedok.size() < 2) {
@@ -66,7 +52,13 @@ public class CsoView extends MezoView {
 		
 		lathato = true;
 
-
+		// Cső végeinek beállítása
+		ObjectView v1 = szomszedok.get(0).getView();
+		ObjectView v2 = szomszedok.get(1).getView();
+		x = v1.x;
+		y = v1.y;
+		x2 = v2.x;
+		y2 = v2.y;
 
 		// Cső modifierek
 		csuszik = m.getCsuszos() > 0;
