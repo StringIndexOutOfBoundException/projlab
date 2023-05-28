@@ -35,6 +35,10 @@ public class ForrasView extends MezoView {
 	 */
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {
+		if (!lathato) {
+			return;
+		}
+
 		Graphics g = layers.get(1);
 
 		// Négyzet kirajzolása (xy a közepe)

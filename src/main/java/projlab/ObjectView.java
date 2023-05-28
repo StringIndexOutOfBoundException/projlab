@@ -13,13 +13,14 @@ import java.util.Random;
  */
 public abstract class ObjectView {
 	private static ArrayList<ObjectView> allViews = new ArrayList<>();
-	protected Color nevSzin = Color.white;
 
 	/**
 	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
 	 */
 	protected int x = 0, y = 0;
 	protected String nev = "?";
+	protected Color nevSzin = Color.white;
+	protected Boolean lathato = true;
 
 	/**
 	 * Az objektum megjelenéséért felelős változók default értékekkel.

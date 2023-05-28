@@ -20,7 +20,6 @@ public class CsoView extends MezoView {
 	/**
 	 * Cső állapotát jelentő változók (keep for now)
 	 */
-	private Boolean visible = false;
 	private Boolean csuszik = false;
 	private Boolean ragad = false;
 	private Boolean mukodik = true;
@@ -47,11 +46,11 @@ public class CsoView extends MezoView {
 
 		// Cső nem látható ha nincs két szomszédja
 		if (szomszedok.size() < 2) {
-			visible = false;
+			lathato = false;
 			return;
 		}
 		
-		visible = true;
+		lathato = true;
 
 		// Cső végeinek beállítása
 		ObjectView v1 = szomszedok.get(0).getView();
@@ -73,8 +72,9 @@ public class CsoView extends MezoView {
 	 */
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {
-		if (!visible)
+		if (!lathato) {
 			return;
+		}
 
 		// Stroke miatt 2D graphics kell
 		Graphics g = layers.get(0);
@@ -93,8 +93,6 @@ public class CsoView extends MezoView {
 		g2.setStroke(stroke);
 		g2.setColor(szin);
 		g2.drawLine(x, y, x2, y2);
-
-
 
 		// Hibajelzés
 		if (!mukodik) {
