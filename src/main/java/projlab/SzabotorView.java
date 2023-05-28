@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class SzabotorView extends JatekosView {
 	public SzabotorView() {
-		szin = Color.YELLOW;
+		szin = Color.ORANGE;
+		nevSzin = Color.RED;
 	}
 }

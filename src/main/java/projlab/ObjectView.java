@@ -13,6 +13,7 @@ import java.util.Random;
  */
 public abstract class ObjectView {
 	private static ArrayList<ObjectView> allViews = new ArrayList<>();
+	protected Color nevSzin = Color.white;
 
 	/**
 	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
@@ -118,7 +119,7 @@ public abstract class ObjectView {
 		}
 
 		// Szöveg kirajzolása
-		g.setColor(Color.white);
+		g.setColor(nevSzin);
 		g.drawString(nev, textX, textY);
 	}
 }
