@@ -12,17 +12,22 @@ import java.util.Random;
  * egy "view"-ja, ami felelős a grafikus megjelenítéséért.
  */
 public abstract class ObjectView {
+	private static ArrayList<ObjectView> allViews = new ArrayList<>();
+
 	/**
 	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
 	 */
 	protected int x, y;
-	protected String nev;
+	protected String nev = "?";
 
 	/**
 	 * Az objektum megjelenéséért felelős változók default értékekkel.
 	 */
 	private static final Font font = new Font("Arial", Font.PLAIN, 14);
 
+	public ObjectView() {
+		allViews.add(this);
+	}
 
 	/**
 	 * Amikor a hozzá tartozó objektum változott, akkor átadja magát a hozzá tartozó
@@ -70,6 +75,21 @@ public abstract class ObjectView {
 	 */
 	public int getKozepY() {
 		return y;
+	}
+
+	/**
+	 * Visszadaja az összes eddig léterhozott nézetet.
+	 * @return Az összes eddig létrehozott nézet listája.
+	 */
+	static public ArrayList<ObjectView> GetAllViews() {
+		return allViews;
+	}
+
+	/**
+	 * Törli az összes eddig léterhozott nézetet.
+	 */
+	static public void RemoveAllViews() {
+		allViews.clear();
 	}
 
 	/**

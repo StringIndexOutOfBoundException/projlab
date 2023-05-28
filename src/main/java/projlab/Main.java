@@ -80,7 +80,7 @@ public class Main {
         constraints.gridy = 0;
         cantSee.add(cantSee2, constraints);
 
-		ArrayList<ObjectView> views = new ArrayList<ObjectView>();
+		ArrayList<ObjectView> views = ObjectView.GetAllViews();
 
 		// =========================================================================
 		// Teszt pálya 1 (rajzolás teszteléshez)
