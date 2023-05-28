@@ -36,8 +36,6 @@ public abstract class MezoView extends ObjectView {
 				int dy = Math.abs(y - tested.getKozepY());
 				double d = Math.sqrt(dx * dx + dy * dy);
 
-				System.out.println(d);
-
 				if (d < minDistance) {
 					intersect = true;
 				}
