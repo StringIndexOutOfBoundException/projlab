@@ -106,10 +106,10 @@ public class Cso extends Mezo {
 
 		ujcso.SzomszedHozzaad(pumpa);
 		ujcso.SzomszedHozzaad(voltszomszedok.get(0));
-		voltszomszedok.get(0).SzomszedHozzaad(ujcso);
 
 		Mezo torlendo = voltszomszedok.get(0);
 		torlendo.SzomszedTorol(this);
+		voltszomszedok.get(0).SzomszedHozzaad(ujcso);
 		SzomszedTorol(torlendo);
 		SzomszedHozzaad(pumpa);
 
