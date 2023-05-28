@@ -3,10 +3,23 @@ package projlab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class ForrasView extends ObjectView {
+public class ForrasView extends MezoView {
 	private static final Color szin = new Color(0, 207, 255); // Kék: #00cfff
 	private static final int oldalmeret = 50; // Négyzet oldalmérete
+
+	public ForrasView() {
+		int MIN_DISTANCE_BETWEEN = oldalmeret * 2 + 50;
+
+		// Forrás a pálya első negyedén lehet
+		int minX = oldalmeret;
+		int maxX = 250;
+		int minY = oldalmeret;
+		int maxY = 500;
+
+		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
+	}
 
 	/**
 	 * Mivel a forrás állapota egyelőre sehogyan sem változhat grafikusan (a helye

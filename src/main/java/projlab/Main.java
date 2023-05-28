@@ -95,10 +95,6 @@ public class Main {
 		fv1.SetNev("Forras1");
 		fv2.SetNev("Forras2");
 
-		fv1.x = 100;
-		fv1.y = 100;
-		fv2.x = 300;
-		fv2.y = 150;
 
 		Cso cs1 = new Cso();
 		ObjectView csv1 = cs1.getView();
@@ -116,16 +112,32 @@ public class Main {
 		Ciszterna c1 = new Ciszterna();
 		ObjectView cv1 = c1.getView();
 		cv1.SetNev("Ciszterna1");
-		cv1.x = 350;
-		cv1.y = 300;
+
 		views.add(cv1);
 
 		Pumpa p1 = new Pumpa();
 		ObjectView pv1 = p1.getView();
-		pv1.SetNev("Pumpa1");
-		pv1.x = 250;
-		pv1.y = 300;
+		pv1.SetNev("P1");
+
 		views.add(pv1);
+
+		for (int i = 0; i < 5; i++) {
+			Forras f = new Forras();
+			ObjectView ov = f.getView();
+			ov.SetNev("f" + i);
+			views.add(ov);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			Jatekos sz = i % 2 == 0 ? new Szerelo() : new Szabotor();
+
+			cs1.JatekosElfogad(sz);
+			sz.setHelyzet(cs1);
+
+			ObjectView ov = sz.getView();
+			ov.SetNev("sz" + i);
+			views.add(ov);
+		}
 
 		// =========================================================================
 

@@ -3,6 +3,8 @@ package projlab;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.ZoneView;
+
 /**
  * A szerelők tartják karban a csőhálózatot. ők javítják meg az elromlott
  * pumpákat, ők állítják át a pumpákat, hogy mindig a lehető legtöbb víz tudjon
@@ -11,6 +13,11 @@ import java.util.List;
  * kapacitásának növelése.
  */
 public class Szerelo extends Jatekos {
+
+	public Szerelo() {
+		view = new SzereloView();
+	}
+
 	/**
 	 * A szerelő megjavít egy mezőt, amin éppen áll
 	 */
