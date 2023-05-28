@@ -234,7 +234,7 @@ public class ParancsErtelmezo {
                 parseOne(acLastCommand, acLastParams);
                 break;
             default:
-                Output("Hibás parancsot adtál meg: " + parancs);
+                Outputln("Hibás parancsot adtál meg: " + parancs);
                 Autocorrect(parancs, param, acParancsok, 0);
                 break;
 
@@ -249,12 +249,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("A letrehoz parancs 2 paramétert vár. (letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev>)");
+            Outputln("A letrehoz parancs 2 paramétert vár. (letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev>)");
             return;
         }
         //Ha gen-nel kezdődik a név, akkor azt nem engedjük, mert az csak generált név lehet
         if (param[1].startsWith("gen")) {
-            Output("A név nem kezdődhet \"gen\"-nel, mert az csak generált név lehet.");
+            Outputln("A név nem kezdődhet \"gen\"-nel, mert az csak generált név lehet.");
             return;
         }
 
@@ -264,83 +264,95 @@ public class ParancsErtelmezo {
             case "cso":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
                 if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
-                    Output("Már létezik ilyen nevű elem");
+                    Outputln("Már létezik ilyen nevű elem");
                     break;
                 }
                 //Létrehozzuk a csövet
                 Cso cso = new Cso();
+                cso.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                addToViews(cso.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], cso);
-                if(success_message) Output("A " + param[1] + " nevű cső létrehozása sikeres volt!");
+                if(success_message) Outputln("A " + param[1] + " nevű cső létrehozása sikeres volt!");
                 break;
 
             case "pumpa":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
                 if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
-                    Output("Már létezik ilyen nevű elem");
+                    Outputln("Már létezik ilyen nevű elem");
                     break;
                 }
                 //Létrehozzuk a pumpát
                 Pumpa pumpa = new Pumpa();
+                pumpa.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                addToViews(pumpa.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], pumpa);
-                if(success_message) Output("A " + param[1] + " nevű pumpa létrehozása sikeres volt!");
+                if(success_message) Outputln("A " + param[1] + " nevű pumpa létrehozása sikeres volt!");
                 break;
 
             case "ciszterna":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
                 if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
-                    Output("Már létezik ilyen nevű elem");
+                    Outputln("Már létezik ilyen nevű elem");
                     break;
                 }
                 //Létrehozzuk a ciszternát
                 Ciszterna ciszterna = new Ciszterna();
+                ciszterna.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                addToViews(ciszterna.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], ciszterna);
-                if(success_message) Output("A " + param[1] + " nevű ciszterna létrehozása sikeres volt!");
+                if(success_message) Outputln("A " + param[1] + " nevű ciszterna létrehozása sikeres volt!");
                 break;
 
             case "forras":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
                 if (mezoMap.containsKey(param[1]) || jatekosMap.containsKey(param[1])) {
-                    Output("Már létezik ilyen nevű elem");
+                    Outputln("Már létezik ilyen nevű elem");
                     break;
                 }
                 //Létrehozzuk a forrást
                 Forras forras = new Forras();
+                forras.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                addToViews(forras.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], forras);
-                if(success_message) Output("A " + param[1] + " nevű forrás létrehozása sikeres volt!");
+                if(success_message) Outputln("A " + param[1] + " nevű forrás létrehozása sikeres volt!");
                 break;
 
             case "szerelo":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
                 if (jatekosMap.containsKey(param[1]) || mezoMap.containsKey(param[1])) {
-                    Output("Már létezik ilyen nevű elem");
+                    Outputln("Már létezik ilyen nevű elem");
                     break;
                 }
                 //Létrehozzuk a szerelőt
                 Szerelo szerelo = new Szerelo();
+                //TODO: szerelo.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                //TODO: addToViews(szerelo.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 jatekosMap.put(param[1], szerelo);
-                if(success_message) Output("A " + param[1] + " nevű szerelő létrehozása sikeres volt!");
+                if(success_message) Outputln("A " + param[1] + " nevű szerelő létrehozása sikeres volt!");
                 break;
 
             case "szabotor":
                 //Megnézzük hogy létezik-e már ilyen nevű elem
                 if (jatekosMap.containsKey(param[1]) || mezoMap.containsKey(param[1])) {
-                    Output("Már létezik ilyen nevű elem");
+                    Outputln("Már létezik ilyen nevű elem");
                     break;
                 }
                 //Létrehozzuk a szabotőrt
                 Szabotor szabotor = new Szabotor();
+                //TODO: szabotor.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                //TODO: addToViews(szabotor.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 jatekosMap.put(param[1], szabotor);
-                if(success_message) Output("A " + param[1] + " nevű szabotőr létrehozása sikeres volt!");
+                if(success_message) Outputln("A " + param[1] + " nevű szabotőr létrehozása sikeres volt!");
                 break;
 
             default:
-                Output("Hibás paramétert adtál meg! (" + param[0] + ") A lehetőségek a következők: ”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”");
+                Outputln("Hibás paramétert adtál meg! (" + param[0] + ") A lehetőségek a következők: ”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”");
                 Autocorrect("letrehoz", param, acElemek, 1);
                 break;
         }
@@ -354,18 +366,18 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("A lep parancs 2 paramétert vár. (lep <jatekos> <mezo>)");
+            Outputln("A lep parancs 2 paramétert vár. (lep <jatekos> <mezo>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("lep", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy létezik-e a megadott mező
         if (!mezoMap.containsKey(param[1])) {
-            Output("Nincs ilyen nevű mező: " + param[1]);
+            Outputln("Nincs ilyen nevű mező: " + param[1]);
             Autocorrect("lep", param, mezoMap.keySet().toArray(new String[0]), 2);
             return;
         }
@@ -381,18 +393,18 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("Az osszekot parancs 2 paramétert vár. (osszekot <mezo1> <mezo2>)");
+            Outputln("Az osszekot parancs 2 paramétert vár. (osszekot <mezo1> <mezo2>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott 1. mező
         if (!mezoMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű mező: " + param[0]);
+            Outputln("Nincs ilyen nevű mező: " + param[0]);
             Autocorrect("osszekot", param, mezoMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy létezik-e a megadott 2. mező
         if (!mezoMap.containsKey(param[1])) {
-            Output("Nincs ilyen nevű mező: " + param[1]);
+            Outputln("Nincs ilyen nevű mező: " + param[1]);
             Autocorrect("osszekot", param, mezoMap.keySet().toArray(new String[0]), 2);
             return;
         }
@@ -410,12 +422,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("A szerel parancs 1 paramétert vár. (szerel <jatekos>)");
+            Outputln("A szerel parancs 1 paramétert vár. (szerel <jatekos>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("szerel", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
@@ -431,12 +443,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("A lyukaszt parancs 1 paramétert vár. (lyukaszt <jatekos>)");
+            Outputln("A lyukaszt parancs 1 paramétert vár. (lyukaszt <jatekos>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("lyukaszt", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
@@ -452,24 +464,24 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy három paraméter van-e
         if (param.length != 3) {
-            Output("Az allit parancs 3 paramétert vár. (allit <jatekos> <bemenet> <kimenet>)");
+            Outputln("Az allit parancs 3 paramétert vár. (allit <jatekos> <bemenet> <kimenet>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("allit", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy létezik-e a megadott bemeneti mező
         if (!mezoMap.containsKey(param[1])) {
-            Output("Nincs ilyen nevű mező: " + param[1]);
+            Outputln("Nincs ilyen nevű mező: " + param[1]);
             Autocorrect("allit", param, mezoMap.keySet().toArray(new String[0]), 2);
             return;
         }
         //Megnézzük hogy létezik-e a megadott kimeneti mező
         if (!mezoMap.containsKey(param[2])) {
-            Output("Nincs ilyen nevű mező: " + param[2]);
+            Outputln("Nincs ilyen nevű mező: " + param[2]);
             Autocorrect("allit", param, mezoMap.keySet().toArray(new String[0]), 3);
             return;
         }
@@ -489,13 +501,13 @@ public class ParancsErtelmezo {
                 m.Frissit();
             } catch (Exception e) {
                 //Ha valami hiba történt, kiírjuk a hibaüzenetet
-                Output("Hiba a frissítés során: " + e.getMessage());
+                Outputln("Hiba a frissítés során: " + e.getMessage());
             }
         }
 
         //A függvény nem vár paramétert. Ha véletlen mégis adtak meg, figyelmeztetjük a felhasználót, de attól még a parancs lefut
         if (param.length != 0) {
-            Output("Figyelmeztetés: A frissit parancs nem vár paramétert. A parancs ettől függetlenül lefutott.");
+            Outputln("Figyelmeztetés: A frissit parancs nem vár paramétert. A parancs ettől függetlenül lefutott.");
         }
 
         GiveNamesToThingsThatDontHaveNames(); //Létrejöhetett új pumpa és cső, ezeknek is kell nevet adni
@@ -510,18 +522,18 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("Az epit parancs 2 paramétert vár. (epit <szerelo> <\"pumpa\"/\"cso\">)");
+            Outputln("Az epit parancs 2 paramétert vár. (epit <szerelo> <\"pumpa\"/\"cso\">)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("epit", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy a második paraméter "pumpa" vagy "cso"
         if (!param[1].equals("pumpa") && !param[1].equals("cso")) {
-            Output("A második paraméternek \"pumpa\" vagy \"cso\"-nak kell lennie.");
+            Outputln("A második paraméternek \"pumpa\" vagy \"cso\"-nak kell lennie.");
             Autocorrect("epit", param, new String[]{"pumpa", "cso"}, 2);
             return;
         }
@@ -548,19 +560,19 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy kettő és négy közötti paraméter van-e
         if (param.length < 2 || param.length > 4) {
-            Output("A felvesz parancs legalább 2, legfeljebb 4 paramétert vár. (felvesz <szerelo> <\"pumpa\"/\"cso\"> [cso_nev] [\"egesz\"/\"fel\"])");
+            Outputln("A felvesz parancs legalább 2, legfeljebb 4 paramétert vár. (felvesz <szerelo> <\"pumpa\"/\"cso\"> [cso_nev] [\"egesz\"/\"fel\"])");
             return;
         }
 
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("felvesz", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy a második paraméter "pumpa" vagy "cso"
         if (!param[1].equals("pumpa") && !param[1].equals("cso")) {
-            Output("A második paraméternek \"pumpa\" vagy \"cso\"-nak kell lennie.");
+            Outputln("A második paraméternek \"pumpa\" vagy \"cso\"-nak kell lennie.");
             Autocorrect("felvesz", param, new String[]{"pumpa", "cso"}, 2);
             return;
         }
@@ -569,25 +581,25 @@ public class ParancsErtelmezo {
             jatekosMap.get(param[0]).PumpatFelvesz();
             //Ha több paramétert adtak meg, akkor figyelmeztetjük a felhasználót, de a parancs lefut
             if (param.length > 2) {
-                Output("Figyelmeztetés: A pumpa felvételéhez nem szükséges kettőnél több paraméter. A parancs ettől függetlenül lefutott.");
+                Outputln("Figyelmeztetés: A pumpa felvételéhez nem szükséges kettőnél több paraméter. A parancs ettől függetlenül lefutott.");
             }
             return;
         }
 
         //Ha "cso"-t adtak meg, akkor azt kell fölvenni. A harmadik parameter ilyenkor muszáj hogy meglegyen
         if (param.length < 3) {
-            Output("A cső felvételéhez meg kell adni a cső nevét.");
+            Outputln("A cső felvételéhez meg kell adni a cső nevét.");
             return;
         }
         //Megnézzük hogy létezik-e a megadott cső
         if (!mezoMap.containsKey(param[2])) {
-            Output("Nincs ilyen nevű cső: " + param[2]);
+            Outputln("Nincs ilyen nevű cső: " + param[2]);
             Autocorrect("felvesz", param, mezoMap.keySet().toArray(new String[0]), 3);
             return;
         }
         //Ha a cső felét akarjuk felvenni, akkor azt is meg kell adni
         if (param.length == 4 && !param[3].equals("egesz") && !param[3].equals("fel")) {
-            Output("A cső felvételéhez az utolsó paraméternek \"egesz\" vagy \"fel\"-nek kell lennie. Az is lehet, hogy nem adunk meg semmit, ekkor az egészet vesszük fel.");
+            Outputln("A cső felvételéhez az utolsó paraméternek \"egesz\" vagy \"fel\"-nek kell lennie. Az is lehet, hogy nem adunk meg semmit, ekkor az egészet vesszük fel.");
             Autocorrect("felvesz", param, new String[]{"egesz", "fel"}, 4);
             return;
         }
@@ -628,7 +640,7 @@ public class ParancsErtelmezo {
     {
         //Megnézzük hogy legalább kettő, legfeljebb három paraméter van-e
         if (param.length < 2 || param.length > 3) {
-            Output("Az allapot parancs két vagy három paramétert vár. (allapot <objektum> <objektum_attributum> [filenév])");
+            Outputln("Az allapot parancs két vagy három paramétert vár. (allapot <objektum> <objektum_attributum> [filenév])");
             return;
         }
         String fileName = null; //Fájl neve (ha van)
@@ -670,7 +682,7 @@ public class ParancsErtelmezo {
             //A második paraméternek is csillagnak kéne lennie, ha az első az volt. Erre azért figyelmeztetjük a felhasználót, de a parancs lefut
             //Itt amúgy kihasználjuk a rövidzár szabályt.
             if (param.length == 1 || !param[1].equals("*")) {
-                Output("Figyelmeztetés: Ha az első paraméter csillag, akkor a második paraméternek is csillagnak kéne lennie. A parancs ettől függetlenül lefutott. (Kiírtuk az egész pályát)");
+                Outputln("Figyelmeztetés: Ha az első paraméter csillag, akkor a második paraméternek is csillagnak kéne lennie. A parancs ettől függetlenül lefutott. (Kiírtuk az egész pályát)");
             }
 
 
@@ -718,8 +730,8 @@ public class ParancsErtelmezo {
                     }
                     break;
                 default:
-                    Output("Nincs ilyen attribútum: " + param[1]);
-                    Autocorrect("allapot", param, new String[]{"maxhatizsakkapacitas", "pumpahatizsak", "csohatizsak", "helyzet"}, 2);
+                    Outputln("Nincs ilyen attribútum: " + param[1]);
+                    Autocorrect("allapot", param, new String[]{"maxhatizsakkapacitas", "pumpahatizsak", "csohatizsak", "helyzet", "*"}, 2);
                     return;
 
             }
@@ -858,13 +870,13 @@ public class ParancsErtelmezo {
 
                     break;
                 default:
-                    Output("Nincs ilyen attribútum: " + param[1]);
-                    Autocorrect("allapot", param, new String[]{"nev", "maxjatekosok", "maxszomszedok", "jatekosok", "vizmennyiseg", "lyukcooldown", "csuszos", "ragados", "ragadossatette", "termeltpumpak", "bemenet", "kimenet"}, 2);
+                    Outputln("Nincs ilyen attribútum: " + param[1]);
+                    Autocorrect("allapot", param, new String[]{"nev", "maxjatekosok", "maxszomszedok", "jatekosok", "vizmennyiseg", "lyukcooldown", "csuszos", "ragados", "ragadossatette", "termeltpumpak", "bemenet", "kimenet", "*"}, 2);
                     return;
             }
         }
         else {
-            Output("Nincs ilyen nevű objektum: " + param[0]);
+            Outputln("Nincs ilyen nevű objektum: " + param[0]);
             //Összerakjuk ideiglenesen a játékosokat és a mezőket egyetlen hashmapbe, hogy együtt tudjuk kezelni őket az autocorrectben
             HashMap<String, Object> ComboMap = new HashMap<>();
             ComboMap.putAll(jatekosMap);
@@ -886,7 +898,7 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("A tolt parancs egy paramétert vár. (tolt <fajlnev>)");
+            Outputln("A tolt parancs egy paramétert vár. (tolt <fajlnev>)");
             return;
         }
         //Odaadjuk a fájlt a runFromFile-nak, hogy futtassa a parancsokat
@@ -905,12 +917,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("A csuszik parancs egy paramétert vár. (csuszik <szabotor>)");
+            Outputln("A csuszik parancs egy paramétert vár. (csuszik <szabotor>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("csuszik", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
@@ -926,12 +938,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("A ragad parancs egy paramétert vár. (ragad <jatekos>)");
+            Outputln("A ragad parancs egy paramétert vár. (ragad <jatekos>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott játékos
         if (!jatekosMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű játékos: " + param[0]);
+            Outputln("Nincs ilyen nevű játékos: " + param[0]);
             Autocorrect("ragad", param, jatekosMap.keySet().toArray(new String[0]), 1);
             return;
         }
@@ -947,7 +959,7 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("A veletlen parancs egy paramétert vár. (veletlen <\"be\"/\"ki\">)");
+            Outputln("A veletlen parancs egy paramétert vár. (veletlen <\"be\"/\"ki\">)");
             return;
         }
         //Ha be akarjuk kapcsolni a véletlen működést
@@ -959,7 +971,7 @@ public class ParancsErtelmezo {
             Mezo.doRandomThings = false;
         }
         else {
-            Output("Hibás paraméter. A paraméternek \"be\" vagy \"ki\"-nek kell lennie.");
+            Outputln("Hibás paraméter. A paraméternek \"be\" vagy \"ki\"-nek kell lennie.");
             Autocorrect("veletlen", param, new String[]{"be", "ki"}, 1);
         }
     }
@@ -972,12 +984,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy egy paraméter van-e
         if (param.length != 1) {
-            Output("Az elront parancs egy paramétert vár. (elront <mezo>)");
+            Outputln("Az elront parancs egy paramétert vár. (elront <mezo>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott mező
         if (!mezoMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű mező: " + param[0]);
+            Outputln("Nincs ilyen nevű mező: " + param[0]);
             Autocorrect("elront", param, mezoMap.keySet().toArray(new String[0]), 1);
             return;
         }
@@ -994,18 +1006,18 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("A termel parancs két paramétert vár. (termel <mezo> <\"pumpa\"/\"cso\">)");
+            Outputln("A termel parancs két paramétert vár. (termel <mezo> <\"pumpa\"/\"cso\">)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott mező
         if (!mezoMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű mező: " + param[0]);
+            Outputln("Nincs ilyen nevű mező: " + param[0]);
             Autocorrect("termel", param, mezoMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy a második paraméter "pumpa" vagy "cso"
         if (!param[1].equals("pumpa") && !param[1].equals("cso")) {
-            Output("Hibás paraméter. A paraméternek \"pumpa\" vagy \"cso\"-nak kell lennie.");
+            Outputln("Hibás paraméter. A paraméternek \"pumpa\" vagy \"cso\"-nak kell lennie.");
             Autocorrect("termel", param, new String[]{"pumpa", "cso"}, 2);
             return;
         }
@@ -1027,19 +1039,19 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("A csofelulet parancs két paramétert vár. (csofelulet <cso> <\"csuszos\"/\"ragados\">)");
+            Outputln("A csofelulet parancs két paramétert vár. (csofelulet <cso> <\"csuszos\"/\"ragados\">)");
             return;
         }
 
         //Megnézzük hogy létezik-e a megadott cső
         if (!mezoMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű cső: " + param[0]);
+            Outputln("Nincs ilyen nevű cső: " + param[0]);
             Autocorrect("csofelulet", param, mezoMap.keySet().toArray(new String[0]), 1);
             return;
         }
         //Megnézzük hogy a második paraméter "csuszos" vagy "ragados"
         if (!param[1].equals("csuszos") && !param[1].equals("ragados")) {
-            Output("Hibás paraméter. A paraméternek \"csuszos\" vagy \"ragados\"-nak kell lennie.");
+            Outputln("Hibás paraméter. A paraméternek \"csuszos\" vagy \"ragados\"-nak kell lennie.");
             Autocorrect("csofelulet", param, new String[]{"csuszos", "ragados"}, 2);
             return;
         }
@@ -1060,12 +1072,12 @@ public class ParancsErtelmezo {
     {
         //Meg kell nézni hogy két paraméter van-e
         if (param.length != 2) {
-            Output("A vizmennyiseg parancs két paramétert vár. (vizmennyiseg <cso/pumpa> <mennyiseg>)");
+            Outputln("A vizmennyiseg parancs két paramétert vár. (vizmennyiseg <cso/pumpa> <mennyiseg>)");
             return;
         }
         //Megnézzük hogy létezik-e a megadott cső vagy pumpa
         if (!mezoMap.containsKey(param[0])) {
-            Output("Nincs ilyen nevű cső vagy pumpa: " + param[0]);
+            Outputln("Nincs ilyen nevű cső vagy pumpa: " + param[0]);
             Autocorrect("vizmennyiseg", param, mezoMap.keySet().toArray(new String[0]), 1);
             return;
         }
@@ -1075,7 +1087,7 @@ public class ParancsErtelmezo {
             mennyiseg = Integer.parseInt(param[1]);
         }
         catch (NumberFormatException e) {
-            Output("Hibás a második paraméter. A paraméternek számnak kell lennie.");
+            Outputln("Hibás a második paraméter. A paraméternek számnak kell lennie.");
             return;
         }
         //Beállítjuk a megfelelő cső vagy pumpa víz mennyiségét
@@ -1141,7 +1153,7 @@ public class ParancsErtelmezo {
         //Ha a parancs üres akkor nem csinálunk semmit, kiírjuk hogy üres parancs
         if(command.equals(""))
         {
-            Output(" * Üres parancsot írtál be.");
+            Outputln(" * Üres parancsot írtál be.");
             return;
         }
 
@@ -1177,26 +1189,26 @@ public class ParancsErtelmezo {
         //Ha a legközelebbi szó távolsága kisebb mint 4, akkor figyelmeztetjük a felhasználót
         if (min < 4) {
             //Kiírjuk a hibás parancsot és az összes paramétert
-            System.out.print("* Hibás parancs: " + command);
+            Output("* Hibás parancs: " + command);
             //Ha a parancs volt a hibás, akkor rakunk utána egy (?)-t
             if (corretedParamIndex == 0)
             {
-                System.out.print("(??)");
+                Output("(??)");
             }
             //Egy for ciklussal kiírjuk az összes paramétert, és ha az adott paraméter volt a hibás, akkor rakunk utána egy (?)-t
             for (int i = 0; i < param.length; i++)
             {
-                System.out.print(" " + param[i]);
+                Output(" " + param[i]);
                 if (corretedParamIndex == i+1)
                 {
-                    System.out.print("(??)");
+                    Output("(??)");
                 }
             }
 
 
-            Output("");
-            Output("* Erre gondotál: \"" + closest+ "\"?");
-            Output("* Ha igen, akkor írd be hogy \"i\", és a parancs automatikusan ki lesz javítva és újra lefut!");
+            Outputln("");
+            Outputln("* Erre gondotál: \"" + closest+ "\"?");
+            Outputln("* Ha igen, akkor írd be hogy \"i\", és a parancs automatikusan ki lesz javítva és újra lefut!");
 
             //Beállítjuk a kijavított parancsot vagy paramétert, ha esetleg újra akarjuk futtatni a kijavított parancsot. ("i" parancs)
             acLastCommand = command;
@@ -1353,15 +1365,14 @@ public class ParancsErtelmezo {
                 myWriter.write("\n");
                 myWriter.close();
             } catch (Exception e) {
-                Output("Hiba a kimenet kiírásakor a(z) "+filename+" fájlba.");
-                //e.printStackTrace();
+                Outputln("Hiba a kimenet kiírásakor a(z) "+filename+" fájlba.");
                 //Hiba nevének kiírása
-                Output(e.toString());
+                Outputln(e.toString());
             }
         }
         else
         {
-            Output(s);
+            Outputln(s);
         }
 
     }
@@ -1386,8 +1397,12 @@ public class ParancsErtelmezo {
                     //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
                     if (!mezoMap.containsValue(m2))
                     {
+                        String name = NextAutogenName();
                         //Hozzá kell adni a mezoMap-hez autogenerált névvel
-                        mezoMap.put(NextAutogenName(), m2);
+                        mezoMap.put(name, m2);
+                        m2.getView().SetNev(name); //A viewjának be kell állítani a nevét
+                        addToViews(m2.getView()); //A viewját hozzá kell adni a view-okhoz
+
                     }
                 }
             }
@@ -1423,8 +1438,11 @@ public class ParancsErtelmezo {
                 //Ha nincs benne a mezoMap-ben, akakor az azt jelenti hogy nincs neve
                 if (!mezoMap.containsValue(p))
                 {
+                    String name = NextAutogenName();
                     //Hozzá kell adni a mezoMap-hez autogenerált névvel
-                    mezoMap.put(NextAutogenName(), p);
+                    mezoMap.put(name, p);
+                    p.getView().SetNev(name); // A viewjának be kell állítani a nevét
+                    addToViews(p.getView()); //A viewját hozzá kell adni a view-okhoz
                 }
             }
         }
@@ -1470,7 +1488,7 @@ public class ParancsErtelmezo {
     {
         if (!debug_mode)
         {
-            Output("Ez a parancs csak debug módban érhető el!");
+            Outputln("Ez a parancs csak debug módban érhető el!");
             return false;
         }
         return true;
@@ -1503,9 +1521,10 @@ public class ParancsErtelmezo {
 
     /**
      * A parancsértelmező output-olja a paraméterként kapott stringet. Ha output_to_view true, akkor a view-ba írja, ha false, akkor a konzolra.
+     * A string végére automatikusan rak egy sortörést. (println)
      * @param s A string, amit ki kell írni.
      */
-    private void Output(String s)
+    private void Outputln(String s)
     {
         if (output_to_view)
         {
@@ -1517,4 +1536,33 @@ public class ParancsErtelmezo {
             System.out.println(s);
         }
     }
+
+    /**
+     * A parancsértelmező output-olja a paraméterként kapott stringet. Ha output_to_view true, akkor a view-ba írja, ha false, akkor a konzolra.
+     * A string végére nem rak sokrtörést. (print)
+     * @param s A string, amit ki kell írni.
+     */
+    private void Output(String s)
+    {
+        if (output_to_view)
+        {
+            //A view ezzel a függvénnyel fogja megkapni az output-ot
+            view.ReceiveFromPE(s);
+        }
+        else
+        {
+            System.out.print(s);
+        }
+    }
+
+    /**
+     * A nézetekhez hozzá kell adni minden új nézetet, hogy a grafikus felület tudja, hogy melyik nézeteket kell frissítenie.
+     * Azért van külön függvénybe kiszervezve, hogy könnyen módosítani lehessen.
+     * @param v A nézet, amit hozzá kell adni a nézetekhez.
+     */
+    private void addToViews(ObjectView v)
+    {
+        //TODO: itt kell hozzáadni a nézetekhez
+    }
 }
+
