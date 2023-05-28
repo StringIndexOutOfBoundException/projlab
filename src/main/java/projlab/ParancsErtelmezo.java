@@ -329,7 +329,7 @@ public class ParancsErtelmezo {
                 }
                 //Létrehozzuk a szerelőt
                 Szerelo szerelo = new Szerelo();
-                //TODO: szerelo.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                szerelo.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
                 //Hozzáadjuk a hashmaphez a megadott néven
                 jatekosMap.put(param[1], szerelo);
                 if(success_message) Outputln("A " + param[1] + " nevű szerelő létrehozása sikeres volt!");
@@ -343,7 +343,7 @@ public class ParancsErtelmezo {
                 }
                 //Létrehozzuk a szabotőrt
                 Szabotor szabotor = new Szabotor();
-                //TODO: szabotor.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
+                szabotor.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
                 //Hozzáadjuk a hashmaphez a megadott néven
                 jatekosMap.put(param[1], szabotor);
                 if(success_message) Outputln("A " + param[1] + " nevű szabotőr létrehozása sikeres volt!");
