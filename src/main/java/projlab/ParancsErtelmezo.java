@@ -270,7 +270,7 @@ public class ParancsErtelmezo {
                 //Létrehozzuk a csövet
                 Cso cso = new Cso();
                 cso.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
-                addToViews(cso.getView()); //Viewokat tároló listához hozzáadjuk
+
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], cso);
                 if(success_message) Outputln("A " + param[1] + " nevű cső létrehozása sikeres volt!");
@@ -285,7 +285,7 @@ public class ParancsErtelmezo {
                 //Létrehozzuk a pumpát
                 Pumpa pumpa = new Pumpa();
                 pumpa.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
-                addToViews(pumpa.getView()); //Viewokat tároló listához hozzáadjuk
+
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], pumpa);
                 if(success_message) Outputln("A " + param[1] + " nevű pumpa létrehozása sikeres volt!");
@@ -300,7 +300,7 @@ public class ParancsErtelmezo {
                 //Létrehozzuk a ciszternát
                 Ciszterna ciszterna = new Ciszterna();
                 ciszterna.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
-                addToViews(ciszterna.getView()); //Viewokat tároló listához hozzáadjuk
+
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], ciszterna);
                 if(success_message) Outputln("A " + param[1] + " nevű ciszterna létrehozása sikeres volt!");
@@ -315,7 +315,7 @@ public class ParancsErtelmezo {
                 //Létrehozzuk a forrást
                 Forras forras = new Forras();
                 forras.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
-                addToViews(forras.getView()); //Viewokat tároló listához hozzáadjuk
+
                 //Hozzáadjuk a hashmaphez a megadott néven
                 mezoMap.put(param[1], forras);
                 if(success_message) Outputln("A " + param[1] + " nevű forrás létrehozása sikeres volt!");
@@ -330,7 +330,6 @@ public class ParancsErtelmezo {
                 //Létrehozzuk a szerelőt
                 Szerelo szerelo = new Szerelo();
                 //TODO: szerelo.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
-                //TODO: addToViews(szerelo.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 jatekosMap.put(param[1], szerelo);
                 if(success_message) Outputln("A " + param[1] + " nevű szerelő létrehozása sikeres volt!");
@@ -345,7 +344,6 @@ public class ParancsErtelmezo {
                 //Létrehozzuk a szabotőrt
                 Szabotor szabotor = new Szabotor();
                 //TODO: szabotor.getView().SetNev(param[1]); //View-nak beállítjuk a nevét
-                //TODO: addToViews(szabotor.getView()); //Viewokat tároló listához hozzáadjuk
                 //Hozzáadjuk a hashmaphez a megadott néven
                 jatekosMap.put(param[1], szabotor);
                 if(success_message) Outputln("A " + param[1] + " nevű szabotőr létrehozása sikeres volt!");
@@ -1401,7 +1399,7 @@ public class ParancsErtelmezo {
                         //Hozzá kell adni a mezoMap-hez autogenerált névvel
                         mezoMap.put(name, m2);
                         m2.getView().SetNev(name); //A viewjának be kell állítani a nevét
-                        addToViews(m2.getView()); //A viewját hozzá kell adni a view-okhoz
+
 
                     }
                 }
@@ -1442,7 +1440,7 @@ public class ParancsErtelmezo {
                     //Hozzá kell adni a mezoMap-hez autogenerált névvel
                     mezoMap.put(name, p);
                     p.getView().SetNev(name); // A viewjának be kell állítani a nevét
-                    addToViews(p.getView()); //A viewját hozzá kell adni a view-okhoz
+
                 }
             }
         }
@@ -1553,16 +1551,6 @@ public class ParancsErtelmezo {
         {
             System.out.print(s);
         }
-    }
-
-    /**
-     * A nézetekhez hozzá kell adni minden új nézetet, hogy a grafikus felület tudja, hogy melyik nézeteket kell frissítenie.
-     * Azért van külön függvénybe kiszervezve, hogy könnyen módosítani lehessen.
-     * @param v A nézet, amit hozzá kell adni a nézetekhez.
-     */
-    private void addToViews(ObjectView v)
-    {
-        //TODO: itt kell hozzáadni a nézetekhez
     }
 }
 
