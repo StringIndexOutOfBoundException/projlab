@@ -41,7 +41,7 @@ public class ParancsErtelmezo {
 
     //A következő string tömbök helyesen beírt szavakat tartalmaznak, amiket a program javasolhat ha valaki elgépel egy parancsot (Autocorrect)
     //A parancsok listája egy tömbben
-    private String[] acParancsok = new String[] {"letrehoz", "lep", "osszekot", "szerel", "lyukaszt", "allit", "frissit", "epit", "felvesz", "allapot", "tolt", "csuszik", "ragad", "veletlen", "elront", "termel", "csofelulet", "vizmennyiseg"};
+    private String[] acParancsok = new String[] {"letrehoz", "lep", "osszekot", "szerel", "lyukaszt", "allit", "frissit", "epit", "felvesz", "allapot", "tolt", "csuszik", "ragad", "veletlen", "elront", "termel", "csofelulet", "vizmennyiseg", "torol"};
     //Létrehozható elemek listája egy tömbben
     private String[] acElemek = new String[] {"cso", "pumpa", "ciszterna", "forras", "szerelo", "szabotor"};
 
@@ -234,6 +234,10 @@ public class ParancsErtelmezo {
             case "vizmennyiseg":
                 if (InDebugMode())
                     cVizmennyiseg(param);
+                break;
+            case "torol":
+                if (InDebugMode())
+                    cTorol(param);
                 break;
 
             //Igazából nem parancs, az autocorrectnél lehet ezt használni hogy kijavítsa a parancsot.
@@ -1099,6 +1103,21 @@ public class ParancsErtelmezo {
         mezoMap.get(param[0]).SetVizmennyiseg(mennyiseg);
     }
 
+    /**
+     * Kitörli az egész pályát
+     * @param param A parancs paraméterei (Nincs)
+     */
+    private void cTorol(String[] param)
+    {
+        //Töröljük az összes mezőt
+        mezoMap.clear();
+        //Töröljük az összes játékost
+        jatekosMap.clear();
+
+        //Viewok törlése
+        ObjectView.RemoveAllViews();
+    }
+
 
 
 
@@ -1480,7 +1499,7 @@ public class ParancsErtelmezo {
     /**
      * Ha debug módban vagyunk, akkor minden parancs elérhető
      * Ha nem debug módban vagyunk, akkor csak a következő parancsok érhetőek el: lep, szerel, lyukaszt, allit, epit, felvesz, allapot, csuszik, ragad
-     * Tehát a következő parancsok nem elérhetőek: letrehoz, osszekot, frissit, veletlen, elront, termel, csofelulet, vizmennyiseg
+     * Tehát a következő parancsok nem elérhetőek: letrehoz, osszekot, frissit, veletlen, elront, termel, csofelulet, vizmennyiseg, clear
      * @param debug_mode Ha true, akkor debug módban vagyunk, ha false, akkor nem
      */
     public void EnableDebugMode(boolean debug_mode) {
