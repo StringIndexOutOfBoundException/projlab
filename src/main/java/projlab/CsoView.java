@@ -84,16 +84,18 @@ public class CsoView extends ObjectView {
 		g2.setColor(szin);
 		g2.drawLine(x, y, x2, y2);
 
+		int centerX = (x + x2) / 2;
+		int centerY = (y + y2) / 2;
+
 		if (!mukodik) {
 			g2.setStroke(
 					new BasicStroke(vastag, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0));
-			// Csuszósságnak nagyobb a precedenciája -- ez alapján dől el a modifier szine
 			g2.setColor(new Color(255, 0, 0, 100));
 			g2.drawLine(x, y, x2, y2);
 		}
 
 		// Név a cső közepén
-		DrawName(g, (x + x2) / 2, (y + y2) / 2);
+		DrawName(g, centerX, centerY);
 	}
 
 }
