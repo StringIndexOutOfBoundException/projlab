@@ -17,7 +17,7 @@ public abstract class ObjectView {
 	/**
 	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
 	 */
-	protected int x, y;
+	protected int x = 0, y = 0;
 	protected String nev = "?";
 
 	/**

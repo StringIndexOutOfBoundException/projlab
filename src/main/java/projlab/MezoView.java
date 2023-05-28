@@ -6,12 +6,17 @@ import java.util.Random;
 
 public abstract class MezoView extends ObjectView {
 	/**
-	 * A pálya elemeinek helyét ezzel a függvénnyel tudják a leszármazottak
-	 * legenerálni.
+	 * Maximum hány próbálkozás lehetséges a véletlen elhelyezésre. Nagyobb szám
+	 * esetén ha már nincs hely, akkor tovább keres. Találat esetén nem iterál
+	 * végig.
 	 */
-	protected void GenerateXYPlacement(int minX, int maxX, int minY, int maxY, int minDistance) {
-		final int MAX_PLACEMENT_TRIALS = 500000; // Ha nincs már hely, ennyiszer fog próbálkozni
+	final int MAX_PLACEMENT_TRIALS = 5000;
 
+	/**
+	 * A pálya elemeinek helyét ezzel a függvénnyel tudják a leszármazottak
+	 * legenerálni. Véletlenszerű helyet generál kicsit átfedési eséllyel.
+	 */
+	protected void GenerateXYPlacement(int minX, int maxX, int minY, int maxY, float minDistance) {
 		Random random = new Random();
 		ArrayList<ObjectView> views = ObjectView.GetAllViews();
 
@@ -23,9 +28,17 @@ public abstract class MezoView extends ObjectView {
 			y = random.nextInt((maxY - minY) + 1) + minY;
 
 			for (int j = 0; j < views.size(); j++) {
-				int dx = Math.abs(x - views.get(j).getKozepX());
-				int dy = Math.abs(y - views.get(j).getKozepY());
-				if (dx < minDistance && dy < minDistance) {
+				ObjectView tested = views.get(j);
+				if (tested == this)
+					continue;
+
+				int dx = Math.abs(x - tested.getKozepX());
+				int dy = Math.abs(y - tested.getKozepY());
+				double d = Math.sqrt(dx * dx + dy * dy);
+
+				System.out.println(d);
+
+				if (d < minDistance) {
 					intersect = true;
 				}
 			}

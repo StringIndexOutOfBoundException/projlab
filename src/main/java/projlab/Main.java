@@ -79,7 +79,8 @@ public class Main {
         constraints.gridx = 3;
         constraints.gridy = 0;
         cantSee.add(cantSee2, constraints);
-
+		ArrayList<ObjectView> views = ObjectView.GetAllViews();
+/*
 		ArrayList<ObjectView> views = ObjectView.GetAllViews();
 
 		// =========================================================================
@@ -149,7 +150,7 @@ public class Main {
 			ov.SetNev("sz" + i);
 			views.add(ov);
 		}
-
+*/
 		// =========================================================================
 
 		ArrayList<BufferedImage> layers = new ArrayList<>();

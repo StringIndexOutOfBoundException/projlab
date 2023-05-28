@@ -15,7 +15,7 @@ public class CsoView extends MezoView {
 	 * A cső egyik vége az ObjectView-ből örökölt x, y. A cső másik vége pedig ez a
 	 * két változó.
 	 */
-	private int x2, y2;
+	private int x2 = 0, y2 = 0;
 
 	/**
 	 * Cső állapotát jelentő változók (keep for now)
