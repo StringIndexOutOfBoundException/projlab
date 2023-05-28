@@ -7,15 +7,17 @@ public class ParancsErtelmezoView {
     //A viewhoz tartozó parancsértelmező
     private ParancsErtelmezo pe;
     private JPanel drawpanel;
+    private JTextArea tOutput;
 
     /**
      * Default konstruktor. Parancsértelmezőt nem állít be. Akkor rendelődik a view egy parancsértelmezőhöz, ha a parancsértelmező beállítja ezt a viewt a magáénak.
      * (Mert ugye ParancsErtelmezo nélkül a view-nak nincs sok értelme.)
-     * @param drawpanel a panel amire rajzolni kell
      */
-    public ParancsErtelmezoView(JPanel drawpanel) {
+    public ParancsErtelmezoView() {}
+    void setDrawpanel(JPanel drawpanel){
         this.drawpanel = drawpanel;
     }
+    void setOutput(JTextArea output){tOutput = output;}
 
     /**
      * A viewhoz tartozó parancsértelmező beállítása
@@ -46,7 +48,13 @@ public class ParancsErtelmezoView {
      * @param output a kimenet ami a parancsértelmezőtől jött
      */
     public void ReceiveFromPE(String output) {
-        //TODO: Itt kell átadni az output-ért felelős TextBox-nak az outputot ami a parancsértelmezőtől jött.
+
+        try {
+            String temp = tOutput.getText();
+            temp += "\n";
+            tOutput.setText(temp + output);
+        }
+        catch (Exception e){}
     }
 
     public JPanel getDrawpanel() {
