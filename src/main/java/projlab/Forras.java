@@ -12,7 +12,10 @@ public class Forras extends Mezo {
 	//private int maxJatekosok = Integer.MAX_VALUE;
 	private static int MAXVIZ = 1;
 
-	public Forras(){maxJatekosok = 9999999;}
+	public Forras() {
+		maxJatekosok = Integer.MAX_VALUE;
+		view = new ForrasView();
+	}
 
 	/**
 	 * Frissít függvény a víz folyásáért felelős

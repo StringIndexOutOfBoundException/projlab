@@ -32,6 +32,7 @@ public class Pumpa extends Mezo {
 
 	public Pumpa() {
 		super(Integer.MAX_VALUE);
+		view = new PumpaView();
 		MAXVIZ = 1;
 		maxCso = 5;
 		vizmennyiseg = 0;

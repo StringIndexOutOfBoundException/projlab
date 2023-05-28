@@ -4,21 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class ForrasView extends ObjectView {
-	private static final Color szin = new Color(0, 207, 255); // Kék: #00cfff
+public class CiszternaView extends ObjectView {
+	private static final Color szin = new Color(245, 154, 35); // Narancs: #f59a23
 	private static final int oldalmeret = 50; // Négyzet oldalmérete
 
 	/**
-	 * Mivel a forrás állapota egyelőre sehogyan sem változhat grafikusan (a helye
-	 * sem), ezért egyelőre üres
+	 * Mivel a ciszterna állapota egyelőre sehogyan sem változhat grafikusan (a
+	 * helye sem), ezért egyelőre üres
 	 */
 	@Override
 	public void Notify(Mezo m) {
 	}
 
 	/**
-	 * A forrás nézetének rárajzolása az átadott graphics bufferre.
-	 * @param g - A graphics buffer amire rajzol.
+	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
+	 * @param layers - A bufferek amikre rajzolni kell.
 	 */
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {
@@ -31,4 +31,5 @@ public class ForrasView extends ObjectView {
 		// Név a négyzet közepén
 		DrawName(g, x, y);
 	}
+
 }

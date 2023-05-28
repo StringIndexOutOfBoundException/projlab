@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 /**
  * Egy absztrakt ősosztály, amiből az összes konkrét objektumnak a játékban lesz
@@ -19,8 +20,7 @@ public abstract class ObjectView {
 	/**
 	 * Az objektum megjelenéséért felelős változók default értékekkel.
 	 */
-	protected Color color = Color.LIGHT_GRAY;
-	private Font font = new Font("Arial", Font.PLAIN, 12);
+	private static final Font font = new Font("Arial", Font.PLAIN, 14);
 
 	/**
 	 * Amikor a hozzá tartozó objektum változott, akkor átadja magát a hozzá tartozó
@@ -31,9 +31,9 @@ public abstract class ObjectView {
 
 	/**
 	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
-	 * @param g - A buffer amire rajzolni kell.
+	 * @param layers - A bufferek amikre rajzolni kell.
 	 */
-	public abstract void Draw(Graphics g);
+	public abstract void Draw(ArrayList<Graphics> layers);
 
 	/**
 	 * Beállítja az objektum megjelenítésekor használt nevét.
@@ -41,6 +41,14 @@ public abstract class ObjectView {
 	 */
 	public void SetNev(String n) {
 		nev = n;
+	}
+
+	/**
+	 * Beállítja hogy milyen koordinátán rajzolódjon ki a nézet
+	 */
+	public void setHely(int posX, int posY) {
+		x = posX;
+		y = posY;
 	}
 
 	/**
@@ -61,7 +69,7 @@ public abstract class ObjectView {
 		g.setColor(Color.black);
 
 		// Körvonal kirajzolása
-		int outlineSize = 3;
+		int outlineSize = 1;
 		for (int dx = -outlineSize; dx <= outlineSize; dx++) {
 			for (int dy = -outlineSize; dy <= outlineSize; dy++) {
 				g.drawString(nev, textX + dx, textY + dy);

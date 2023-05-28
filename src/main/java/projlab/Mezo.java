@@ -45,6 +45,11 @@ public abstract class Mezo {
 	private ArrayList <Mezo> szomszedok;
 
 	/**
+	 * A mezőhöz tartozó nézet
+	 */
+	protected ObjectView view;
+
+	/**
 	 * Default konstruktor
 	 */
 	public Mezo() {
@@ -158,6 +163,7 @@ public abstract class Mezo {
 	public void SzomszedHozzaad(Mezo m) {
 		if (szomszedok.size() < maxSzomszedok) {
 			szomszedok.add(m);
+			view.Notify(this);
 		}
 	}
 
@@ -168,6 +174,7 @@ public abstract class Mezo {
 	 */
 	public void SzomszedTorol(Mezo m) {
 		szomszedok.remove(m);
+		view.Notify(this);
 	}
 
 	/**
@@ -182,6 +189,7 @@ public abstract class Mezo {
 	public boolean SzomszedFelcsatol(Mezo m) {
 		if (szomszedok.size() < maxSzomszedok) {
 			szomszedok.add(m);
+			view.Notify(this);
 			return true;
 		}
 		return false;
@@ -218,6 +226,7 @@ public abstract class Mezo {
 	 */
 	public void setMukodik(boolean status) {
 		mukodik = status;
+		view.Notify(this);
 	}
 
 	/**
@@ -274,10 +283,15 @@ public abstract class Mezo {
 
 	public void SetVizmennyiseg(int mennyiseg) {
 		vizmennyiseg = mennyiseg;
+		view.Notify(this);
 	}
 
 	public boolean getMukodik() {
 		return mukodik;
+	}
+
+	public ObjectView getView() {
+		return view;
 	}
 
 	/**

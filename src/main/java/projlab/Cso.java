@@ -18,6 +18,7 @@ public class Cso extends Mezo {
 	 */
 	public Cso() {
 		super(1);
+		view = new CsoView();
 		maxSzomszedok = 2;
 		lyukCooldown = 0;
 		csuszos = 0;
@@ -37,6 +38,7 @@ public class Cso extends Mezo {
 	@Override
 	public void Megjavit() {
 		setMukodik(true);
+		view.Notify(this);
 	}
 
 	public boolean JatekosElenged(Jatekos j) {
@@ -113,6 +115,7 @@ public class Cso extends Mezo {
 		SzomszedTorol(torlendo);
 		SzomszedHozzaad(pumpa);
 
+		view.Notify(this);
 	}
 
 	/**
@@ -126,7 +129,7 @@ public class Cso extends Mezo {
 			vizmennyiseg = 0;
 		}
 		lyukCooldown = 5; //5 Körig nem lehet majd kilyukasztani a csövet
-		//Ez NINCS a leírásban
+		view.Notify(this);
 	}
 
 	/**
@@ -144,6 +147,7 @@ public class Cso extends Mezo {
 		else{
 			vizmennyiseg += meret;
 		}
+		view.Notify(this);
 	}
 
 	/**
@@ -153,21 +157,22 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetCsokkent(int meret) throws Exception {
-
 		if (meret <= vizmennyiseg) {
 			vizmennyiseg -= meret;
+			view.Notify(this);
 		}
-
 	}
 
 	public void Csuszik() {
 		csuszos = 5;
+		view.Notify(this);
 	} //3 körig lesz csúszós a cső
 
 	public void Ragad() {
 		if (ragados == 0) {
 			ragados = 5; //3 körig lesz ragadós a cső
 			ragadossaTette = getJatekosok().get(0);
+			view.Notify(this);
 		}
 	}
 
@@ -188,10 +193,12 @@ public class Cso extends Mezo {
 		if (lyukCooldown > 0) {
 			lyukCooldown -= 1;
 		}
+		view.Notify(this);
 	}
 
 	public void SetVizmennyiseg(int viz) {
 		vizmennyiseg = viz;
+		view.Notify(this);
 	}
 
 	public int getVizmennyiseg() {
@@ -209,6 +216,7 @@ public class Cso extends Mezo {
 		ArrayList<Mezo> szomszedok = GetSzomszedok();
 		if (szomszedok.size() < 2)
 			szomszedok.add(m);
+		view.Notify(this);
 	}
 
 	public boolean SzomszedFelcsatol(Mezo m) {
