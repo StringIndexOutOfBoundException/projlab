@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class ForrasView extends ObjectView {
-	private final Color szin = new Color(0, 207, 255); // Kék: #00cfff
-	private final int oldalmeret = 40; // Négyzet oldalmérete
+	private static final Color szin = new Color(0, 207, 255); // Kék: #00cfff
+	private static final int oldalmeret = 40; // Négyzet oldalmérete
 
 	/**
 	 * Amikor a forrás változott, akkor átadja magát a hozzá tartozó view-nak, ami

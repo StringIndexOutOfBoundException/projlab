@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class CsoView extends ObjectView {
-	private final Color szin = Color.BLACK; // Fekete
-	private final BasicStroke vastagsag = new BasicStroke(10); // Kirajzolt cső vastagsága
+	private static final Color szin = Color.BLACK; // Fekete
+	private static final BasicStroke vastagsag = new BasicStroke(10); // Kirajzolt cső vastagsága
 
 	/**
 	 * A cső egyik vége az ObjectView-ből örökölt x, y. A cső másik vége pedig ez a
