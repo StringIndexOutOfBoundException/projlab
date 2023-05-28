@@ -1,6 +1,8 @@
 package projlab;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Main osztály
@@ -78,12 +80,62 @@ public class Main {
         constraints.gridy = 0;
         cantSee.add(cantSee2, constraints);
 
+		ArrayList<ObjectView> views = new ArrayList<ObjectView>();
+
+		// =========================================================================
+		// Teszt pálya 1 (rajzolás teszteléshez)
+		// forrás1 - cső1 - forrás2
+		// =========================================================================
+		Forras f1 = new Forras();
+		Forras f2 = new Forras();
+
+		ObjectView fv1 = f1.getView();
+		ObjectView fv2 = f2.getView();
+
+		fv1.SetNev("Forras1");
+		fv2.SetNev("Forras2");
+
+		fv1.x = 100;
+		fv1.y = 100;
+		fv2.x = 300;
+		fv2.y = 150;
+
+		Cso cs1 = new Cso();
+		ObjectView csv1 = cs1.getView();
+		csv1.SetNev("Cso1");
+
+		cs1.SzomszedHozzaad(f1);
+		f1.SzomszedHozzaad(cs1);
+		cs1.SzomszedHozzaad(f2);
+		f2.SzomszedHozzaad(cs1);
+
+		views.add(fv1);
+		views.add(fv2);
+		views.add(csv1);
+		// =========================================================================
+
+		ArrayList<BufferedImage> layers = new ArrayList<>();
+		ArrayList<Graphics> layerGraphics = new ArrayList<>();
+
+		// Bufferek (layerek) létrehozása
+		for (int i = 0; i < 3; i++) {
+			layers.add(new BufferedImage(400, 300, BufferedImage.TYPE_INT_ARGB));
+		}
+		for (int i = 0; i < 3; i++) {
+			layerGraphics.add(layers.get(i).getGraphics());
+		}
 
         JPanel drawPanel = new JPanel(new BorderLayout()){
             public void paint(Graphics g){
-                for ( ObjectView view: pev.GetObjects) {    //Ide kell valami ami lekérdezi az objektumokat
-                    view.draw(g);   //objektviewnak még nincs draw függvénye
+				// Bufferekbe rajzolás
+				for (ObjectView view : views) {
+					view.Draw(layerGraphics);
                 }
+
+				// Bufferek rajzolása a panelre
+				for (BufferedImage layer : layers) {
+					g.drawImage(layer, 0, 0, null);
+				}
             }
         };
 
@@ -125,6 +177,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1000,1000);
         frame.getContentPane().add(panel);
+		frame.pack();
         frame.setVisible(true);
     }
 }

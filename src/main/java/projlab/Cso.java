@@ -18,6 +18,7 @@ public class Cso extends Mezo {
 	 */
 	public Cso() {
 		super(1);
+		view = new CsoView();
 		maxSzomszedok = 2;
 		lyukCooldown = 0;
 		csuszos = 0;
@@ -113,6 +114,7 @@ public class Cso extends Mezo {
 		SzomszedTorol(torlendo);
 		SzomszedHozzaad(pumpa);
 
+		view.Notify(this);
 	}
 
 	/**
@@ -209,6 +211,7 @@ public class Cso extends Mezo {
 		ArrayList<Mezo> szomszedok = GetSzomszedok();
 		if (szomszedok.size() < 2)
 			szomszedok.add(m);
+		view.Notify(this);
 	}
 
 	public boolean SzomszedFelcsatol(Mezo m) {

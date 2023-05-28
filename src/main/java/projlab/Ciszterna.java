@@ -15,6 +15,7 @@ public class Ciszterna extends Mezo {
 
 	public Ciszterna() {
 		super(Integer.MAX_VALUE);
+		view = new CiszternaView();
 		termeltpumpak = new ArrayList<Mezo>();
 		maxSzomszedok = 20;
 	}
