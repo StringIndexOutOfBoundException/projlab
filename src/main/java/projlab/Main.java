@@ -65,7 +65,7 @@ public class Main {
 
         //A view is tud természetesen parancsokat küldeni a parancsértelmezőnek.
         //Ezt kell majd hivogatni amikor az Input TextBox-ba beírnak egy parancsot és megnyoomják a gombot hogy ok
-        pev.SendToPE("allapot pcs1 vizmennyiseg"); //Példa parancs küldésre a viewból a parancsértelmezőnek. Nyilván valójában a TextBox-ból jön majd a parancs.
+        pev.SendToPE("allapot cs1 vizmennyiseg"); //Példa parancs küldésre a viewból a parancsértelmezőnek. Nyilván valójában a TextBox-ból jön majd a parancs.
 
         JFrame frame = new JFrame("Arakis");
 
