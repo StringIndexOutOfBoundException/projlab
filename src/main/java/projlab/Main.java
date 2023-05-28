@@ -48,6 +48,7 @@ public class Main {
         //Tehát mást nem kell állítgatni, csak a view-t létrehozni (panellel együtt), és a parancsértelmezőt létrehozni, és konstruktorban átadni neki a view-t.
         //Alternatív megoldás, hogy a parancsértelmezőt létrehozod, és a viewt létrehozod, majd a ParancsErtelmezo SetView(...) függvényével beállítod neki a viewt.
         //Ez is kölcsönös, tehát a view itt is beállítja a parancsértelmezőt magának automatikusan.
+        //TLDR: 1. PANEL, 2. VIEW (konstruktorban panel), 3. PARANCSERTELMEZO (konstruktorban view)
         ParancsErtelmezo pe2 = new ParancsErtelmezo(pev);
 
         //A parancsértlmezőben most már van olyan hogy debug mód. Ilyenkor minden parancs elérthető. A debug mód alapból be van kapcsolva
@@ -109,80 +110,6 @@ public class Main {
         cantSee.add(cantSee2, constraints);
 
 
-        //Ezt azért kommenteztem ki hogy jobban látszódjon amit a parancsértelmező csinált
-        /*
-		// =========================================================================
-		// Teszt pálya 1 (rajzolás teszteléshez)
-		// forrás1 - cső1 - forrás2
-		// =========================================================================
-		Forras f1 = new Forras();
-		Forras f2 = new Forras();
-
-		ObjectView fv1 = f1.getView();
-		ObjectView fv2 = f2.getView();
-
-		fv1.SetNev("Forras1");
-		fv2.SetNev("Forras2");
-
-
-		Cso cs1 = new Cso();
-		ObjectView csv1 = cs1.getView();
-		csv1.SetNev("Cso1");
-
-		cs1.SzomszedHozzaad(f1);
-		f1.SzomszedHozzaad(cs1);
-		cs1.SzomszedHozzaad(f2);
-		f2.SzomszedHozzaad(cs1);
-
-		views.add(fv1);
-		views.add(fv2);
-		views.add(csv1);
-
-		Ciszterna c1 = new Ciszterna();
-		ObjectView cv1 = c1.getView();
-		cv1.SetNev("Ciszterna1");
-
-		views.add(cv1);
-
-		Pumpa p1 = new Pumpa();
-		ObjectView pv1 = p1.getView();
-		pv1.SetNev("P1");
-
-		views.add(pv1);
-
-		for (int i = 0; i < 5; i++) {
-			Forras f = new Forras();
-			ObjectView ov = f.getView();
-			ov.SetNev("f" + i);
-			views.add(ov);
-
-			Pumpa p = new Pumpa();
-			ov = p.getView();
-			ov.SetNev("p" + i);
-			views.add(ov);
-
-			Ciszterna c = new Ciszterna();
-			ov = c.getView();
-			ov.SetNev("c" + i);
-			views.add(ov);
-		}
-
-
-		for (int i = 0; i < 6; i++) {
-			Jatekos sz = i % 2 == 0 ? new Szerelo() : new Szabotor();
-
-			cs1.JatekosElfogad(sz);
-			sz.setHelyzet(cs1);
-
-			ObjectView ov = sz.getView();
-			ov.SetNev("sz" + i);
-			views.add(ov);
-		}
-
-		// =========================================================================
-        */
-
-
 		// Bufferek (layerek) létrehozása
 		for (int i = 0; i < 3; i++) {
 			layers.add(new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB));
@@ -233,6 +160,6 @@ public class Main {
         frame.getContentPane().add(panel);
 		frame.pack();
         frame.setVisible(true);
-        //pe2.runFromUser();
+        //pe2.runFromUser(); //Ha akarod hogy lehessen konzolra (stdin) irogatni parancsokat, akkor ez kell. Egyébként nem kell.
     }
 }
