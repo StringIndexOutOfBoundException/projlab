@@ -1499,7 +1499,7 @@ public class ParancsErtelmezo {
     /**
      * Ha debug módban vagyunk, akkor minden parancs elérhető
      * Ha nem debug módban vagyunk, akkor csak a következő parancsok érhetőek el: lep, szerel, lyukaszt, allit, epit, felvesz, allapot, csuszik, ragad
-     * Tehát a következő parancsok nem elérhetőek: letrehoz, osszekot, frissit, veletlen, elront, termel, csofelulet, vizmennyiseg, clear
+     * Tehát a következő parancsok nem elérhetőek: letrehoz, osszekot, frissit, veletlen, elront, termel, csofelulet, vizmennyiseg, torol
      * @param debug_mode Ha true, akkor debug módban vagyunk, ha false, akkor nem
      */
     public void EnableDebugMode(boolean debug_mode) {
