@@ -56,10 +56,10 @@ public class Main {
         pe2.runFromFile("commandfiles/alap"); //Alap pálya inicializálása mondjuk.
 
         //Miután inicializáltad a pályát, kapcsold ki a debug módot, hogy ne lehessen elérni a debug parancsokat játék közben.
-        //pe2.EnableDebugMode(false);
+        pe2.EnableDebugMode(false);
 
         //Alapból a parancsértelmező a standard kimenetre írja a kimenetet. Ha azt akarjuk hogy a view kapja meg az output-ot, akkor azt be kell állítani így:
-        //pe2.OutputToView(true);
+        pe2.OutputToView(true);
 
         //Ezután már a view fogja megkapni a kimenetet, és a viewnak kell majd továbbítania a kimenetet a megfelelő TextBox-nak. (Lásd: ParancsErtelmezoView.ReceiveFromPE)
 
@@ -160,6 +160,6 @@ public class Main {
         frame.getContentPane().add(panel);
 		frame.pack();
         frame.setVisible(true);
-        pe2.runFromUser(); //Ha akarod hogy lehessen konzolra (stdin) irogatni parancsokat, akkor ez kell. Egyébként nem kell.
+        //pe2.runFromUser(); //Ha akarod hogy lehessen konzolra (stdin) irogatni parancsokat, akkor ez kell. Egyébként nem kell.
     }
 }
