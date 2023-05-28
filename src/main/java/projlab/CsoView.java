@@ -58,8 +58,8 @@ public class CsoView extends ObjectView {
 	}
 
 	/**
-	 * A forrás nézetének rárajzolása az átadott graphics bufferre.
-	 * @param g - A graphics buffer amire rajzol.
+	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
+	 * @param layers - A bufferek amikre rajzolni kell.
 	 */
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {

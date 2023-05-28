@@ -31,7 +31,7 @@ public abstract class ObjectView {
 
 	/**
 	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
-	 * @param g - A buffer amire rajzolni kell.
+	 * @param layers - A bufferek amikre rajzolni kell.
 	 */
 	public abstract void Draw(ArrayList<Graphics> layers);
 

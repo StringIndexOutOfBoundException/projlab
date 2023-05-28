@@ -9,14 +9,11 @@ public class ForrasView extends ObjectView {
 	private static final int oldalmeret = 50; // Négyzet oldalmérete
 
 	/**
-	 * Amikor a forrás változott, akkor átadja magát a hozzá tartozó view-nak, ami
-	 * ez alapján tudja frissíteni a grafikáját.
-	 * @param m - A meghívó Forras
+	 * Mivel a forrás állapota egyelőre sehogyan sem változhat grafikusan (a helye
+	 * sem), ezért egyelőre üres
 	 */
 	@Override
 	public void Notify(Mezo m) {
-		// Mivel a forrás állapota egyenlőre sehogyan sem változhat grafikusan (helye
-		// sem), ezért nincs értelme frissíteni a nézetet -- üres
 	}
 
 	/**
