@@ -15,6 +15,7 @@ public abstract class JatekosView extends ObjectView {
 	 */
 	protected Color szin; // Játékos színe
 	private Mezo helyzet; // Játékos előző helye
+	private Jatekos jatekos;
 
 	@Override
 	public void Notify(Jatekos j) {
@@ -42,6 +43,14 @@ public abstract class JatekosView extends ObjectView {
 
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {
+		// Ha nem látható a helyzet vagy a szerelő, nem történik kirajzolás
+		if (jatekos != null) {
+			Boolean helyzetLathato = jatekos.getHelyzet().getView().lathato;
+			if (!helyzetLathato) {
+				return;
+			}
+		}
+
 		Graphics g = layers.get(2);
 
 		// Háromszög
