@@ -119,7 +119,7 @@ public class Main {
 
 		// Bufferek (layerek) létrehozása
 		for (int i = 0; i < 3; i++) {
-			layers.add(new BufferedImage(400, 300, BufferedImage.TYPE_INT_ARGB));
+			layers.add(new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB));
 		}
 		for (int i = 0; i < 3; i++) {
 			layerGraphics.add(layers.get(i).getGraphics());
