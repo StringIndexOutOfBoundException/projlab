@@ -1,15 +1,20 @@
 package projlab;
 
+import javax.swing.*;
+
 public class ParancsErtelmezoView {
 
     //A viewhoz tartozó parancsértelmező
     private ParancsErtelmezo pe;
+    private JPanel drawpanel;
 
     /**
      * Default konstruktor. Parancsértelmezőt nem állít be. Akkor rendelődik a view egy parancsértelmezőhöz, ha a parancsértelmező beállítja ezt a viewt a magáénak.
      * (Mert ugye ParancsErtelmezo nélkül a view-nak nincs sok értelme.)
+     * @param drawpanel a panel amire rajzolni kell
      */
-    public ParancsErtelmezoView() {
+    public ParancsErtelmezoView(JPanel drawpanel) {
+        this.drawpanel = drawpanel;
     }
 
     /**
@@ -33,6 +38,7 @@ public class ParancsErtelmezoView {
             return;
         }
         pe.runFromString(parancs);
+        drawpanel.repaint();
     }
 
     /**
@@ -41,6 +47,10 @@ public class ParancsErtelmezoView {
      */
     public void ReceiveFromPE(String output) {
         //TODO: Itt kell átadni az output-ért felelős TextBox-nak az outputot ami a parancsértelmezőtől jött.
+    }
+
+    public JPanel getDrawpanel() {
+    	return drawpanel;
     }
 
 

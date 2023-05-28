@@ -129,6 +129,13 @@ public class ParancsErtelmezo {
                 //Egyetlen parancsot tartalmazó arraylist (mivel a parse függvény arraylistet vár)
                 ArrayList<String> parancsok = new ArrayList<String>(List.of(line));
                 parseAll(parancsok);
+
+                //Ez teszteléshez van főleg, hogy lássuk, hogy mi történt a parancs végrehajtása után ha konzolról futtatjuk de grafikusan jelenítjük meg.
+                if (view != null)
+                {
+                    view.getDrawpanel().repaint();
+                }
+
                 System.out.print("Kérem a parancsot: ");
             }
         } catch (IOException ioe) {

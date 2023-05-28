@@ -12,12 +12,40 @@ public class Main {
 
         //VIEW-OS PARANCSÉRTELMEZO PÉLDA:
 
-        //Először view létrehozása
-        ParancsErtelmezoView pev = new ParancsErtelmezoView();
+        //Először a drawpanelnek el kell készülnie.
+        ArrayList<BufferedImage> layers = new ArrayList<>();
+        ArrayList<Graphics> layerGraphics = new ArrayList<>();
+        ArrayList<ObjectView> views = ObjectView.GetAllViews();
+        JPanel drawPanel = new JPanel(new BorderLayout()){
+            public void paint(Graphics g){
+                // Előző kép törlése
+                g.clearRect(0, 0, 1000, 1000);
+
+                // Bufferekbe rajzolás
+                for (ObjectView view : views) {
+                    view.Draw(layerGraphics);
+                }
+
+                // Bufferek rajzolása a panelre
+                for (BufferedImage layer : layers) {
+                    g.drawImage(layer, 0, 0, null);
+
+                    // Buffer törlése rajzolás után
+                    Graphics2D g2 = layer.createGraphics();
+                    g2.setComposite(AlphaComposite.Clear);
+                    g2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
+                }
+
+            }
+        };
+
+
+        //Aztán view létrehozása. Ennek a drawpanel-t kell átadni konstruktorban.
+        ParancsErtelmezoView pev = new ParancsErtelmezoView(drawPanel);
 
         //Aztán jön a ParancsErtelmezo.
         //A parancsértelmezőnek átadjuk a view-t konstruktorban, hogy tudja, hogy hova küldje a kimenetet. Ezzel a viewban is beállítódik a parancsértelmező automatikusan.
-        //Tehát mást nem kell állítgatni, csak a view-t létrehozni, és a parancsértelmezőt létrehozni, és konstruktorban átadni neki a view-t.
+        //Tehát mást nem kell állítgatni, csak a view-t létrehozni (panellel együtt), és a parancsértelmezőt létrehozni, és konstruktorban átadni neki a view-t.
         //Alternatív megoldás, hogy a parancsértelmezőt létrehozod, és a viewt létrehozod, majd a ParancsErtelmezo SetView(...) függvényével beállítod neki a viewt.
         //Ez is kölcsönös, tehát a view itt is beállítja a parancsértelmezőt magának automatikusan.
         ParancsErtelmezo pe2 = new ParancsErtelmezo(pev);
@@ -80,8 +108,9 @@ public class Main {
         constraints.gridy = 0;
         cantSee.add(cantSee2, constraints);
 
-		ArrayList<ObjectView> views = ObjectView.GetAllViews();
 
+        //Ezt azért kommenteztem ki hogy jobban látszódjon amit a parancsértelmező csinált
+        /*
 		// =========================================================================
 		// Teszt pálya 1 (rajzolás teszteléshez)
 		// forrás1 - cső1 - forrás2
@@ -151,9 +180,8 @@ public class Main {
 		}
 
 		// =========================================================================
+        */
 
-		ArrayList<BufferedImage> layers = new ArrayList<>();
-		ArrayList<Graphics> layerGraphics = new ArrayList<>();
 
 		// Bufferek (layerek) létrehozása
 		for (int i = 0; i < 3; i++) {
@@ -163,19 +191,7 @@ public class Main {
 			layerGraphics.add(layers.get(i).getGraphics());
 		}
 
-        JPanel drawPanel = new JPanel(new BorderLayout()){
-            public void paint(Graphics g){
-				// Bufferekbe rajzolás
-				for (ObjectView view : views) {
-					view.Draw(layerGraphics);
-                }
 
-				// Bufferek rajzolása a panelre
-				for (BufferedImage layer : layers) {
-					g.drawImage(layer, 0, 0, null);
-				}
-            }
-        };
 
         drawPanel.setPreferredSize(new Dimension(980, 740));
         drawPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -217,5 +233,7 @@ public class Main {
         frame.getContentPane().add(panel);
 		frame.pack();
         frame.setVisible(true);
+        pe2.runFromUser();
+        drawPanel.repaint();
     }
 }
