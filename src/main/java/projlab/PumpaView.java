@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PumpaView extends ObjectView {
 	private static final Color szin = new Color(113, 113, 113); // Szürke: #717171
-	private static final int atlo = 40; // Kör átlója
+	private static final int atlo = 55; // Kör átlója
 
 	@Override
 	public void Notify(Mezo m) {

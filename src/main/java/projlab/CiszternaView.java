@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CiszternaView extends ObjectView {
 	private static final Color szin = new Color(245, 154, 35); // Narancs: #f59a23
-	private static final int oldalmeret = 40; // Négyzet oldalmérete
+	private static final int oldalmeret = 50; // Négyzet oldalmérete
 
 	@Override
 	public void Notify(Mezo m) {
