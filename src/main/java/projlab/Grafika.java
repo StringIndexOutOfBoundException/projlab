@@ -65,9 +65,12 @@ public class Grafika {
         JPanel drawPanel = new JPanel(new BorderLayout()){
             public void paint(Graphics g){
                 // Előző kép törlése
-
                 g.clearRect(0, 0, 1000, 1000);
 
+                if (darkMode) {
+                    g.setColor(new Color(130, 130, 130));
+                    g.fillRect(0, 0, 1000, 1000);
+                }
 
                 // Bufferekbe rajzolás
                 for (ObjectView view : views) {
@@ -132,10 +135,9 @@ public class Grafika {
             String inp = input.getText();
             if (inp.equals("dark")){
                 darkMode = true;
-                output.setBackground(new Color(30, 30, 30));
+                output.setBackground(new Color(80, 80, 80));
                 output.setForeground(new Color(255, 255, 255));
                 panel.setBackground(new Color(150, 150, 150));
-                drawPanel.setBackground(new Color(150, 0, 0));
                 drawPanel.repaint();
                 send.setBackground(new Color(100, 100, 100));
                 newGame.setBackground(new Color(100, 100, 100));
