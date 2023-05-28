@@ -112,6 +112,21 @@ public class Main {
 		views.add(fv1);
 		views.add(fv2);
 		views.add(csv1);
+
+		Ciszterna c1 = new Ciszterna();
+		ObjectView cv1 = c1.getView();
+		cv1.SetNev("Ciszterna1");
+		cv1.x = 350;
+		cv1.y = 300;
+		views.add(cv1);
+
+		Pumpa p1 = new Pumpa();
+		ObjectView pv1 = p1.getView();
+		pv1.SetNev("Pumpa1");
+		pv1.x = 250;
+		pv1.y = 300;
+		views.add(pv1);
+
 		// =========================================================================
 
 		ArrayList<BufferedImage> layers = new ArrayList<>();

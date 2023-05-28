@@ -20,7 +20,7 @@ public class PumpaView extends ObjectView {
 
 		// Kör kirajzolása (xy a közepe)
 		g.setColor(szin);
-		g.drawOval(x - atlo / 2, y - atlo / 2, atlo, atlo);
+		g.fillOval(x - atlo / 2, y - atlo / 2, atlo, atlo);
 
 		// Név a kör közepén
 		DrawName(g, x, y);
