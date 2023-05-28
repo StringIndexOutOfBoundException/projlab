@@ -10,13 +10,13 @@ public class ForrasView extends MezoView {
 	private static final int oldalmeret = 50; // Négyzet oldalmérete
 
 	public ForrasView() {
-		int MIN_DISTANCE_BETWEEN = oldalmeret * 2 + 50;
+		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
 
 		// Forrás a pálya első negyedén lehet
 		int minX = oldalmeret;
 		int maxX = 250;
 		int minY = oldalmeret;
-		int maxY = 500;
+		int maxY = 740 - oldalmeret;
 
 		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
 	}

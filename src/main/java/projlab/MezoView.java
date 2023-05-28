@@ -23,16 +23,13 @@ public abstract class MezoView extends ObjectView {
 		// Mező helyének legenerálása, minden ütközés esetén újragenerálással
 		for (int i = 0; i < MAX_PLACEMENT_TRIALS; i++) {
 			Boolean intersect = false;
+
 			x = random.nextInt((maxX - minX) + 1) + minX;
 			y = random.nextInt((maxY - minY) + 1) + minY;
 
-			for (Integer prewX : elozoXHelyek) {
-				if (Math.abs(x - prewX) < minDistance) {
-					intersect = true;
-				}
-			}
-			for (Integer prewY : elozoYHelyek) {
-				if (Math.abs(y - prewY) < minDistance) {
+			for (int j = 0; j < elozoXHelyek.size(); j++) {
+				if (Math.abs(x - elozoXHelyek.get(j)) < minDistance
+						&& Math.abs(y - elozoYHelyek.get(j)) < minDistance) {
 					intersect = true;
 				}
 			}

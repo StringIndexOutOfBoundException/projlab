@@ -12,13 +12,13 @@ public class PumpaView extends MezoView {
 	private Boolean mukodik = true;
 
 	public PumpaView() {
-		int MIN_DISTANCE_BETWEEN = atlo * 2 + 50;
+		int MIN_DISTANCE_BETWEEN = atlo + 50;
 
 		// Pumpa a pálya középső részén lehet
 		int minX = 250 + atlo;
 		int maxX = 750 - atlo;
 		int minY = atlo + 20;
-		int maxY = 500;
+		int maxY = 740 - atlo;
 
 		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
 	}

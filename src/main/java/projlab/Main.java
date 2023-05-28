@@ -126,7 +126,18 @@ public class Main {
 			ObjectView ov = f.getView();
 			ov.SetNev("f" + i);
 			views.add(ov);
+
+			Pumpa p = new Pumpa();
+			ov = p.getView();
+			ov.SetNev("p" + i);
+			views.add(ov);
+
+			Ciszterna c = new Ciszterna();
+			ov = c.getView();
+			ov.SetNev("c" + i);
+			views.add(ov);
 		}
+
 
 		for (int i = 0; i < 6; i++) {
 			Jatekos sz = i % 2 == 0 ? new Szerelo() : new Szabotor();
