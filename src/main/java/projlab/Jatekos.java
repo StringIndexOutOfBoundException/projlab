@@ -14,6 +14,8 @@ public abstract class Jatekos {
 	protected ArrayList<Mezo> pumpaHatizsak;		//a játékos hátizsákja, ami pumpákat tartalmaz
 	protected ArrayList<Mezo> csoHatizsak;		//a játékos hátizsákja, ami csöveket tartalmaz
 
+	protected ObjectView view; // A játékoshoz tartozó grafkus nézet
+
 	public Jatekos() {
 		pumpaHatizsak = new ArrayList<>();
 		csoHatizsak = new ArrayList<>();
@@ -38,6 +40,8 @@ public abstract class Jatekos {
 					tmp.JatekosEltavolit(this);
 			}
 		}
+
+		view.Notify(this);
 	}
 
 	/**
@@ -94,7 +98,16 @@ public abstract class Jatekos {
 	public ArrayList<Mezo> GetSzomszedok(){ return helyzet.GetSzomszedok(); }
 
 	/**
+	 * Lerérdezi a játékoshoz tartozó grafuikus nézetet.
+	 * @return játékos nézete
+	 */
+	public ObjectView getView() {
+		return view;
+	}
+
+	/**
 	 * A játékos helyzetének referenciáját adja vissza.
+	 * 
 	 * @return a játékos helyzete
 	 */
 	public Mezo getHelyzet(){ return helyzet; }
@@ -103,7 +116,10 @@ public abstract class Jatekos {
 	 * A játékos helyzetének beállítása
 	 * @param m - az új helyzet referenciája
 	 */
-	public void setHelyzet(Mezo m) { helyzet = m; }
+	public void setHelyzet(Mezo m) {
+		helyzet = m;
+		view.Notify(this);
+	}
 
 	/**
 	 * Visszaadja a hátizsákok maximum kapacitását

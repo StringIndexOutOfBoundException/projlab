@@ -3,12 +3,25 @@ package projlab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class PumpaView extends ObjectView {
+public class PumpaView extends MezoView {
 	private static final Color szin = new Color(113, 113, 113); // Szürke: #717171
 	private static final int atlo = 55; // Kör átlója
 
 	private Boolean mukodik = true;
+
+	public PumpaView() {
+		int MIN_DISTANCE_BETWEEN = atlo + 50;
+
+		// Pumpa a pálya középső részén lehet
+		int minX = 250 + atlo;
+		int maxX = 750 - atlo;
+		int minY = atlo + 20;
+		int maxY = 740 - atlo;
+
+		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
+	}
 
 	/**
 	 * Amikor a pumpa változott, akkor átadja magát a hozzá tartozó view-nak, ami ez

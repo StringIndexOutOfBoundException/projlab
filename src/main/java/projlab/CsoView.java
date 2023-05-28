@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-public class CsoView extends ObjectView {
+public class CsoView extends MezoView {
 	private static final Color szin = Color.BLACK; // Fekete
 	private static final int vastag = 10; // Kirajzolt cső vastagsága
 	private static final BasicStroke stroke = new BasicStroke(vastag);
@@ -15,7 +15,7 @@ public class CsoView extends ObjectView {
 	 * A cső egyik vége az ObjectView-ből örökölt x, y. A cső másik vége pedig ez a
 	 * két változó.
 	 */
-	private int x2, y2;
+	private int x2 = 0, y2 = 0;
 
 	/**
 	 * Cső állapotát jelentő változók (keep for now)
@@ -24,6 +24,16 @@ public class CsoView extends ObjectView {
 	private Boolean csuszik = false;
 	private Boolean ragad = false;
 	private Boolean mukodik = true;
+
+	@Override
+	public int getKozepX() {
+		return (x + x2) / 2; // Cső közepe a két pont átlaga
+	}
+
+	@Override
+	public int getKozepY() {
+		return (y + y2) / 2; // Cső közepe a két pont átlaga
+	}
 
 	/**
 	 * Amikor a cső változott, akkor átadja magát a hozzá tartozó view-nak, ami ez
@@ -84,29 +94,25 @@ public class CsoView extends ObjectView {
 		g2.setColor(szin);
 		g2.drawLine(x, y, x2, y2);
 
-		int centerX = (x + x2) / 2;
-		int centerY = (y + y2) / 2;
 
-//		if (!mukodik) {
-//			g2.setStroke(
-//					new BasicStroke(vastag, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0));
-//			g2.setColor(new Color(255, 0, 0, 100));
-//			g2.drawLine(x, y, x2, y2);
-//		}
 
 		// Hibajelzés
 		if (!mukodik) {
-			int warnX = centerX;
-			int warnY = centerY - 20;
-
+			int warnX = getKozepX();
+			int warnY = getKozepY() - 20;
 			g.setColor(Color.RED);
 			g.fillPolygon(new int[] { warnX - 9, warnX, warnX + 9 }, new int[] { warnY, warnY - 17, warnY }, 3);
 			g.setColor(Color.WHITE);
 			g.drawString("!", warnX - 2, warnY - 2);
+
+			g2.setStroke(
+					new BasicStroke(vastag, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 3 }, 0));
+			g2.setColor(new Color(255, 0, 0, 100));
+			g2.drawLine(x, y, x2, y2);
 		}
 
 		// Név a cső közepén
-		DrawName(g, centerX, centerY);
+		DrawName(g, getKozepX(), getKozepY());
 	}
 
 }

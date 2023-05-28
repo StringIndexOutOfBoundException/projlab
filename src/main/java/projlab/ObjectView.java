@@ -5,29 +5,37 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Egy absztrakt ősosztály, amiből az összes konkrét objektumnak a játékban lesz
  * egy "view"-ja, ami felelős a grafikus megjelenítéséért.
  */
 public abstract class ObjectView {
+	private static ArrayList<ObjectView> allViews = new ArrayList<>();
+
 	/**
 	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
 	 */
-	protected int x, y;
-	protected String nev;
+	protected int x = 0, y = 0;
+	protected String nev = "?";
 
 	/**
 	 * Az objektum megjelenéséért felelős változók default értékekkel.
 	 */
 	private static final Font font = new Font("Arial", Font.PLAIN, 14);
 
+	public ObjectView() {
+		allViews.add(this);
+	}
+
 	/**
 	 * Amikor a hozzá tartozó objektum változott, akkor átadja magát a hozzá tartozó
 	 * view-nak, ami ez alapján tudja frissíteni a grafikáját.
 	 * @param m - Az objektum ami szól a viewnak hogy frissítsen.
 	 */
-	public abstract void Notify(Mezo m);
+	public void Notify(Mezo m) {};
+	public void Notify(Jatekos m) {};
 
 	/**
 	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
@@ -49,6 +57,39 @@ public abstract class ObjectView {
 	public void setHely(int posX, int posY) {
 		x = posX;
 		y = posY;
+	}
+
+	/**
+	 * Visszaadja az objektum középpontját, ami nem feltétlenül a x vagy y. A
+	 * leszármazott döntiel hogy hova teszi a középpontját (pl.: Cső)
+	 * @return Középpont X koordinátája
+	 */
+	public int getKozepX() {
+		return x;
+	}
+
+	/**
+	 * Visszaadja az objektum középpontját, ami nem feltétlenül a x vagy y. A
+	 * leszármazott döntiel hogy hova teszi a középpontját (pl.: Cső)
+	 * @return Középpont Y koordinátája
+	 */
+	public int getKozepY() {
+		return y;
+	}
+
+	/**
+	 * Visszadaja az összes eddig léterhozott nézetet.
+	 * @return Az összes eddig létrehozott nézet listája.
+	 */
+	static public ArrayList<ObjectView> GetAllViews() {
+		return allViews;
+	}
+
+	/**
+	 * Törli az összes eddig léterhozott nézetet.
+	 */
+	static public void RemoveAllViews() {
+		allViews.clear();
 	}
 
 	/**
@@ -80,5 +121,4 @@ public abstract class ObjectView {
 		g.setColor(Color.white);
 		g.drawString(nev, textX, textY);
 	}
-
 }
