@@ -31,8 +31,13 @@ public class Pumpa extends Mezo {
 	private Mezo kimenet;
 
 	public Pumpa() {
+		this(true);
+	}
+
+	public Pumpa(boolean lathato) {
 		super(Integer.MAX_VALUE);
 		view = new PumpaView();
+		view.setLathato(lathato);
 		MAXVIZ = 1;
 		maxCso = 5;
 		vizmennyiseg = 0;
@@ -40,6 +45,7 @@ public class Pumpa extends Mezo {
 		kimenet = null;
 		maxSzomszedok = 5;
 	}
+
 
 	/**
 	 * Egy mező szomszédaihoz hozzáad egy új mezőt A maxCso attribútum határozza meg

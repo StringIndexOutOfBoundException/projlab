@@ -29,7 +29,7 @@ public abstract class MezoView extends ObjectView {
 
 			for (int j = 0; j < views.size(); j++) {
 				ObjectView tested = views.get(j);
-				if (tested == this)
+				if (tested == this || tested.lathato == false)
 					continue;
 
 				int dx = Math.abs(x - tested.getKozepX());

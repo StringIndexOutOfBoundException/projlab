@@ -102,6 +102,12 @@ public class Cso extends Mezo {
 		Jatekos jatekos = getJatekosok().get(0);
 		Mezo pumpa = jatekos.getPumpaHatizsak().remove(0);
 
+		// Pumpa nézetének láthatóvá tétele a játékos helyén
+		ObjectView jatekosView = jatekos.getView();
+		ObjectView pumpaView = pumpa.getView();
+		pumpaView.setHely(jatekosView.getKozepX(), jatekosView.getKozepY());
+		pumpaView.setLathato(true);
+
 		pumpa.SzomszedFelcsatol(this);
 		pumpa.SzomszedFelcsatol(ujcso);
 		pumpa.Atallit(ujcso, this);

@@ -62,6 +62,13 @@ public abstract class ObjectView {
 	}
 
 	/**
+	 * Beállítja hogy milyen koordinátán rajzolódjon ki a nézet
+	 */
+	public void setLathato(boolean l) {
+		lathato = l;
+	}
+
+	/**
 	 * Visszaadja az objektum középpontját, ami nem feltétlenül a x vagy y. A
 	 * leszármazott döntiel hogy hova teszi a középpontját (pl.: Cső)
 	 * @return Középpont X koordinátája

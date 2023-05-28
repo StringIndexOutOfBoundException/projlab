@@ -42,7 +42,7 @@ public class Ciszterna extends Mezo {
 		if (doRandomThings) // ha determinisztikus a mukodes
 			randomNum = rand.nextInt(3);
 		for (int i = 0; i < randomNum; ++i) {
-			Pumpa p = new Pumpa();
+			Pumpa p = new Pumpa(false);
 			termeltpumpak.add(p);
 		}
 

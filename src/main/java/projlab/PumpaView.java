@@ -39,6 +39,10 @@ public class PumpaView extends MezoView {
 	 */
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {
+		if (!lathato) {
+			return;
+		}
+
 		Graphics g = layers.get(1);
 
 		// Kör kirajzolása (xy a közepe)
