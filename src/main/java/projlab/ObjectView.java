@@ -20,7 +20,7 @@ public abstract class ObjectView {
 	/**
 	 * Az objektum megjelenéséért felelős változók default értékekkel.
 	 */
-	private Font font = new Font("Arial", Font.PLAIN, 12);
+	private static final Font font = new Font("Arial", Font.PLAIN, 14);
 
 	/**
 	 * Amikor a hozzá tartozó objektum változott, akkor átadja magát a hozzá tartozó
@@ -41,6 +41,14 @@ public abstract class ObjectView {
 	 */
 	public void SetNev(String n) {
 		nev = n;
+	}
+
+	/**
+	 * Beállítja hogy milyen koordinátán rajzolódjon ki a nézet
+	 */
+	public void setHely(int posX, int posY) {
+		x = posX;
+		y = posY;
 	}
 
 	/**
