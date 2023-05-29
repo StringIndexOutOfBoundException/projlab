@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Grafika {
     private ParancsErtelmezoView pe;
-    private boolean darkMode = false;
+	private boolean darkMode = false;
     ArrayList<ObjectView> views = new ArrayList<ObjectView>();
     public Grafika(ParancsErtelmezoView _pe){
         pe = _pe;
@@ -61,42 +61,50 @@ public class Grafika {
 
         ArrayList<BufferedImage> layers = new ArrayList<>();
         ArrayList<Graphics> layerGraphics = new ArrayList<>();
-        ArrayList<ObjectView> views = ObjectView.GetAllViews();
-        JPanel drawPanel = new JPanel(new BorderLayout()){
-            public void paint(Graphics g){
-                // Előző kép törlése
-                g.clearRect(0, 0, 1000, 1000);
 
-                if (darkMode) {
-                    g.setColor(new Color(130, 130, 130));
-                    g.fillRect(0, 0, 1000, 1000);
-                }
+		// Bufferek (layerek) létrehozása
+		int scale = 2;
+		for (int i = 0; i < 3; i++) {
+			layers.add(new BufferedImage(1000 * scale, 1000 * scale, BufferedImage.TYPE_INT_ARGB));
+		}
+		for (int i = 0; i < 3; i++) {
+			Graphics2D ig = layers.get(i).createGraphics();
+			ig.scale(scale, scale);
+			ig.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			ig.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			ig.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+			layerGraphics.add(ig);
+		}
 
-                // Bufferekbe rajzolás
-                for (ObjectView view : views) {
-                    view.Draw(layerGraphics);
-                }
+		JPanel drawPanel = new JPanel(new BorderLayout()) {
+			public void paint(Graphics g) {
+				Graphics2D panelg = (Graphics2D) g.create();
+				panelg.scale(1.0d / scale, 1.0d / scale);
 
-                // Bufferek rajzolása a panelre
-                for (BufferedImage layer : layers) {
-                    g.drawImage(layer, 0, 0, null);
+				// Előző kép törlése
+				if (darkMode) {
+					panelg.setColor(new Color(130, 130, 130));
+					panelg.fillRect(0, 0, 1000 * scale, 1000 * scale);
+				} else {
+					panelg.clearRect(0, 0, 1000 * scale, 1000 * scale);
+				}
 
-                    // Buffer törlése rajzolás után
-                    Graphics2D g2 = layer.createGraphics();
-                    g2.setComposite(AlphaComposite.Clear);
-                    g2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
-                }
+				// Bufferekbe rajzolás
+				for (ObjectView view : ObjectView.GetAllViews()) {
+					view.Draw(layerGraphics);
+				}
 
-            }
-        };
+				// Bufferek rajzolása a panelre
+				for (BufferedImage layer : layers) {
+					panelg.drawImage(layer, 0, 0, null);
 
-        // Bufferek (layerek) létrehozása
-        for (int i = 0; i < 3; i++) {
-            layers.add(new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB));
-        }
-        for (int i = 0; i < 3; i++) {
-            layerGraphics.add(layers.get(i).getGraphics());
-        }
+					// Buffer törlése rajzolás után
+					Graphics2D lg2 = layer.createGraphics();
+					lg2.setComposite(AlphaComposite.Clear);
+					lg2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
+				}
+			}
+		};
 
         pe.setDrawpanel(drawPanel);
         drawPanel.setPreferredSize(new Dimension(980, 740));
