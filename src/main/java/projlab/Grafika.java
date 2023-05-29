@@ -2,22 +2,62 @@ package projlab;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Grafika {
     private ParancsErtelmezoView pe;
-	private boolean darkMode = false;
+    private ParancsErtelmezo p;
+    private boolean darkMode = false;
+    private boolean Fear = false;
+
     ArrayList<ObjectView> views = new ArrayList<ObjectView>();
-    public Grafika(ParancsErtelmezoView _pe){
+
+    public Grafika(ParancsErtelmezoView _pe, ParancsErtelmezo _p) {
         pe = _pe;
+        p = _p;
 
     }
-    void draw(){
+
+    void draw() {
         JFrame frame = new JFrame("Arakis");
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
+
+        ArrayList<BufferedImage> layers = new ArrayList<>();
+        ArrayList<Graphics> layerGraphics = new ArrayList<>();
+        ArrayList<ObjectView> views = ObjectView.GetAllViews();
+        JPanel drawPanel = new JPanel(new BorderLayout()) {
+            public void paint(Graphics g) {
+                // Előző kép törlése
+                g.clearRect(0, 0, 1000, 1000);
+
+                if (darkMode) {
+                    g.setColor(new Color(130, 130, 130));
+                    g.fillRect(0, 0, 1000, 1000);
+                }
+
+                // Bufferekbe rajzolás
+                for (ObjectView view : views) {
+                    view.Draw(layerGraphics);
+                }
+
+                // Bufferek rajzolása a panelre
+                for (BufferedImage layer : layers) {
+                    g.drawImage(layer, 0, 0, null);
+
+                    // Buffer törlése rajzolás után
+                    Graphics2D g2 = layer.createGraphics();
+                    g2.setComposite(AlphaComposite.Clear);
+                    g2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
+                }
+
+            }
+        };
+
 
         JPanel cantSee = new JPanel(new GridBagLayout());
         cantSee.setPreferredSize(new Dimension(990, 27));
@@ -33,19 +73,62 @@ public class Grafika {
         newGame.addActionListener(e -> pe.SendToPE("torol"));
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.WEST;
-        constraints.weightx=1;
+        constraints.weightx = 1;
         constraints.gridx = 0;
         constraints.gridy = 0;
         cantSee.add(newGame, constraints);
 
         JButton newUniqueGame = new JButton("Új játék egyedi pályával");
-        newUniqueGame.addActionListener(e -> {} );
+        newUniqueGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String path = JOptionPane.showInputDialog(frame, "Path: ");
+                p.runFromString("torol");
+                p.runFromFile(path);
+                drawPanel.repaint();
+
+            }
+        });
+
         constraints.gridx = 1;
         constraints.gridy = 0;
         cantSee.add(newUniqueGame, constraints);
 
 
         JButton help = new JButton("Súgó");
+        help.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String output = "letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev> \n" +
+                        "lep <jatekos> <mezo> \n" +
+                        "osszekot <mezo1> <mezo2> \n" +
+                        "szerel <szerelo> \n" +
+                        "lyukaszt <jatekos> \n" +
+                        "allit <jatekos> <bemenet_cso> <kimenet_cso> \n" +
+                        "frissit \n" +
+                        "epit <szerelo> <”cso”/”pumpa”> \n" +
+                        "felvesz <szerelo> <”cso”/”pumpa”> [cso_nev] [egesz/fel] \n" +
+                        "allapot <objektum> <objektum_attributum> [filenév]  \n" +
+                        "tolt <fajlnev> \n" +
+                        "csuszik <szabotor> \n" +
+                        "ragad <jatekos> \n" +
+                        "veletlen <”be”/”ki”> \n" +
+                        "elront <pumpa/cso> \n" +
+                        "termel <ciszterna> <”pumpa”/”cso”> \n" +
+                        "csofelulet <cso> <\"csuszos\"/\"ragados\"> " +
+                        "vizmennyiseg <pumpa/cso> <mennyiseg> ";
+                if (Fear) {
+                    output = "“I must not fear.\n" +
+                            "Fear is the mind-killer.\n" +
+                            "Fear is the little-death that brings total obliteration.\n" +
+                            "I will face my fear.\n" +
+                            "I will permit it to pass over me and through me.\n" +
+                            "And when it has gone past I will turn the inner eye to see its path.\n" +
+                            "Where the fear has gone there will be nothing. Only I will remain.”\n -- Bene Gesserit Litany";
+                }
+                JOptionPane.showMessageDialog(frame, output);
+            }
+        });
         constraints.anchor = GridBagConstraints.WEST;
         constraints.gridx = 2;
         constraints.gridy = 0;
@@ -59,52 +142,13 @@ public class Grafika {
         cantSee.add(cantSee2, constraints);
 
 
-        ArrayList<BufferedImage> layers = new ArrayList<>();
-        ArrayList<Graphics> layerGraphics = new ArrayList<>();
-
-		// Bufferek (layerek) létrehozása
-		int scale = 2;
-		for (int i = 0; i < 3; i++) {
-			layers.add(new BufferedImage(1000 * scale, 1000 * scale, BufferedImage.TYPE_INT_ARGB));
-		}
-		for (int i = 0; i < 3; i++) {
-			Graphics2D ig = layers.get(i).createGraphics();
-			ig.scale(scale, scale);
-			ig.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			ig.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-			ig.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
-			layerGraphics.add(ig);
-		}
-
-		JPanel drawPanel = new JPanel(new BorderLayout()) {
-			public void paint(Graphics g) {
-				Graphics2D panelg = (Graphics2D) g.create();
-				panelg.scale(1.0d / scale, 1.0d / scale);
-
-				// Előző kép törlése
-				if (darkMode) {
-					panelg.setColor(new Color(130, 130, 130));
-					panelg.fillRect(0, 0, 1000 * scale, 1000 * scale);
-				} else {
-					panelg.clearRect(0, 0, 1000 * scale, 1000 * scale);
-				}
-
-				// Bufferekbe rajzolás
-				for (ObjectView view : ObjectView.GetAllViews()) {
-					view.Draw(layerGraphics);
-				}
-
-				// Bufferek rajzolása a panelre
-				for (BufferedImage layer : layers) {
-					panelg.drawImage(layer, 0, 0, null);
-
-					// Buffer törlése rajzolás után
-					Graphics2D lg2 = layer.createGraphics();
-					lg2.setComposite(AlphaComposite.Clear);
-					lg2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
-				}
-			}
-		};
+        // Bufferek (layerek) létrehozása
+        for (int i = 0; i < 3; i++) {
+            layers.add(new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB));
+        }
+        for (int i = 0; i < 3; i++) {
+            layerGraphics.add(layers.get(i).getGraphics());
+        }
 
         pe.setDrawpanel(drawPanel);
         drawPanel.setPreferredSize(new Dimension(980, 740));
@@ -156,7 +200,12 @@ public class Grafika {
                 input.setBackground(new Color(100, 100, 100));
 
             }
-            pe.SendToPE(inp);
+            if (inp.equals("Dune")) {
+                Fear = true;
+            } else {
+                pe.SendToPE(inp);
+            }
+            input.setText("");
         });
         send.setBackground(Color.WHITE);
         send.setPreferredSize(new Dimension(75, 27));
