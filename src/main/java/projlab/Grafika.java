@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Grafika {
@@ -27,34 +26,9 @@ public class Grafika {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-        ArrayList<BufferedImage> layers = new ArrayList<>();
-        ArrayList<Graphics> layerGraphics = new ArrayList<>();
-        ArrayList<ObjectView> views = ObjectView.GetAllViews();
         JPanel drawPanel = new JPanel(new BorderLayout()) {
             public void paint(Graphics g) {
-                // Előző kép törlése
-                g.clearRect(0, 0, 1000, 1000);
-
-                if (darkMode) {
-                    g.setColor(new Color(130, 130, 130));
-                    g.fillRect(0, 0, 1000, 1000);
-                }
-
-                // Bufferekbe rajzolás
-                for (ObjectView view : views) {
-                    view.Draw(layerGraphics);
-                }
-
-                // Bufferek rajzolása a panelre
-                for (BufferedImage layer : layers) {
-                    g.drawImage(layer, 0, 0, null);
-
-                    // Buffer törlése rajzolás után
-                    Graphics2D g2 = layer.createGraphics();
-                    g2.setComposite(AlphaComposite.Clear);
-                    g2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
-                }
-
+				ObjectView.DrawAllViews(g, darkMode);
             }
         };
 
@@ -143,15 +117,6 @@ public class Grafika {
         constraints.gridx = 3;
         constraints.gridy = 0;
         cantSee.add(cantSee2, constraints);
-
-
-        // Bufferek (layerek) létrehozása
-        for (int i = 0; i < 3; i++) {
-            layers.add(new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB));
-        }
-        for (int i = 0; i < 3; i++) {
-            layerGraphics.add(layers.get(i).getGraphics());
-        }
 
         pe.setDrawpanel(drawPanel);
         drawPanel.setPreferredSize(new Dimension(980, 740));

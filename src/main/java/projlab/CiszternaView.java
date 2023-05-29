@@ -3,7 +3,6 @@ package projlab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class CiszternaView extends MezoView {
 	private static final Color szin = new Color(245, 154, 35); // Narancs: #f59a23

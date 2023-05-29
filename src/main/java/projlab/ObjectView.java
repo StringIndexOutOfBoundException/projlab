@@ -1,18 +1,49 @@
 package projlab;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Egy absztrakt ősosztály, amiből az összes konkrét objektumnak a játékban lesz
  * egy "view"-ja, ami felelős a grafikus megjelenítéséért.
  */
 public abstract class ObjectView {
+	/**
+	 * Az eddig létrehozott összes view-t tartalmazó statikus lista.
+	 */
 	private static ArrayList<ObjectView> allViews = new ArrayList<>();
+
+	/**
+	 * A view-k kirajzolásához használt bufferek (layerek z-index szerint) és a
+	 * hozzájuk tartozó grafikák.
+	 */
+	private static ArrayList<BufferedImage> layers = new ArrayList<>();
+	private static ArrayList<Graphics> layerGraphics = new ArrayList<>();
+	private static int scale = 2;
+
+	/**
+	 * Statikus bufferek(layerek) létrehozása
+	 */
+	static {
+		for (int i = 0; i < 4; i++) {
+			layers.add(new BufferedImage(1000 * scale, 1000 * scale, BufferedImage.TYPE_INT_ARGB));
+		}
+		for (int i = 0; i < 4; i++) {
+			Graphics2D ig = layers.get(i).createGraphics();
+			ig.scale(scale, scale);
+			ig.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			ig.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			ig.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+			layerGraphics.add(ig);
+		}
+	}
 
 	/**
 	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
@@ -129,5 +160,38 @@ public abstract class ObjectView {
 		// Szöveg kirajzolása
 		g.setColor(nevSzin);
 		g.drawString(nev, textX, textY);
+	}
+
+	/**
+	 * Kirajzol egy adott Graphics-ra minden view-t.
+	 * @param g        - A Graphics amire a kirajzolás történik
+	 * @param darkMode - A téma színéhez illő háttért állítja be rajzolásnál.
+	 */
+	public static void DrawAllViews(Graphics g, Boolean darkMode) {
+		Graphics2D panelg = (Graphics2D) g.create();
+		panelg.scale(1.0d / scale, 1.0d / scale);
+
+		// Előző kép törlése
+		if (darkMode) {
+			panelg.setColor(new Color(130, 130, 130));
+			panelg.fillRect(0, 0, 1000 * scale, 1000 * scale);
+		} else {
+			panelg.clearRect(0, 0, 1000 * scale, 1000 * scale);
+		}
+
+		// Bufferekbe rajzolás
+		for (ObjectView view : allViews) {
+			view.Draw(layerGraphics);
+		}
+
+		// Bufferek rajzolása a panelre
+		for (BufferedImage layer : layers) {
+			panelg.drawImage(layer, 0, 0, null);
+
+			// Buffer törlése rajzolás után
+			Graphics2D lg2 = layer.createGraphics();
+			lg2.setComposite(AlphaComposite.Clear);
+			lg2.fillRect(0, 0, layer.getWidth(), layer.getHeight());
+		}
 	}
 }

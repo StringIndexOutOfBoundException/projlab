@@ -3,7 +3,6 @@ package projlab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class PumpaView extends MezoView {
 	private static final Color szin = new Color(113, 113, 113); // Szürke: #717171
