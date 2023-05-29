@@ -3,6 +3,8 @@ package projlab;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static projlab.Main.pontsz;
+
 
 /**
  * A cső osztály a pálya egy passzív eleme.
@@ -80,23 +82,6 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void PumpaEpit() {
-		/*ArrayList<Mezo> voltszomszedok = GetSzomszedok(); //btw ez miért nagy G?
-		Jatekos jatekos = getJatekosok().get(0);
-		Mezo pumpa = jatekos.getPumpaHatizsak().remove(0);
-		Mezo cso = jatekos.getCsoHatizsak().remove(0);
-
-		pumpa.SzomszedFelcsatol(this);
-		pumpa.SzomszedFelcsatol(cso);
-		pumpa.Atallit(cso, this);
-
-		cso.SzomszedHozzaad(pumpa);
-		cso.SzomszedHozzaad(voltszomszedok.get(0));
-
-		Mezo torlendo = voltszomszedok.get(0);
-		torlendo.SzomszedTorol(this);
-		SzomszedTorol(torlendo);
-		SzomszedHozzaad(pumpa);*/
-
 		ArrayList<Mezo> voltszomszedok = GetSzomszedok();
 		Cso ujcso = new Cso();
 		Jatekos jatekos = getJatekosok().get(0);
@@ -147,7 +132,11 @@ public class Cso extends Mezo {
 	 */
 	@Override
 	public void VizetNovel(int meret) throws Exception {
-		if (!mukodik){return;}
+		if (!mukodik){
+			// Todo: szabotorPontotNovel();
+			pontsz.szabotorPontotNovel(1);
+			return;
+		}
 		if (meret + vizmennyiseg > 1) {
 			throw new ArithmeticException();
 		}
@@ -188,7 +177,6 @@ public class Cso extends Mezo {
 	 *
 	 * @return int típusú, azt adja vissza, hogy mennyi víz van a csőben éppen.
 	 */
-
 	@Override
 	public void Frissit() throws Exception {
 		if (ragados > 0) {

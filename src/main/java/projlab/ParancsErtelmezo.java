@@ -3,6 +3,8 @@ package projlab;
 import java.io.*;
 import java.util.*;
 
+import static projlab.Main.pontsz;
+
 public class ParancsErtelmezo {
 
     //Pályán lévő mezők neveit tároló HashMap
@@ -513,6 +515,9 @@ public class ParancsErtelmezo {
                 Outputln("Hiba a frissítés során: " + e.getMessage());
             }
         }
+
+        //Todo: kornovel
+        pontsz.korNovel();
 
         //A függvény nem vár paramétert. Ha véletlen mégis adtak meg, figyelmeztetjük a felhasználót, de attól még a parancs lefut
         if (param.length != 0) {
