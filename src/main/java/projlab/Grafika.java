@@ -70,6 +70,7 @@ public class Grafika {
         panel.add(cantSee, constraints);
 
         JButton newGame = new JButton("Új játék");
+        newGame.setBackground(Color.WHITE);
         newGame.addActionListener(e -> pe.SendToPE("torol"));
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.WEST;
@@ -79,6 +80,7 @@ public class Grafika {
         cantSee.add(newGame, constraints);
 
         JButton newUniqueGame = new JButton("Új játék egyedi pályával");
+        newUniqueGame.setBackground(Color.WHITE);
         newUniqueGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -96,6 +98,7 @@ public class Grafika {
 
 
         JButton help = new JButton("Súgó");
+        help.setBackground(Color.WHITE);
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -220,7 +223,6 @@ public class Grafika {
         if (darkMode){
             Color bgcolor = new Color(80, 80, 80);
             frame.setBackground(bgcolor);
-            output.setBackground(new Color(0, 80, 0));
         }
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1000,1000);
