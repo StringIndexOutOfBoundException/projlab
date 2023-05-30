@@ -21,7 +21,7 @@ public class PumpaView extends MezoView {
 	public PumpaView() {
 		oldalmeret = 55;
 
-		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
+		int MIN_DISTANCE_BETWEEN = oldalmeret + 100;
 
 		// Pumpa a pálya középső részén lehet
 		int minX = CANVAS_WIDTH / 4 + oldalmeret;

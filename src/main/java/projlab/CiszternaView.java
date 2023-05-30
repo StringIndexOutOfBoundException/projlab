@@ -18,7 +18,7 @@ public class CiszternaView extends MezoView {
 	double startDeg = 0;
 
 	public CiszternaView() {
-		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
+		int MIN_DISTANCE_BETWEEN = oldalmeret + 100;
 
 		// Ciszterna a pálya utolsó negyedén lehet
 		int minX = CANVAS_WIDTH / 4 * 3;

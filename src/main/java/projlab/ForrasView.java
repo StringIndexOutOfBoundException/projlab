@@ -12,7 +12,7 @@ public class ForrasView extends MezoView {
 	private static final Color szin = new Color(0, 207, 255); // Kék: #00cfff
 
 	public ForrasView() {
-		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
+		int MIN_DISTANCE_BETWEEN = oldalmeret + 100;
 
 		// Forrás a pálya első negyedén lehet
 		int minX = oldalmeret;
