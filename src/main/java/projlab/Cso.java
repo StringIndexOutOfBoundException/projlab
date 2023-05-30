@@ -124,8 +124,9 @@ public class Cso extends Mezo {
 				pontsz.szabotorPontotNovel(1);
 			}
 			vizmennyiseg = 0;
+			lyukCooldown = 5; //5 Körig nem lehet majd kilyukasztani a csövet
 		}
-		lyukCooldown = 5; //5 Körig nem lehet majd kilyukasztani a csövet
+
 		view.Notify(this);
 	}
 
