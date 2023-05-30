@@ -128,7 +128,6 @@ public class Grafika {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String output = "---Játékhoz szükséges parancsok--- \n" +
-                        "letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev> \n" +
                         "lep <jatekos> <mezo> \n" +
                         "szerel <szerelo> \n" +
                         "lyukaszt <jatekos> \n" +
@@ -140,6 +139,7 @@ public class Grafika {
                         "csuszik <szabotor> \n" +
                         "ragad <jatekos> \n" +
                         "\n---Debug parancsok---\n" +
+                        "letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev> \n" +
                         "veletlen <”be”/”ki”> \n" +
                         "tolt <fajlnev> \n" +
                         "osszekot <mezo1> <mezo2> \n" +
