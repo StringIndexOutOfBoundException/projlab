@@ -24,11 +24,8 @@ public abstract class MezoView extends ObjectView {
 		Random random = new Random();
 		ArrayList<ObjectView> views = ObjectView.GetAllViews();
 
-		int trials = 0;
-
 		// Mező helyének legenerálása, minden ütközés esetén újragenerálással
 		for (int i = 0; i < MAX_PLACEMENT_TRIALS; i++) {
-			trials++;
 			Boolean intersect = false;
 
 			x = random.nextInt((maxX - minX) + 1) + minX;
@@ -49,7 +46,5 @@ public abstract class MezoView extends ObjectView {
 			if (!intersect)
 				break;
 		}
-
-		System.out.println("Trials: " + trials);
 	}
 }

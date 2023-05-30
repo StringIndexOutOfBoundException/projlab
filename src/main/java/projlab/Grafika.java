@@ -66,6 +66,7 @@ public class Grafika {
         newGame.addActionListener(e -> {
             pe.EnableDebugMode(true);
             pe.SendToPE("torol");
+			pe.SendToPE("tolt commandfiles/alap");
             pe.EnableDebugMode(false);
             if(alwaysdebug) {
                 pe.EnableDebugMode(true);
