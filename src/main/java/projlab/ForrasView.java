@@ -13,9 +13,9 @@ public class ForrasView extends MezoView {
 
 		// Forrás a pálya első negyedén lehet
 		int minX = oldalmeret;
-		int maxX = 250;
+		int maxX = CANVAS_WIDTH / 4;
 		int minY = oldalmeret;
-		int maxY = 740 - oldalmeret;
+		int maxY = CANVAS_HEIGHT - oldalmeret;
 
 		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
 	}

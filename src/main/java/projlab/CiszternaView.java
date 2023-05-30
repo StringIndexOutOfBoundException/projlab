@@ -12,10 +12,10 @@ public class CiszternaView extends MezoView {
 		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
 
 		// Ciszterna a pálya utolsó negyedén lehet
-		int minX = 750;
-		int maxX = 1000 - oldalmeret;
+		int minX = CANVAS_WIDTH / 4 * 3;
+		int maxX = CANVAS_WIDTH - oldalmeret;
 		int minY = oldalmeret;
-		int maxY = 740 - oldalmeret;
+		int maxY = CANVAS_HEIGHT - oldalmeret;
 
 		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
 	}
