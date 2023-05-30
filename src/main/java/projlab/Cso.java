@@ -108,6 +108,7 @@ public class Cso extends Mezo {
 
 		view.Notify(this);
 		getJatekosok().get(0).getView().Notify(getJatekosok().get(0)); //Notify-olni kell a rajta álló játékost is
+		pumpa.getView().Notify(pumpa);
 	}
 
 	/**

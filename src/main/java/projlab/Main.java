@@ -18,7 +18,6 @@ public class Main {
 
         //Először view létrehozása
         ParancsErtelmezoView pev = new ParancsErtelmezoView();
-
         //Aztán jön a ParancsErtelmezo.
         //A parancsértelmezőnek átadjuk a view-t konstruktorban, hogy tudja, hogy hova küldje a kimenetet. Ezzel a viewban is beállítódik a parancsértelmező automatikusan.
         //Tehát mást nem kell állítgatni, csak a view-t létrehozni, és a parancsértelmezőt létrehozni, és konstruktorban átadni neki a view-t.
