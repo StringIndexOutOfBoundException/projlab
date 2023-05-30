@@ -1136,6 +1136,9 @@ public class ParancsErtelmezo {
 
         //Viewok törlése
         ObjectView.RemoveAllViews();
+
+		// Pontszámok visszaállítása
+		pontsz.reset();
     }
 
 

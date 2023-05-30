@@ -16,7 +16,7 @@ public class Pontszamlalo {
      */
     public void szabotorPontotNovel(int p){
         szabotorPoint += p;
-        view.Notify("sza", p);
+		view.Notify(this);
     }
 
     /**
@@ -25,7 +25,7 @@ public class Pontszamlalo {
      */
     public void szereloPontotNovel(int p){
         szereloPoint += p;
-        view.Notify("sze", p);
+		view.Notify(this);
     }
 
     /**
@@ -33,13 +33,22 @@ public class Pontszamlalo {
      */
     public void korNovel(){
         currRound += 1;
-        view.Notify("k", 1);
+		view.Notify(this);
     }
 
     /**
-     * Jelenlegi kör értékének lekérdezése
-     * @return jelenlegi kör száma
-     */
+	 * Visszaállítja a pontszámokat
+	 */
+	public void reset() {
+		szabotorPoint = szereloPoint = 0;
+		currRound = 1;
+		view.Notify(this);
+	}
+
+	/**
+	 * Jelenlegi kör értékének lekérdezése
+	 * @return jelenlegi kör száma
+	 */
     public int getCurrRound() {
         return currRound;
     }

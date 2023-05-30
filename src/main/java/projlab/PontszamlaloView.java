@@ -24,16 +24,11 @@ public class PontszamlaloView extends ObjectView{
 
     /**
      * Az eredmény változásakor hívódó függvény
-     * @param s kinek a pontja változott
-     * @param p mennyi ponttal változott
      */
-    public void Notify(String s, int p){
-        if(s.compareTo("sze") == 0)
-            szePont += p;
-        else if(s.compareTo("sza") == 0)
-            szaPont += p;
-        else if(s.compareTo("k") == 0)
-             currRound += p;
+	public void Notify(Pontszamlalo p) {
+		szaPont = p.getSzabotorPoint();
+		szePont = p.getSzereloPoint();
+		currRound = p.getCurrRound();
     }
 
     /**
