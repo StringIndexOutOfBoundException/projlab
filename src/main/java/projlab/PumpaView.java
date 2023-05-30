@@ -10,6 +10,9 @@ public class PumpaView extends MezoView {
 	private static final int atlo = 55; // Kör átlója
 
 	private Boolean mukodik = true;
+	// Be és kimenet helye
+	private int beX = -1, beY = -1;
+	private int kiX = -1, kiY = -1;
 
 	public PumpaView() {
 		int MIN_DISTANCE_BETWEEN = atlo + 50;
@@ -32,6 +35,34 @@ public class PumpaView extends MezoView {
 	public void Notify(Mezo m) {
 		mukodik = m.getMukodik();
 		nevSzin = m.getVizmennyiseg() == 0 ? Color.WHITE : vizSzin;
+
+		// Be és kimenet helye
+		Mezo be = m.getBemenet();
+		Mezo ki = m.getKimenet();
+
+		if (be != null) {
+			ObjectView beView = be.getView();
+			double dx = beView.getKozepX() - x;
+			double dy = beView.getKozepY() - y;
+			double d = Math.sqrt(dx * dx + dy * dy);
+			beX = (int) (x + dx * 20 / d);
+			beY = (int) (y + dy * 20 / d);
+		} else {
+			beX = beY = -1;
+		}
+
+		if (ki != null) {
+			ObjectView kiView = ki.getView();
+			double dx = kiView.getKozepX() - x;
+			double dy = kiView.getKozepY() - y;
+			double d = Math.sqrt(dx * dx + dy * dy);
+			kiX = (int) (x + dx * 20 / d);
+			kiY = (int) (y + dy * 20 / d);
+		} else {
+			kiX = kiY = -1;
+		}
+
+		System.out.println(beX);
 	}
 
 	private float animValue = 0;
@@ -57,6 +88,17 @@ public class PumpaView extends MezoView {
 		// Kör kirajzolása (xy a közepe)
 		g.setColor(szin);
 		g.fillOval(x - atlo / 2, y - atlo / 2, atlo, atlo);
+
+
+		int kibeJelzesMeret = 5;
+		if (beX != -1) {
+			g.setColor(Color.GREEN);
+			g.fillOval(beX - kibeJelzesMeret / 2, beY - kibeJelzesMeret / 2, kibeJelzesMeret, kibeJelzesMeret);
+		}
+		if (kiX != -1) {
+			g.setColor(Color.RED);
+			g.fillOval(kiX - kibeJelzesMeret / 2, kiY - kibeJelzesMeret / 2, kibeJelzesMeret, kibeJelzesMeret);
+		}
 
 		// Hibajelzés
 		if (!mukodik) {
