@@ -11,6 +11,8 @@ public class Grafika {
     private boolean darkMode = false;
     private boolean Fear = false;
 
+    private boolean alwaysdebug = false;
+
     ArrayList<ObjectView> views = new ArrayList<ObjectView>();
 
     public Grafika(ParancsErtelmezoView _pe, ParancsErtelmezo _p) {
@@ -47,7 +49,10 @@ public class Grafika {
         newGame.addActionListener(e -> {
             pe.EnableDebugMode(true);
             pe.SendToPE("torol");
-            pe.EnableDebugMode(false);});
+            pe.EnableDebugMode(false);
+            if(alwaysdebug) {
+                pe.EnableDebugMode(true);
+            }});
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.WEST;
         constraints.weightx = 1;
@@ -68,6 +73,9 @@ public class Grafika {
                 p.EnableDebugMode(false);
                 p.OutputToView(true);
                 drawPanel.repaint();
+                if(alwaysdebug) {
+                    pe.EnableDebugMode(true);
+                }
 
             }
         });
@@ -178,7 +186,14 @@ public class Grafika {
             }
             else if (inp.equals("Dune")) {
                 Fear = true;
-            } else {
+            }
+            else if (inp.equals("alwaysdebug"))
+            {
+                alwaysdebug = true;
+                p.EnableDebugMode(true);
+            }
+            else
+            {
                 pe.SendToPE(inp);
             }
             input.setText("");
