@@ -176,17 +176,17 @@ public abstract class ObjectView {
 	 * @param darkMode - A téma színéhez illő háttért állítja be rajzolásnál.
 	 */
 	public static void DrawAllViews(Graphics g, Boolean darkMode) {
-		Graphics2D panelg = (Graphics2D) g.create();
-		panelg.scale(1.0d / scale, 1.0d / scale);
+		Graphics2D out = (Graphics2D) g;
+		out.scale(1.0d / scale, 1.0d / scale);
 		int scaledWidth = CANVAS_WIDTH * scale;
 		int scaledHeight = CANVAS_HEIGHT * scale;
 
 		// Előző kép törlése
 		if (darkMode) {
-			panelg.setColor(new Color(130, 130, 130));
-			panelg.fillRect(0, 0, scaledWidth, scaledHeight);
+			out.setColor(new Color(130, 130, 130));
+			out.fillRect(0, 0, scaledWidth, scaledHeight);
 		} else {
-			panelg.clearRect(0, 0, scaledWidth, scaledHeight);
+			out.clearRect(0, 0, scaledWidth, scaledHeight);
 		}
 
 		// Nézetek bufferekbe rajzolása
@@ -196,7 +196,7 @@ public abstract class ObjectView {
 
 		// Bufferek kirajzolása és törlése
 		for (int i = 0; i < layers.size(); i++) {
-			panelg.drawImage(layers.get(i), 0, 0, null);
+			out.drawImage(layers.get(i), 0, 0, null);
 			layerClear.get(i).fillRect(0, 0, scaledWidth, scaledHeight);
 		}
 	}
