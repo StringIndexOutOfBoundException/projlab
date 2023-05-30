@@ -62,8 +62,6 @@ public class PumpaView extends MezoView {
 		} else {
 			kiX = kiY = -1;
 		}
-
-		System.out.println(beX);
 	}
 
 	private float animValue = 0;
@@ -90,7 +88,7 @@ public class PumpaView extends MezoView {
 		g.setColor(szin);
 		g.fillOval(x - atlo / 2, y - atlo / 2, atlo, atlo);
 
-
+		// Ki és bemenet jelzése
 		int kibeJelzesMeret = 5;
 		if (beX != -1) {
 			g.setColor(Color.GREEN);

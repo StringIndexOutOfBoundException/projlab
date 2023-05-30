@@ -211,6 +211,9 @@ public abstract class ObjectView {
 
 	}
 
+	/**
+	 * Az animációk léptetéséért és kirajzolásért felelős szál.
+	 */
 	private static Thread animationThread;
 
 	/**
@@ -218,12 +221,14 @@ public abstract class ObjectView {
 	 * @param drawpanel - a napel amit újra kell rajzolni.
 	 */
 	public static void StartAnimation(JPanel drawpanel) {
+		// Csak egy szál jöhet létre animációkhoz
 		if (animationThread != null)
 			return;
+
+		// 60 fps-el való kirajzolás
 		animationThread = new Thread(() -> {
 			while (true) {
 				drawpanel.repaint();
-
 				try {
 					Thread.sleep(1000 / 60);
 				} catch (InterruptedException e) {
