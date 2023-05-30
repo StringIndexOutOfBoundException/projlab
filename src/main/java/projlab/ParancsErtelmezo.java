@@ -39,6 +39,9 @@ public class ParancsErtelmezo {
     //Legutóbb javított parancs paraméterei (Autocorrect)
     private String[] acLastParams;
 
+    //Legutóbbi lefuttatott parancs
+    private String lastfullcommand = "";
+
     //A következő string tömbök helyesen beírt szavakat tartalmaznak, amiket a program javasolhat ha valaki elgépel egy parancsot (Autocorrect)
     //A parancsok listája egy tömbben
     private String[] acParancsok = new String[] {"letrehoz", "lep", "osszekot", "szerel", "lyukaszt", "allit", "frissit", "epit", "felvesz", "allapot", "tolt", "csuszik", "ragad", "veletlen", "elront", "termel", "csofelulet", "vizmennyiseg", "torol"};
@@ -170,6 +173,7 @@ public class ParancsErtelmezo {
      */
     private void parseOne(String parancs, String[] param)
     {
+        lastfullcommand = parancs + " " + String.join(" ", param);
         switch (parancs)
         {
             case "letrehoz":
@@ -1578,6 +1582,10 @@ public class ParancsErtelmezo {
         {
             System.out.print(s);
         }
+    }
+
+    public String getLastFullCommand() {
+    	return lastfullcommand;
     }
 }
 

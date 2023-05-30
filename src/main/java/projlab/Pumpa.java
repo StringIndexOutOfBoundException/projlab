@@ -113,7 +113,7 @@ public class Pumpa extends Mezo {
 	public void Frissit() {
 		try {
 			Random rand = new Random();
-			if (rand.nextDouble(1) > 0.5) {
+			if (rand.nextDouble(1) > 0.9) { //10% esely van a hibara
 				if (doRandomThings) // ha determinisztikus a mukodes
 					this.setMukodik(false);
 			}

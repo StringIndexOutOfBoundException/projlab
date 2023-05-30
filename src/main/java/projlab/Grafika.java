@@ -2,8 +2,7 @@ package projlab;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Grafika {
@@ -192,6 +191,20 @@ public class Grafika {
             }
         };
         input.addActionListener(enterAction);
+        //Fölfelé nyomáskor a legutóbbi parancsot írja be
+        KeyListener keyListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    input.setText(p.getLastFullCommand());
+                }
+            }
+        };
+
+// Add the KeyListener to the text field
+        input.addKeyListener(keyListener);
+
+
         send.setBackground(Color.WHITE);
         send.setPreferredSize(new Dimension(75, 27));
         constraints.insets = new Insets(0, 0, 0, 0);

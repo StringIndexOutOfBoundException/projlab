@@ -36,16 +36,13 @@ public class Ciszterna extends Mezo {
 	 * szam intervallumban ha determinisztikus. Ha a randomizálás ki van kapcsolva akkor 1 pumpát termel.
 	 */
 	public void PumpaKeszit() {
-		// Random darab uj pumpat rak bele a termeltpumpakba 0-2 kozott
 		Random rand = new Random();
-		int randomNum = 1;
-		if (doRandomThings) // ha determinisztikus a mukodes
-			randomNum = rand.nextInt(3);
-		for (int i = 0; i < randomNum; ++i) {
-			Pumpa p = new Pumpa(false);
-			termeltpumpak.add(p);
-		}
-
+		//Generálunk egy random double-t 0 és 1 között
+		double randomNum = rand.nextDouble();
+		if (!doRandomThings) // ha determinisztikus a mukodes
+			randomNum = 1; //Akkor garantaltan termel 1 pumpat
+		if (randomNum > 0.8) // egyébként 20% eséllyel termel pumpát
+			termeltpumpak.add(new Pumpa(false));
 	}
 
 	/**
@@ -53,10 +50,12 @@ public class Ciszterna extends Mezo {
 	 */
 	public void CsovetKeszit() {
 		Random rand = new Random();
-		int randomNum = 1;
-		if (doRandomThings) // ha determinisztikus a mukodes
-			randomNum = rand.nextInt(3);
-		for (int i = 0; i < randomNum; ++i) {
+		//Generálunk egy random double-t 0 és 1 között
+		double randomNum = rand.nextDouble();
+		if (!doRandomThings) // ha determinisztikus a mukodes
+			randomNum = 1; //Akkor garantaltan termel 1 pumpat
+		if (randomNum > 0.8) // egyébként 20% eséllyel termel pumpát
+		{
 			Cso ujcso = new Cso();
 			ujcso.SzomszedHozzaad(this);
 			this.SzomszedHozzaad(ujcso);
