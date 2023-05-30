@@ -119,6 +119,10 @@ public class Cso extends Mezo {
 	public void Kilyukaszt() {
 		if (lyukCooldown == 0) {
 			setMukodik(false);
+			if (vizmennyiseg > 0)
+			{
+				pontsz.szabotorPontotNovel(1);
+			}
 			vizmennyiseg = 0;
 		}
 		lyukCooldown = 5; //5 Körig nem lehet majd kilyukasztani a csövet
