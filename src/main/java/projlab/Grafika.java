@@ -6,6 +6,10 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Ez az osztály felelős a Grafikus megjelenítésért.
+ * Java swing library-ét használja, hogy az elemeket egy GridBaglayout-ba rendezze, és megjeleítse
+ */
 public class Grafika {
     private ParancsErtelmezoView pe;
     private ParancsErtelmezo p;
@@ -16,12 +20,23 @@ public class Grafika {
 
     ArrayList<ObjectView> views = new ArrayList<ObjectView>();
 
+    /**
+     * Ez a konstruktora a grafikus felületnek ami az alábbi 2db paraméterrel példányosítható
+     * @param _pe A parancsértelmező view, ami a parancsok grafikus beviteléért, és kimenet megjelenítéséért felelős.
+     * @param _p  A parancsértelmező, ami a parancsok értelmezéséért felelős
+     * A parancsértelmezőview minden játékos által beírt bemenetért felelős, míg a parancsértelmező a gombok által
+     * hívott prarancsok értelmezésért felelős. Triviális, hogy a gombok által futtatott parancsoknak más jogokkal
+     * futtathatóak, mint a beírható parancsok.
+     */
     public Grafika(ParancsErtelmezoView _pe, ParancsErtelmezo _p) {
         pe = _pe;
         p = _p;
 
     }
 
+    /**
+     * Ez az osztály igazából egy óriási boilerplate, ami csak azt írja, le hogy hogyan fog kinézni a grafikus felület.
+     */
     void draw() {
         JFrame frame = new JFrame("Arakis");
 
@@ -30,10 +45,10 @@ public class Grafika {
 
         JPanel drawPanel = new JPanel(new BorderLayout()) {
             public void paint(Graphics g) {
-				ObjectView.DrawAllViews(g, darkMode);
+                ObjectView.DrawAllViews(g, darkMode);
             }
         };
-		ObjectView.StartAnimation(drawPanel);
+        ObjectView.StartAnimation(drawPanel);
 
 
         JPanel cantSee = new JPanel(new GridBagLayout());

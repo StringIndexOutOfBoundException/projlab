@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ * Ez az osztály a Pumpák megjeleítésért felelős, őt értesítik, ha egy pumpa állapota változik.
+ * Ő felelős még azért is hogy milyen koordinátákra milyen alakzatot rajzoljunk.
+ */
+
 public class PumpaView extends MezoView {
 	private static final Color szin = new Color(113, 113, 113); // Szürke: #717171
 	private static final Color vizSzin = new Color(99, 168, 252); // Kék

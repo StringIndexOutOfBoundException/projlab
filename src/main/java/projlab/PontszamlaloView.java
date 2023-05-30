@@ -3,6 +3,9 @@ package projlab;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ *  Ez az osztály felelős, a pontok kiírásáért
+ */
 public class PontszamlaloView extends ObjectView{
     private static final Font font = new Font("Arial", Font.PLAIN, 14);
     int szePont, szaPont = 0;
