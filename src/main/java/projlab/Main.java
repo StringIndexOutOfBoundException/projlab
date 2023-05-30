@@ -8,6 +8,8 @@ import java.util.ArrayList;
  * Main osztály
  */
 public class Main {
+    public static Pontszamlalo pontsz = new Pontszamlalo();
+
     public static void main(String[] args) {
 
 
@@ -38,6 +40,9 @@ public class Main {
         Grafika gr = new Grafika(pev, pe2);
         gr.draw();
         //Ezután már a view fogja megkapni a kimenetet, és a viewnak kell majd továbbítania a kimenetet a megfelelő TextBox-nak. (Lásd: ParancsErtelmezoView.ReceiveFromPE)
+
+
+
 
         //A view is tud természetesen parancsokat küldeni a parancsértelmezőnek.
         //Ezt kell majd hivogatni amikor az Input TextBox-ba beírnak egy parancsot és megnyoomják a gombot hogy ok

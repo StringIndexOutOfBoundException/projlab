@@ -3,6 +3,8 @@ package projlab;
 import java.io.*;
 import java.util.*;
 
+import static projlab.Main.pontsz;
+
 public class ParancsErtelmezo {
 
     //Pályán lévő mezők neveit tároló HashMap
@@ -523,6 +525,13 @@ public class ParancsErtelmezo {
                 //Ha valami hiba történt, kiírjuk a hibaüzenetet
                 Outputln("Hiba a frissítés során: " + e.getMessage());
             }
+        }
+
+        // kör növelése és játék vége vizsgálat
+        pontsz.korNovel();
+        if(pontsz.getCurrRound() == 20) {
+            Outputln("A játéknak vége!");
+            Outputln("Nyertes: " + ((pontsz.getSzabotorPoint() > pontsz.getSzereloPoint())? "Szabotőrök" : "Szerelők"));
         }
 
         //A függvény nem vár paramétert. Ha véletlen mégis adtak meg, figyelmeztetjük a felhasználót, de attól még a parancs lefut
