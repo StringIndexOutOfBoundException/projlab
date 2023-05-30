@@ -1,30 +1,71 @@
 package projlab;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
+
+import javax.swing.JPanel;
 
 /**
  * Egy absztrakt ősosztály, amiből az összes konkrét objektumnak a játékban lesz
  * egy "view"-ja, ami felelős a grafikus megjelenítéséért.
  */
 public abstract class ObjectView {
+	/**
+	 * Kirajzolási tér mérete
+	 */
+	protected static final int CANVAS_WIDTH = 980;
+	protected static final int CANVAS_HEIGHT = 740;
+
+	/**
+	 * Az eddig létrehozott összes view-t tartalmazó statikus lista.
+	 */
 	private static ArrayList<ObjectView> allViews = new ArrayList<>();
 
 	/**
-	 * A grafikus felületen az objektum középpontjának x és y koordinátáját mutatja
+	 * A view-k kirajzolásához használt bufferek (layerek z-index szerint) és a
+	 * hozzájuk tartozó grafikák.
 	 */
-	protected int x = 0, y = 0;
-	protected String nev = "?";
-	protected Color nevSzin = Color.white;
-	protected Boolean lathato = true;
+	private static ArrayList<BufferedImage> layers = new ArrayList<>(); // Maga a buffer
+	private static ArrayList<Graphics> layerGraphics = new ArrayList<>(); // Rajzoláshoz Graphics
+	private static ArrayList<Graphics2D> layerClear = new ArrayList<>(); // Törléshez Graphics
+	private static int scale = 2; // Bufferek nagyítása
+
+	/**
+	 * Statikus bufferek(layerek) létrehozása
+	 */
+	static {
+		for (int i = 0; i < 4; i++) {
+			BufferedImage layer = new BufferedImage(CANVAS_WIDTH * scale, CANVAS_HEIGHT * scale,
+					BufferedImage.TYPE_INT_ARGB);
+			layers.add(layer);
+
+			Graphics2D lg = layer.createGraphics();
+			lg.scale(scale, scale);
+			lg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			lg.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			lg.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+			layerGraphics.add(lg);
+
+			Graphics2D clearGraphics = layer.createGraphics();
+			clearGraphics.setComposite(AlphaComposite.Clear);
+			layerClear.add(clearGraphics);
+		}
+	}
 
 	/**
 	 * Az objektum megjelenéséért felelős változók default értékekkel.
 	 */
+	protected int x = 0, y = 0; // Megjelenítés koordinátái
+	protected String nev = "?"; // Objektum neve
+	protected Color nevSzin = Color.white; // Objektum nevének színe
+	protected Boolean lathato = true; // Objektum láthatósága
 	private static final Font font = new Font("Arial", Font.PLAIN, 14);
 
 	public ObjectView() {
@@ -44,6 +85,12 @@ public abstract class ObjectView {
 	 * @param layers - A bufferek amikre rajzolni kell.
 	 */
 	public abstract void Draw(ArrayList<Graphics> layers);
+
+	/**
+	 * A view frissítése egy animációs lépéssel, ha a view támogat animációt.
+	 */
+	public void Animate() {
+	};
 
 	/**
 	 * Beállítja az objektum megjelenítésekor használt nevét.
@@ -130,4 +177,63 @@ public abstract class ObjectView {
 		g.setColor(nevSzin);
 		g.drawString(nev, textX, textY);
 	}
+
+	/**
+	 * Kirajzol egy adott Graphics-ra minden view-t.
+	 * @param g        - A Graphics amire a kirajzolás történik
+	 * @param darkMode - A téma színéhez illő háttért állítja be rajzolásnál.
+	 */
+	public static synchronized void DrawAllViews(Graphics g, Boolean darkMode) {
+		Graphics2D out = (Graphics2D) g;
+		out.scale(1.0d / scale, 1.0d / scale);
+		int scaledWidth = CANVAS_WIDTH * scale;
+		int scaledHeight = CANVAS_HEIGHT * scale;
+
+		// Előző kép törlése
+		if (darkMode) {
+			out.setColor(new Color(130, 130, 130));
+			out.fillRect(0, 0, scaledWidth, scaledHeight);
+		} else {
+			out.clearRect(0, 0, scaledWidth, scaledHeight);
+		}
+
+		// Nézetek bufferekbe rajzolása
+		for (ObjectView view : allViews) {
+			view.Animate();
+			view.Draw(layerGraphics);
+		}
+
+		// Bufferek kirajzolása és törlése
+		for (int i = 0; i < layers.size(); i++) {
+			out.drawImage(layers.get(i), 0, 0, null);
+			layerClear.get(i).fillRect(0, 0, scaledWidth, scaledHeight);
+		}
+
+	}
+
+	private static Thread animationThread;
+
+	/**
+	 * Elindítja a view-k animációját ha még nem volt elindítva.
+	 * @param drawpanel - a napel amit újra kell rajzolni.
+	 */
+	public static void StartAnimation(JPanel drawpanel) {
+		if (animationThread != null)
+			return;
+		animationThread = new Thread(() -> {
+			while (true) {
+				drawpanel.repaint();
+
+				try {
+					Thread.sleep(1000 / 60);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		animationThread.setDaemon(true);
+		animationThread.start();
+	}
+
 }

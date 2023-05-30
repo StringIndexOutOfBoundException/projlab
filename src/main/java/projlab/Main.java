@@ -33,11 +33,11 @@ public class Main {
         pe2.runFromFile("commandfiles/alap"); //Alap pálya inicializálása mondjuk.
 
         //Miután inicializáltad a pályát, kapcsold ki a debug módot, hogy ne lehessen elérni a debug parancsokat játék közben.
-        pe2.EnableDebugMode(true);
+        pe2.EnableDebugMode(false);
 
         //Alapból a parancsértelmező a standard kimenetre írja a kimenetet. Ha azt akarjuk hogy a view kapja meg az output-ot, akkor azt be kell állítani így:
         pe2.OutputToView(true);
-        Grafika gr = new Grafika(pev);
+        Grafika gr = new Grafika(pev, pe2);
         gr.draw();
         //Ezután már a view fogja megkapni a kimenetet, és a viewnak kell majd továbbítania a kimenetet a megfelelő TextBox-nak. (Lásd: ParancsErtelmezoView.ReceiveFromPE)
 
@@ -46,6 +46,6 @@ public class Main {
 
         //A view is tud természetesen parancsokat küldeni a parancsértelmezőnek.
         //Ezt kell majd hivogatni amikor az Input TextBox-ba beírnak egy parancsot és megnyoomják a gombot hogy ok
-        pev.SendToPE("allapot cs1 vizmennyiseg"); //Példa parancs küldésre a viewból a parancsértelmezőnek. Nyilván valójában a TextBox-ból jön majd a parancs.
+        //pev.SendToPE("allapot pcs1 vizmennyiseg"); //Példa parancs küldésre a viewból a parancsértelmezőnek. Nyilván valójában a TextBox-ból jön majd a parancs.
     }
 }

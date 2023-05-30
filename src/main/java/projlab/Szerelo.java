@@ -46,6 +46,9 @@ public class Szerelo extends Jatekos {
 		csoHatizsak.add(m);
 		helyzet.SzomszedTorol(m);
 		m.SzomszedTorol(helyzet);
+		//Notify-olni kell a cső viewját
+		m.view.Notify(m);
+
 	}
 
 	/**
@@ -74,6 +77,8 @@ public class Szerelo extends Jatekos {
 		for (int i = 0; i < m.maxSzomszedok; i++) {
 			csoHatizsak.add(m);
 		}
+		//Notify-olni kell a cső viewját
+		m.view.Notify(m);
 
 	}
 

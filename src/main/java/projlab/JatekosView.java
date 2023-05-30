@@ -16,6 +16,7 @@ public abstract class JatekosView extends ObjectView {
 	protected Color szin; // Játékos színe
 	private Mezo helyzet; // Játékos előző helye
 	private Jatekos jatekos;
+	private int drawX = 0, drawY = 0; // Játékos rajzolásának helye (animált)
 
 	@Override
 	public void Notify(Jatekos j) {
@@ -41,6 +42,38 @@ public abstract class JatekosView extends ObjectView {
 		y = helyzetView.getKozepY() + dY;
 	}
 
+	/**
+	 * Animációhoz segéd függvény
+	 */
+	private static final int animationSpeed = 5;
+	public static boolean haveSameSign(int num1, int num2) {
+		return (num1 >= 0 && num2 >= 0) || (num1 < 0 && num2 < 0);
+	}
+
+	@Override
+	public void Animate() {
+		if (drawX != x || drawY != y) {
+			if (drawX == 0 && drawY == 0) {
+				drawX = x;
+				drawY = y;
+			}
+
+			int dx = x - drawX;
+			int dy = y - drawY;
+
+			double d = Math.sqrt(dx * dx + dy * dy);
+			double ratio = animationSpeed / d;
+
+			drawX += (int) (dx * ratio);
+			drawY += (int) (dy * ratio);
+
+			if (!haveSameSign(dx, x - drawX))
+				drawX = x;
+			if (!haveSameSign(dy, y - drawY))
+				drawY = y;
+		}
+	}
+
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {
 		// Ha nem látható a helyzet vagy a szerelő, nem történik kirajzolás
@@ -54,13 +87,13 @@ public abstract class JatekosView extends ObjectView {
 		Graphics g = layers.get(2);
 
 		// Háromszög
-		int haromszogX = x;
-		int haromszogY = y - 10;
+		int haromszogX = drawX;
+		int haromszogY = drawY - 10;
 		g.setColor(szin);
 		g.fillPolygon(new int[] { haromszogX - 15, haromszogX, haromszogX + 15 },
 				new int[] { haromszogY, haromszogY + 25, haromszogY }, 3);
 
 		// Név a háromszög közepére
-		DrawName(g, x, y);
+		DrawName(g, drawX, drawY);
 	}
 }

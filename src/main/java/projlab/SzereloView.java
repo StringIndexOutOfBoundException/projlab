@@ -1,9 +1,6 @@
 package projlab;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class SzereloView extends JatekosView {
 	public SzereloView() {

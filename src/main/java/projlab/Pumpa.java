@@ -59,6 +59,7 @@ public class Pumpa extends Mezo {
 		ArrayList<Mezo> szomszedok = super.GetSzomszedok(); // Mezo osztaly attributuma
 		if (szomszedok.size() < maxCso)
 			szomszedok.add(m);
+		view.Notify(this);
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class Pumpa extends Mezo {
 	 * @Override
 	 */
 
-	public void Atallit(Mezo kimenet, Mezo bemenet) {
+	public void Atallit(Mezo bemenet, Mezo kimenet) {
 		// megnezzuk szomszedok-e
 		ArrayList<Mezo> szomszedok = GetSzomszedok(); // Mezo osztaly attributuma
 		for (int i = 0; i < szomszedok.size(); ++i) {
@@ -84,6 +85,7 @@ public class Pumpa extends Mezo {
 				this.kimenet = kimenet;
 			}
 		}
+		view.Notify(this);
 	}
 
 	/**
@@ -93,6 +95,7 @@ public class Pumpa extends Mezo {
 	 */
 	public void Megjavit() {
 		setMukodik(true);
+		view.Notify(this);
 	}
 
 	/**
@@ -113,7 +116,7 @@ public class Pumpa extends Mezo {
 	public void Frissit() {
 		try {
 			Random rand = new Random();
-			if (rand.nextDouble(1) > 0.5) {
+			if (rand.nextDouble(1) > 0.9) { //10% esely van a hibara
 				if (doRandomThings) // ha determinisztikus a mukodes
 					this.setMukodik(false);
 			}
@@ -160,6 +163,7 @@ public class Pumpa extends Mezo {
 			}
 		}
 		catch (Exception e){}
+		view.Notify(this);
 	}
 
 	/**
@@ -188,6 +192,8 @@ public class Pumpa extends Mezo {
 		} else if (meret < 0) {
 		} else
 			this.vizmennyiseg = meret;
+
+		view.Notify(this);
 	}
 	public int getVizmennyiseg() {
 		return vizmennyiseg;

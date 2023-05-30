@@ -51,7 +51,6 @@ public class ParancsErtelmezoView {
 
         try {
             String temp = tOutput.getText();
-            temp += "\n";
             tOutput.setText(temp + output);
         }
         catch (Exception e){}
