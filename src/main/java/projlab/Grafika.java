@@ -127,9 +127,9 @@ public class Grafika {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String output = "letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev> \n" +
+                String output = "---Játékhoz szükséges parancsok--- \n" +
+                        "letrehoz <”cso”/”pumpa”/”ciszterna”/”forras”/”szerelo”/”szabotor”> <nev> \n" +
                         "lep <jatekos> <mezo> \n" +
-                        "osszekot <mezo1> <mezo2> \n" +
                         "szerel <szerelo> \n" +
                         "lyukaszt <jatekos> \n" +
                         "allit <jatekos> <bemenet_cso> <kimenet_cso> \n" +
@@ -137,14 +137,17 @@ public class Grafika {
                         "epit <szerelo> <”cso”/”pumpa”> \n" +
                         "felvesz <szerelo> <”cso”/”pumpa”> [cso_nev] [egesz/fel] \n" +
                         "allapot <objektum> <objektum_attributum> [filenév]  \n" +
-                        "tolt <fajlnev> \n" +
                         "csuszik <szabotor> \n" +
                         "ragad <jatekos> \n" +
+                        "\n---Debug parancsok---\n" +
                         "veletlen <”be”/”ki”> \n" +
+                        "tolt <fajlnev> \n" +
+                        "osszekot <mezo1> <mezo2> \n" +
                         "elront <pumpa/cso> \n" +
                         "termel <ciszterna> <”pumpa”/”cso”> \n" +
-                        "csofelulet <cso> <\"csuszos\"/\"ragados\"> " +
-                        "vizmennyiseg <pumpa/cso> <mennyiseg> ";
+                        "csofelulet <cso> <\"csuszos\"/\"ragados\"> \n" +
+                        "vizmennyiseg <pumpa/cso> <mennyiseg> \n" +
+                        "torol";
                 if (Fear) {
                     output = "“I must not fear.\n" +
                             "Fear is the mind-killer.\n" +
