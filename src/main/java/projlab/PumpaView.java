@@ -32,6 +32,14 @@ public class PumpaView extends MezoView {
 		mukodik = m.getMukodik();
 	}
 
+	private float animValue = 0;
+
+	@Override
+	public void Animate() {
+		if (!mukodik)
+			animValue += 0.1;
+	}
+
 	/**
 	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
 	 * @param layers - A bufferek amikre rajzolni kell.
@@ -51,7 +59,7 @@ public class PumpaView extends MezoView {
 		// Hibajelzés
 		if (!mukodik) {
 			int warnX = x;
-			int warnY = y - atlo / 2 - 3;
+			int warnY = y - atlo / 2 - 3 - (int) (Math.sin(animValue) * 5);
 
 			g.setColor(Color.RED);
 			g.fillPolygon(new int[] { warnX - 9, warnX, warnX + 9 }, new int[] { warnY, warnY - 17, warnY }, 3);

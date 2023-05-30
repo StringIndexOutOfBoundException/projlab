@@ -12,6 +12,7 @@ public class CiszternaView extends MezoView {
 
 	private int pumpak = 0; // Csiszternánál található termelt pumpák
 	private int csovek = 0; // Csiszternánál található termelt csovek
+	double startDeg = 0;
 
 	public CiszternaView() {
 		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
@@ -36,6 +37,11 @@ public class CiszternaView extends MezoView {
 		// csovek = m.get???
 	}
 
+	@Override
+	public void Animate() {
+		startDeg += 0.01;
+	}
+
 	/**
 	 * A viewhez tartozó grafika rárajzolása az adott bufferre.
 	 * @param layers - A bufferek amikre rajzolni kell.
@@ -56,7 +62,7 @@ public class CiszternaView extends MezoView {
 		g.setColor(termeltPumpaSzin);
 		int pumpaMeret = 15;
 		for (int i = 0; i < pumpak; i++) {
-			double deg = i * (Math.PI * 2 / pumpak);
+			double deg = startDeg + i * (Math.PI * 2 / pumpak);
 			int pX = x + (int) (termeltEltolas * Math.cos(deg));
 			int pY = y + (int) (termeltEltolas * Math.sin(deg));
 			g.fillOval(pX - pumpaMeret / 2, pY - pumpaMeret / 2, pumpaMeret, pumpaMeret);

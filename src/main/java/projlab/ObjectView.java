@@ -10,6 +10,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 /**
  * Egy absztrakt ősosztály, amiből az összes konkrét objektumnak a játékban lesz
  * egy "view"-ja, ami felelős a grafikus megjelenítéséért.
@@ -83,6 +85,12 @@ public abstract class ObjectView {
 	 * @param layers - A bufferek amikre rajzolni kell.
 	 */
 	public abstract void Draw(ArrayList<Graphics> layers);
+
+	/**
+	 * A view frissítése egy animációs lépéssel, ha a view támogat animációt.
+	 */
+	public void Animate() {
+	};
 
 	/**
 	 * Beállítja az objektum megjelenítésekor használt nevét.
@@ -175,7 +183,7 @@ public abstract class ObjectView {
 	 * @param g        - A Graphics amire a kirajzolás történik
 	 * @param darkMode - A téma színéhez illő háttért állítja be rajzolásnál.
 	 */
-	public static void DrawAllViews(Graphics g, Boolean darkMode) {
+	public static synchronized void DrawAllViews(Graphics g, Boolean darkMode) {
 		Graphics2D out = (Graphics2D) g;
 		out.scale(1.0d / scale, 1.0d / scale);
 		int scaledWidth = CANVAS_WIDTH * scale;
@@ -191,6 +199,7 @@ public abstract class ObjectView {
 
 		// Nézetek bufferekbe rajzolása
 		for (ObjectView view : allViews) {
+			view.Animate();
 			view.Draw(layerGraphics);
 		}
 
@@ -199,5 +208,32 @@ public abstract class ObjectView {
 			out.drawImage(layers.get(i), 0, 0, null);
 			layerClear.get(i).fillRect(0, 0, scaledWidth, scaledHeight);
 		}
+
 	}
+
+	private static Thread animationThread;
+
+	/**
+	 * Elindítja a view-k animációját ha még nem volt elindítva.
+	 * @param drawpanel - a napel amit újra kell rajzolni.
+	 */
+	public static void StartAnimation(JPanel drawpanel) {
+		if (animationThread != null)
+			return;
+		animationThread = new Thread(() -> {
+			while (true) {
+				drawpanel.repaint();
+
+				try {
+					Thread.sleep(1000 / 60);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		animationThread.setDaemon(true);
+		animationThread.start();
+	}
+
 }

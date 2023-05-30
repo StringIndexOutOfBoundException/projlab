@@ -32,6 +32,7 @@ public class Grafika {
 				ObjectView.DrawAllViews(g, darkMode);
             }
         };
+		ObjectView.StartAnimation(drawPanel);
 
 
         JPanel cantSee = new JPanel(new GridBagLayout());
