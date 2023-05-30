@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ * Ez az osztály a Ciszternák megjeleítésért felelős, őt értesítik, ha egy ciszterna állapota változik.
+ * Ő felelős még azért is hogy milyen koordinátákra milyen alakzatot rajzoljunk.
+ */
 public class CiszternaView extends MezoView {
 	private static final Color szin = new Color(245, 154, 35); // Narancs: #f59a23
 	private static final Color termeltPumpaSzin = new Color(113, 113, 113); // Szürke: #717171

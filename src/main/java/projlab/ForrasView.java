@@ -3,6 +3,10 @@ package projlab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+/**
+ * Ez az osztály a Források megjeleítésért felelős, őt értesítik, ha egy forrás állapota változik.
+ * Ő felelős még azért is hogy milyen koordinátákra milyen alakzatot rajzoljunk.
+ */
 
 public class ForrasView extends MezoView {
 	private static final Color szin = new Color(0, 207, 255); // Kék: #00cfff
@@ -30,7 +34,7 @@ public class ForrasView extends MezoView {
 
 	/**
 	 * A forrás nézetének rárajzolása az átadott graphics bufferre.
-	 * @param g - A graphics buffer amire rajzol.
+	 * @param layers - A graphics buffer amire rajzol.
 	 */
 	@Override
 	public void Draw(ArrayList<Graphics> layers) {

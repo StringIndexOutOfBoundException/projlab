@@ -6,6 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+/**
+ * Ez az osztály a Csövek megjeleítésért felelős, őt értesítik, ha egy cső állapota változik.
+ * Ő felelős még azért is hogy milyen koordinátákra milyen alakzatot rajzoljunk.
+ */
+
 public class CsoView extends MezoView {
 	private static final Color szin = Color.BLACK; // Fekete
 	private static final Color vizSzin = new Color(99, 168, 252); // Kék
@@ -50,7 +55,7 @@ public class CsoView extends MezoView {
 			lathato = false;
 			return;
 		}
-		
+
 		lathato = true;
 
 		// Cső végeinek beállítása

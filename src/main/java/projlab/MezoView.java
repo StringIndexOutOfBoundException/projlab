@@ -2,6 +2,11 @@ package projlab;
 
 import java.util.ArrayList;
 import java.util.Random;
+/**
+ * Ez az osztály a Mező megjeleítésért felelős, őt értesítik, ha egy mező állapota változik.
+ * Ő felelős még azért is hogy milyen koordinátákra milyen alakzatot rajzoljunk.
+ * Gyerekei a CiszternaView, CsőView, PumpaView és a ForrasView
+ */
 
 public abstract class MezoView extends ObjectView {
 	/**

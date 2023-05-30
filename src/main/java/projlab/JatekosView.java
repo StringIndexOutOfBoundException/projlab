@@ -3,6 +3,11 @@ package projlab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+/**
+ * Ez az osztály a Játékosok megjeleítésért felelős, őt értesítik, ha egy játékos állapota változik.
+ * Ő felelős még azért is hogy milyen koordinátákra milyen alakzatot rajzoljunk.
+ * Gyerekei a SzabotorView és SzereloView
+ */
 
 public abstract class JatekosView extends ObjectView {
 	/**
