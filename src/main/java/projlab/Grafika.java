@@ -3,6 +3,7 @@ package projlab;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class Grafika {
@@ -67,17 +68,37 @@ public class Grafika {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String path = JOptionPane.showInputDialog(frame, "Path: ");
-                p.EnableDebugMode(true);
-                p.OutputToView(false);
-                p.runFromString("torol");
-                p.runFromFile(path);
-                p.EnableDebugMode(false);
-                p.OutputToView(true);
-                drawPanel.repaint();
-                if(alwaysdebug) {
-                    pe.EnableDebugMode(true);
-                }
+                //Megnézzük, hogy a filename végén van-e .txt, ha nincs, hozzáadjuk
 
+                if (path != null && !path.isEmpty())
+                {
+                    if (!path.endsWith(".txt")) {
+                        path += ".txt";
+                    }
+                    // File objektum létrehozása. Ez csak azért kell hogy ellenőrizzük, hogy létezik-e a fájl.
+                    File file = new File(path);
+
+                    // Ellenőrizzük, hogy létezik-e a fájl.
+                    if (file.exists() && file.isFile()) {
+                        p.EnableDebugMode(true);
+                        p.OutputToView(false);
+                        p.runFromString("torol");
+                        p.runFromFile(path);
+                        p.EnableDebugMode(false);
+                        p.OutputToView(true);
+                        drawPanel.repaint();
+                        if(alwaysdebug) {
+                            pe.EnableDebugMode(true);
+                        }
+                    } else {
+                        pe.ReceiveFromPE("File nem létezik.\n");
+                    }
+
+                }
+                else
+                {
+                    pe.ReceiveFromPE("Nem írtál be semmit.\n");
+                }
             }
         });
 

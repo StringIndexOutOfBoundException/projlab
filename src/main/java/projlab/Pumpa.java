@@ -160,6 +160,7 @@ public class Pumpa extends Mezo {
 			}
 		}
 		catch (Exception e){}
+		view.Notify(this);
 	}
 
 	/**
