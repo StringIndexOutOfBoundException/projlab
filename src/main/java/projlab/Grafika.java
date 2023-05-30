@@ -197,6 +197,7 @@ public class Grafika {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     input.setText(p.getLastFullCommand());
+                    input.setCaretPosition(input.getText().length());
                 }
             }
         };
