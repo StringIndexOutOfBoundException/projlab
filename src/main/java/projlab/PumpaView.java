@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class PumpaView extends MezoView {
 	private static final Color szin = new Color(113, 113, 113); // Szürke: #717171
+	private static final Color vizSzin = new Color(99, 168, 252); // Kék
 	private static final int atlo = 55; // Kör átlója
 
 	private Boolean mukodik = true;
@@ -30,6 +31,7 @@ public class PumpaView extends MezoView {
 	@Override
 	public void Notify(Mezo m) {
 		mukodik = m.getMukodik();
+		nevSzin = m.getVizmennyiseg() == 0 ? Color.WHITE : vizSzin;
 	}
 
 	private float animValue = 0;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class CsoView extends MezoView {
 	private static final Color szin = Color.BLACK; // Fekete
+	private static final Color vizSzin = new Color(99, 168, 252); // Kék
 	private static final int vastag = 10; // Kirajzolt cső vastagsága
 	private static final BasicStroke stroke = new BasicStroke(vastag);
 
@@ -64,6 +65,9 @@ public class CsoView extends MezoView {
 		csuszik = m.getCsuszos() > 0;
 		ragad = m.getRagados() > 0;
 		mukodik = m.getMukodik();
+
+		// Víz
+		nevSzin = m.getVizmennyiseg() == 0 ? Color.WHITE : vizSzin;
 	}
 
 	private float animValue = 0;
