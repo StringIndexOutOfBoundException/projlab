@@ -23,6 +23,10 @@ public abstract class JatekosView extends ObjectView {
 	private Jatekos jatekos;
 	private int drawX = 0, drawY = 0; // Játékos rajzolásának helye (animált)
 
+	public JatekosView() {
+		oldalmeret = 0;
+	}
+
 	@Override
 	public void Notify(Jatekos j) {
 		Mezo ujHelyzet = j.getHelyzet();

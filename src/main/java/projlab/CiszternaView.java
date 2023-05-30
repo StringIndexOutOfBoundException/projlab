@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class CiszternaView extends MezoView {
 	private static final Color szin = new Color(245, 154, 35); // Narancs: #f59a23
 	private static final Color termeltPumpaSzin = new Color(113, 113, 113); // Szürke: #717171
-	private static final int oldalmeret = 50; // Négyzet oldalmérete
 	private static final int termeltEltolas = 50; // Termelt elemek eltolása
 
 	private int pumpak = 0; // Csiszternánál található termelt pumpák

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class ForrasView extends MezoView {
 	private static final Color szin = new Color(0, 207, 255); // Kék: #00cfff
-	private static final int oldalmeret = 50; // Négyzet oldalmérete
 
 	public ForrasView() {
 		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class PumpaView extends MezoView {
 	private static final Color szin = new Color(113, 113, 113); // Szürke: #717171
 	private static final Color vizSzin = new Color(99, 168, 252); // Kék
-	private static final int atlo = 55; // Kör átlója
 
 	private Boolean mukodik = true;
 	// Be és kimenet helye
@@ -20,13 +19,15 @@ public class PumpaView extends MezoView {
 	private int kiX = -1, kiY = -1;
 
 	public PumpaView() {
-		int MIN_DISTANCE_BETWEEN = atlo + 50;
+		oldalmeret = 55;
+
+		int MIN_DISTANCE_BETWEEN = oldalmeret + 50;
 
 		// Pumpa a pálya középső részén lehet
-		int minX = CANVAS_WIDTH / 4 + atlo;
-		int maxX = CANVAS_WIDTH / 4 * 3 - atlo;
-		int minY = atlo + 20;
-		int maxY = CANVAS_HEIGHT - atlo;
+		int minX = CANVAS_WIDTH / 4 + oldalmeret;
+		int maxX = CANVAS_WIDTH / 4 * 3 - oldalmeret;
+		int minY = oldalmeret + 20;
+		int maxY = CANVAS_HEIGHT - oldalmeret;
 
 		GenerateXYPlacement(minX, maxX, minY, maxY, MIN_DISTANCE_BETWEEN);
 	}
@@ -91,7 +92,7 @@ public class PumpaView extends MezoView {
 
 		// Kör kirajzolása (xy a közepe)
 		g.setColor(szin);
-		g.fillOval(x - atlo / 2, y - atlo / 2, atlo, atlo);
+		g.fillOval(x - oldalmeret / 2, y - oldalmeret / 2, oldalmeret, oldalmeret);
 
 		// Ki és bemenet jelzése
 		int kibeJelzesMeret = 5;
@@ -107,7 +108,7 @@ public class PumpaView extends MezoView {
 		// Hibajelzés
 		if (!mukodik) {
 			int warnX = x;
-			int warnY = y - atlo / 2 - 5 - (int) (Math.sin(animValue) * 5);
+			int warnY = y - oldalmeret / 2 - 5 - (int) (Math.sin(animValue) * 5);
 
 			g.setColor(Color.RED);
 			g.fillPolygon(new int[] { warnX - 9, warnX, warnX + 9 }, new int[] { warnY, warnY - 17, warnY }, 3);

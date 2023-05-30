@@ -75,12 +75,17 @@ public class CsoView extends MezoView {
 		nevSzin = m.getVizmennyiseg() == 0 ? Color.WHITE : vizSzin;
 	}
 
+	/**
+	 * Animációs idő változók
+	 */
+	private float warningAnimation = 0;
 	private float animValue = 0;
 
 	@Override
 	public void Animate() {
+		animValue += 0.2;
 		if (!mukodik)
-			animValue += 0.1;
+			warningAnimation += 0.1;
 	}
 
 	/**
@@ -99,8 +104,10 @@ public class CsoView extends MezoView {
 
 		// Modifierek
 		if (csuszik || ragad) {
+
 			g2.setStroke(
-					new BasicStroke(vastag + 4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 9 }, 0));
+					new BasicStroke(vastag + 4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 9 },
+							animValue));
 			// Csuszósságnak nagyobb a precedenciája -- ez alapján dől el a modifier szine
 			g2.setColor(csuszik ? Color.CYAN : Color.GREEN);
 			g2.drawLine(x, y, x2, y2);
@@ -114,7 +121,7 @@ public class CsoView extends MezoView {
 		// Hibajelzés
 		if (!mukodik) {
 			int warnX = getKozepX();
-			int warnY = getKozepY() - 20 - (int) (Math.sin(animValue) * 5);
+			int warnY = getKozepY() - 20 - (int) (Math.sin(warningAnimation) * 5);
 			g.setColor(Color.RED);
 			g.fillPolygon(new int[] { warnX - 9, warnX, warnX + 9 }, new int[] { warnY, warnY - 17, warnY }, 3);
 			g.setColor(Color.WHITE);
@@ -128,6 +135,40 @@ public class CsoView extends MezoView {
 
 		// Név a cső közepén
 		DrawName(g, getKozepX(), getKozepY());
+	}
+
+	/**
+	 * Egyenes egyelnetével távolság számítása
+	 */
+	@Override
+	public double getDistanceFromPoint(int px, int py) {
+		if (x == 0 && x2 == 0) {
+			return Double.POSITIVE_INFINITY;
+		}
+
+		// A csőre fekvő egyenes egyenlete (y=m*x+c)
+		double m = (x2 - x != 0) ? (y2 - y) / (x2 - x) : Double.POSITIVE_INFINITY;
+		double c = y - m * x;
+
+		// Egyenesre merőleses egyenlet a p ponton át (y2=mp*x+c2)
+		double mp = (m != 0) ? -1 / m : Double.POSITIVE_INFINITY;
+		double c2 = py - mp * px;
+
+		// A két egyenes találkozásának pontja
+		double tx = (mp != m) ? (c2 - c) / (m - mp) : x;
+		double ty = m * tx + c;
+
+		// A találkozási és az eredeti pont távolsága
+		double dx = tx - px;
+		double dy = ty - py;
+		double distance = Math.sqrt(dx * dx + dy * dy);
+
+		return distance;
+
+		// Sima körös backup megoldás
+//		int dx = Math.abs(px - x);
+//		int dy = Math.abs(py - y);
+//		return Math.sqrt(dx * dx + dy * dy);
 	}
 
 }

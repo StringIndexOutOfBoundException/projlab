@@ -63,6 +63,7 @@ public abstract class ObjectView {
 	 * Az objektum megjelenéséért felelős változók default értékekkel.
 	 */
 	protected int x = 0, y = 0; // Megjelenítés koordinátái
+	protected int oldalmeret = 50; // View oldalmérete
 	protected String nev = "?"; // Objektum neve
 	protected Color nevSzin = Color.white; // Objektum nevének színe
 	protected Boolean lathato = true; // Objektum láthatósága
@@ -131,6 +132,20 @@ public abstract class ObjectView {
 	 */
 	public int getKozepY() {
 		return y;
+	}
+
+	/**
+	 * Kiszámolja hogy a view milyen távol van az adott ponttól. Ha a view nem
+	 * definiálja felül, a default implementáció egy 'oldalmeret' átlójú kört tekint
+	 * hitboxnak.
+	 * @param px - A pont x koordinátája
+	 * @param py - A pont y koordinátája
+	 * @return View távolsága a ponttól
+	 */
+	public double getDistanceFromPoint(int px, int py) {
+		int dx = Math.abs(px - x);
+		int dy = Math.abs(py - y);
+		return Math.sqrt(dx * dx + dy * dy);
 	}
 
 	/**
