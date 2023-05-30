@@ -45,7 +45,10 @@ public class Grafika {
 
         JButton newGame = new JButton("Új játék");
         newGame.setBackground(Color.WHITE);
-        newGame.addActionListener(e -> pe.SendToPE("torol"));
+        newGame.addActionListener(e -> {
+            pe.EnableDebugMode(true);
+            pe.SendToPE("torol");
+            pe.EnableDebugMode(false);});
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.WEST;
         constraints.weightx = 1;
@@ -59,8 +62,12 @@ public class Grafika {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String path = JOptionPane.showInputDialog(frame, "Path: ");
+                p.EnableDebugMode(true);
+                p.OutputToView(false);
                 p.runFromString("torol");
                 p.runFromFile(path);
+                p.EnableDebugMode(false);
+                p.OutputToView(true);
                 drawPanel.repaint();
 
             }
@@ -150,6 +157,8 @@ public class Grafika {
         constraints.gridy = 3;
         panel.add(input, constraints);
 
+
+
         JButton send = new JButton("O.k.");
         send.addActionListener(e -> {
             String inp = input.getText();
@@ -168,13 +177,21 @@ public class Grafika {
                 input.setBackground(new Color(100, 100, 100));
 
             }
-            if (inp.equals("Dune")) {
+            else if (inp.equals("Dune")) {
                 Fear = true;
             } else {
                 pe.SendToPE(inp);
             }
             input.setText("");
         });
+        //Ez azért kell, hogy az enterrel is lehessen küldeni parancsot
+        ActionListener enterAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                send.doClick(); // ha megnyomjuk az entert, akkor a "gombra kattintunk"
+            }
+        };
+        input.addActionListener(enterAction);
         send.setBackground(Color.WHITE);
         send.setPreferredSize(new Dimension(75, 27));
         constraints.insets = new Insets(0, 0, 0, 0);

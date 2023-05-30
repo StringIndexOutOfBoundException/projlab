@@ -193,8 +193,7 @@ public class ParancsErtelmezo {
                 cAllit(param);
                 break;
             case "frissit":
-                if (InDebugMode())
-                    cFrissit(param);
+                cFrissit(param);
                 break;
             case "epit":
                 cEpit(param);
@@ -1498,8 +1497,8 @@ public class ParancsErtelmezo {
 
     /**
      * Ha debug módban vagyunk, akkor minden parancs elérhető
-     * Ha nem debug módban vagyunk, akkor csak a következő parancsok érhetőek el: lep, szerel, lyukaszt, allit, epit, felvesz, allapot, csuszik, ragad
-     * Tehát a következő parancsok nem elérhetőek: letrehoz, osszekot, frissit, veletlen, elront, termel, csofelulet, vizmennyiseg, torol
+     * Ha nem debug módban vagyunk, akkor csak a következő parancsok érhetőek el: lep, szerel, lyukaszt, allit, epit, felvesz, allapot, csuszik, ragad, frissit
+     * Tehát a következő parancsok nem elérhetőek: letrehoz, osszekot, veletlen, elront, termel, csofelulet, vizmennyiseg, torol
      * @param debug_mode Ha true, akkor debug módban vagyunk, ha false, akkor nem
      */
     public void EnableDebugMode(boolean debug_mode) {
@@ -1555,7 +1554,7 @@ public class ParancsErtelmezo {
         if (output_to_view)
         {
             //A view ezzel a függvénnyel fogja megkapni az output-ot
-            view.ReceiveFromPE(s);
+            view.ReceiveFromPE(s+"\n");
         }
         else
         {
