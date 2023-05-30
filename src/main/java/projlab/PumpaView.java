@@ -40,13 +40,14 @@ public class PumpaView extends MezoView {
 		Mezo be = m.getBemenet();
 		Mezo ki = m.getKimenet();
 
+		int jelzesEltolas = 20;
 		if (be != null) {
 			ObjectView beView = be.getView();
 			double dx = beView.getKozepX() - x;
 			double dy = beView.getKozepY() - y;
 			double d = Math.sqrt(dx * dx + dy * dy);
-			beX = (int) (x + dx * 20 / d);
-			beY = (int) (y + dy * 20 / d);
+			beX = (int) (x + dx * jelzesEltolas / d);
+			beY = (int) (y + dy * jelzesEltolas / d);
 		} else {
 			beX = beY = -1;
 		}
@@ -56,8 +57,8 @@ public class PumpaView extends MezoView {
 			double dx = kiView.getKozepX() - x;
 			double dy = kiView.getKozepY() - y;
 			double d = Math.sqrt(dx * dx + dy * dy);
-			kiX = (int) (x + dx * 20 / d);
-			kiY = (int) (y + dy * 20 / d);
+			kiX = (int) (x + dx * jelzesEltolas / d);
+			kiY = (int) (y + dy * jelzesEltolas / d);
 		} else {
 			kiX = kiY = -1;
 		}
