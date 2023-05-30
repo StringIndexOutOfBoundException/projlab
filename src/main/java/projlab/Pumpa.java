@@ -59,6 +59,7 @@ public class Pumpa extends Mezo {
 		ArrayList<Mezo> szomszedok = super.GetSzomszedok(); // Mezo osztaly attributuma
 		if (szomszedok.size() < maxCso)
 			szomszedok.add(m);
+		view.Notify(this);
 	}
 
 	/**
@@ -84,6 +85,7 @@ public class Pumpa extends Mezo {
 				this.kimenet = kimenet;
 			}
 		}
+		view.Notify(this);
 	}
 
 	/**
@@ -93,6 +95,7 @@ public class Pumpa extends Mezo {
 	 */
 	public void Megjavit() {
 		setMukodik(true);
+		view.Notify(this);
 	}
 
 	/**
@@ -189,6 +192,8 @@ public class Pumpa extends Mezo {
 		} else if (meret < 0) {
 		} else
 			this.vizmennyiseg = meret;
+
+		view.Notify(this);
 	}
 	public int getVizmennyiseg() {
 		return vizmennyiseg;
