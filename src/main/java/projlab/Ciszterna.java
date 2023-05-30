@@ -86,8 +86,6 @@ public class Ciszterna extends Mezo {
 				int menny1 = cso.getVizmennyiseg();
 				cso.VizetCsokkent(1);
 				int menny2 = cso.getVizmennyiseg();
-
-				//Todo: szereloPontotNovel();
 				if(menny1 > menny2)
 					pontsz.szereloPontotNovel(1);
 			} catch (Exception e) {

@@ -133,7 +133,6 @@ public class Cso extends Mezo {
 	@Override
 	public void VizetNovel(int meret) throws Exception {
 		if (!mukodik){
-			// Todo: szabotorPontotNovel();
 			pontsz.szabotorPontotNovel(1);
 			return;
 		}

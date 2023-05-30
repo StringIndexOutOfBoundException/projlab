@@ -18,6 +18,11 @@ public class PontszamlaloView extends ObjectView{
         pY = szaY + 25;
     }
 
+    /**
+     * Az eredmény változásakor hívódó függvény
+     * @param s kinek a pontja változott
+     * @param p mennyi ponttal változott
+     */
     public void Notify(String s, int p){
         if(s.compareTo("sze") == 0)
             szePont += p;
@@ -27,8 +32,12 @@ public class PontszamlaloView extends ObjectView{
              currRound += p;
     }
 
+    /**
+     * Kirajzolásért felelős függvény
+     * @param layers - A bufferek amikre rajzolni kell.
+     */
     public void Draw(ArrayList<Graphics> layers) {
-        Graphics g = layers.get(1);
+        Graphics g = layers.get(3);
         g.setColor(Color.black);
         g.drawString("Szerelő pont: " + szePont, szeX, szeY);
         g.drawString("Szabotőr pont: "+ + szaPont, szaX, szaY);

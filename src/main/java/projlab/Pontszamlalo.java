@@ -1,5 +1,8 @@
 package projlab;
 
+/**
+ * A pontok számlálásáért felelős osztály
+ */
 public class Pontszamlalo {
     private int szabotorPoint, szereloPoint = 0;
     private int currRound = 1;
@@ -7,20 +10,53 @@ public class Pontszamlalo {
 
     protected PontszamlaloView view = new PontszamlaloView();
 
-    public Pontszamlalo(){ }
-
+    /**
+     * Szabotőrök pontszának növelése
+     * @param p a pont, amennyivel nő a pontszám
+     */
     public void szabotorPontotNovel(int p){
         szabotorPoint += p;
         view.Notify("sza", p);
     }
 
+    /**
+     * Szerelők ponszámának növelése
+     * @param p a pont, amennyivel nő a pontszám
+     */
     public void szereloPontotNovel(int p){
         szereloPoint += p;
         view.Notify("sze", p);
     }
 
+    /**
+     * Kör növelése 1-el
+     */
     public void korNovel(){
         currRound += 1;
         view.Notify("k", 1);
+    }
+
+    /**
+     * Jelenlegi kör értékének lekérdezése
+     * @return jelenlegi kör száma
+     */
+    public int getCurrRound() {
+        return currRound;
+    }
+
+    /**
+     * Szabotőrök pontjanak lekérdezése
+     * @return szabotőrök pontja
+     */
+    public int getSzabotorPoint() {
+        return szabotorPoint;
+    }
+
+    /**
+     * Szerelők pontjanak lekérdezése
+     * @return szerelők pontja
+     */
+    public int getSzereloPoint() {
+        return szereloPoint;
     }
 }

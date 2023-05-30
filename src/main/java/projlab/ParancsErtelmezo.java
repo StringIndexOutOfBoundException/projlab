@@ -516,8 +516,12 @@ public class ParancsErtelmezo {
             }
         }
 
-        //Todo: kornovel
+        // kör növelése és játék vége vizsgálat
         pontsz.korNovel();
+        if(pontsz.getCurrRound() == 20) {
+            Outputln("A játéknak vége!");
+            Outputln("Nyertes: " + ((pontsz.getSzabotorPoint() > pontsz.getSzereloPoint())? "Szabotőrök" : "Szerelők"));
+        }
 
         //A függvény nem vár paramétert. Ha véletlen mégis adtak meg, figyelmeztetjük a felhasználót, de attól még a parancs lefut
         if (param.length != 0) {
