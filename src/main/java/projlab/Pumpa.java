@@ -73,7 +73,7 @@ public class Pumpa extends Mezo {
 	 * @Override
 	 */
 
-	public void Atallit(Mezo kimenet, Mezo bemenet) {
+	public void Atallit(Mezo bemenet, Mezo kimenet) {
 		// megnezzuk szomszedok-e
 		ArrayList<Mezo> szomszedok = GetSzomszedok(); // Mezo osztaly attributuma
 		for (int i = 0; i < szomszedok.size(); ++i) {
