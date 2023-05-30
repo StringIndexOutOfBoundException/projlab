@@ -28,7 +28,5 @@ public class Forras extends Mezo {
 
 		if (szomszedszam == 1) 	//ha a szomszédok száma 1, akkor belepumpálja a vizet
 			szomszedok.get(0).VizetNovel(MAXVIZ);
-		else		//ha a szomszédok száma nem 1, hibát dob
-			throw new IllegalArgumentException();
 	}
 }
