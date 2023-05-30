@@ -60,7 +60,7 @@ public class Cso extends Mezo {
 
 			if (csuszos != 0) {
 				if (GetSzomszedok().size() > 0 && doRandomThings) {
-					j.Lep(GetSzomszedok().get(new Random().nextInt(1)));
+					j.Lep(GetSzomszedok().get(new Random().nextInt(2)));
 				}
 				else {j.Lep(GetSzomszedok().get(0));}
 			}
