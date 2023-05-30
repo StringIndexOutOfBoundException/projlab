@@ -12,6 +12,7 @@ public class PontszamlaloView extends ObjectView{
     int currRound = 1;
     int szeX, szeY, szaX, szaY, pX, pY = 0;
     public PontszamlaloView(){
+		perzisztens = true;
         nev = "pontszamlalo";
         szeX = 10;
         szeY = 20;

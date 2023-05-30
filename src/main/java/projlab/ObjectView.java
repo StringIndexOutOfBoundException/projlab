@@ -27,6 +27,7 @@ public abstract class ObjectView {
 	 * Az eddig létrehozott összes view-t tartalmazó statikus lista.
 	 */
 	private static ArrayList<ObjectView> allViews = new ArrayList<>();
+	protected Boolean perzisztens = false; // Ha nem törölhető egy nézet
 
 	/**
 	 * A view-k kirajzolásához használt bufferek (layerek z-index szerint) és a
@@ -160,7 +161,7 @@ public abstract class ObjectView {
 	 * Törli az összes eddig léterhozott nézetet.
 	 */
 	static public void RemoveAllViews() {
-		allViews.clear();
+		allViews.removeIf(s -> !s.perzisztens);
 	}
 
 	/**
