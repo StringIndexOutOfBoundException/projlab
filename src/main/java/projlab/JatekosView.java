@@ -71,8 +71,6 @@ public abstract class JatekosView extends ObjectView {
 				drawX = x;
 			if (!haveSameSign(dy, y - drawY))
 				drawY = y;
-
-			System.out.println(dx + " " + dy);
 		}
 	}
 
