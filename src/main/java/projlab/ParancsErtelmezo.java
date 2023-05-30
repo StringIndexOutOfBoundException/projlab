@@ -173,7 +173,15 @@ public class ParancsErtelmezo {
      */
     private void parseOne(String parancs, String[] param)
     {
-        lastfullcommand = parancs + " " + String.join(" ", param);
+        try
+        {
+            lastfullcommand = parancs + " " + String.join(" ", param); //Ez lehet hogy exceptiont dob ha a param üres
+        }
+        catch (Exception e)
+        {
+            lastfullcommand = parancs;
+        }
+
         switch (parancs)
         {
             case "letrehoz":
